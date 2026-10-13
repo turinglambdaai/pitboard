@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      关于 — pitboard
+    </title>
+    <meta name="description" content="pitboard — 汽车行业每日热点：开源项目、行业资讯、前沿论文，一天一块板。" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="application/rss+xml" title="pitboard RSS" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script defer="defer" src="/app.js">
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          ⏱ pitboard
+        </a>
+        <div class="nav-links">
+          <a href="/">
+            今日
+          </a>
+          <a href="/archive">
+            归档
+          </a>
+          <a href="/about" class="active">
+            关于
+          </a>
+          <a href="/rss.xml">
+            RSS
+          </a>
+          <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
+            ◐
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="hero">
+        <h1>
+          关于 pitboard
+        </h1>
+      </section>
+      <div class="prose">
+        <p>
+          pitboard 是一张举给汽车行业从业者的「pit 板」：每天把开源项目、
+          行业资讯、前沿论文抓到一起，聚簇去重，按独立来源数与时间衰减算出热度，
+          把真正在发生的事顶到最上面。
+        </p>
+        <h2>
+          它怎么工作
+        </h2>
+        <ul>
+          <li>
+            <b>
+              抓取
+            </b>
+             — RSS 媒体源、GitHub 汽车话题仓库、arXiv 论文检索，全部免 key。
+          </li>
+          <li>
+            <b>
+              聚簇
+            </b>
+             — 中英分词（CJK 二元语法）+ Jaccard 相似度，同一事件的多方报道并成一条。
+          </li>
+          <li>
+            <b>
+              热度
+            </b>
+             — 独立来源越多越靠前，48 小时窗口内按新旧衰减；可选用 OpenAI 兼容 LLM 把头条翻译成中文摘要。
+          </li>
+          <li>
+            <b>
+              出刊
+            </b>
+             — 每日定时生成一期刊物，写进 data/ 归档，站点与 API 同步刷新。
+          </li>
+        </ul>
+        <h2>
+          给 Agent 的出口
+        </h2>
+        <ul>
+          <li>
+            <code>
+              /rss.xml
+            </code>
+             — RSS 订阅
+          </li>
+          <li>
+            <code>
+              /api/v1/latest.json
+            </code>
+             — 最新一期 JSON（
+            <code>
+              /api/v1/digest/2026-10-13.json
+            </code>
+             按日期取）
+          </li>
+          <li>
+            <code>
+              /daily/&amp;lt;date&amp;gt;.md
+            </code>
+             — Markdown 日报
+          </li>
+          <li>
+            <code>
+              /llms.txt
+            </code>
+             — 站点索引
+          </li>
+          <li>
+            <code>
+              /api/events
+            </code>
+             — SSE 出刊推送
+          </li>
+        </ul>
+        <h2>
+          自托管
+        </h2>
+        <p>
+          一个 Racket 进程，零外部依赖（无数据库）：
+          <br />
+          <code>
+            raco pkg install --auto https://github.com/turinglambdaai/pitboard.git
+          </code>
+          <br />
+          <code>
+            raco pitboard fetch &amp;&amp; raco pitboard serve --port 8090
+          </code>
+        </p>
+        <h2>
+          致谢
+        </h2>
+        <p>
+          设计灵感来自 
+          <a href="https://github.com/KKKKhazix/AIHOT">
+            AIHOT
+          </a>
+           ——「把信源和精选标准换成你的，它就是你的行业热点站」。pitboard 是这句话在汽车行业、
+          Racket 技术栈上的回答。MIT 许可。
+        </p>
+      </div>
+    </main>
+    <footer class="footer">
+      <div>
+        pitboard — 汽车行业每日热点 · Racket 全栈自托管
+      </div>
+      <div class="muted">
+        设计灵感致谢 AIHOT · 本站由开源管线每日自动生成 · 
+        <a href="/llms.txt">
+          llms.txt
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

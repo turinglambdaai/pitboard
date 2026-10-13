@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0">
+  <channel>
+    <title>
+      pitboard — 汽车行业每日热点
+    </title>
+    <link>
+      https://pitboard.jrtx.site
+    </link>
+    <description>
+      开源项目 · 行业资讯 · 前沿论文，一天一块板
+    </description>
+    <language>
+      zh
+    </language>
+    <item>
+      <title>
+        carla-simulator/carla
+      </title>
+      <link>
+        https://github.com/carla-simulator/carla
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:371904745613176677
+      </guid>
+      <description>
+        Open-source simulator for autonomous driving research.
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 3:07:46am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        home-assistant/android
+      </title>
+      <link>
+        https://github.com/home-assistant/android
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:214312824462057403
+      </guid>
+      <description>
+        Home Assistant Companion for Android
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 4:27:11am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        commaai/opendbc
+      </title>
+      <link>
+        https://github.com/commaai/opendbc
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:737223512686484068
+      </guid>
+      <description>
+        a Python API for your car
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 1:19:27am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        autowarefoundation/autoware_universe
+      </title>
+      <link>
+        https://github.com/autowarefoundation/autoware_universe
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:74207692028281966
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 1:57:47am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        rusefi/rusefi
+      </title>
+      <link>
+        https://github.com/rusefi/rusefi
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:920759841300796806
+      </guid>
+      <description>
+        rusefi - GPL internal combustion engine control unit
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 3:47:29am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        geo-tp/ESP32-Bit-Pirate
+      </title>
+      <link>
+        https://github.com/geo-tp/ESP32-Bit-Pirate
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:628827917745241884
+      </guid>
+      <description>
+        A Hardware Hacking Tool with Web-Based CLI That Speaks Every Protocol
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 1:39:58pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        gotonote/Autopilot-Notes
+      </title>
+      <link>
+        https://github.com/gotonote/Autopilot-Notes
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:991420061623841730
+      </guid>
+      <description>
+        自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 8:01:32pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        autowarefoundation/autoware
+      </title>
+      <link>
+        https://github.com/autowarefoundation/autoware
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:565200565018763934
+      </guid>
+      <description>
+        Autoware - the world's leading open-source software project for autonomous driving
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 4:48:16am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        CJNE/ha-myenergi
+      </title>
+      <link>
+        https://github.com/CJNE/ha-myenergi
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:295157171350775896
+      </guid>
+      <description>
+        Home Assistant integration for MyEnergi devices
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 10:30:35pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        hypery11/flipper-tesla-fsd
+      </title>
+      <link>
+        https://github.com/hypery11/flipper-tesla-fsd
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:359024813280894494
+      </guid>
+      <description>
+        Tesla Mod — Flipper Zero &amp; ESP32. Nag killer, FSD region unlock, track mode, BMS dashboard, blind spot alert, high beam strobe, CAN capture, steering mode + more. Works via OBD-II or X179 connector.
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 1:04:30pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        tylerharvey/Ioniq5_CAN
+      </title>
+      <link>
+        https://github.com/tylerharvey/Ioniq5_CAN
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:418836759165520081
+      </guid>
+      <description>
+        Project coordination home for the Ioniq 5/6/EV6 manual preconditoning button, and other CAN reverse engineering.
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 3:23:33am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        ETS2LA/ETS2LA
+      </title>
+      <link>
+        https://github.com/ETS2LA/ETS2LA
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:267111742621372022
+      </guid>
+      <description>
+        Plugin based interface program for ETS2/ATS.
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 11:27:52am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        robin-shaun/XTDrone
+      </title>
+      <link>
+        https://github.com/robin-shaun/XTDrone
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:241403031377211162
+      </guid>
+      <description>
+        UAV Simulation Platform based on PX4, ROS and Gazebo
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 1:39:37am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        zoompilot/zoompilot
+      </title>
+      <link>
+        https://github.com/zoompilot/zoompilot
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:331586778551071066
+      </guid>
+      <description>
+        open source driver assistance system for Mazda and other vehicles
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 4:20:39am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        dts88/zeekr-shortcut-car
+      </title>
+      <link>
+        https://github.com/dts88/zeekr-shortcut-car
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:621539432236857970
+      </guid>
+      <description>
+        极氪即刻（车机版）· Surround-view dash cam for the ZEEKR 7X head unit. Fork of EVCam (GPL-3.0).
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 12:55:29am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        tier4/autoware-ml
+      </title>
+      <link>
+        https://github.com/tier4/autoware-ml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:19023198559916749
+      </guid>
+      <description>
+        Autoware-ML is a machine learning framework for multiple tasks, supporting the full lifecycle - training, evaluation, optimization, and deployment of models with native runtime support in Autoware.
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 3:36:25am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        steve-community/steve
+      </title>
+      <link>
+        https://github.com/steve-community/steve
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:422944630061728958
+      </guid>
+      <description>
+        SteVe - OCPP server implementation in Java. Your trusted open-source EV charging station management system since 2013. Used by CPOs, manufacturers and developers worldwide. Managed cloud →
+      </description>
+      <pubDate>
+        Sunday, October 11th, 2026 6:03:36pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        MRPT/mrpt
+      </title>
+      <link>
+        https://github.com/MRPT/mrpt
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:430689869749764914
+      </guid>
+      <description>
+        :zap: The Mobile Robot Programming Toolkit (MRPT)
+      </description>
+      <pubDate>
+        Sunday, October 11th, 2026 7:15:10am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        alaliqing/AlphaAD
+      </title>
+      <link>
+        https://github.com/alaliqing/AlphaAD
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:170038287165730656
+      </guid>
+      <description>
+        🚗 Automatically curated collection of the latest autonomous driving research papers from arXiv. Updated daily with   categorized papers on perception, planning, control, and more.
+      </description>
+      <pubDate>
+        Monday, October 12th, 2026 8:08:32am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        juherr/awesome-ev-charging
+      </title>
+      <link>
+        https://github.com/juherr/awesome-ev-charging
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:897935467772421691
+      </guid>
+      <description>
+        Awesome list of tools for Electric Vehicles
+      </description>
+      <pubDate>
+        Sunday, October 11th, 2026 6:03:16pm
+      </pubDate>
+    </item>
+  </channel>
+</rss>

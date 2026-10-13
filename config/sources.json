@@ -1,0 +1,16 @@
+{
+  "feeds": [
+    { "name": "Ars Technica · Cars", "url": "https://arstechnica.com/cars/feed/", "weight": 1.2 },
+    { "name": "TechCrunch · Transportation", "url": "https://techcrunch.com/category/transportation/feed/", "weight": 1.0 },
+    { "name": "IEEE Spectrum · Transportation", "url": "https://spectrum.ieee.org/feeds/topic/transportation.rss", "weight": 1.1 },
+    { "name": "Electrek", "url": "https://electrek.co/feed/", "weight": 0.9 }
+  ],
+  "github": {
+    "topics": ["automotive", "autonomous-driving", "self-driving", "can-bus", "obd-ii", "adas", "ev-charging", "car-hacking"],
+    "per_page": 8
+  },
+  "arxiv": {
+    "query": "(cat:cs.RO OR cat:eess.SY) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\")",
+    "max_results": 40
+  }
+}

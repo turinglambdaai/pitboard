@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>arXiv Query</title>
+<id>http://arxiv.org/api/query</id>
+<updated>2026-10-13T00:00:00Z</updated>
+<entry>
+  <title>End-to-end planning for autonomous vehicles</title>
+  <id>http://arxiv.org/abs/2026.12345v1</id>
+  <published>2026-10-13T09:00:00Z</published>
+  <updated>2026-10-13T09:00:00Z</updated>
+  <summary>We study vehicle planning with ADAS constraints.</summary>
+  <link href="http://arxiv.org/abs/2026.12345v1" rel="alternate" type="text/html"/>
+</entry>
+<entry>
+  <title>Second entry picks the plain link</title>
+  <id>http://arxiv.org/abs/2026.2</id>
+  <updated>2026-10-12T10:00:00Z</updated>
+  <summary>x</summary>
+  <link rel="related" href="http://wrong.example/"/>
+  <link href="http://right.example/"/>
+</entry>
+</feed>

@@ -1,0 +1,45 @@
+name: Digest
+
+# Daily edition: fetch sources, score, cluster, commit the archive and
+# regenerate the static mirror in site/ (which triggers the Pages deploy).
+
+on:
+  schedule:
+    - cron: '30 23 * * *'   # 07:30 Beijing time
+  workflow_dispatch:
+
+concurrency:
+  group: digest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Racket
+        uses: Bogdanp/setup-racket@v1.15
+        with:
+          version: stable
+          distribution: full
+      - name: Install pitboard
+        run: raco pkg install --auto --no-docs --link "$(pwd)"
+      - name: Fetch and publish today's edition
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PITBOARD_LLM_API_KEY: ${{ secrets.PITBOARD_LLM_API_KEY }}
+          PITBOARD_LLM_BASE_URL: ${{ secrets.PITBOARD_LLM_BASE_URL }}
+          PITBOARD_LLM_MODEL: ${{ secrets.PITBOARD_LLM_MODEL }}
+        run: raco pitboard fetch --data data --config config/sources.json
+      - name: Export static mirror
+        run: raco pitboard export --data data --out site --domain pitboard.jrtx.site
+      - name: Commit the archive
+        run: |
+          git config user.name "pitboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data site
+          git commit -m "digest: $(date -u +%F) [skip ci]" || echo "no changes"
+          git push

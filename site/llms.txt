@@ -1,0 +1,17 @@
+# pitboard
+
+> 汽车行业每日热点日报：开源项目、行业资讯、前沿论文，聚簇去重、按独立来源数算热度。Racket 全栈、单进程自托管、MIT 开源。
+
+## Pages
+
+- [今日热点](https://pitboard.jrtx.site/): 最新一期行业热点榜
+- [归档](https://pitboard.jrtx.site/archive): 往期所有刊物
+- [关于](https://pitboard.jrtx.site/about): 产品说明与自托管指南
+
+## Machine-readable
+
+- https://pitboard.jrtx.site/rss.xml — RSS 2.0 订阅
+- https://pitboard.jrtx.site/api/v1/latest.json — 最新一期完整 JSON
+- https://pitboard.jrtx.site/api/v1/digest/<date>.json — 指定日期 JSON
+- https://pitboard.jrtx.site/daily/<date>.md — Markdown 日报
+- https://pitboard.jrtx.site/api/events — SSE 出刊推送
