@@ -5,7 +5,8 @@
          json
          "../render.rkt")
 
-(define ctx (site-ctx "pitboard.jrtx.site" "https://pitboard.jrtx.site" 0))
+(define ctx (site-ctx "pitboard.jrtx.site" "https://pitboard.jrtx.site" 0
+                      (λ () (hasheq "2026-10-13" 1))))
 
 (define digest
   (hasheq 'date "2026-10-13"

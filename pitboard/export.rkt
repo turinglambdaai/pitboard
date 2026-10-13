@@ -33,8 +33,12 @@
                      #:domain [domain "pitboard.jrtx.site"]
                      #:base-url [base-url "https://pitboard.jrtx.site"]
                      #:assets-dir [assets-dir "assets"])
-  (define ctx (site-ctx domain base-url (current-seconds)))
   (define dates (list-dates data-dir))
+  (define editions
+    (for/hash ([d (in-list (reverse dates))]
+               [i (in-naturals 1)])
+      (values d i)))
+  (define ctx (site-ctx domain base-url (current-seconds) (λ () editions)))
   (define latest (and (pair? dates) (load-digest data-dir (car dates))))
   (define count 0)
   (define (put rel b) (write-bytes! (build-path out rel) b) (set! count (add1 count)))

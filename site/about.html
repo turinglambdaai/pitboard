@@ -18,7 +18,19 @@
     <nav class="nav">
       <div class="nav-inner">
         <a class="brand" href="/">
-          ⏱ pitboard
+          <svg class="brand-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="1.25" y="6" width="21.5" height="12" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7">
+            </rect>
+            <rect x="4.4" y="9.2" width="2.7" height="5.6" rx="0.6" fill="var(--accent)">
+            </rect>
+            <rect x="9.2" y="9.4" width="7" height="1.9" rx="0.9" fill="currentColor" opacity="0.5">
+            </rect>
+            <rect x="9.2" y="13" width="10.4" height="1.9" rx="0.9" fill="currentColor" opacity="0.28">
+            </rect>
+          </svg>
+          <span class="brand-name">
+            pitboard
+          </span>
         </a>
         <div class="nav-links">
           <a href="/">
@@ -40,8 +52,11 @@
       </div>
     </nav>
     <main>
-      <section class="hero">
-        <h1>
+      <section class="hero hero-slim">
+        <p class="kicker">
+          ABOUT
+        </p>
+        <h1 class="hero-date hero-date-s">
           关于 pitboard
         </h1>
       </section>
@@ -102,7 +117,7 @@
           </li>
           <li>
             <code>
-              /daily/&amp;lt;date&amp;gt;.md
+              /daily/&lt;date&gt;.md
             </code>
              — Markdown 日报
           </li>
@@ -146,13 +161,20 @@
       </div>
     </main>
     <footer class="footer">
+      <div class="footer-brand">
+        pitboard
+      </div>
       <div>
-        pitboard — 汽车行业每日热点 · Racket 全栈自托管
+        汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
       </div>
       <div class="muted">
-        本站由开源管线每日自动生成 · 
+        MIT 开源 · 
         <a href="/llms.txt">
           llms.txt
+        </a>
+         · 
+        <a href="/rss.xml">
+          RSS 订阅
         </a>
       </div>
     </footer>

@@ -19,6 +19,8 @@
          "sse.rkt"
          "util.rkt")
 
+;; (editions-of dir) → hash: date → 期数 (1-based, ascending by date)
+
 (provide start-server)
 
 (define (resp-html b)
@@ -49,7 +51,13 @@
 (define (start-server #:port [port 8090]
                       #:data-dir [data-dir "data"]
                       #:assets-dir [assets-dir "assets"])
-  (define ctx (site-ctx "pitboard.jrtx.site" "" (current-seconds)))
+  ;; edition numbers grow over time: oldest archive = 第 1 期
+  (define (editions-of dir)
+    (for/hash ([d (in-list (reverse (list-dates dir)))]
+               [i (in-naturals 1)])
+      (values d i)))
+  (define ctx (site-ctx "pitboard.jrtx.site" "" (current-seconds)
+                        (λ () (editions-of data-dir))))
   (define hub (make-hub))
   (hub-watch! hub data-dir 5)
 

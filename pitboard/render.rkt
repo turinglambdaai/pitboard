@@ -23,7 +23,7 @@
          render-daily-md
          render-llms-txt)
 
-(struct site-ctx (domain base-url generated-at) #:transparent)
+(struct site-ctx (domain base-url generated-at editions-fn) #:transparent)
 
 ;; ---- plumbing -------------------------------------------------------------
 
@@ -48,6 +48,13 @@
               (~r (string->number (list-ref m 3))))
       ymd))
 
+(define (weekday-cn ymd)
+  (define s (parse-date-any ymd))
+  (if s
+      (vector-ref #("日" "一" "二" "三" "四" "五" "六")
+                  (date-week-day (seconds->date s #t)))
+      ""))
+
 (define kind-label
   (match-lambda
     ["github" "开源"]
@@ -60,6 +67,18 @@
         [else (list 'span '((class "chip")) l)]))
 
 ;; ---- shell ------------------------------------------------------------------
+
+(define brand-mark
+  `(svg ((class "brand-mark") (viewBox "0 0 24 24") (width "20") (height "20")
+         (aria-hidden "true"))
+     (rect ((x "1.25") (y "6") (width "21.5") (height "12") (rx "2.6")
+            (fill "none") (stroke "currentColor") (stroke-width "1.7")))
+     (rect ((x "4.4") (y "9.2") (width "2.7") (height "5.6") (rx "0.6")
+            (fill "var(--accent)")))
+     (rect ((x "9.2") (y "9.4") (width "7") (height "1.9") (rx "0.9")
+            (fill "currentColor") (opacity "0.5")))
+     (rect ((x "9.2") (y "13") (width "10.4") (height "1.9") (rx "0.9")
+            (fill "currentColor") (opacity "0.28")))))
 
 (define (page-shell ctx title active body)
   `(html ((lang "zh"))
@@ -77,7 +96,9 @@
      (body
       (nav ((class "nav"))
            (div ((class "nav-inner"))
-                (a ((class "brand") (href "/")) "⏱ pitboard")
+                (a ((class "brand") (href "/"))
+                   ,brand-mark
+                   (span ((class "brand-name")) "pitboard"))
                 (div ((class "nav-links"))
                      ,@(for/list ([p (in-list '(("index" "/" "今日")
                                                 ("archive" "/archive" "归档")
@@ -90,12 +111,18 @@
                               (type "button") (aria-label "切换主题")) "◐"))))
       (main ,@body)
       (footer ((class "footer"))
-              (div "pitboard — 汽车行业每日热点 · Racket 全栈自托管")
+              (div ((class "footer-brand")) "pitboard")
+              (div "汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊")
               (div ((class "muted"))
-                   "本站由开源管线每日自动生成 · "
-                   (a ((href "/llms.txt")) "llms.txt"))))))
+                   "MIT 开源 · "
+                   (a ((href "/llms.txt")) "llms.txt")
+                   " · "
+                   (a ((href "/rss.xml")) "RSS 订阅"))))))
 
 ;; ---- cluster card -----------------------------------------------------------
+
+(define (span-stars n)
+  (list 'span '((class "stars")) (format " ★~a" n)))
 
 (define (source-chip it)
   (define extra (hash-ref it 'extra (hasheq)))
@@ -105,19 +132,25 @@
       " · " ,(v (hash-ref it 'source_url "unknown"))
       ,@(if stars (list (span-stars stars)) '())))
 
-(define (span-stars n)
-  (list 'span '((class "stars")) (format " ★~a" n)))
-
-(define (cluster-card h idx)
+(define (cluster-card h idx max-heat)
+  (define heat-str (v (hash-ref h 'heat "0")))
+  (define heat-num (or (string->number heat-str) 0.0))
+  (define pct
+    (inexact->exact
+     (floor (max 4 (min 100 (* 100.0 (/ heat-num (max max-heat 0.001))))))))
+  (define domains (hash-ref h 'domains 0))
   `(article ((class "card"))
-     (div ((class "card-head"))
-          (span ((class "rank")) ,(format "#~a" (add1 idx)))
-          (span ((class "heat")) "🔥 " ,(v (hash-ref h 'heat "0")))
-          ,@(map label-chip* (map ~a (hash-ref h 'labels '())))
-          ,@(if (> (hash-ref h 'domains 0) 1)
-                (list (list 'span '((class "chip"))
-                            (format "~a 个独立来源" (hash-ref h 'domains 0))))
-                '()))
+     (div ((class "card-top"))
+          (span ((class "rank")) ,(format "~a" (~r (add1 idx) #:min-width 2 #:pad-string "0")))
+          (div ((class "labels"))
+               (span ((class "heat")) "🔥 " ,heat-str)
+               ,@(map label-chip* (map ~a (hash-ref h 'labels '())))
+               ,@(if (> domains 1)
+                     (list (list 'span '((class "chip"))
+                                 (format "~a 个独立来源" domains)))
+                     '())))
+     (div ((class "heatbar"))
+          (span ((class "heatbar-fill") (style ,(format "width:~a%" pct))) ""))
      (h2 ((class "card-title"))
          (a ((href ,(first-item-url h)) (target "_blank") (rel "noopener"))
             ,(v (hash-ref h 'title ""))))
@@ -133,54 +166,79 @@
 
 ;; ---- pages -------------------------------------------------------------------
 
-(define (hero-digest digest)
+(define (hero-digest ctx digest)
   (define clusters (hash-ref digest 'clusters '()))
   (define items (for/sum ([c (in-list clusters)]) (length (hash-ref c 'items '()))))
   (define mode (hash-ref digest 'mode "scored"))
+  (define date (v (hash-ref digest 'date "")))
+  (define ed (hash-ref ((site-ctx-editions-fn ctx)) date #f))
   `(section ((class "hero"))
-     (h1 "今日热点")
-     (p ((class "hero-date")) ,(date-cn (v (hash-ref digest 'date "")))
-        ,@(if (equal? mode "llm") '((span ((class "chip chip-llm")) "LLM 增强")) '()))
-     (div ((class "hero-stats"))
-          (span ,(format "~a 个热点" (length clusters)))
-          (span " · ")
-          (span ,(format "~a 条原始条目" items))
-          (span " · ")
-          (span ,(format "~a 个信源" (length (hash-ref digest 'sources '())))))))
+     (div ((class "hero-grid"))
+          (div ((class "hero-copy"))
+               (p ((class "kicker"))
+                  ,(if ed (format "AUTOMOTIVE DAILY · 第 ~a 期" ed)
+                       "AUTOMOTIVE DAILY"))
+               (h1 ((class "hero-date"))
+                   ,(date-cn date)
+                   (span ((class "hero-wd")) ,(format " 星期~a" (weekday-cn date))))
+               (p ((class "hero-meta"))
+                  (span ,(format "~a 个热点" (length clusters)))
+                  (span ((class "dot")) "·")
+                  (span ,(format "~a 条原始条目" items))
+                  (span ((class "dot")) "·")
+                  (span ,(format "~a 个信源" (length (hash-ref digest 'sources '()))))
+                  ,@(if (equal? mode "llm")
+                        (list '(span ((class "chip chip-llm")) "LLM 增强"))
+                        '())))
+          (div ((class "board") (aria-hidden "true"))
+               (div ((class "board-label")) "EDITION")
+               (div ((class "board-num")) ,(if ed (~r ed) "—"))
+               (div ((class "board-sub")) "PITBOARD · 每日出刊")))))
 
 (define (render-index-page ctx digest)
   (define clusters (hash-ref digest 'clusters '()))
+  (define max-heat
+    (for/fold ([m 1.0]) ([c (in-list clusters)])
+      (max m (or (string->number (v (hash-ref c 'heat "0"))) 0.0))))
   (xexpr->html-bytes
    (page-shell ctx "pitboard — 汽车行业每日热点" "index"
-               (list (hero-digest digest)
+               (list (hero-digest ctx digest)
                      (if (null? clusters)
                          '(p ((class "empty")) "今天还没有足够的热点。")
                          `(div ((class "cards"))
                                ,@(for/list ([c (in-list clusters)]
                                             [i (in-naturals)]
                                             #:when (< i 30))
-                                   (cluster-card c i))))))))
+                                   (cluster-card c i max-heat))))))))
 
 (define (render-archive-page ctx digests)
   ;; digests: list of (list date cluster-count top-title)
+  (define editions ((site-ctx-editions-fn ctx)))
   (xexpr->html-bytes
    (page-shell ctx "归档 — pitboard" "archive"
                (list
-                '(section ((class "hero")) (h1 "往期归档"))
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "ARCHIVE")
+                   (h1 ((class "hero-date hero-date-s")) "往期归档"))
                 `(ul ((class "archive-list"))
                      ,@(for/list ([d (in-list digests)])
                          `(li
-                           (a ((href ,(format "/d/~a" (car d))))
+                           (a ((class "arch-link") (href ,(format "/d/~a" (car d))))
+                              (span ((class "arch-ed"))
+                                    ,(let ([e (hash-ref editions (car d) #f)])
+                                       (if e (format "第 ~a 期" e) "")))
                               (span ((class "arch-date")) ,(date-cn (car d)))
-                              (span ((class "arch-meta"))
-                                    ,(format "~a 个热点" (cadr d))))
-                           (span ((class "arch-title")) " " ,(caddr d)))))))))
+                              (span ((class "arch-title")) ,(caddr d))
+                              (span ((class "arch-count"))
+                                    ,(format "~a 个热点" (cadr d)))))))))))
 
 (define (render-about-page ctx)
   (xexpr->html-bytes
    (page-shell ctx "关于 — pitboard" "about"
                (list
-                '(section ((class "hero")) (h1 "关于 pitboard"))
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "ABOUT")
+                   (h1 ((class "hero-date hero-date-s")) "关于 pitboard"))
                 '(div ((class "prose"))
                   (p "pitboard 是一张举给汽车行业从业者的「pit 板」：每天把开源项目、"
                      "行业资讯、前沿论文抓到一起，聚簇去重，按独立来源数与时间衰减算出热度，"
@@ -195,7 +253,7 @@
                   (ul
                    (li (code "/rss.xml") " — RSS 订阅")
                    (li (code "/api/v1/latest.json") " — 最新一期 JSON（" (code "/api/v1/digest/2026-10-13.json") " 按日期取）")
-                   (li (code "/daily/&lt;date&gt;.md") " — Markdown 日报")
+                   (li (code "/daily/<date>.md") " — Markdown 日报")
                    (li (code "/llms.txt") " — 站点索引")
                    (li (code "/api/events") " — SSE 出刊推送"))
                   (h2 "自托管")
@@ -211,17 +269,18 @@
    (page-shell ctx "pitboard — 汽车行业每日热点" "index"
                (list
                 '(section ((class "hero"))
-                   (h1 "还没有出刊")
-                   (p ((class "hero-date")) "先跑一次抓取：")
+                   (p ((class "kicker")) "AUTOMOTIVE DAILY")
+                   (h1 ((class "hero-date")) "还没有出刊")
+                   (p ((class "hero-meta")) "先跑一次抓取：")
                    (p (code "raco pitboard fetch")))))))
 
 (define (render-not-found ctx)
   (xexpr->html-bytes
    (page-shell ctx "404 — pitboard" ""
                (list '(section ((class "hero"))
-                              (h1 "404")
-                              (p "这块板上没写东西。")
-                              (p (a ((href "/")) "回今日热点")))))))
+                              (p ((class "kicker")) "404")
+                              (h1 ((class "hero-date")) "这块板上没写东西")
+                              (p ((class "hero-meta")) (a ((href "/")) "← 回今日热点")))))))
 
 ;; ---- rss / md / llms ----------------------------------------------------------
 
