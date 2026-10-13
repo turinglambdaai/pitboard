@@ -143,6 +143,18 @@
       "tier": 3,
       "weight": 0.5,
       "name": "Electrek"
+    },
+    {
+      "name": "Medium · AUTOSAR",
+      "url": "https://medium.com/feed/tag/autosar",
+      "tier": 2,
+      "weight": 0.8
+    },
+    {
+      "name": "Medium · Automotive Software",
+      "url": "https://medium.com/feed/tag/automotive-software",
+      "tier": 2,
+      "weight": 0.8
     }
   ],
   "github": {
@@ -156,16 +168,68 @@
       "self-driving",
       "robotaxi",
       "automotive",
-      "automotive-software"
+      "automotive-software",
+      "someip",
+      "tsn",
+      "doip"
     ],
     "per_page": 3,
     "min_stars": 20,
     "orgs": [
-      "AUTOSAR"
+      "AUTOSAR",
+      "COVESA"
     ]
   },
   "arxiv": {
     "query": "(cat:cs.RO OR cat:eess.SY OR cat:cs.AR) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\" OR abs:AUTOSAR OR abs:\"functional safety\" OR abs:\"in-vehicle\" OR abs:ECU)",
     "max_results": 40
-  }
+  },
+  "hn": {
+    "keywords": [
+      "automotive",
+      "autosar",
+      "some/ip",
+      "someip",
+      "uds",
+      "can bus",
+      "can fd",
+      "adas",
+      "autonomous",
+      "self-driving",
+      "driverless",
+      "robotaxi",
+      "waymo",
+      "vehicle",
+      "iso 26262",
+      "iso 21434",
+      "functional safety",
+      "car hacking",
+      "tesla",
+      "byd",
+      "nio ",
+      "xpeng",
+      "zeekr",
+      "cruise",
+      "zoox",
+      "motorsport"
+    ],
+    "days": 7,
+    "per_page": 1000,
+    "min_points": 2
+  },
+  "watch_topics": [
+    "AUTOSAR",
+    "DDS",
+    "SOME/IP",
+    "SOA",
+    "信息安全",
+    "功能安全",
+    "安全刷写",
+    "UDS",
+    "车载以太网",
+    "域控",
+    "智能驾驶",
+    "Robotaxi",
+    "芯片"
+  ]
 }

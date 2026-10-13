@@ -50,7 +50,8 @@
 
 (define (start-server #:port [port 8090]
                       #:data-dir [data-dir "data"]
-                      #:assets-dir [assets-dir "assets"])
+                      #:assets-dir [assets-dir "assets"]
+                      #:topics [topics #f])
   ;; edition numbers grow over time: oldest archive = 第 1 期
   (define (editions-of dir)
     (for/hash ([d (in-list (reverse (list-dates dir)))]
@@ -58,6 +59,14 @@
       (values d i)))
   (define ctx (site-ctx "pitboard.jrtx.site" "" (current-seconds)
                         (λ () (editions-of data-dir))))
+  (define topic-terms
+    (or topics
+        (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
+              "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi" "芯片")))
+  (define (topics-index)
+    (for/list ([t (in-list topic-terms)])
+      (list (topic-slug t) t
+            (length (collect-topic-items data-dir t)))))
   (define hub (make-hub))
   (hub-watch! hub data-dir 5)
 
@@ -97,6 +106,17 @@
     (if dg
         (resp-text (render-daily-md ctx dg))
         (resp-404 ctx)))
+  (define (topics-h req)
+    (resp-html (render-topics-index ctx (topics-index))))
+  (define (topic-h req slug)
+    (define term
+      (for/first ([t (in-list topic-terms)]
+                  #:when (equal? (topic-slug t) (string-trim slug "/")))
+        t))
+    (if term
+        (resp-html
+         (render-topic-page ctx term (collect-topic-items data-dir term)))
+        (resp-404 ctx)))
   (define (events-h req)
     (response/output
      (λ (out) (hub-stream hub out))
@@ -115,6 +135,8 @@
      [("llms.txt") llms-h]
      [("healthz") health-h]
      [("api" "events") events-h]
+     [("topics") topics-h]
+     [("topic" (string-arg)) topic-h]
      [("api" "v1" "latest.json") api-latest-h]
      [("api" "v1" "digest" (string-arg)) api-date-h]
      [("daily" (string-arg)) daily-h]))
@@ -126,7 +148,7 @@
                  #:listen-ip #f
                  #:servlet-path "/"
                  #:servlet-regexp
-                 #rx"^/($|d/.+|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
+                 #rx"^/($|d/.+|topics|topic/.+|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
                  #:extra-files-paths
                  (list (path->complete-path assets-dir))
                  #:banner? #f))

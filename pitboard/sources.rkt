@@ -21,6 +21,7 @@
 
 (provide default-config
          load-config
+         default-watch-topics
          fetch-all
          extract-web-items
          (struct-out source-status)
@@ -45,11 +46,24 @@
 (define default-topics
   (list "autosar" "uds" "iso-26262" "can-bus" "adas"
         "autonomous-driving" "self-driving" "robotaxi"
-        "automotive" "automotive-software"))
+        "automotive" "automotive-software"
+        "someip" "tsn" "doip"))
 
 ;; Official orgs watched without a star floor: first-party signal.
 (define default-orgs
-  (list "AUTOSAR"))
+  (list "AUTOSAR" "COVESA"))
+
+;; Topics tracked on the topic radar pages.
+(define default-watch-topics
+  (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
+        "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi" "芯片"))
+
+;; title keywords an HN story must match to count as automotive
+(define hn-default-keywords
+  (list "automotive" "autosar" "some/ip" "someip" "uds" "can bus" "can fd"
+        "adas" "autonomous" "self-driving" "driverless" "robotaxi" "waymo"
+        "vehicle" "iso 26262" "iso 21434" "functional safety" "car hacking"
+        "tesla" "byd" "nio " "xpeng" "zeekr" "cruise" "zoox" "motorsport"))
 
 (define default-config
   (hasheq 'feeds
@@ -104,7 +118,15 @@
                         'tier 3 'weight 0.5)
                 (hasheq 'name "Zephyr Project Blog"
                         'url "https://zephyrproject.org/feed/"
-                        'tier 1 'weight 0.5))
+                        'tier 1 'weight 0.5)
+                (hasheq 'name "Medium · AUTOSAR"
+                        'url "https://medium.com/feed/tag/autosar"
+                        'tier 2 'weight 0.8)
+                (hasheq 'name "Medium · Automotive Software"
+                        'url "https://medium.com/feed/tag/automotive-software"
+                        'tier 2 'weight 0.8))
+          'hn
+          (hasheq 'keywords hn-default-keywords 'days 7 'per_page 1000 'min_points 2)
           'github
           (hasheq 'topics default-topics
                   'orgs default-orgs
@@ -112,7 +134,8 @@
                   'min_stars 20)
           'arxiv
           (hasheq 'query arxiv-default-query
-                  'max_results 40)))
+                  'max_results 40)
+          'watch_topics default-watch-topics))
 
 ;; Accepts either our embedded shape or a JSON file with the same keys.
 (define (load-config [path #f])
@@ -371,6 +394,45 @@
 
 ;; ---- all sources ------------------------------------------------------------
 
+;; ---- Hacker News (Algolia title search) ------------------------------------
+
+(define (fetch-hn [cfg (hasheq)] #:now [now (current-seconds)])
+  ;; Algolia's query is typo-tolerant (no exact keyword match, no OR on
+  ;; this endpoint), so pull recent stories and filter titles locally.
+  (define kws (hash-ref cfg 'keywords hn-default-keywords))
+  (define days (hash-ref cfg 'days 7))
+  (define per-page (hash-ref cfg 'per_page 1000))
+  (define min-pts (hash-ref cfg 'min_points 2))
+  (define url
+    (format "https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=~a&numericFilters=created_at_i%3E~a,points%3E~a"
+            per-page (- now (* days 86400)) min-pts))
+  (define b (http-get-bytes url))
+  (define res (with-input-from-bytes b read-json))
+  (define items
+    (for/list ([h (in-list (hash-ref res 'hits '()))]
+               #:do [(define title (hash-ref h 'title ""))]
+               #:when (and (string? title)
+                           (non-empty-string? title)
+                           (keyword-match? kws title)))
+      (define link (hash-ref h 'url 'null))
+      (define pts (hash-ref h 'points 0))
+      (and (non-empty-string? title)
+           (item (make-item-id 'news (string-append "hn:" title))
+                 'news
+                 "Hacker News"
+                 "news.ycombinator.com"
+                 title
+                 (if (eq? link 'null)
+                     (string-append "https://news.ycombinator.com/item?id="
+                                    (hash-ref h 'objectID ""))
+                     link)
+                 ""
+                 (parse-date-any (hash-ref h 'created_at 'null))
+                 (hasheq 'weight 0.9 'points (jx (and (number? pts) (> pts 0) pts)))))))
+  (values (filter values items)
+          (source-status "Hacker News" "hn" #t
+                         (length (filter values items)) #f)))
+
 (define (fetch-all cfg)
   (define items '())
   (define statuses '())
@@ -399,6 +461,15 @@
              (values '()
                      (source-status "GitHub 话题" "github" #f 0 (exn-message e))))])
        (fetch-github (hash-ref cfg 'github (hasheq)))))
+   absorb)
+  (call-with-values
+   (λ ()
+     (with-handlers
+         ([exn:fail?
+           (λ (e)
+             (values '()
+                     (source-status "Hacker News" "hn" #f 0 (exn-message e))))])
+       (fetch-hn (hash-ref cfg 'hn (hasheq)))))
    absorb)
   (call-with-values
    (λ ()

@@ -9,7 +9,8 @@
          racket/match
          racket/date
          racket/port
-         "util.rkt")
+         "util.rkt"
+         (only-in "store.rkt" list-dates load-digest))
 
 (provide (struct-out site-ctx)
          v
@@ -22,7 +23,11 @@
          render-not-found
          render-rss-xml
          render-daily-md
-         render-llms-txt)
+         render-llms-txt
+         topic-slug
+         collect-topic-items
+         render-topic-page
+         render-topics-index)
 
 (struct site-ctx (domain base-url generated-at editions-fn) #:transparent)
 
@@ -102,6 +107,7 @@
                    (span ((class "brand-name")) "pitboard"))
                 (div ((class "nav-links"))
                      ,@(for/list ([p (in-list '(("index" "/" "今日")
+                                                ("topics" "/topics/" "话题")
                                                 ("archive" "/archive" "归档")
                                                 ("about" "/about" "关于")
                                                 ("rss" "/rss.xml" "RSS")))])
@@ -506,3 +512,63 @@
     "- " (site-ctx-base-url ctx) "/api/v1/digest/<date>.json — 指定日期 JSON\n"
     "- " (site-ctx-base-url ctx) "/daily/<date>.md — Markdown 日报\n"
     "- " (site-ctx-base-url ctx) "/api/events — SSE 出刊推送\n")))
+
+
+;; ---- topic radar (cross-edition keyword tracking) ---------------------------
+
+(define (topic-slug term)
+  (list->string
+   (for/list ([ch (in-string (string-downcase term))])
+     (if (or (char-alphabetic? ch) (char-numeric? ch)) ch #\-))))
+
+(define (topic-match? term text)
+  (string-contains? (string-downcase text) (string-downcase term)))
+
+;; Newest-first list of (cons date item) matching term across the archive.
+(define (collect-topic-items data-dir term)
+  (for*/list ([d (in-list (list-dates data-dir))]
+              [dg (in-value (load-digest data-dir d))]
+              #:when dg
+              [c (in-list (hash-ref dg 'clusters '()))]
+              [it (in-list (hash-ref c 'items '()))]
+              #:when (topic-match? term
+                                  (string-append (v (hash-ref it 'title "")) " "
+                                                 (v (hash-ref it 'summary "")))))
+    (cons d it)))
+
+(define (render-topic-page ctx term rows)
+  (xexpr->html-bytes
+   (page-shell ctx (string-append term " — 话题雷达") "topics"
+               (list
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "TOPIC RADAR")
+                   (h1 ((class "hero-date hero-date-s")) ,term)
+                   (p ((class "hero-meta"))
+                      ,(format "~a 条相关内容 · 跨期归档追踪" (length rows))))
+                `(ul ((class "topic-list"))
+                     ,@(for/list ([row (in-list rows)])
+                         `(li ((class "topic-row"))
+                              (span ((class "topic-date")) ,(car row))
+                              (a ((href ,(v (hash-ref (cdr row) 'url "#")))
+                                  (target "_blank") (rel "noopener"))
+                                 ,(v (hash-ref (cdr row) 'title "")))
+                              (span ((class "src-dom"))
+                                    ,(v (hash-ref (cdr row) 'source_url ""))))))))))
+
+(define (render-topics-index ctx topics)
+  ;; topics: list of (list slug term count)
+  (xexpr->html-bytes
+   (page-shell ctx "话题雷达 — pitboard" "topics"
+               (list
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "TOPIC RADAR")
+                   (h1 ((class "hero-date hero-date-s")) "话题雷达")
+                   (p ((class "hero-meta")) "每个热点话题的跨期追踪，天天见底。"))
+                `(div ((class "quick-list topics-grid"))
+                      ,@(for/list ([t (in-list topics)])
+                          `(li ((class "quick-item"))
+                               (a ((class "quick-link")
+                                   (href ,(format "/topic/~a/" (car t))))
+                                  (span ((class "quick-rank")) ,(format "~a" (caddr t)))
+                                  (span ((class "quick-name")) ,(cadr t))
+                                  (span ((class "quick-heat")) "追踪 →")))))))))

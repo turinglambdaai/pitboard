@@ -32,8 +32,16 @@
                      #:out [out "site"]
                      #:domain [domain "pitboard.jrtx.site"]
                      #:base-url [base-url "https://pitboard.jrtx.site"]
-                     #:assets-dir [assets-dir "assets"])
+                     #:assets-dir [assets-dir "assets"]
+                     #:topics [topics #f])
   (define dates (list-dates data-dir))
+  (define topic-terms
+    (or topics
+        (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
+              "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi" "芯片")))
+  (define topic-pages
+    (for/list ([t (in-list topic-terms)])
+      (list (topic-slug t) t (collect-topic-items data-dir t))))
   (define editions
     (for/hash ([d (in-list (reverse dates))]
                [i (in-naturals 1)])
@@ -69,6 +77,14 @@
     (put "rss.xml" (render-rss-xml ctx latest))
     (put "api/v1/latest.json" (jsexpr->bytes latest)))
   (put "llms.txt" (render-llms-txt ctx))
+  (put "topics/index.html"
+       (render-topics-index
+        ctx
+        (for/list ([tp (in-list topic-pages)])
+          (list (car tp) (cadr tp) (length (caddr tp))))))
+  (for ([tp (in-list topic-pages)])
+    (put (string-append "topic/" (car tp) "/index.html")
+         (render-topic-page ctx (cadr tp) (caddr tp))))
   ;; static assets (flat at site root, matching serve-time URLs) + cname
   (for ([f (in-list (list "styles.css" "app.js" "favicon.svg"))])
     (define src (build-path assets-dir f))

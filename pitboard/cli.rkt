@@ -4,6 +4,7 @@
 
 (require racket/cmdline
          racket/vector
+         (only-in "sources.rkt" default-watch-topics)
          racket/match
          racket/list
          racket/string
@@ -17,6 +18,14 @@
          "export.rkt")
 
 (provide cli-main)
+
+;; watch topics from config (or the built-in default)
+(define (watch-topics config-path)
+  (define cfg (load-config config-path))
+  (define v (hash-ref cfg 'watch_topics #f))
+  (if (and (list? v) (pair? v))
+      (for/list ([x (in-list v)]) (~a x))
+      default-watch-topics))
 
 ;; ---- pipeline --------------------------------------------------------------
 
@@ -83,7 +92,8 @@
    [("--data") p "数据目录（默认 data/）" (dir p)]
    [("--assets") p "静态资源目录（默认 assets/）" (assets-p p)]
    #:args _ (void))
-  (start-server #:port (port-p) #:data-dir (dir) #:assets-dir (assets-p)))
+  (start-server #:port (port-p) #:data-dir (dir) #:assets-dir (assets-p)
+                #:topics (watch-topics #f)))
 
 (define (export-cmd)
   (define out-p (make-parameter "site"))
@@ -102,7 +112,8 @@
    #:args _ (void))
   (define n
     (export-site #:data-dir (dir) #:out (out-p) #:assets-dir (assets-p)
-                 #:domain (domain-p) #:base-url (base-p)))
+                 #:domain (domain-p) #:base-url (base-p)
+                 #:topics (watch-topics #f)))
   (printf "export: ~a 个文件 → ~a\n" n (out-p)))
 
 ;; ---- dispatch ---------------------------------------------------------------

@@ -101,8 +101,21 @@
    (cons "self-driving" 0.8) (cons "adas" 0.9) (cons "robotaxi" 0.9)
    (cons "fsd" 0.6) (cons "noa" 0.6) (cons "行泊一体" 0.9) (cons "端到端" 0.5)
    (cons "lidar" 0.5) (cons "激光雷达" 0.6)
+   ;; architecture / middleware / security engineering
+   (cons "dds" 0.8) (cons "some/ip" 1.2) (cons "someip" 1.2) (cons "soa" 0.6)
+   (cons "中间件" 0.6) (cons "middleware" 0.5) (cons "tsn" 0.8)
+   (cons "车载以太网" 1.0) (cons "automotive ethernet" 1.0) (cons "ethernet" 0.3)
+   (cons "信息安全" 1.0) (cons "网络安全" 0.9) (cons "cybersecurity" 1.0)
+   (cons "security" 0.25) (cons "安全刷写" 1.2) (cons "secure flash" 1.0)
+   (cons "安全启动" 0.9) (cons "secure boot" 0.9) (cons "刷写" 0.9)
+   (cons "uds" 0.9) (cons "doip" 0.9) (cons "诊断" 0.4)
+   (cons "中央计算" 0.9) (cons "central compute" 0.8) (cons "zonal" 0.8)
+   (cons "区域架构" 0.9) (cons "e/e架构" 0.9) (cons "e/e 架构" 0.9)
+   (cons "hpc" 0.4) (cons "iceoryx" 0.8) (cons "kuksa" 0.8) (cons "vsomeip" 1.0)
+   (cons "covesa" 0.9) (cons "misra" 0.8) (cons "ota" 0.5)
+   (cons "整车" 0.5) (cons "主机厂" 0.6) (cons "oem" 0.4) (cons "tier 1" 0.4)
    ;; general
-   (cons "vehicle" 0.3) (cons "汽车" 0.3) (cons "vehicle" 0.3)
+   (cons "vehicle" 0.3) (cons "汽车" 0.3)
    (cons "battery" 0.2) (cons "电池" 0.3) (cons "charging" 0.2) (cons "充电" 0.2)
    (cons "召回" 0.4) (cons "recall" 0.3) (cons "收购" 0.3) (cons "merger" 0.2)))
 
