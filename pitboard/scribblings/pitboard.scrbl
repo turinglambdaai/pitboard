@@ -7,8 +7,7 @@
 
 汽车行业每日热点日报引擎：抓取 RSS 媒体源、GitHub 汽车话题仓库与 arXiv
 论文，聚簇去重，按独立来源数与时间衰减计算热度，输出站点、RSS、JSON
-API、Markdown 日报与 llms.txt。设计灵感致谢
-@hyperlink["https://github.com/KKKKhazix/AIHOT"]{AIHOT}。
+API、Markdown 日报与 llms.txt。
 
 @section[#:tag "cli"]{命令行}
 

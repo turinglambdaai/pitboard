@@ -92,7 +92,7 @@
       (footer ((class "footer"))
               (div "pitboard — 汽车行业每日热点 · Racket 全栈自托管")
               (div ((class "muted"))
-                   "设计灵感致谢 AIHOT · 本站由开源管线每日自动生成 · "
+                   "本站由开源管线每日自动生成 · "
                    (a ((href "/llms.txt")) "llms.txt"))))))
 
 ;; ---- cluster card -----------------------------------------------------------
@@ -202,10 +202,9 @@
                   (p "一个 Racket 进程，零外部依赖（无数据库）：" (br)
                      (code "raco pkg install --auto https://github.com/turinglambdaai/pitboard.git") (br)
                      (code "raco pitboard fetch && raco pitboard serve --port 8090"))
-                  (h2 "致谢")
-                  (p "设计灵感来自 " (a ((href "https://github.com/KKKKhazix/AIHOT")) "AIHOT")
-                     " ——「把信源和精选标准换成你的，它就是你的行业热点站」。pitboard 是这句话在汽车行业、"
-                     "Racket 技术栈上的回答。MIT 许可。"))))))
+                  (h2 "许可")
+                  (p "MIT 许可，源码开源于 "
+                     (a ((href "https://github.com/turinglambdaai/pitboard")) "GitHub") "。"))))))
 
 (define (render-empty-page ctx)
   (xexpr->html-bytes

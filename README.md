@@ -7,9 +7,6 @@
 按独立来源数与时间衰减算出热度，每天出刊一张「pit 板」。Racket 全栈
 （web-server），单进程自托管，零外部依赖（无数据库）。
 
-> 设计灵感致谢 [AIHOT](https://github.com/KKKKhazix/AIHOT) ——「把信源和精选标准换成你的，
-> 它就是你的行业热点站」。pitboard 是这句话在汽车行业与 Racket 技术栈上的回答。
-
 语言：Racket
 
 ## 它怎么工作
