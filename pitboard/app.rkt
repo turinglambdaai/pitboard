@@ -9,12 +9,14 @@
          web-server/http/response-structs
          web-server/http/response
          web-server/http/request-structs
+         web-server/http/bindings
          racket/string
          racket/format
          racket/list
          racket/file
          json
          "store.rkt"
+         "item.rkt"
          "render.rkt"
          "sse.rkt"
          (only-in "render.rkt" render-admin-page)
@@ -49,6 +51,14 @@
                  (bytes->immutable-bytes #"text/html; charset=utf-8")
                  '() (list (render-not-found ctx))))
 
+(define (ingest-form req)
+  (define (get key)
+    (with-handlers ([exn:fail? (λ (_) 'null)])
+      (extract-binding/single key (request-bindings req))))
+  (hasheq 'title (get #"title")
+          'url (get #"url")
+          'summary (get #"summary")))
+
 (define (start-server #:port [port 8090]
                       #:data-dir [data-dir "data"]
                       #:assets-dir [assets-dir "assets"]
@@ -60,14 +70,21 @@
       (values d i)))
   (define ctx (site-ctx "pitboard.jrtx.site" "" (current-seconds)
                         (λ () (editions-of data-dir))))
-  (define topic-terms
+  (define topic-groups
     (or topics
-        (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
-              "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi" "芯片")))
+        (list (cons "方向" (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全"
+                                 "功能安全" "安全刷写" "UDS" "车载以太网"
+                                 "域控" "智能驾驶" "Robotaxi"))
+              (cons "公司" (list "比亚迪" "华为车" "蔚来" "小鹏" "理想"
+                                 "特斯拉" "地平线"))
+              (cons "形态" (list "芯片" "开源" "论文" "召回" "政策")))))
+  (define topic-terms
+    (remove-duplicates (flatten (map cdr topic-groups))))
   (define (topics-index)
-    (for/list ([t (in-list topic-terms)])
-      (list (topic-slug t) t
-            (length (collect-topic-items data-dir t)))))
+    (for/list ([g (in-list topic-groups)])
+      (cons (car g)
+            (for/list ([t (in-list (cdr g))])
+              (cons t (length (collect-topic-items data-dir t)))))))
   (define hub (make-hub))
   (hub-watch! hub data-dir 5)
 
@@ -118,6 +135,32 @@
         (resp-html
          (render-topic-page ctx term (collect-topic-items data-dir term)))
         (resp-404 ctx)))
+  (define (ingest-h req)
+    (define token (getenv "PITBOARD_INGEST_TOKEN"))
+    (define provided
+      (for/first ([h (in-list (request-headers/raw req))]
+                  #:when (equal? (header-field h) #"x-pitboard-token"))
+        (bytes->string/utf-8 (header-value h))))
+    (cond [(not token)
+           (response/full 403 #"Forbidden" (current-seconds)
+                          (bytes->immutable-bytes #"text/plain; charset=utf-8")
+                          '() (list (string->bytes/utf-8 "ingest disabled: set PITBOARD_INGEST_TOKEN\n")))]
+          [(not (equal? provided token))
+           (response/full 401 #"Unauthorized" (current-seconds)
+                          (bytes->immutable-bytes #"text/plain; charset=utf-8")
+                          '() (list (string->bytes/utf-8 "bad token\n")))]
+          [else
+           (define title (v (hash-ref (ingest-form req) 'title 'null)))
+           (define url (v (hash-ref (ingest-form req) 'url 'null)))
+           (cond [(non-empty-string? title)
+                  (append-ingested!
+                   data-dir
+                   (hasheq 'kind "news" 'source "推送" 'source_url "ingest"
+                           'title title 'url url 'summary "" 'published_at 'null
+                           'extra (hasheq)))
+                  (resp-text (string->bytes/utf-8 "ingested\n"))]
+                 [else
+                  (resp-404 ctx)])]))
   (define (events-h req)
     (response/output
      (λ (out) (hub-stream hub out))
@@ -140,6 +183,7 @@
     (dispatch-rules
      [("") index-h]
      [("admin") admin-h]
+     [("ingest") ingest-h]
      [("d" (string-arg)) date-h]
      [("archive") archive-h]
      [("about") about-h]
@@ -160,7 +204,7 @@
                  #:listen-ip #f
                  #:servlet-path "/"
                  #:servlet-regexp
-                 #rx"^/($|d/.+|topics|topic/.+|admin|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
+                 #rx"^/($|d/.+|topics|topic/.+|admin|ingest|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
                  #:extra-files-paths
                  (list (path->complete-path assets-dir))
                  #:banner? #f))

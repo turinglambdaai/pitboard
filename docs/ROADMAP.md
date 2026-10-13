@@ -68,11 +68,11 @@
 
 ## M3 — 扩张
 
-1. **信源类型补全**：X 账号（自建桥）、公众号量产、自定义脚本推送
-   （webhook ingest 端点）。
+1. **信源类型补全**：✅ 自定义脚本推送（POST /ingest + token）；X 账号（自建桥）、
+   公众号量产待基础设施。
 2. **主题页实体化**：从关键词版升级为实体版（公司/方向/内容形态三类，
    AIHOT 形态）。
-3. **收藏与稍后读**：localStorage 本地收藏 + 导入导出。
+3. ✅ **收藏与稍后读**：卡片 ☆ 收藏 + /bookmarks.html 书签页 + JSON 导入导出。
 4. **反哺 Racket 生态**：feed.rkt（RSS/Atom 解析）、sse.rkt（SSE hub）
    按库质量门禁独立发版上 catalog。
 5. **移动端**：iOS/iPadOS/watchOS/Android 客户端（等 rivet 移动宿主就绪）。

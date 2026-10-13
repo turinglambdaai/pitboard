@@ -4,6 +4,7 @@
 
 (require xml
          racket/string
+         racket/pretty
          racket/list
          racket/format
          racket/match
@@ -14,6 +15,7 @@
 
 (provide (struct-out site-ctx)
          v
+         group-section
          front-page-quota
          xexpr->html-bytes
          render-index-page
@@ -113,6 +115,8 @@
                 (div ((class "nav-links"))
                      ,@(for/list ([p (in-list '(("index" "/" "今日")
                                                 ("topics" "/topics/" "话题")
+                                                ("topics" "/topics/" "话题")
+                                                ("bookmarks" "/bookmarks.html" "书签")
                                                 ("archive" "/archive" "归档")
                                                 ("about" "/about" "关于")
                                                 ("rss" "/rss.xml" "RSS")))])
@@ -565,25 +569,59 @@
                               (span ((class "src-dom"))
                                     ,(v (hash-ref (cdr row) 'source_url ""))))))))))
 
-(define (render-topics-index ctx topics)
-  ;; topics: list of (list slug term count)
+(define (topic-card t)
+  ;; t: (cons term count)
+  (list 'li
+        (list (list 'class "quick-item"))
+        (list 'a
+              (list (list 'class "quick-link")
+                    (list 'href (format "/topic/~a/" (car t))))
+              (list 'span
+                    (list (list 'class "quick-rank"))
+                    (format "~a" (cdr t)))
+              (list 'span
+                    (list (list 'class "quick-name"))
+                    (format "~a" (car t)))
+              (list 'span
+                    (list (list 'class "quick-heat"))
+                    "追踪 →"))))
+
+(define (group-section g)
+  (define cards
+    (for/list ([t (in-list (cdr g))])
+      (list 'li
+            (list (list 'class "quick-item"))
+            (list 'a
+                  (list (list 'class "quick-link")
+                        (list 'href (format "/topic/~a/" (car t)))))
+                  (list 'span
+                        (list (list 'class "quick-rank"))
+                        (format "~a" (cdr t)))
+                  (list 'span
+                        (list (list 'class "quick-name"))
+                        (format "~a" (car t)))
+                  (list 'span
+                        (list (list 'class "quick-heat"))
+                        "\u8ffd\u8e2a \u2192"))))
+  (list 'section
+        (list (list 'class "lane-head"))
+        (list 'span (list (list 'class "kicker")) (car g))
+        (list 'h2 (list (list 'class "lane-title")) (format "~a" (car g)))
+        (append (list 'div
+                      (list (list 'class "quick-list topics-grid")))
+                cards)))
+
+(define (render-topics-index ctx groups)
+  (define hero
+    (list 'section
+          (list (list 'class "hero hero-slim"))
+          (list 'p (list (list 'class "kicker")) "TOPIC RADAR")
+          (list 'h1 (list (list 'class "hero-date hero-date-s")) "话题雷达")
+          (list 'p (list (list 'class "hero-meta")) "每个热点话题的跨期追踪，天天见底。")))
   (xexpr->html-bytes
    (page-shell ctx "话题雷达 — pitboard" "topics"
-               (list
-                '(section ((class "hero hero-slim"))
-                   (p ((class "kicker")) "TOPIC RADAR")
-                   (h1 ((class "hero-date hero-date-s")) "话题雷达")
-                   (p ((class "hero-meta")) "每个热点话题的跨期追踪，天天见底。"))
-                `(div ((class "quick-list topics-grid"))
-                      ,@(for/list ([t (in-list topics)])
-                          `(li ((class "quick-item"))
-                               (a ((class "quick-link")
-                                   (href ,(format "/topic/~a/" (car t))))
-                                  (span ((class "quick-rank")) ,(format "~a" (caddr t)))
-                                  (span ((class "quick-name")) ,(cadr t))
-                                  (span ((class "quick-heat")) "追踪 →")))))))))
-
-;; ---- weekly / monthly compilation pages -------------------------------------
+               (cons hero (for/list ([g (in-list groups)])
+                           (group-section g))))))
 
 (define (render-period-page ctx kind-label rows)
   (xexpr->html-bytes

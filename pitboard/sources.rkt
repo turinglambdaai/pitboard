@@ -22,6 +22,7 @@
 (provide default-config
          load-config
          default-watch-topics
+         normalize-watch-topics
          fetch-all
          extract-web-items
          (struct-out source-status)
@@ -53,10 +54,27 @@
 (define default-orgs
   (list "AUTOSAR" "COVESA"))
 
-;; Topics tracked on the topic radar pages.
+;; Topics tracked on the topic radar pages.  Accepts either a flat list
+;; (single group) or a hash of group-name -> terms (实体化: 方向/公司/形态).
 (define default-watch-topics
-  (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
-        "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi" "芯片"))
+  (hasheq "方向"
+          (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
+                "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi")
+          "公司"
+          (list "比亚迪" "华为车" "蔚来" "小鹏" "理想" "特斯拉" "地平线")
+          "形态"
+          (list "芯片" "开源" "论文" "召回" "政策")))
+
+;; normalize: hash/list -> (list (cons group-name (listof term)))
+(define (normalize-watch-topics v)
+  (cond [(hash? v)
+         (for/list ([(g terms) (in-hash v)]
+                    #:when (list? terms))
+           (cons (~a g) (map ~a terms)))]
+        [(and (list? v) (pair? v))
+         (list (cons "全部" (map ~a v)))]
+        [else (list (cons "全部"
+                          (map ~a (hash-ref default-watch-topics "方向" (list)))))]))
 
 ;; title keywords an HN story must match to count as automotive
 (define hn-default-keywords

@@ -7,8 +7,10 @@
          racket/vector
          racket/port
          json
-         (only-in "sources.rkt" default-watch-topics)
+         (only-in "sources.rkt" default-watch-topics normalize-watch-topics)
          (only-in "llm.rkt" llm-budget)
+         (only-in "store.rkt" load-ingested clear-ingested!)
+         (only-in "item.rkt" jsexpr->item)
          racket/match
          racket/list
          racket/string
@@ -23,13 +25,11 @@
 
 (provide cli-main)
 
-;; watch topics from config (or the built-in default)
+;; watch topics from config (or the built-in default):
+;; (list (cons group-name (listof term)))
 (define (watch-topics config-path)
   (define cfg (load-config config-path))
-  (define v (hash-ref cfg 'watch_topics #f))
-  (if (and (list? v) (pair? v))
-      (for/list ([x (in-list v)]) (~a x))
-      default-watch-topics))
+  (normalize-watch-topics (hash-ref cfg 'watch_topics #f)))
 
 ;; ---- pipeline --------------------------------------------------------------
 
@@ -47,6 +47,12 @@
             (source-status-count s)
             (let ([m (source-status-message s)])
               (if m (format " · ~a" m) ""))))
+  ;; merge script-pushed items (POST /ingest) before clustering
+  (define pushed (filter values (map jsexpr->item (load-ingested data-dir))))
+  (unless (null? pushed)
+    (printf "  合并脚本推送 ~a 条\n" (length pushed))
+    (set! items (append items pushed))
+    (clear-ingested! data-dir))
   (define hots (rank-clusters (cluster-items items) #:now now))
   ;; cross-day progress: same event seen on earlier editions → 进展 label
   (define history (load-event-history data-dir #:exclude-date date))

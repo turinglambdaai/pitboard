@@ -24,7 +24,10 @@
          month-key
          period-rows
          update-health!
-         load-health)
+         load-health
+         append-ingested!
+         load-ingested
+         clear-ingested!)
 
 (define (data-file dir date)
   (build-path dir (string-append date ".json")))
@@ -164,3 +167,29 @@
 (define (load-health dir)
   (with-handlers ([exn:fail? (λ (_) (hasheq))])
     (with-input-from-file (health-file dir) read-json)))
+
+
+;; ---- script-push ingest (external scripts POST items) ------------------------
+
+(define (ingested-file dir) (build-path dir "ingested.jsonl"))
+
+(define (append-ingested! dir item-jsexpr)
+  (make-directory* dir)
+  (with-output-to-file (ingested-file dir)
+    (λ () (write-string (string-append (jsexpr->string item-jsexpr) "\n")))
+    #:exists 'append))
+
+(define (load-ingested dir)
+  (define f (ingested-file dir))
+  (if (not (file-exists? f))
+      '()
+      (with-input-from-file f
+        (lambda ()
+          (for/list ([line (in-lines)]
+                     #:when (non-empty-string? (string-trim line)))
+            (with-handlers ([exn:fail? (lambda (e) #f)])
+              (read-json (open-input-string line))))))))
+
+(define (clear-ingested! dir)
+  (define f (ingested-file dir))
+  (when (file-exists? f) (delete-file f)))
