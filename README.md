@@ -99,12 +99,14 @@ site/                静态镜像（导出产物，Pages 部署源）
 
 ## 路线图
 
-- **M1** — 更多信源种类（网页列表源、X 账号、微信公众号源、NHTSA 召回 API）、
-  事件时间线页、周报/月报、站点 i18n。
-- **M2** — MCP 出口（让 agent 直接订阅热点）、信源管理后台与试抓诊断、Docker 镜像。
-- **M3+** — iOS / iPadOS / watchOS / Android 客户端（等 rivet 移动宿主就绪）；
-  把 `feed.rkt`（RSS/Atom 解析）与 `sse.rkt`（SSE hub）抽成独立 Racket 包回馈社区
-  （catalog 现无等价物）。
+完整差距分析与里程碑见 [docs/ROADMAP.md](docs/ROADMAP.md)，要点：
+
+- **M1 内容与追踪** — 跨日事件跟踪（进展标记）、周报/月报、网页列表源升级、
+  中文通道建设（RSSHub 自托管 + 公众号桥）、JSON 接口源、OG 分享图。
+- **M2 运营与工程** — /admin 信源后台、MCP 出口、OpenAPI、Docker（fnOS NAS）、
+  LLM 预算熔断、精选评测脚本、运行告警、站内全文搜索。
+- **M3+ 扩张** — X/公众号源量产、主题页实体化、收藏稍后读、feed/sse 抽包
+  上 catalog、移动端（等 rivet 移动宿主）。
 
 ## License
 
