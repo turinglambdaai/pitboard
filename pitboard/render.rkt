@@ -13,6 +13,7 @@
 
 (provide (struct-out site-ctx)
          v
+         front-page-quota
          xexpr->html-bytes
          render-index-page
          render-archive-page
@@ -199,21 +200,48 @@
                 (~r (date-minute d) #:min-width 2 #:pad-string "0")))
       ""))
 
+;; Per-source display quota: a single source (e.g. AUTOSAR's newsroom)
+;; must not flood the front page.  Papers get their own smaller cap.
+(define (front-page-quota clusters total per-source paper-max)
+  ;; counts must be an equal-based hash: source_url strings parsed from
+  ;; JSON are never eq? to each other (the hasheq trap).
+  (let loop ([rest clusters] [counts (hash)] [papers 0] [picked '()])
+    (cond [(or (>= (length picked) total) (null? rest)) (reverse picked)]
+          [else
+           (define c (car rest))
+           (define kind (hash-ref (car (hash-ref c 'items '())) 'kind "news"))
+           (cond [(equal? kind "paper")
+                  (if (>= papers paper-max)
+                      (loop (cdr rest) counts papers picked)
+                      (loop (cdr rest) counts (add1 papers) (cons c picked)))]
+                 [else
+                  (define src (hash-ref (car (hash-ref c 'items '())) 'source_url ""))
+                  (define n (hash-ref counts src 0))
+                  (if (>= n per-source)
+                      (loop (cdr rest) counts papers picked)
+                      (loop (cdr rest) (hash-set counts src (add1 n))
+                            papers (cons c picked)))])])))
+
 (define (quick-strip digest)
   ;; masthead diversity: at most 3 repos in the top strip so the front
   ;; door always mixes code with readable industry news
   (define clusters (hash-ref digest 'clusters '()))
   (define top
-    (let loop ([rest clusters] [gh 0] [picked '()])
+    (let loop ([rest clusters] [gh 0] [seen-src (hash)] [picked '()])
       (cond [(or (= (length picked) 5) (null? rest)) (reverse picked)]
             [else
              (define c (car rest))
              (define k (hash-ref (car (hash-ref c 'items '())) 'kind "news"))
-             (if (and (equal? k "github") (>= gh 3))
-                 (loop (cdr rest) gh picked)
-                 (loop (cdr rest)
-                       (if (equal? k "github") (add1 gh) gh)
-                       (cons c picked)))])))
+             (define src (hash-ref (car (hash-ref c 'items '())) 'source_url ""))
+             (cond [(and (equal? k "github") (>= gh 3))
+                    (loop (cdr rest) gh seen-src picked)]
+                   [(>= (hash-ref seen-src src 0) 1)
+                    (loop (cdr rest) gh seen-src picked)]
+                   [else
+                    (loop (cdr rest)
+                          (if (equal? k "github") (add1 gh) gh)
+                          (hash-set seen-src src 1)
+                          (cons c picked))])])))
   `(section ((class "quick"))
      (div ((class "quick-head"))
           (span ((class "kicker")) "CURRENT HOT")
@@ -295,13 +323,36 @@
   (define content
     (if (null? clusters)
         (list '(p ((class "empty")) "今天还没有足够的热点。"))
-        (list (quick-strip digest)
-              (filter-toolbar digest)
-              `(div ((class "cards"))
-                    ,@(for/list ([c (in-list clusters)]
-                                 [i (in-naturals)]
-                                 #:when (< i 30))
-                        (cluster-card c i max-heat))))))
+        (let* ([face-kind (λ (c) (hash-ref (car (hash-ref c 'items '())) 'kind "news"))]
+               [news-lane
+                (front-page-quota
+                 (for/list ([c (in-list clusters)]
+                            #:when (not (equal? (face-kind c) "github")))
+                   c)
+                 30 2 6)]
+               [repo-lane (for/list ([c (in-list clusters)]
+                                     #:when (equal? (face-kind c) "github"))
+                            c)]
+               [news-cards `(div ((class "cards"))
+                                 ,@(for/list ([c (in-list news-lane)]
+                                              [i (in-naturals)]
+                                              #:when (< i 30))
+                                     (cluster-card c i max-heat)))]
+               [repo-cards `(div ((class "cards"))
+                                 ,@(for/list ([c (in-list repo-lane)]
+                                              [i (in-naturals)]
+                                              #:when (< i 8))
+                                     (cluster-card c i max-heat)))])
+          (append
+           (list (quick-strip digest)
+                 (filter-toolbar digest)
+                 news-cards)
+           (if (null? repo-lane)
+               '()
+               (list `(section ((class "lane-head"))
+                         (span ((class "kicker")) "OPEN SOURCE RADAR")
+                         (h2 ((class "lane-title")) "开源雷达"))
+                      repo-cards))))))
   (xexpr->html-bytes
    (page-shell ctx "pitboard — 汽车行业每日热点" "index"
                (cons (hero-digest ctx digest) content))))

@@ -127,7 +127,7 @@
                                         (if (eq? v 'null) #f v))))
      ;; org-watch repos (AUTOSAR etc.) are first-party signal, star-sparse
      (define tier-boost (if (equal? (hash-ref e 'tier #f) 1) 1.5 0))
-     (min 8.0
+     (min 6.0
           (+ (* 1.5 (/ (log (+ 1.0 (max 0 stars))) (log 10.0)))
              (if (and created (< (- now created) (* 30 86400))) 3.0 0)
              (if (and (item-published it) (< (- now (item-published it)) (* 7 86400))) 1.0 0)

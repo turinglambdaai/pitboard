@@ -9,6 +9,7 @@
          racket/format
          racket/match
          racket/file
+         racket/system
          racket/set
          racket/port
          json
@@ -21,6 +22,7 @@
 (provide default-config
          load-config
          fetch-all
+         extract-web-items
          (struct-out source-status)
          source-status->jsexpr)
 
@@ -51,7 +53,13 @@
 
 (define default-config
   (hasheq 'feeds
-          (list (hasheq 'name "The Verge · Transportation"
+          (list (hasheq 'name "AUTOSAR 官方"
+                        'type "web_list"
+                        'url "https://www.autosar.org/news-events"
+                        'base_url "https://www.autosar.org"
+                        'link_regex "/news-events/detail/"
+                        'tier 1 'weight 1.3 'max 8)
+                (hasheq 'name "The Verge · Transportation"
                         'url "https://www.theverge.com/rss/transportation/index.xml"
                         'tier 2 'weight 1.0)
                 (hasheq 'name "IEEE Spectrum · Transportation"
@@ -137,12 +145,89 @@
     [(eq? (car v) 'err) (error 'http-get (cdr v))]
     [else (cdr v)]))
 
+;; Fallback HTTP via system curl: some servers (autosar.org) ship TLS
+;; chains that Racket's strict verification rejects while the system CA
+;; store accepts them.
+(define (curl-get-bytes url-str #:timeout-seconds [secs 25])
+  (define curl
+    (or (find-executable-path "curl")
+        (error 'curl-get "curl not found on PATH")))
+  (define tmp (make-temporary-file "pitboard-curl~a.html"))
+  (dynamic-wind
+    (λ () (void))
+    (λ ()
+      (define code
+        (with-handlers ([exn:fail? (λ (_) 127)])
+          (system*/exit-code curl "-sSL" "--compressed"
+                             "--max-time" (~a secs) "-A" UA
+                             "-o" (path->string tmp) url-str)))
+      (unless (zero? code) (error 'curl-get "exit ~a" code))
+      (file->bytes tmp))
+    (λ () (with-handlers ([exn:fail? void]) (delete-file tmp)))))
+
 ;; ---- RSS feeds -------------------------------------------------------------
 
 (define (keyword-match? kws text)
   (define lowered (string-downcase text))
   (for/or ([k (in-list kws)])
     (string-contains? lowered (string-downcase (~a k)))))
+
+;; ---- web list sources (pages without RSS; AIHOT-style list scraper) -------
+
+(define (attr-of-tag tag name)
+  (define m (regexp-match (format "(?i:~a=\"([^\"]*)\")" (regexp-quote name)) tag))
+  (and m (cadr m)))
+
+;; Extract (list title url) pairs from an HTML page: every <a> whose href
+;; matches link-regex.  Title prefers the anchor's title attribute.
+(define (extract-web-items html base-url link-regex)
+  (define seen (mutable-set))
+  (for/list ([tag (in-list (regexp-match* #px"(?i:<a\\b[^>]*>)" html))]
+             #:do [(define href (and tag (attr-of-tag tag "href")))]
+             #:when (and href
+                         (non-empty-string? href)
+                         (regexp-match? link-regex href)
+                         (not (str-starts? href "javascript")))
+             #:do [(define t (string-trim (or (attr-of-tag tag "title") "")))]
+             #:unless (or (set-member? seen href) (< (string-length t) 8))
+             #:do [(set-add! seen href)])
+    (list t
+          (if (or (str-starts? href "http://") (str-starts? href "https://"))
+              href
+              (string-append base-url href)))))
+
+(define (fetch-web-list w)
+  (define name (hash-ref w 'name "page"))
+  (define tier (hash-ref w 'tier 2))
+  (define weight
+    (* (hash-ref w 'weight 1.0)
+       (match tier [1 1.35] [3 0.85] [_ 1.0])))
+  (define b
+    (with-handlers
+        ([exn:fail?
+          (λ (e)
+            (if (regexp-match? #rx"certificate verify failed" (exn-message e))
+                (curl-get-bytes (hash-ref w 'url) #:timeout-seconds 25)
+                (raise e)))])
+      (http-get-bytes (hash-ref w 'url))))
+  (define rows
+    (extract-web-items (bytes->string/utf-8 b #\?)
+                       (hash-ref w 'base_url (hash-ref w 'url))
+                       (regexp (hash-ref w 'link_regex ""))))
+  (define maxn (hash-ref w 'max 10))
+  (define now (current-seconds))
+  (define items
+    (for/list ([row (in-list (take rows (min maxn (length rows))))])
+      (item (make-item-id 'news (normalize-url (cadr row)))
+            'news
+            name
+            (slug-domain (cadr row))
+            (strip-html (car row))
+            (cadr row)
+            ""
+            now
+            (hasheq 'weight weight))))
+  (values items (source-status name "web" #t (length items) #f)))
 
 (define (fetch-rss-feed f)
   (define name (hash-ref f 'name "feed"))
@@ -299,9 +384,12 @@
            ([exn:fail?
              (λ (e)
                (values '()
-                       (source-status (hash-ref f 'name "feed") "rss" #f 0
+                       (source-status (hash-ref f 'name "feed")
+                                      (hash-ref f 'type "rss") #f 0
                                       (exn-message e))))])
-         (fetch-rss-feed f)))
+         (if (equal? (hash-ref f 'type "rss") "web_list")
+             (fetch-web-list f)
+             (fetch-rss-feed f))))
      absorb))
   (call-with-values
    (λ ()

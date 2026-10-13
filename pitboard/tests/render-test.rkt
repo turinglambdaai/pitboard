@@ -75,3 +75,19 @@
 (test-case "llms.txt"
   (define t (bytes->string/utf-8 (render-llms-txt ctx)))
   (check-true (string-contains? t "/api/v1/latest.json")))
+
+(test-case "per-source quota counts equal strings, not eq ones"
+  ;; regression guard: counters must be equal-based hashes — string
+  ;; instances parsed from JSON are never eq? to each other
+  (define (mk i)
+    (hasheq 'id (format "x:~a" i) 'kind "news" 'source "AUTOSAR 官方"
+            'source_url (string-append "www.autosar" ".org")  ; fresh instance
+            'title (format "AUTOSAR news number ~a" i) 'url (format "https://a.org/~a" i)
+            'summary "" 'published_at "2026-10-13T00:00:00Z" 'extra (hasheq)))
+  (define clusters
+    (for/list ([i (in-range 6)])
+      (hasheq 'id (format "hot:~a" i) 'heat "9.0" 'labels '() 'domains 1
+              'title (format "AUTOSAR news number ~a" i) 'summary ""
+              'items (list (mk i)))))
+  (define kept (front-page-quota clusters 30 2 6))
+  (check-equal? (length kept) 2))
