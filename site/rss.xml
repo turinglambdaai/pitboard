@@ -50,6 +50,23 @@
     </item>
     <item>
       <title>
+        autowarefoundation/autoware_universe
+      </title>
+      <link>
+        https://github.com/autowarefoundation/autoware_universe
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:74207692028281966
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 4:51:41am
+      </pubDate>
+    </item>
+    <item>
+      <title>
         commaai/opendbc
       </title>
       <link>
@@ -63,23 +80,6 @@
       </description>
       <pubDate>
         Tuesday, October 13th, 2026 1:19:27am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        autowarefoundation/autoware_universe
-      </title>
-      <link>
-        https://github.com/autowarefoundation/autoware_universe
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:74207692028281966
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Tuesday, October 13th, 2026 1:57:47am
       </pubDate>
     </item>
     <item>
@@ -220,6 +220,23 @@
     </item>
     <item>
       <title>
+        cwal1220/edgepilot
+      </title>
+      <link>
+        https://github.com/cwal1220/edgepilot
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-13:hot:668733378028649894
+      </guid>
+      <description>
+        openpilot's driving model and lateral control, native on a Sipeed MaixCAM2 (AX630C NPU), for the KIA K7 YG HEV: C++17 runtime, Panda CAN, driving HUD and drive recorder
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 2:42:45am
+      </pubDate>
+    </item>
+    <item>
+      <title>
         robin-shaun/XTDrone
       </title>
       <link>
@@ -335,23 +352,6 @@
       </description>
       <pubDate>
         Monday, October 12th, 2026 8:08:32am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        juherr/awesome-ev-charging
-      </title>
-      <link>
-        https://github.com/juherr/awesome-ev-charging
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:897935467772421691
-      </guid>
-      <description>
-        Awesome list of tools for Electric Vehicles
-      </description>
-      <pubDate>
-        Sunday, October 11th, 2026 6:03:16pm
       </pubDate>
     </item>
   </channel>
