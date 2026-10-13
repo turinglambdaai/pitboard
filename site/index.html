@@ -95,11 +95,126 @@
           </div>
         </div>
       </section>
+      <section class="quick">
+        <div class="quick-head">
+          <span class="kicker">
+            CURRENT HOT
+          </span>
+          <span class="quick-label">
+            当前热点
+          </span>
+          <span class="quick-count">
+            TOP 5
+          </span>
+        </div>
+        <ol class="quick-list">
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                01
+              </span>
+              <span class="quick-name">
+                carla-simulator/carla
+              </span>
+              <span class="quick-heat">
+                🔥6.4
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/gotonote/Autopilot-Notes" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                02
+              </span>
+              <span class="quick-name">
+                gotonote/Autopilot-Notes
+              </span>
+              <span class="quick-heat">
+                🔥4.2
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/autowarefoundation/autoware" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                03
+              </span>
+              <span class="quick-name">
+                autowarefoundation/autoware
+              </span>
+              <span class="quick-heat">
+                🔥3.9
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/ecubus/EcuBus-Pro" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                04
+              </span>
+              <span class="quick-name">
+                ecubus/EcuBus-Pro
+              </span>
+              <span class="quick-heat">
+                🔥3.7
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/autoas/as" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                05
+              </span>
+              <span class="quick-name">
+                autoas/as
+              </span>
+              <span class="quick-heat">
+                🔥2.3
+              </span>
+            </a>
+          </li>
+        </ol>
+      </section>
+      <div class="toolbar">
+        <div class="tabs" role="tablist" aria-label="按类型筛选">
+          <button class="tab active" type="button" data-filter="all">
+            全部
+            <span class="tab-n" data-count="all">
+              154
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="github">
+            开源
+            <span class="tab-n" data-count="github">
+              15
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="news">
+            资讯
+            <span class="tab-n" data-count="news">
+              103
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="paper">
+            论文
+            <span class="tab-n" data-count="paper">
+              39
+            </span>
+          </button>
+          <span class="toolbar-hint">
+            按独立来源数排序
+          </span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="搜索标题 / 摘要…（按 / 聚焦）" autocomplete="off" aria-label="搜索热点" />
+      </div>
       <div class="cards">
-        <article class="card">
+        <article class="card" data-kind="github" data-text="carla-simulator/carla open-source simulator for autonomous driving research.">
           <div class="card-top">
             <span class="rank">
               01
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
@@ -108,6 +223,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                03:07
               </span>
             </div>
           </div>
@@ -135,10 +253,13 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="gotonote/autopilot-notes 自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、bev、transformer、adas、cvpr、特斯拉ai day、大模型、chatgpt等内容.">
           <div class="card-top">
             <span class="rank">
               02
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
@@ -147,6 +268,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                20:01
               </span>
             </div>
           </div>
@@ -174,15 +298,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="autowarefoundation/autoware autoware - the world's leading open-source software project for autonomous driving">
           <div class="card-top">
             <span class="rank">
               03
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 3.9
+              </span>
+              <span class="card-time">
+                04:48
               </span>
             </div>
           </div>
@@ -210,10 +340,13 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="ecubus/ecubus-pro a powerful automotive ecu development tool. uds, can-tp, doip, lin , script(ts) like capl, hil test">
           <div class="card-top">
             <span class="rank">
               04
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
@@ -222,6 +355,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                14:06
               </span>
             </div>
           </div>
@@ -249,15 +385,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="autoas/as simple autosar basic software">
           <div class="card-top">
             <span class="rank">
               05
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 2.3
+              </span>
+              <span class="card-time">
+                12:37
               </span>
             </div>
           </div>
@@ -285,15 +427,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="worldbench/awesome-vla-for-ad 🌐 vision-language-action models for autonomous driving: past, present, and future">
           <div class="card-top">
             <span class="rank">
               06
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 1.6
+              </span>
+              <span class="card-time">
+                01:53
               </span>
             </div>
           </div>
@@ -321,15 +469,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="farama-foundation/highwayenv a collection of environments for autonomous driving and tactical decision-making tasks">
           <div class="card-top">
             <span class="rank">
               07
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 1.5
+              </span>
+              <span class="card-time">
+                13:23
               </span>
             </div>
           </div>
@@ -357,10 +511,13 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="embedded graphics on an mcu – without an accelerator join this webinar and learn how to add lcd graphics to mcu projects without a display controller, accelerator, or external dram. the post embedded graphics on an mcu – without an accelerator appeared first on ee times . ]]&gt;">
           <div class="card-top">
             <span class="rank">
               08
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
@@ -369,6 +526,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                16:49
               </span>
             </div>
           </div>
@@ -393,15 +553,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="jherrodthomas/automotive-skills-suite 100+ installable claude skills covering engineering areas such as, iso 26262 functional safety, iso/sae 21434 cybersecurity, iso 21448 sotif, aiag-vda quality (apqp/ppap/fmea), automotive spice, and continuous improvement tools — every builder paired with a confirmation reviewer.">
           <div class="card-top">
             <span class="rank">
               09
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 1.1
+              </span>
+              <span class="card-time">
+                11:08
               </span>
             </div>
           </div>
@@ -429,10 +595,13 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="applied materials bets $5b on a new model for chip innovation applied materials’ $5 billion epic center brings chipmakers, equipment suppliers, and researchers together to accelerate semiconductor r&amp;d and commercialization. the post applied materials bets $5b on a new model for chip innovation appeared first on ee times . ]]&gt;">
           <div class="card-top">
             <span class="rank">
               10
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
@@ -441,6 +610,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                16:59
               </span>
             </div>
           </div>
@@ -465,15 +637,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="eu cra readiness: 5 steps manufacturers need to take now  consumer, industrial, networking, semiconductor, and software manufacturers face a broad product-cybersecurity regulation for the first time. the post eu cra readiness: 5 steps manufacturers need to take now  appeared first on ee times . ]]&gt;">
           <div class="card-top">
             <span class="rank">
               11
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 1.0
+              </span>
+              <span class="card-time">
+                13:00
               </span>
             </div>
           </div>
@@ -498,10 +676,13 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="f1 in singapore: theres a new fastest car now ">
           <div class="card-top">
             <span class="rank">
               12
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
@@ -510,6 +691,9 @@
               </span>
               <span class="chip chip-new">
                 新
+              </span>
+              <span class="card-time">
+                14:43
               </span>
             </div>
           </div>
@@ -531,15 +715,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="zoompilot/jetlink runs openpilot's large driving model on jetson orin nano, macos, ios, android, cuda laptops with only your comma, and a usb3 cable">
           <div class="card-top">
             <span class="rank">
               13
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 1.0
+              </span>
+              <span class="card-time">
+                19:42
               </span>
             </div>
           </div>
@@ -567,15 +757,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="费莫一刘念邱：智驾无图的经验，也能迁移到机器人 | 物理ai 50人 刘念邱很难被归进典型的具身创业者模板里。 他不是从机器人实验室出来的学者，也不是过去两年才进入 physical ai 的连续创业者。他曾在英特尔做过新工艺和设备研发，创业做过物联网和工业智能化。2018年加入自动驾驶公司元戎启行，他又从硬件一路做到robotaxi运营、产品、数据、量产和售后。 2026年，刘念邱又多了一个身份——费莫一科技创始人。 事实上，从2024年开始，他就一直密切关注具身智能的发展，翻看大量论文，也持续研究上游供应链和技术路线。到2025年底，他判断创业的时机开始成熟：一方面，机器人供应链已经足够完善，创业公司不必再把大量精力花在补齐本体和硬件短板上；另一方面，ai驱动的技术和数据范式逐渐清晰，可以开始形成真正有长期价值的技术积累。 决定创业后，刘念邱与多位元戎联合创始人沟通，大家都支持他出去再做一次从0到1。 甫一创业，费莫一科技就获得idg资本领投、云启资本、滴滴出行、复星锐正、耀途资本、禾赛科技等头部资本的近亿美元种子轮融资，而在早期接触投资人时，刘念邱甚至没来得及准备商业计划书。 刘念邱更愿意把费莫一的机器人称为“physical agent”，他认为…">
           <div class="card-top">
             <span class="rank">
               14
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.9
+              </span>
+              <span class="card-time">
+                02:51
               </span>
             </div>
           </div>
@@ -600,15 +796,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="security becomes a sign-off item europe’s cra turns chip security into auditable sign-off, pushing silicon teams to prove resilience before 2027. the post security becomes a sign-off item appeared first on ee times . ]]&gt;">
           <div class="card-top">
             <span class="rank">
               15
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.8
+              </span>
+              <span class="card-time">
+                07:10
               </span>
             </div>
           </div>
@@ -633,15 +835,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="吉利银河战舰700上市：限时焕新价16.98万元起，押注电混与智能越野 10月10日，吉利首款新能源硬派suv银河战舰700在杭州正式上市，推出三种动力、六大版型，上市限时焕新价16.98万元起。 作为吉利银河拓展硬派suv品类的首款产品，战舰700将目标用户同时指向越野爱好者与家庭用户。其核心技术包括gta原生硬派架构、雷神em-t电混系统，以及ai全地形模式，试图兼顾非铺装路面的通过能力与城市出行的舒适性、能耗和智能化体验。 根据官方信息，新车全系标配47kwh电池、宁德时代电芯及峰值6c快充。性能方面，2.0t顶峰版零百加速时间为3.95秒，车系综合续航最高可达1770公里。 需要留意的是，16.98万元起对应的是“上市限时焕新价”。官方同步公布了购置税、保险及置换等补贴，具体购车价格需结合版型及权益适用条件确认。 从车身架构入手，兼顾越野与日常驾驶 硬派suv向家庭市场拓展，首先要解决的是车辆结构与日常体验之间的平衡。越野需要车身具备足够的强度和抗扭能力，城市驾驶则更关注舒适性、操控与空间利用率。 战舰700采用gta原生硬派架构，核心设计是将“一体式大梁”嵌入车身骨架。据吉利介绍，该结构强度较传统大梁提升30%以上，整车扭转刚度超过44000n·…">
           <div class="card-top">
             <span class="rank">
               16
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.8
+              </span>
+              <span class="card-time">
+                07:00
               </span>
             </div>
           </div>
@@ -666,15 +874,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="techcrunch mobility: a roadblock clears for self-driving trucks ">
           <div class="card-top">
             <span class="rank">
               17
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.5
+              </span>
+              <span class="card-time">
+                16:02
               </span>
             </div>
           </div>
@@ -696,15 +910,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="ajay-bhojani/awesome-automotive an awesome &amp; curated list of best tools, blogs, and useful source of automotive engineering.">
           <div class="card-top">
             <span class="rank">
               18
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.4
+              </span>
+              <span class="card-time">
+                05:34
               </span>
             </div>
           </div>
@@ -732,15 +952,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="cantools/cantools can bus tools.">
           <div class="card-top">
             <span class="rank">
               19
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.4
+              </span>
+              <span class="card-time">
+                19:17
               </span>
             </div>
           </div>
@@ -768,15 +994,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="tracking the invisible: self-supervised wheel track detection with thermal-rgb fusion accurate detection of drivable area is essential for autonomous driving and advanced driver assistance systems. while state-of-the-art methods focus on general traversability estimation, they prove inadequate for snow-covered roads where following existing wheel tracks offers crucial advantages: improved traction, predictable vehicle dynamics, and verified path stability. to address this, we propose a low-cost, self-supervised approach detecting safety-critical wheel tracks using synchronized rg…">
           <div class="card-top">
             <span class="rank">
               20
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.4
+              </span>
+              <span class="card-time">
+                17:21
               </span>
             </div>
           </div>
@@ -801,15 +1033,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="reflect-vla: internalizing reflective guidance via dual-path on-policy self-distillation for autonomous driving reinforcement learning (rl) substantially improves planning performance in autonomous-driving vision-language-action (vla) models. however, existing rl methods rely on scalar trajectory rewards that measure overall quality but fail to identify specific planning errors or provide actionable correction signals. in long-tail scenarios, errors in scene understanding, behavior selection, and trajectory execution are compressed into a single score. we observe that reflective guidance turns trajectory …">
           <div class="card-top">
             <span class="rank">
               21
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                11:52
               </span>
             </div>
           </div>
@@ -834,15 +1072,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="boliu-ustc/hgptrans official pytorch implementation of hgptrans: hierarchical graph-pooling transolver for vehicle aerodynamic drag prediction (cd regression) from stl meshes.">
           <div class="card-top">
             <span class="rank">
               22
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                06:42
               </span>
             </div>
           </div>
@@ -870,15 +1114,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="beyond the snowflakes: disentangling weather effects from confounding meta-factors in lidar object detection light detection and ranging (lidar) is critical for autonomous perception, yet its performance is known to degrade in adverse weather. while existing literature models snow as atmospheric noise that degrades performance, our granular evaluation on the wads-3d and cadc datasets reveals a counter-intuitive phenomenon: detection accuracy consistently improves as snow intensity increases. through ablation study and meta-information analysis, we reconcile this by confirming that while falling snow ac…">
           <div class="card-top">
             <span class="rank">
               23
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                17:38
               </span>
             </div>
           </div>
@@ -903,15 +1153,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="thingsboard/thingsboard-gateway open-source iot gateway - integrates devices connected to legacy and third-party systems with thingsboard iot platform using modbus, can bus, bacnet, ble, opc-ua, mqtt, odbc and rest protocols.">
           <div class="card-top">
             <span class="rank">
               24
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                06:39
               </span>
             </div>
           </div>
@@ -939,15 +1195,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="robust and scalable uav-ugv planning for aerial monitoring under energy and precedence constraints we consider planning for unmanned aerial vehicle (uav) and unmanned ground vehicle (ugv) teams in aerial monitoring missions with ordering requirements on the monitoring points to be visited by the uav. the system consists of multiple uav-ugv teams, each comprising one uav and one ugv. uav energy limitations are modeled through endurance, defined as the maximum flight time on a full battery. the ugvs serve as mobile charging stations and transport the uavs between consecutive aerial tours. given…">
           <div class="card-top">
             <span class="rank">
               25
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                19:47
               </span>
             </div>
           </div>
@@ -972,15 +1234,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="news" data-text="新智驾独家丨奇瑞高层人事调整：智能化中心负责人谢保军疑似离职 内部飞书状态已显示暂停使用。 作者 | 王瑞昊 编辑 | 李雨晨 雷峰网《新智 驾》独家获悉，奇瑞汽车股份有限公司副总裁、智能化中心负责人谢保军疑似已离职，内部飞书状态已显示暂停使用。 雷峰网《新智驾》就此事向奇瑞汽车求证，截止发稿未作回应。 谢保军于2024年10月加入奇瑞，最初任职于旗下大卓智能，主要负责智能驾驶相关研发工作。2025年5月，奇瑞将雄狮科技、大卓智能以及研发总院相关业务整合，成立奇瑞智能化中心，谢保军成为中心实际运营负责人，统筹智能座舱、智能辅助驾驶、数字架构等智能化业务。 此后，奇瑞进一步推进猎鹰智驾技术方案归一、合作伙伴收敛和全栈自研，并在2026年ai之夜推出猎鹰500、700、900等智驾产品序列以及灵犀智舱、小奇同学等ai能力，谢保军也多次代表奇瑞对外介绍相关进展。 谢保军此前长期在吉利体系任职。 2010年前后加入沃尔沃汽车，先后负责软件、电子、自动驾驶、整车电子电气架构及智能网联等研发工作，曾担任沃尔沃研发中心软件与电子高级总监、沃尔沃汽车亚太区研发高级总监等职务。 随后加入极氪，担任极氪智能科技副总裁、软件及电子中心负责人，核心负责电子电气架构以及相…">
           <div class="card-top">
             <span class="rank">
               26
+            </span>
+            <span class="card-kind kind-news">
+              资讯
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                08:22
               </span>
             </div>
           </div>
@@ -1005,15 +1273,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="direct vector field guidance for path following this paper presents a path-following guidance framework for a turn-rate-constrained unmanned aerial vehicle (uavs). the proposed guidance strategy uses commanded course angle as a tanh-hyperbolic shaping function of the lateral deviation from the desired path. stability characteristics illustrating asymptotic convergence to the desired path are established using lyapunov analysis. analytical expressions for the turn-rate and corresponding maximum turn-rate bound are derived, enabling direct gain…">
           <div class="card-top">
             <span class="rank">
               27
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                13:28
               </span>
             </div>
           </div>
@@ -1038,15 +1312,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="secfd-fl: frequency-decoupled federated learning with secure aggregation for charging load forecasting in internet of electric vehicles accurate charging load forecasting is essential for the reliability and efficiency of the internet of electric vehicles (ioev), yet it is challenging on two fronts: charging demand is highly stochastic, and the data collected by distributed sensors is privacy-sensitive. although federated learning (fl) preserves data privacy, collaborative training still remains vulnerable to an honest-but-curious server that can invert shared model updates to reconstruct private data. to address both data volat…">
           <div class="card-top">
             <span class="rank">
               28
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                03:00
               </span>
             </div>
           </div>
@@ -1071,15 +1351,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="paper" data-text="hardware-in-the-loop demo of a cooperative intersection where cars don't stop the road transportation sector is undergoing a radical transformation, working for a future where all vehicles will be autonomous and connected. a key challenge in this vision concerns intersections, which will no longer rely on traffic lights or traditional right-of-way rules. instead, algorithms and communication protocols will be employed to optimize traffic flow. in this context, we are developing a testbed where cars equipped with wireless connectivity exchange information with a remote con…">
           <div class="card-top">
             <span class="rank">
               29
+            </span>
+            <span class="card-kind kind-paper">
+              论文
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.3
+              </span>
+              <span class="card-time">
+                10:01
               </span>
             </div>
           </div>
@@ -1104,15 +1390,21 @@
             </a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="github" data-text="usdot-fhwa-stol/carma-platform carma platform is built on robot operating system (ros) and utilizes open source software (oss) that enables cooperative driving automation (cda) features to allow automated driving systems to interact and cooperate with infrastructure and other vehicles through communication. doxygen source code documentation :">
           <div class="card-top">
             <span class="rank">
               30
+            </span>
+            <span class="card-kind kind-github">
+              开源
             </span>
             <div class="labels">
               <span class="heat">
                 🔥 
                 0.2
+              </span>
+              <span class="card-time">
+                08:17
               </span>
             </div>
           </div>

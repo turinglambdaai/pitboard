@@ -1,7 +1,9 @@
-/* pitboard — theme toggle + SSE edition notifications. No dependencies. */
+/* pitboard — theme toggle, filters, search, SSE edition notifications.
+   No dependencies. */
 (function () {
   "use strict";
 
+  /* ---- theme ---- */
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
     try { localStorage.setItem("pitboard-theme", t); } catch (e) {}
@@ -23,6 +25,53 @@
     });
   }
 
+  /* ---- filters + search ---- */
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var search = document.getElementById("search");
+  var active = "all";
+
+  function applyFilter() {
+    var q = search && search.value ? search.value.toLowerCase() : "";
+    cards.forEach(function (c) {
+      var okKind = active === "all" || c.getAttribute("data-kind") === active;
+      var okText = !q || (c.getAttribute("data-text") || "").indexOf(q) !== -1;
+      c.style.display = okKind && okText ? "" : "none";
+    });
+    // per-tab counts stay global (not search-aware)
+    tabs.forEach(function (t) {
+      var k = t.getAttribute("data-filter");
+      var n = cards.filter(function (c) {
+        return k === "all" || c.getAttribute("data-kind") === k;
+      }).length;
+      var badge = t.querySelector(".tab-n");
+      if (badge) badge.textContent = n;
+    });
+  }
+
+  if (cards.length && (tabs.length || search)) {
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        active = t.getAttribute("data-filter") || "all";
+        tabs.forEach(function (x) { x.classList.remove("active"); });
+        t.classList.add("active");
+        applyFilter();
+      });
+    });
+    if (search) {
+      search.addEventListener("input", applyFilter);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "/" && document.activeElement !== search &&
+            !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+          e.preventDefault();
+          search.focus();
+        }
+      });
+    }
+    applyFilter();
+  }
+
+  /* ---- SSE edition notifications ---- */
   function showEditionBar(date) {
     var bar = document.getElementById("edition-bar");
     if (!bar) {

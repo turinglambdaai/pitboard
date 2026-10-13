@@ -139,16 +139,26 @@
     (inexact->exact
      (floor (max 4 (min 100 (* 100.0 (/ heat-num (max max-heat 0.001))))))))
   (define domains (hash-ref h 'domains 0))
-  `(article ((class "card"))
+  (define its (hash-ref h 'items '()))
+  (define card-kind (v (hash-ref (car its) 'kind "news")))
+  (define card-text
+    (string-downcase
+     (string-append (v (hash-ref h 'title "")) " " (v (hash-ref h 'summary "")))))
+  `(article ((class "card")
+             (data-kind ,card-kind)
+             (data-text ,card-text))
      (div ((class "card-top"))
           (span ((class "rank")) ,(format "~a" (~r (add1 idx) #:min-width 2 #:pad-string "0")))
+          (span ((class ,(string-append "card-kind kind-" card-kind)))
+                ,(kind-label card-kind))
           (div ((class "labels"))
                (span ((class "heat")) "🔥 " ,heat-str)
                ,@(map label-chip* (map ~a (hash-ref h 'labels '())))
                ,@(if (> domains 1)
                      (list (list 'span '((class "chip"))
                                  (format "~a 个独立来源" domains)))
-                     '())))
+                     '())
+               (span ((class "card-time")) ,(newest-time h))))
      (div ((class "heatbar"))
           (span ((class "heatbar-fill") (style ,(format "width:~a%" pct))) ""))
      (h2 ((class "card-title"))
@@ -157,12 +167,82 @@
      ,@(let ([s (v (hash-ref h 'summary ""))])
          (if (non-empty-string? s) (list (list 'p '((class "card-summary")) s)) '()))
      (div ((class "chips"))
-          ,@(map source-chip (take (hash-ref h 'items '())
-                                   (min 10 (length (hash-ref h 'items '()))))))))
+          ,@(map source-chip (take its (min 10 (length its)))))
+     ,@(if (> (length its) 2)
+           (list
+            `(details ((class "more-src"))
+                      (summary ,(format "展开全部 ~a 条来源" (length its)))
+                      (ul ((class "src-list"))
+                          ,@(for/list ([it (in-list its)])
+                              `(li
+                                (a ((href ,(v (hash-ref it 'url "#")))
+                                    (target "_blank") (rel "noopener"))
+                                   ,(v (hash-ref it 'title ""))
+                                   (span ((class "src-dom"))
+                                         ,(v (hash-ref it 'source_url "")))))))))
+           '())))
 
 (define (first-item-url h)
   (define items (hash-ref h 'items '()))
   (if (null? items) "#" (v (hash-ref (car items) 'url "#"))))
+
+(define (newest-time h)
+  ;; HH:MM of the freshest source in the cluster, or ""
+  (define newest
+    (for/fold ([m #f]) ([it (in-list (hash-ref h 'items '()))])
+      (define p (hash-ref it 'published_at 'null))
+      (define s (and (string? p) (parse-date-any p)))
+      (if (and s (or (not m) (> s m))) s m)))
+  (if newest
+      (let ([d (seconds->date newest #t)])
+        (format "~a:~a" (~r (date-hour d) #:min-width 2 #:pad-string "0")
+                (~r (date-minute d) #:min-width 2 #:pad-string "0")))
+      ""))
+
+(define (quick-strip digest)
+  (define clusters (hash-ref digest 'clusters '()))
+  (define top (take clusters (min 5 (length clusters))))
+  `(section ((class "quick"))
+     (div ((class "quick-head"))
+          (span ((class "kicker")) "CURRENT HOT")
+          (span ((class "quick-label")) "当前热点")
+          (span ((class "quick-count")) ,(format "TOP ~a" (length top))))
+     (ol ((class "quick-list"))
+         ,@(for/list ([c (in-list top)] [i (in-naturals)])
+             `(li ((class "quick-item"))
+                  (a ((class "quick-link")
+                      (href ,(first-item-url c))
+                      (target "_blank") (rel "noopener"))
+                     (span ((class "quick-rank"))
+                           ,(format "~a" (~r (add1 i) #:min-width 2 #:pad-string "0")))
+                     (span ((class "quick-name"))
+                           ,(truncate-s (v (hash-ref c 'title "")) 52))
+                     (span ((class "quick-heat"))
+                           ,(format "🔥~a" (v (hash-ref c 'heat "0"))))))))))
+
+(define (filter-toolbar digest)
+  (define clusters (hash-ref digest 'clusters '()))
+  (define n
+    (for/hasheq ([k (in-list '("github" "news" "paper"))])
+      (values k
+              (for/sum ([c (in-list clusters)])
+                (for/sum ([it (in-list (hash-ref c 'items '()))])
+                  (if (equal? (hash-ref it 'kind "news") k) 1 0))))))
+  `(div ((class "toolbar"))
+     (div ((class "tabs") (role "tablist") (aria-label "按类型筛选"))
+          (button ((class "tab active") (type "button") (data-filter "all"))
+                  "全部"
+                  (span ((class "tab-n") (data-count "all"))
+                        ,(number->string (length clusters))))
+          ,@(for/list ([k (in-list '(("github" "开源") ("news" "资讯") ("paper" "论文")))])
+              `(button ((class "tab") (type "button") (data-filter ,(car k)))
+                       ,(cadr k)
+                       (span ((class "tab-n") (data-count ,(car k)))
+                             ,(number->string (hash-ref n (car k) 0)))))
+          (span ((class "toolbar-hint")) "按独立来源数排序"))
+     (input ((class "search") (id "search") (type "search")
+             (placeholder "搜索标题 / 摘要…（按 / 聚焦）")
+             (autocomplete "off") (aria-label "搜索热点")))))
 
 ;; ---- pages -------------------------------------------------------------------
 
@@ -200,16 +280,19 @@
   (define max-heat
     (for/fold ([m 1.0]) ([c (in-list clusters)])
       (max m (or (string->number (v (hash-ref c 'heat "0"))) 0.0))))
+  (define content
+    (if (null? clusters)
+        (list '(p ((class "empty")) "今天还没有足够的热点。"))
+        (list (quick-strip digest)
+              (filter-toolbar digest)
+              `(div ((class "cards"))
+                    ,@(for/list ([c (in-list clusters)]
+                                 [i (in-naturals)]
+                                 #:when (< i 30))
+                        (cluster-card c i max-heat))))))
   (xexpr->html-bytes
    (page-shell ctx "pitboard — 汽车行业每日热点" "index"
-               (list (hero-digest ctx digest)
-                     (if (null? clusters)
-                         '(p ((class "empty")) "今天还没有足够的热点。")
-                         `(div ((class "cards"))
-                               ,@(for/list ([c (in-list clusters)]
-                                            [i (in-naturals)]
-                                            #:when (< i 30))
-                                   (cluster-card c i max-heat))))))))
+               (cons (hero-digest ctx digest) content))))
 
 (define (render-archive-page ctx digests)
   ;; digests: list of (list date cluster-count top-title)
