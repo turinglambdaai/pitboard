@@ -38,29 +38,64 @@
 ;; ---- config ---------------------------------------------------------------
 
 (define arxiv-default-query
-  "(cat:cs.RO OR cat:eess.SY) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\")")
+  "(cat:cs.RO OR cat:eess.SY OR cat:cs.AR) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\" OR abs:AUTOSAR OR abs:\"functional safety\" OR abs:\"in-vehicle\" OR abs:ECU)")
 
 (define default-topics
-  (list "automotive" "autonomous-driving" "self-driving" "can-bus"
-        "obd-ii" "adas" "ev-charging" "car-hacking"))
+  (list "autosar" "uds" "iso-26262" "can-bus" "adas"
+        "autonomous-driving" "self-driving" "robotaxi"
+        "automotive" "automotive-software"))
+
+;; Official orgs watched without a star floor: first-party signal.
+(define default-orgs
+  (list "AUTOSAR"))
 
 (define default-config
   (hasheq 'feeds
-          (list (hasheq 'name "Ars Technica · Cars"
+          (list (hasheq 'name "IEEE Spectrum · Transportation"
+                        'url "https://spectrum.ieee.org/feeds/topic/transportation.rss"
+                        'tier 2 'weight 1.1)
+                (hasheq 'name "Just Auto"
+                        'url "https://www.just-auto.com/feed/"
+                        'tier 2 'weight 0.8)
+                (hasheq 'name "雷峰网 · AI 与芯片"
+                        'url "https://www.leiphone.com/feed"
+                        'tier 3 'weight 0.9
+                        'only_keywords (list "汽车" "智驾" "智能驾驶" "自动驾驶" "芯片"
+                                             "车载" "车规" "电池" "autosar" "半导体"
+                                             "nvidia" "英伟达" "地平线" "小鹏" "蔚来"
+                                             "理想" "比亚迪" "固态电池" "mcu" "soc"
+                                             "adas" "robotaxi" "vehicle" "激光雷达"
+                                             "智能网联" "大疆车载" "华为车" "robotruck")
+                        'except_keywords (list "淘宝" "一加" "电商" "退款" "京东"
+                                               "折叠屏" "手机发布" "销量榜"))
+                (hasheq 'name "EE Times"
+                        'url "https://www.eetimes.com/feed/"
+                        'tier 2 'weight 0.7
+                        'only_keywords (list "automotive" "vehicle" "autonomous"
+                                             "adas" "chip" "semiconductor" "mcu"
+                                             "soc" "sensor" "nvidia" "qualcomm"
+                                             "infineon" "renesas" "stmicro" "nxp"
+                                             "tsmc" "foundry" "fab" "ecu" "radar"
+                                             "battery" "power" "analog"))
+                (hasheq 'name "NVIDIA Developer Blog"
+                        'url "https://developer.nvidia.com/blog/feed/"
+                        'tier 1 'weight 0.7
+                        'only_keywords (list "drive" "thor" "orin" "automotive" "vehicle"
+                                             "adas" "autonomous" "robotaxi" "truck" "driving"))
+                (hasheq 'name "Ars Technica · Cars"
                         'url "https://arstechnica.com/cars/feed/"
-                        'weight 1.2)
+                        'tier 3 'weight 0.9)
                 (hasheq 'name "TechCrunch · Transportation"
                         'url "https://techcrunch.com/category/transportation/feed/"
-                        'weight 1.0)
-                (hasheq 'name "IEEE Spectrum · Transportation"
-                        'url "https://spectrum.ieee.org/feeds/topic/transportation.rss"
-                        'weight 1.1)
-                (hasheq 'name "Electrek"
-                        'url "https://electrek.co/feed/"
-                        'weight 0.9))
+                        'tier 3 'weight 0.6)
+                (hasheq 'name "Zephyr Project Blog"
+                        'url "https://zephyrproject.org/feed/"
+                        'tier 1 'weight 0.5))
           'github
           (hasheq 'topics default-topics
-                  'per_page 8)
+                  'orgs default-orgs
+                  'per_page 4
+                  'min_stars 20)
           'arxiv
           (hasheq 'query arxiv-default-query
                   'max_results 40)))
@@ -98,11 +133,35 @@
 
 ;; ---- RSS feeds -------------------------------------------------------------
 
+(define (keyword-match? kws text)
+  (define lowered (string-downcase text))
+  (for/or ([k (in-list kws)])
+    (string-contains? lowered (string-downcase (~a k)))))
+
 (define (fetch-rss-feed f)
   (define name (hash-ref f 'name "feed"))
-  (define weight (hash-ref f 'weight 1.0))
+  ;; source tier: 1 official first-party, 2 trade press, 3 general media
+  (define tier (hash-ref f 'tier 2))
+  (define weight
+    (* (hash-ref f 'weight 1.0)
+       (match tier [1 1.35] [3 0.85] [_ 1.0])))
+  (define kws (let ([v (hash-ref f 'only_keywords #f)])
+                (and (list? v) (pair? v) v)))
+  (define excepts (let ([v (hash-ref f 'except_keywords #f)])
+                    (and (list? v) (pair? v) v)))
   (define b (http-get-bytes (hash-ref f 'url)))
-  (define items (parse-feed b #:source-name name #:kind 'news #:weight weight))
+  (define raw (parse-feed b #:source-name name #:kind 'news #:weight weight))
+  (define items
+    (for/list ([it (in-list raw)]
+               #:unless (and excepts
+                             (keyword-match? excepts
+                                             (string-append (item-title it) " "
+                                                            (item-summary it))))
+               #:when (or (not kws)
+                          (keyword-match? kws
+                                          (string-append (item-title it) " "
+                                                         (item-summary it)))))
+      it))
   (values items (source-status name "rss" #t (length items) #f)))
 
 ;; ---- GitHub topic search ---------------------------------------------------
@@ -114,7 +173,23 @@
               'Authorization (string-append "Bearer " token))
       (hasheq 'User-Agent UA 'Accept "application/vnd.github+json")))
 
-(define (repo->item h)
+;; GitHub repos must clear an automotive-engineering relevance bar, or
+;; broad topics pull in smart-home noise (home-assistant matched topic
+;; "automotive" once already).
+(define gh-relevance-regex
+  (regexp "(?i:autosar|iso.?26262|iso.?21434|aspice|can.?fd|can.?bus|\\buds\\b|\\bobd\\b|\\badas\\b|autonomous|self-driving|driv(ing|er)|vehicle|automotive|robotaxi|\\bcars?\\b|truck|\\becu\\b|\\bmcu\\b|carla|lidar|\\bradar\\b|zephyr|\\bsdv\\b|\\bagl\\b|chassis|车|驾驶|汽车|智驾|芯片|整车)"))
+
+(define gh-blocklist-regex
+  (regexp "^home-assistant/|^openhab/|^homebridge/|^domoticz/"))
+
+(define (gh-relevant? h)
+  (define full (hash-ref h 'full_name ""))
+  (define desc (let ([d (hash-ref h 'description 'null)])
+                 (if (eq? d 'null) "" d)))
+  (and (not (regexp-match? gh-blocklist-regex full))
+       (regexp-match? gh-relevance-regex (string-append full " " desc))))
+
+(define (repo->item h [tier 2])
   (define full (hash-ref h 'full_name ""))
   (define url (hash-ref h 'html_url ""))
   (define pushed (parse-date-any (let ([v (hash-ref h 'pushed_at 'null)])
@@ -135,7 +210,8 @@
              pushed
              (hasheq 'stars (hash-ref h 'stargazers_count 0)
                      'language (jx lang)
-                     'created_at (jx (hash-ref h 'created_at 'null))))))
+                     'created_at (jx (hash-ref h 'created_at 'null))
+                     'tier tier))))
 
 (define (github-search q per-page token)
   (define url
@@ -146,13 +222,18 @@
 
 (define (fetch-github [cfg (hasheq)] #:now [now (current-seconds)])
   (define topics (hash-ref cfg 'topics default-topics))
-  (define per-page (hash-ref cfg 'per_page 8))
+  (define per-page (hash-ref cfg 'per_page 4))
+  (define min-stars (hash-ref cfg 'min_stars 20))
   (define token (getenv "GITHUB_TOKEN"))
   (define pushed-since (iso-date (- now (* 30 86400))))
   (define created-since (iso-date (- now (* 90 86400))))
+  (define orgs (hash-ref cfg 'orgs default-orgs))
   (define queries
     (append
-     (for/list ([t (in-list topics)]) (format "topic:~a pushed:>~a" t pushed-since))
+     (for/list ([t (in-list topics)])
+       (format "topic:~a pushed:>~a stars:>~a" t pushed-since min-stars))
+     (for/list ([o (in-list orgs)])
+       (format "user:~a pushed:>~a" o pushed-since))
      (list (format "topic:automotive created:>~a" created-since))))
   (define items '())
   (define errs '())
@@ -162,7 +243,19 @@
       (when (positive? i) (sleep (if token 2 7)))   ; search API rate limits
       (define res (github-search q per-page token))
       (define rows (hash-ref res 'items '()))
-      (set! items (append items (filter values (map repo->item rows))))))
+      ;; org-watch repos are first-party: no star floor, tier 1
+      (set! items
+            (append items
+                    (filter values
+                            (map (λ (h)
+                                   (define is-org
+                                     (for/or ([o (in-list orgs)])
+                                       (str-starts? (string-downcase
+                                                     (hash-ref h 'full_name ""))
+                                                    (string-downcase
+                                                     (string-append o "/")))))
+                                   (repo->item h (if is-org 1 2)))
+                                 (filter gh-relevant? rows)))))))
   (values items
           (source-status "GitHub 话题" "github" (null? errs)
                          (length items)
@@ -176,11 +269,14 @@
   (define url
     (format "https://export.arxiv.org/api/query?search_query=~a&sortBy=submittedDate&sortOrder=descending&max_results=~a"
             (uri-encode q) maxn))
-  (define items
-    (with-handlers ([exn:fail? (λ (_) '())])
+  (define-values (items err)
+    (with-handlers ([exn:fail? (λ (e) (values '() (exn-message e)))])
       (define b (http-get-bytes url #:timeout-seconds 30))
-      (parse-atom b #:source-name "arXiv" #:kind 'paper #:weight 1.0)))
-  (values items (source-status "arXiv" "arxiv" #t (length items) #f)))
+      (define parsed (parse-atom b #:source-name "arXiv" #:kind 'paper #:weight 1.0))
+      (values parsed
+              (and (null? parsed)
+                   (format "parsed 0 of ~a bytes" (bytes-length b))))))
+  (values items (source-status "arXiv" "arxiv" (not err) (length items) err)))
 
 ;; ---- all sources ------------------------------------------------------------
 

@@ -1,16 +1,143 @@
 {
   "feeds": [
-    { "name": "Ars Technica · Cars", "url": "https://arstechnica.com/cars/feed/", "weight": 1.2 },
-    { "name": "TechCrunch · Transportation", "url": "https://techcrunch.com/category/transportation/feed/", "weight": 1.0 },
-    { "name": "IEEE Spectrum · Transportation", "url": "https://spectrum.ieee.org/feeds/topic/transportation.rss", "weight": 1.1 },
-    { "name": "Electrek", "url": "https://electrek.co/feed/", "weight": 0.9 }
+    {
+      "name": "IEEE Spectrum · Transportation",
+      "url": "https://spectrum.ieee.org/feeds/topic/transportation.rss",
+      "weight": 1.1,
+      "tier": 2
+    },
+    {
+      "name": "雷峰网 · AI 与芯片",
+      "url": "https://www.leiphone.com/feed",
+      "weight": 0.9,
+      "only_keywords": [
+        "汽车",
+        "智驾",
+        "智能驾驶",
+        "自动驾驶",
+        "芯片",
+        "车载",
+        "车规",
+        "电池",
+        "autosar",
+        "半导体",
+        "nvidia",
+        "英伟达",
+        "地平线",
+        "小鹏",
+        "蔚来",
+        "理想",
+        "比亚迪",
+        "固态电池",
+        "mcu",
+        "soc",
+        "adas",
+        "robotaxi",
+        "vehicle",
+        "激光雷达",
+        "智能网联"
+      ],
+      "tier": 3,
+      "except_keywords": [
+        "淘宝",
+        "一加",
+        "电商",
+        "退款",
+        "京东",
+        "折叠屏",
+        "手机发布",
+        "销量榜"
+      ]
+    },
+    {
+      "name": "EE Times",
+      "url": "https://www.eetimes.com/feed/",
+      "weight": 0.7,
+      "tier": 2,
+      "only_keywords": [
+        "automotive",
+        "vehicle",
+        "autonomous",
+        "adas",
+        "chip",
+        "semiconductor",
+        "mcu",
+        "soc",
+        "sensor",
+        "nvidia",
+        "qualcomm",
+        "infineon",
+        "renesas",
+        "stmicro",
+        "nxp",
+        "tsmc",
+        "foundry",
+        "fab",
+        "ecu",
+        "radar",
+        "battery",
+        "power",
+        "analog"
+      ]
+    },
+    {
+      "name": "NVIDIA Developer Blog",
+      "url": "https://developer.nvidia.com/blog/feed/",
+      "weight": 0.7,
+      "only_keywords": [
+        "drive",
+        "thor",
+        "orin",
+        "automotive",
+        "vehicle",
+        "adas",
+        "autonomous",
+        "robotaxi",
+        "truck",
+        "driving"
+      ],
+      "tier": 1
+    },
+    {
+      "name": "Ars Technica · Cars",
+      "url": "https://arstechnica.com/cars/feed/",
+      "weight": 0.9,
+      "tier": 3
+    },
+    {
+      "name": "TechCrunch · Transportation",
+      "url": "https://techcrunch.com/category/transportation/feed/",
+      "weight": 0.6,
+      "tier": 3
+    },
+    {
+      "name": "Zephyr Project Blog",
+      "url": "https://zephyrproject.org/feed/",
+      "weight": 0.5,
+      "tier": 1
+    }
   ],
   "github": {
-    "topics": ["automotive", "autonomous-driving", "self-driving", "can-bus", "obd-ii", "adas", "ev-charging", "car-hacking"],
-    "per_page": 8
+    "topics": [
+      "autosar",
+      "uds",
+      "iso-26262",
+      "can-bus",
+      "adas",
+      "autonomous-driving",
+      "self-driving",
+      "robotaxi",
+      "automotive",
+      "automotive-software"
+    ],
+    "per_page": 4,
+    "min_stars": 20,
+    "orgs": [
+      "AUTOSAR"
+    ]
   },
   "arxiv": {
-    "query": "(cat:cs.RO OR cat:eess.SY) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\")",
+    "query": "(cat:cs.RO OR cat:eess.SY OR cat:cs.AR) AND (abs:automotive OR abs:\"autonomous driving\" OR abs:vehicle OR abs:ADAS OR abs:\"connected vehicles\" OR abs:AUTOSAR OR abs:\"functional safety\" OR abs:\"in-vehicle\" OR abs:ECU)",
     "max_results": 40
   }
 }

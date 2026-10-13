@@ -81,18 +81,36 @@
 
 ;; ---- scoring ---------------------------------------------------------------
 
+;; Tiered engineering lexicon: automotive software, functional safety,
+;; automotive-grade silicon, ADAS.  Weights feed the cluster heat boost.
 (define hot-terms
-  (list "固态电池" "robotaxi" "l3" "adas" "fsd" "自动驾驶" "智能驾驶" "智驾"
-        "autonomous" "self-driving" "召回" "recall" "电池" "battery"
-        "charging" "充电" "车规" "芯片" "chip" "v2x" "800v"
-        "收购" "合并" "merger" "acquisition" "iso 26262" "iso 21434"
-        "autosar" "撞车" "事故"))
+  (list
+   ;; engineering core
+   (cons "autosar" 1.2) (cons "iso 26262" 1.2) (cons "iso 21434" 1.2)
+   (cons "iso26262" 1.2) (cons "aspice" 1.0) (cons "功能安全" 1.0)
+   (cons "functional safety" 1.0) (cons "车规" 1.2) (cons "aec-q100" 1.0)
+   (cons "汽车电子" 0.9) (cons "域控" 1.0) (cons "domain controller" 0.9)
+   (cons "车载以太网" 1.0) (cons "can fd" 0.9) (cons "can bus" 0.7)
+   (cons "soafee" 0.9) (cons "sdv" 0.7) (cons "qnx" 0.7) (cons "zephyr" 0.5)
+   (cons "aurix" 0.8) (cons "rh850" 0.8) (cons "s32g" 0.8) (cons "orin" 0.7)
+   (cons "thor" 0.5) (cons "snapdragon" 0.5) (cons "征程" 0.7) (cons "地平线" 0.6)
+   (cons "ecu" 0.8) (cons "mcu" 0.8) (cons "芯片" 0.7) (cons "chip" 0.2)
+   (cons "semiconductor" 0.4) (cons "晶圆" 0.5) (cons "车规soc" 1.0)
+   ;; driving intelligence
+   (cons "智驾" 1.0) (cons "智能驾驶" 1.0) (cons "autonomous driving" 0.9)
+   (cons "self-driving" 0.8) (cons "adas" 0.9) (cons "robotaxi" 0.9)
+   (cons "fsd" 0.6) (cons "noa" 0.6) (cons "行泊一体" 0.9) (cons "端到端" 0.5)
+   (cons "lidar" 0.5) (cons "激光雷达" 0.6)
+   ;; general
+   (cons "vehicle" 0.3) (cons "汽车" 0.3) (cons "vehicle" 0.3)
+   (cons "battery" 0.2) (cons "电池" 0.3) (cons "charging" 0.2) (cons "充电" 0.2)
+   (cons "召回" 0.4) (cons "recall" 0.3) (cons "收购" 0.3) (cons "merger" 0.2)))
 
-(define (term-count s)
+(define (term-score s)
   (define lowered (string-downcase s))
-  (for/sum ([t (in-list hot-terms)]
-            #:when (string-contains? lowered t))
-    1))
+  (for/sum ([tw (in-list hot-terms)]
+            #:when (string-contains? lowered (car tw)))
+    (cdr tw)))
 
 (define (age-hours secs now)
   (if (not secs) 48.0 (/ (max 0 (- now secs)) 3600.0)))
@@ -107,16 +125,19 @@
      (define stars (let ([v (hash-ref e 'stars 0)]) (if (number? v) v 0)))
      (define created (parse-extra-iso (let ([v (hash-ref e 'created_at 'null)])
                                         (if (eq? v 'null) #f v))))
+     ;; org-watch repos (AUTOSAR etc.) are first-party signal, star-sparse
+     (define tier-boost (if (equal? (hash-ref e 'tier #f) 1) 1.5 0))
      (min 12.0
           (+ (* 2.0 (/ (log (+ 1.0 (max 0 stars))) (log 10.0)))
              (if (and created (< (- now created) (* 30 86400))) 3.0 0)
-             (if (and (item-published it) (< (- now (item-published it)) (* 7 86400))) 1.0 0)))]
+             (if (and (item-published it) (< (- now (item-published it)) (* 7 86400))) 1.0 0)
+             tier-boost))]
     ['news
      (define w (let ([v (hash-ref (item-extra it) 'weight 1.0)])
                  (if (real? v) v 1.0)))
-     (* w (exp (- (/ (age-hours (item-published it) now) 60.0))))]
+     (* 2.5 w (exp (- (/ (age-hours (item-published it) now) 60.0))))]
     ['paper
-     (+ 1.5 (* 0.25 (term-count (string-append (item-title it) " " (item-summary it)))))]
+     (+ 1.5 (* 0.3 (min 6.0 (term-score (string-append (item-title it) " " (item-summary it))))))]
     [_ 1.0]))
 
 ;; ---- hot clusters ----------------------------------------------------------
@@ -131,10 +152,16 @@
                        (max m (or (item-published it) 0))))
       (define age-h (age-hours (and (> newest 0) newest) now))
       (define wsum (for/sum ([it (in-list g)]) (item-weight it now)))
+      ;; engineering-lexicon boost: best single item's term score, capped
+      (define kw
+        (for/fold ([m 0.0]) ([it (in-list g)])
+          (max m (term-score (string-append (item-title it) " "
+                                            (item-summary it))))))
       (define heat
         (* (+ 1.0 wsum)
            (+ 0.6 (* 0.4 (/ (min 4 (length domains)) 4.0)))
-           (exp (- (/ age-h 48.0)))))
+           (exp (- (/ age-h 48.0)))
+           (+ 1.0 (* 0.12 (min 8.0 kw)))))
       (define labels '())
       (when (< age-h 24) (set! labels (cons 'new labels)))
       (when (and (>= (length domains) 2) (< age-h 18))
