@@ -200,8 +200,20 @@
       ""))
 
 (define (quick-strip digest)
+  ;; masthead diversity: at most 3 repos in the top strip so the front
+  ;; door always mixes code with readable industry news
   (define clusters (hash-ref digest 'clusters '()))
-  (define top (take clusters (min 5 (length clusters))))
+  (define top
+    (let loop ([rest clusters] [gh 0] [picked '()])
+      (cond [(or (= (length picked) 5) (null? rest)) (reverse picked)]
+            [else
+             (define c (car rest))
+             (define k (hash-ref (car (hash-ref c 'items '())) 'kind "news"))
+             (if (and (equal? k "github") (>= gh 3))
+                 (loop (cdr rest) gh picked)
+                 (loop (cdr rest)
+                       (if (equal? k "github") (add1 gh) gh)
+                       (cons c picked)))])))
   `(section ((class "quick"))
      (div ((class "quick-head"))
           (span ((class "kicker")) "CURRENT HOT")
