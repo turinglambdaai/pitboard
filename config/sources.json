@@ -155,6 +155,30 @@
       "url": "https://medium.com/feed/tag/automotive-software",
       "tier": 2,
       "weight": 0.8
+    },
+    {
+      "name": "Medium · Automotive Cybersecurity",
+      "url": "https://medium.com/feed/tag/automotive-cybersecurity",
+      "tier": 2,
+      "weight": 0.9
+    },
+    {
+      "name": "Automotive Dive",
+      "url": "https://www.automotivedive.com/feeds/news/",
+      "tier": 2,
+      "weight": 0.8
+    },
+    {
+      "name": "dev.to · Automotive",
+      "url": "https://dev.to/feed/tag/automotive",
+      "tier": 2,
+      "weight": 0.7
+    },
+    {
+      "name": "CleanTechnica",
+      "url": "https://cleantechnica.com/feed/",
+      "tier": 3,
+      "weight": 0.5
     }
   ],
   "github": {

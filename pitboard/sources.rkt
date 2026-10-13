@@ -124,7 +124,19 @@
                         'tier 2 'weight 0.8)
                 (hasheq 'name "Medium · Automotive Software"
                         'url "https://medium.com/feed/tag/automotive-software"
-                        'tier 2 'weight 0.8))
+                        'tier 2 'weight 0.8)
+                (hasheq 'name "Medium · Automotive Cybersecurity"
+                        'url "https://medium.com/feed/tag/automotive-cybersecurity"
+                        'tier 2 'weight 0.9)
+                (hasheq 'name "Automotive Dive"
+                        'url "https://www.automotivedive.com/feeds/news/"
+                        'tier 2 'weight 0.8)
+                (hasheq 'name "dev.to · Automotive"
+                        'url "https://dev.to/feed/tag/automotive"
+                        'tier 2 'weight 0.7)
+                (hasheq 'name "CleanTechnica"
+                        'url "https://cleantechnica.com/feed/"
+                        'tier 3 'weight 0.5))
           'hn
           (hasheq 'keywords hn-default-keywords 'days 7 'per_page 1000 'min_points 2)
           'github
