@@ -1,6 +1,18 @@
 {
   "feeds": [
     {
+      "url": "https://www.theverge.com/rss/transportation/index.xml",
+      "tier": 2,
+      "weight": 1.0,
+      "name": "The Verge · Transportation"
+    },
+    {
+      "name": "Just Auto",
+      "url": "https://www.just-auto.com/feed/",
+      "tier": 2,
+      "weight": 0.8
+    },
+    {
       "name": "IEEE Spectrum · Transportation",
       "url": "https://spectrum.ieee.org/feeds/topic/transportation.rss",
       "weight": 1.1,
@@ -115,6 +127,12 @@
       "url": "https://zephyrproject.org/feed/",
       "weight": 0.5,
       "tier": 1
+    },
+    {
+      "url": "https://electrek.co/feed/",
+      "tier": 3,
+      "weight": 0.5,
+      "name": "Electrek"
     }
   ],
   "github": {
@@ -130,7 +148,7 @@
       "automotive",
       "automotive-software"
     ],
-    "per_page": 4,
+    "per_page": 3,
     "min_stars": 20,
     "orgs": [
       "AUTOSAR"

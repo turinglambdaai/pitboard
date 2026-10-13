@@ -41,7 +41,9 @@
   (string-append*
    (for/list ([c (in-list (cddr x))])
      (cond [(string? c) c]
-           [(cdata? c) (cdata-string c)]
+           [(cdata? c)
+            ;; the xml lib keeps the literal <![CDATA[...]]> wrapper
+            (regexp-replace* #px"^<!\\[CDATA\\[|\\]\\]>$" (cdata-string c) "")]
            [(pair? c) (text-of c)]
            [else ""]))))
 

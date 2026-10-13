@@ -127,15 +127,15 @@
                                         (if (eq? v 'null) #f v))))
      ;; org-watch repos (AUTOSAR etc.) are first-party signal, star-sparse
      (define tier-boost (if (equal? (hash-ref e 'tier #f) 1) 1.5 0))
-     (min 12.0
-          (+ (* 2.0 (/ (log (+ 1.0 (max 0 stars))) (log 10.0)))
+     (min 8.0
+          (+ (* 1.5 (/ (log (+ 1.0 (max 0 stars))) (log 10.0)))
              (if (and created (< (- now created) (* 30 86400))) 3.0 0)
              (if (and (item-published it) (< (- now (item-published it)) (* 7 86400))) 1.0 0)
              tier-boost))]
     ['news
      (define w (let ([v (hash-ref (item-extra it) 'weight 1.0)])
                  (if (real? v) v 1.0)))
-     (* 2.5 w (exp (- (/ (age-hours (item-published it) now) 60.0))))]
+     (* 4.0 w (exp (- (/ (age-hours (item-published it) now) 60.0))))]
     ['paper
      (+ 1.5 (* 0.3 (min 6.0 (term-score (string-append (item-title it) " " (item-summary it))))))]
     [_ 1.0]))

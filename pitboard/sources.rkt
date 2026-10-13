@@ -51,7 +51,10 @@
 
 (define default-config
   (hasheq 'feeds
-          (list (hasheq 'name "IEEE Spectrum · Transportation"
+          (list (hasheq 'name "The Verge · Transportation"
+                        'url "https://www.theverge.com/rss/transportation/index.xml"
+                        'tier 2 'weight 1.0)
+                (hasheq 'name "IEEE Spectrum · Transportation"
                         'url "https://spectrum.ieee.org/feeds/topic/transportation.rss"
                         'tier 2 'weight 1.1)
                 (hasheq 'name "Just Auto"
@@ -88,13 +91,16 @@
                 (hasheq 'name "TechCrunch · Transportation"
                         'url "https://techcrunch.com/category/transportation/feed/"
                         'tier 3 'weight 0.6)
+                (hasheq 'name "Electrek"
+                        'url "https://electrek.co/feed/"
+                        'tier 3 'weight 0.5)
                 (hasheq 'name "Zephyr Project Blog"
                         'url "https://zephyrproject.org/feed/"
                         'tier 1 'weight 0.5))
           'github
           (hasheq 'topics default-topics
                   'orgs default-orgs
-                  'per_page 4
+                  'per_page 3
                   'min_stars 20)
           'arxiv
           (hasheq 'query arxiv-default-query
