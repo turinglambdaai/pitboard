@@ -9,12 +9,15 @@
          racket/format
          racket/match
          racket/port
+         racket/file
          json
          net/http-easy)
 
 (provide llm-available?
          llm-base
          llm-model
+         llm-budget
+         llm-prompt-template
          llm-polish!)
 
 ;; ---- config ---------------------------------------------------------------
@@ -24,6 +27,27 @@
 (define (llm-model) (or (getenv "PITBOARD_LLM_MODEL") "deepseek-chat"))
 
 (define (llm-available?) (and (llm-key) #t))
+
+;; per-edition call budget: hard stop after N LLM requests (熔断)
+(define (llm-budget)
+  (or (string->number (or (getenv "PITBOARD_LLM_BUDGET") "")) 12))
+
+;; prompt template: config/prompts/polish.txt overrides the built-in.
+;; Placeholder {input} is replaced with the JSON payload.
+(define (llm-prompt-template)
+  (define path (or (getenv "PITBOARD_PROMPTS_DIR")
+                   (and (directory-exists? "config/prompts")
+                        "config/prompts")))
+  (define file (and path
+                    (build-path path "polish.txt")))
+  (if (and file (file-exists? file))
+      (with-input-from-file file port->string)
+      (string-append
+       "你是汽车行业日报编辑。下面是 JSON 数组，每项含 i（编号）、title（标题）、summary（摘要）。"
+       "为每一项输出中文标题 title_zh（不超过30字，专有名词保留英文）"
+       "和中文摘要 summary_zh（不超过80字，两句话）。"
+       "只输出一个 JSON 对象：{\"items\":[{\"i\":0,\"title_zh\":\"…\",\"summary_zh\":\"…\"}]}，不要任何其他文字。\n"
+       "输入：")))
 
 ;; ---- request --------------------------------------------------------------
 
@@ -62,12 +86,7 @@
                 'title (car (cdr e))
                 'summary (cdr (cdr e)))))
     (define prompt
-      (string-append
-       "你是汽车行业日报编辑。下面是 JSON 数组，每项含 i（编号）、title（标题）、summary（摘要）。"
-       "为每一项输出中文标题 title_zh（不超过30字，专有名词保留英文）"
-       "和中文摘要 summary_zh（不超过80字，两句话）。"
-       "只输出一个 JSON 对象：{\"items\":[{\"i\":0,\"title_zh\":\"…\",\"summary_zh\":\"…\"}]}，不要任何其他文字。\n"
-       "输入：" (jsexpr->string input)))
+      (string-append (llm-prompt-template) (jsexpr->string input)))
     (define resp (chat-completions prompt))
     (define content
       (let* ([choices (hash-ref resp 'choices '())]

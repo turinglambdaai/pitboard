@@ -27,7 +27,11 @@
          topic-slug
          collect-topic-items
          render-topic-page
-         render-topics-index)
+         render-topics-index
+         render-period-page
+         render-periods-index
+         render-og-svg
+         render-admin-page)
 
 (struct site-ctx (domain base-url generated-at editions-fn) #:transparent)
 
@@ -70,6 +74,7 @@
 (define (label-chip* l)
   (cond [(equal? l "new") '(span ((class "chip chip-new")) "新")]
         [(equal? l "rising") '(span ((class "chip chip-rising")) "↑ 上升")]
+        [(equal? l "progress") '(span ((class "chip chip-progress")) "进展")]
         [else (list 'span '((class "chip")) l)]))
 
 ;; ---- shell ------------------------------------------------------------------
@@ -165,6 +170,11 @@
                      (list (list 'span '((class "chip"))
                                  (format "~a 个独立来源" domains)))
                      '())
+               ,@(let ([fs (hash-ref h 'first_seen 'null)])
+                   (if (string? fs)
+                       (list (list 'span '((class "chip chip-seen"))
+                                   (format "首见 ~a" fs)))
+                       '()))
                (span ((class "card-time")) ,(newest-time h))))
      (div ((class "heatbar"))
           (span ((class "heatbar-fill") (style ,(format "width:~a%" pct))) ""))
@@ -572,3 +582,99 @@
                                   (span ((class "quick-rank")) ,(format "~a" (caddr t)))
                                   (span ((class "quick-name")) ,(cadr t))
                                   (span ((class "quick-heat")) "追踪 →")))))))))
+
+;; ---- weekly / monthly compilation pages -------------------------------------
+
+(define (render-period-page ctx kind-label rows)
+  (xexpr->html-bytes
+   (page-shell ctx (string-append kind-label " — pitboard") "topics"
+               (list
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "COMPILATION")
+                   (h1 ((class "hero-date hero-date-s")) ,kind-label)
+                   (p ((class "hero-meta"))
+                      ,(format "从当期日报汇编 · ~a 条要闻 · 按热度去重" (length rows))))
+                `(ol ((class "topic-list"))
+                     ,@(for/list ([r (in-list rows)])
+                         `(li ((class "topic-row"))
+                              (span ((class "topic-date")) ,(car r))
+                              (a ((href ,(caddr r)) (target "_blank") (rel "noopener"))
+                                 ,(cadr r))
+                              (span ((class "src-dom"))
+                                    ,(format "热度 ~a" (cadddr r))))))))))
+
+(define (render-periods-index ctx kind-label base entries)
+  (xexpr->html-bytes
+   (page-shell ctx (string-append kind-label "归档 — pitboard") "topics"
+               (list
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "COMPILATION")
+                   (h1 ((class "hero-date hero-date-s")) ,kind-label "归档"))
+                `(ul ((class "archive-list"))
+                     ,@(for/list ([e (in-list entries)])
+                         `(li
+                           (a ((class "arch-link")
+                               (href ,(format "~a/~a/" base (car e))))
+                              (span ((class "arch-date")) ,(car e))
+                              (span ((class "arch-title"))
+                                    ,(format "~a 条要闻" (cadr e)))))))))))
+
+
+;; ---- og share card (SVG; a static per-edition asset) ------------------------
+
+(define (render-og-svg digest)
+  (define date (v (hash-ref digest 'date "")))
+  (define top
+    (let ([cs (hash-ref digest 'clusters '())])
+      (if (null? cs) "" (v (hash-ref (car cs) 'title "")))))
+  (define esc
+    (λ (t)
+      (regexp-replace* #px"<" (regexp-replace* #px"&" t "&amp;") "&lt;")))
+  (string->bytes/utf-8
+   (format
+    (string-append
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"630\">\n"
+     "  <rect width=\"1200\" height=\"630\" fill=\"#17140f\"/>\n"
+     "  <rect x=\"0\" y=\"0\" width=\"1200\" height=\"6\" fill=\"#c15f3c\"/>\n"
+     "  <rect x=\"0\" y=\"6\" width=\"14\" height=\"6\" fill=\"#faf7f2\"/>\n"
+     "  <rect x=\"28\" y=\"6\" width=\"14\" height=\"6\" fill=\"#faf7f2\"/>\n"
+     "  <rect x=\"56\" y=\"6\" width=\"14\" height=\"6\" fill=\"#faf7f2\"/>\n"
+     "  <text x=\"80\" y=\"210\" font-family=\"Menlo, monospace\" font-size=\"30\"
+     fill=\"#c15f3c\" letter-spacing=\"8\">PITBOARD · AUTOMOTIVE DAILY</text>\n"
+     "  <text x=\"80\" y=\"330\" font-family=\"PingFang SC, sans-serif\"
+     font-size=\"88\" font-weight=\"800\" fill=\"#f5efe2\">~a</text>\n"
+     "  <text x=\"80\" y=\"430\" font-family=\"PingFang SC, sans-serif\"
+     font-size=\"34\" fill=\"#a49d92\">~a</text>\n"
+     "  <rect x=\"80\" y=\"500\" width=\"1040\" height=\"1\" fill=\"#3a332a\"/>\n"
+     "  <text x=\"80\" y=\"560\" font-family=\"Menlo, monospace\" font-size=\"24\"
+     fill=\"#a49d92\">pitboard.jrtx.site</text>\n"
+     "</svg>\n")
+    (esc date)
+    (esc (truncate-s top 40)))))
+
+
+;; ---- admin status page (read-only diagnostics) --------------------------------
+
+(define (render-admin-page ctx sources health admin-enabled?)
+  (xexpr->html-bytes
+   (page-shell ctx "运行状态 — pitboard" ""
+               (list
+                '(section ((class "hero hero-slim"))
+                   (p ((class "kicker")) "ADMIN")
+                   (h1 ((class "hero-date hero-date-s")) "运行状态")
+                   ,@(if admin-enabled?
+                         '((p ((class "hero-meta"))
+                              (code "/admin/try?source=源名") " 可单源试抓（需 PITBOARD_ADMIN=1）"))
+                         '((p ((class "hero-meta"))
+                              "试抓未开启（设 PITBOARD_ADMIN=1）"))))
+                `(ul ((class "archive-list"))
+                     ,@(for/list ([s (in-list sources)])
+                         `(li ((class "topic-row"))
+                              (span ((class "topic-date"))
+                                    ,(if (hash-ref s 'ok #f) "ok" "失败"))
+                              (span ((class "arch-title"))
+                                    ,(format "~a · ~a 条" (v (hash-ref s 'name ""))
+                                             (hash-ref s 'count 0)))
+                              (span ((class "src-dom"))
+                                    ,(let ([m (hash-ref s 'message 'null)])
+                                       (if (eq? m 'null) "" (v m)))))))))))

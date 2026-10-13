@@ -1,0 +1,10 @@
+# pitboard — single-process self-hosting. Data lives in ./data.
+services:
+  pitboard:
+    build: .
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./data:/data
+      - ./config:/app/config
+    restart: unless-stopped

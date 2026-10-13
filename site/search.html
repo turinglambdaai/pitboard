@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>搜索 — pitboard</title><link rel="stylesheet" href="/styles.css"></head>
+<body><nav class="nav"><div class="nav-inner"><a class="brand" href="/">⏱ pitboard</a>
+<div class="nav-links"><a href="/">今日</a><a href="/topics/">话题</a><a href="/archive.html">归档</a><a href="/about.html">关于</a><a href="/rss.xml">RSS</a></div></div></nav>
+<main><section class="hero hero-slim"><p class="kicker">SEARCH</p><h1 class="hero-date hero-date-s">站内搜索</h1>
+<input class="search" id="q" type="search" placeholder="搜索标题关键词…" autocomplete="off" style="margin-top:14px">
+</section><ul class="archive-list" id="results"></ul>
+<script>
+var IDX=null,R=document.getElementById('results'),Q=document.getElementById('q');
+fetch('/search-index.json').then(function(r){return r.json()}).then(function(j){
+  IDX=[];j.forEach(function(day){day.forEach(function(c){IDX.push({d:c.d,t:c.t,u:c.u,k:c.k,h:c.h})})});
+  run()});
+Q.addEventListener('input',run);
+function run(){var q=Q.value.trim().toLowerCase();if(!IDX)return;
+  R.innerHTML='';if(!q)return;
+  var n=0;IDX.forEach(function(it){if(n>=30)return;
+    if(it.t.toLowerCase().indexOf(q)!==-1){n++;
+      var li=document.createElement('li');li.className='topic-row';
+      li.innerHTML='<span class="topic-date">'+it.d+'</span><a href="'+it.u+'" target="_blank" rel="noopener">'+it.t+'</a><span class="src-dom">'+it.k+' · 🔥'+it.h+'</span>';
+      R.appendChild(li)}});
+  if(!n)R.innerHTML='<li class="topic-row"><span class="src-dom">没有匹配内容</span></li>'}
+</script></main></body></html>

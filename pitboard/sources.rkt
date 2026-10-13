@@ -207,62 +207,6 @@
   (for/or ([k (in-list kws)])
     (string-contains? lowered (string-downcase (~a k)))))
 
-;; ---- web list sources (pages without RSS; AIHOT-style list scraper) -------
-
-(define (attr-of-tag tag name)
-  (define m (regexp-match (format "(?i:~a=\"([^\"]*)\")" (regexp-quote name)) tag))
-  (and m (cadr m)))
-
-;; Extract (list title url) pairs from an HTML page: every <a> whose href
-;; matches link-regex.  Title prefers the anchor's title attribute.
-(define (extract-web-items html base-url link-regex)
-  (define seen (mutable-set))
-  (for/list ([tag (in-list (regexp-match* #px"(?i:<a\\b[^>]*>)" html))]
-             #:do [(define href (and tag (attr-of-tag tag "href")))]
-             #:when (and href
-                         (non-empty-string? href)
-                         (regexp-match? link-regex href)
-                         (not (str-starts? href "javascript")))
-             #:do [(define t (string-trim (or (attr-of-tag tag "title") "")))]
-             #:unless (or (set-member? seen href) (< (string-length t) 8))
-             #:do [(set-add! seen href)])
-    (list t
-          (if (or (str-starts? href "http://") (str-starts? href "https://"))
-              href
-              (string-append base-url href)))))
-
-(define (fetch-web-list w)
-  (define name (hash-ref w 'name "page"))
-  (define tier (hash-ref w 'tier 2))
-  (define weight
-    (* (hash-ref w 'weight 1.0)
-       (match tier [1 1.35] [3 0.85] [_ 1.0])))
-  (define b
-    (with-handlers
-        ([exn:fail?
-          (λ (e)
-            (if (regexp-match? #rx"certificate verify failed" (exn-message e))
-                (curl-get-bytes (hash-ref w 'url) #:timeout-seconds 25)
-                (raise e)))])
-      (http-get-bytes (hash-ref w 'url))))
-  (define rows
-    (extract-web-items (bytes->string/utf-8 b #\?)
-                       (hash-ref w 'base_url (hash-ref w 'url))
-                       (regexp (hash-ref w 'link_regex ""))))
-  (define maxn (hash-ref w 'max 10))
-  (define now (current-seconds))
-  (define items
-    (for/list ([row (in-list (take rows (min maxn (length rows))))])
-      (item (make-item-id 'news (normalize-url (cadr row)))
-            'news
-            name
-            (slug-domain (cadr row))
-            (strip-html (car row))
-            (cadr row)
-            ""
-            now
-            (hasheq 'weight weight))))
-  (values items (source-status name "web" #t (length items) #f)))
 
 (define (fetch-rss-feed f)
   (define name (hash-ref f 'name "feed"))
@@ -289,6 +233,114 @@
                                                          (item-summary it)))))
       it))
   (values items (source-status name "rss" #t (length items) #f)))
+
+;; ---- web list sources (pages without RSS; AIHOT-style list scraper) -------
+
+(define (attr-of-tag tag name)
+  (define m (regexp-match (format "(?i:~a=\"([^\"]*)\")" (regexp-quote name)) tag))
+  (and m (cadr m)))
+
+;; Extract (list title url) pairs from an HTML page: every <a> whose href
+;; matches link-regex.  Title prefers the anchor's title attribute.
+(define (extract-web-items html base-url link-regex)
+  (define seen (mutable-set))
+  (for/list ([m (in-list
+                 (regexp-match*
+                  #px"(?i:<a\\b[^>]*href=\"([^\"]+)\"[^>]*>)([\\s\\S]*?)</a>"
+                  html))]
+             #:do [(define href (cadr m))
+                   (define inner (strip-html (caddr m)))]
+             #:when (and (non-empty-string? href)
+                         (regexp-match? link-regex href)
+                         (not (str-starts? href "javascript")))
+             #:do [(define t (string-trim (or (attr-of-tag (car m) "title") "")))]
+             #:when (non-empty-string? t)
+             #:do [(set! t (if (>= (string-length t) 8) t inner))]
+             #:unless (or (set-member? seen href) (< (string-length t) 8))
+             #:do [(set-add! seen href)])
+    (list t
+          (if (or (str-starts? href "http://") (str-starts? href "https://"))
+              href
+              (string-append base-url href)))))
+
+(define (fetch-web-list w)
+  (define name (hash-ref w 'name "page"))
+  (define tier (hash-ref w 'tier 2))
+  (define weight
+    (* (hash-ref w 'weight 1.0)
+       (match tier [1 1.35] [3 0.85] [_ 1.0])))
+  (define b
+    (with-handlers
+        ([exn:fail?
+          (lambda (e)
+            (if (regexp-match? #rx"certificate verify failed" (exn-message e))
+                (curl-get-bytes (hash-ref w 'url) #:timeout-seconds 25)
+                (raise e)))])
+      (http-get-bytes (hash-ref w 'url))))
+  (define rows
+    (extract-web-items (bytes->string/utf-8 b #\?)
+                       (hash-ref w 'base_url (hash-ref w 'url))
+                       (regexp (hash-ref w 'link_regex ""))))
+  (define maxn (hash-ref w 'max 10))
+  (define now (current-seconds))
+  (define items
+    (for/list ([row (in-list (take rows (min maxn (length rows))))])
+      (item (make-item-id 'news (normalize-url (cadr row)))
+            'news
+            name
+            (slug-domain (cadr row))
+            (strip-html (car row))
+            (cadr row)
+            ""
+            now
+            (hasheq 'weight weight))))
+  (values items (source-status name "web" #t (length items) #f)))
+
+;; ---- JSON API sources -------------------------------------------------------
+
+(define (json-path v path)
+  (for/fold ([v v]) ([k (in-list path)])
+    (cond [(and (hash? v) (hash-has-key? v k)) (hash-ref v k)]
+          [(and (list? v) (number? k) (< k (length v))) (list-ref v k)]
+          [else 'null])))
+
+(define (fetch-json-api w #:now [now (current-seconds)])
+  (define name (hash-ref w 'name "api"))
+  (define tier (hash-ref w 'tier 2))
+  (define weight
+    (* (hash-ref w 'weight 1.0)
+       (match tier [1 1.35] [3 0.85] [_ 1.0])))
+  (define b (http-get-bytes (hash-ref w 'url)))
+  (define root (with-input-from-bytes b read-json))
+  (define path
+    (for/list ([seg (in-list (string-split (hash-ref w 'path "" ".")))]
+               #:when (non-empty-string? seg))
+      (define n (string->number seg))
+      (or n (string->symbol seg))))
+  (define entries (json-path root path))
+  (define title-f (string->symbol (hash-ref w 'title_field "title")))
+  (define url-f (string->symbol (hash-ref w 'url_field "url")))
+  (define date-f (hash-ref w 'date_field "published_at"))
+  (define maxn (hash-ref w 'max 10))
+  (define items
+    (for/list ([e (in-list (if (list? entries)
+                               (take entries (min maxn (length entries)))
+                               '()))]
+               #:when (hash? e))
+      (define url (let ([u (hash-ref e url-f 'null)])
+                    (if (eq? u 'null) "" u)))
+      (define title (let ([t (hash-ref e title-f 'null)])
+                      (if (eq? t 'null) "" (strip-html t))))
+      (and (non-empty-string? title)
+           (non-empty-string? url)
+           (item (make-item-id 'news (normalize-url url))
+                 'news name (slug-domain url)
+                 (truncate-s title 200) url ""
+                 (parse-date-any (let ([d (hash-ref e date-f 'null)])
+                                   (if (eq? d 'null) #f d)))
+                 (hasheq 'weight weight)))))
+  (values (filter values items)
+          (source-status name "json" #t (length (filter values items)) #f)))
 
 ;; ---- GitHub topic search ---------------------------------------------------
 
@@ -461,9 +513,11 @@
                        (source-status (hash-ref f 'name "feed")
                                       (hash-ref f 'type "rss") #f 0
                                       (exn-message e))))])
-         (if (equal? (hash-ref f 'type "rss") "web_list")
-             (fetch-web-list f)
-             (fetch-rss-feed f))))
+         (cond [(equal? (hash-ref f 'type "rss") "web_list")
+                (fetch-web-list f)]
+               [(equal? (hash-ref f 'type "rss") "json_api")
+                (fetch-json-api f)]
+               [else (fetch-rss-feed f)])))
      absorb))
   (call-with-values
    (λ ()

@@ -17,6 +17,8 @@
          cluster-items
          rank-clusters
          hot->jsexpr
+         event-fingerprint
+         annotate-progress!
          (struct-out hot))
 
 ;; ---- tokens ----------------------------------------------------------------
@@ -155,7 +157,7 @@
 
 ;; ---- hot clusters ----------------------------------------------------------
 
-(struct hot (items heat title summary labels domains newest) #:transparent #:mutable)
+(struct hot (items heat title summary labels domains newest first-seen) #:transparent #:mutable)
 
 (define (rank-clusters item-groups #:now [now (current-seconds)])
   (define scored
@@ -182,7 +184,7 @@
       ;; Display face of the cluster: the heaviest item carries the title.
       (define face (argmax (λ (it) (item-weight it now)) g))
       (hot g heat (item-title face) (item-summary face)
-           labels (length domains) newest)))
+           labels (length domains) newest #f)))
   (sort scored > #:key hot-heat))
 
 (define (hot->jsexpr h)
@@ -192,4 +194,30 @@
           'domains (hot-domains h)
           'title (hot-title h)
           'summary (hot-summary h)
+          'first_seen (jx (hot-first-seen h))
           'items (map item->jsexpr (hot-items h))))
+
+;; ---- cross-day progress tracking -------------------------------------------
+
+;; Canonical shape of a story: sorted token stream.  Two mentions of the
+;; same event share the fingerprint (or sit at high Jaccard distance 0).
+(define (event-fingerprint text)
+  (string-join (sort (set->list (tokenize text)) string<?) " "))
+
+;; history: hash fingerprint -> (cons token-list first-seen-date).
+;; Marks clusters seen on earlier editions with the 进展 label.
+(define (annotate-progress! hots history)
+  (for ([h (in-list hots)])
+    (define fp (event-fingerprint (string-append (hot-title h) " " (hot-summary h))))
+    (define fp-toks (string-split fp " "))
+    (let loop ([entries (hash-keys history)])
+      (cond [(null? entries) (void)]
+            [else
+             (define key (car entries))
+             (define toks (car (hash-ref history key)))
+             (if (or (equal? key fp)
+                     (>= (jaccard (list->set fp-toks) (list->set toks)) 0.55))
+                 (begin
+                   (set-hot-labels! h (cons 'progress (remq* '(progress) (hot-labels h))))
+                   (set-hot-first-seen! h (cdr (hash-ref history key))))
+                 (loop (cdr entries)))]))))

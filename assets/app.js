@@ -99,3 +99,34 @@
     } catch (e) { /* static mirror or blocked — fine */ }
   }
 })();
+
+/* ---- bookmarks (localStorage, M3) ---- */
+(function () {
+  var KEY = "pitboard-bookmarks";
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+  function save(list) { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} }
+  var marks = load();
+  document.querySelectorAll(".card").forEach(function (card) {
+    var link = card.querySelector(".card-title a");
+    if (!link) return;
+    var url = link.getAttribute("href");
+    var btn = document.createElement("button");
+    btn.className = "bookmark-btn";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "收藏");
+    var marked = marks.some(function (m) { return m.u === url; });
+    btn.textContent = marked ? "★" : "☆";
+    btn.addEventListener("click", function () {
+      marks = load();
+      if (marks.some(function (m) { return m.u === url; })) {
+        marks = marks.filter(function (m) { return m.u !== url; });
+        btn.textContent = "☆";
+      } else {
+        marks.push({ u: url, t: link.textContent, d: new Date().toISOString() });
+        btn.textContent = "★";
+      }
+      save(marks);
+    });
+    card.querySelector(".card-top").appendChild(btn);
+  });
+})();

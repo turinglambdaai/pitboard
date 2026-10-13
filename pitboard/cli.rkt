@@ -2,9 +2,13 @@
 
 ;; `raco pitboard` entry point: fetch / serve / export.
 
-(require racket/cmdline
+(require net/http-easy
+         racket/cmdline
          racket/vector
+         racket/port
+         json
          (only-in "sources.rkt" default-watch-topics)
+         (only-in "llm.rkt" llm-budget)
          racket/match
          racket/list
          racket/string
@@ -44,10 +48,14 @@
             (let ([m (source-status-message s)])
               (if m (format " · ~a" m) ""))))
   (define hots (rank-clusters (cluster-items items) #:now now))
-  (printf "  聚簇 → ~a 个热点\n" (length hots))
+  ;; cross-day progress: same event seen on earlier editions → 进展 label
+  (define history (load-event-history data-dir #:exclude-date date))
+  (annotate-progress! hots history)
+  (define progressed (count (λ (h) (memq 'progress (hot-labels h))) hots))
+  (printf "  聚簇 → ~a 个热点（含 ~a 条进展）\n" (length hots) progressed)
   (define mode "scored")
   (when (and use-llm? (llm-available?) (pair? hots))
-    (define top (take hots (min 15 (length hots))))
+    (define top (take hots (min (llm-budget) (length hots))))
     (define entries
       (for/list ([h (in-list top)] [i (in-naturals)])
         (cons i (cons (hot-title h) (hot-summary h)))))
@@ -62,6 +70,21 @@
       (printf "  LLM 改写 ~a 条\n" (hash-count zh))))
   (define j (digest->jsexpr date mode hots statuses now))
   (save-digest! data-dir j)
+  ;; health + alerting: any source failing 2+ editions in a row fires once
+  (define health (update-health! data-dir statuses now))
+  (define alerting
+    (for/list ([(name h) (in-hash health)]
+               #:when (>= (hash-ref h 'fail_streak 0) 2))
+      name))
+  (define hook (getenv "PITBOARD_WEBHOOK_URL"))
+  (when (and (pair? alerting) hook)
+    (with-handlers ([exn:fail? void])
+      (post hook
+            #:headers (hasheq 'Content-Type "application/json")
+            #:data (jsexpr->bytes
+                    (hasheq 'text (format "pitboard 信源连续失败: ~a"
+                                          (string-join alerting "、")))))
+      (printf "  告警已推送 → webhook\n")))
   (printf "  出刊 → ~a\n" (path->string (data-file data-dir date))))
 
 ;; ---- subcommands -----------------------------------------------------------
@@ -133,5 +156,63 @@
     ["fetch" (fetch-cmd)]
     ["serve" (serve-cmd)]
     ["export" (export-cmd)]
+    ["mcp" (mcp-cmd)]
+    ["eval" (eval-cmd)]
     [_ (print-usage)
        (unless (equal? cmd "help") (exit 1))]))
+
+
+;; ---- MCP server (agent tools over stdio) ------------------------------------
+
+(define (mcp-cmd)
+  (define dir (make-parameter "data"))
+  (command-line
+   #:program "raco pitboard mcp"
+   #:once-each
+   [("--data") p "数据目录（默认 data/）" (dir p)]
+   #:args _ (void))
+  (printf "pitboard MCP server on stdio\n")
+  (flush-output)
+  (dynamic-require 'pitboard/mcp #f)
+  ((dynamic-require 'pitboard/mcp 'run-mcp-server) #:data-dir (dir)))
+
+;; ---- selection quality eval --------------------------------------------------
+
+;; samples: eval/samples.json = [{"title": "...", "relevant": true}, ...]
+;; Reports precision@10 of the current edition against the annotated set.
+(define (eval-cmd)
+  (define dir (make-parameter "data"))
+  (define samples-p (make-parameter "eval/samples.json"))
+  (command-line
+   #:program "raco pitboard eval"
+   #:once-each
+   [("--data") p "数据目录（默认 data/）" (dir p)]
+   [("--samples") p "标注样本（默认 eval/samples.json）" (samples-p p)]
+   #:args _ (void))
+  (define dg (latest-digest (dir)))
+  (unless dg (error 'eval "no editions in ~a" (dir)))
+  (define samples
+    (with-input-from-file (samples-p)
+      (λ () (hash-ref (read-json) 'samples '()))))
+  (define clusters (hash-ref dg 'clusters '()))
+  (define (find-rank title)
+    (for/first ([c (in-list clusters)] [i (in-naturals)]
+                #:when (string-contains?
+                        (string-downcase (hash-ref c 'title ""))
+                        (string-downcase title)))
+      i))
+  (define hits 0)
+  (define total 0)
+  (for ([s (in-list samples)] #:when (hash? s))
+    (define title (hash-ref s 'title ""))
+    (define rank (find-rank title))
+    (cond [(hash-ref s 'relevant #f)
+           (set! total (add1 total))
+           (when (and rank (< rank 10))
+             (set! hits (add1 hits)))
+           (printf "  [~a] rank=~a ~a\n"
+                   (if rank "in" "MISS") (or rank "-") title)]
+          [else
+           (when (and rank (< rank 10))
+             (printf "  [noise-in-top10] ~a\n" title))]))
+  (printf "precision@10 = ~a/~a 相关样本命中\n" hits total))

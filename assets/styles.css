@@ -479,3 +479,12 @@ a.chip:hover { text-decoration: none; border-color: var(--accent); color: var(--
   .topics-grid { grid-template-columns: repeat(2, 1fr); }
   .topic-row { grid-template-columns: 1fr; gap: 3px; }
 }
+
+.chip-progress { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 650; }
+.chip-seen { background: transparent; color: var(--faint); font-family: var(--mono); font-size: 11px; }
+
+.bookmark-btn {
+  margin-left: 8px; border: none; background: transparent; color: var(--faint);
+  cursor: pointer; font-size: 15px; padding: 2px 4px;
+}
+.bookmark-btn:hover { color: var(--accent); }

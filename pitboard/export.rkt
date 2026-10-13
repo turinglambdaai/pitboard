@@ -9,7 +9,7 @@
          racket/format
          json
          "util.rkt"
-         "store.rkt"
+         (only-in "store.rkt" list-dates load-digest period-rows monday-key month-key)
          "render.rkt")
 
 (provide export-site)
@@ -85,6 +85,65 @@
   (for ([tp (in-list topic-pages)])
     (put (string-append "topic/" (car tp) "/index.html")
          (render-topic-page ctx (cadr tp) (caddr tp))))
+  ;; weekly / monthly compilations
+  (define (period-pages key-fn kind-label base)
+    (define groups
+      (for/fold ([g (hash)]) ([d (in-list dates)])
+        (hash-set g (key-fn d) (cons d (hash-ref g (key-fn d) '())))))
+    (define keys (sort (hash-keys groups) string>?))
+    (put (string-append base "/index.html")
+         (render-periods-index
+          ctx kind-label base
+          (for/list ([k (in-list keys)])
+            (list k (length (period-rows data-dir (reverse (hash-ref groups k))))))))
+    (for ([k (in-list keys)])
+      (put (string-append base "/" k "/index.html")
+           (render-period-page
+            ctx
+            (string-append kind-label " · " k)
+            (period-rows data-dir (reverse (hash-ref groups k)))))))
+  (period-pages monday-key "周报" "weekly")
+  (period-pages month-key "月报" "monthly")
+  ;; static templates (search page etc.)
+  (define tpl-dir "site-tpl")
+  (when (directory-exists? tpl-dir)
+    (for ([f (in-list (directory-list tpl-dir))])
+      (copy-file (build-path tpl-dir f) (build-path out f) #t)
+      (set! count (add1 count))))
+  ;; og share cards
+  (when latest
+    (put (string-append "og/" (v (hash-ref latest 'date "")) ".svg")
+         (render-og-svg latest)))
+  ;; full-text search index (titles only, client-side filtering)
+  (put "search-index.json"
+       (jsexpr->bytes
+        (for/list ([d (in-list dates)])
+          (define dg (load-digest data-dir d))
+          (for/list ([c (in-list (if dg (hash-ref dg 'clusters '()) '()))])
+            (hasheq 'd d
+                    't (hash-ref c 'title "")
+                    'u (if (null? (hash-ref c 'items '()))
+                           ""
+                           (hash-ref (car (hash-ref c 'items '())) 'url ""))
+                    'k (if (null? (hash-ref c 'items '()))
+                           "news"
+                           (hash-ref (car (hash-ref c 'items '())) 'kind "news"))
+                    'h (hash-ref c 'heat "0"))))))
+  (put "openapi.json"
+       (string->bytes/utf-8
+        (string-append
+         "{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"pitboard API\",\"version\":\"0.1.0\","
+         "\"description\":\"汽车行业每日热点日报 · 只读 API\"},"
+         "\"servers\":[{\"url\":\"" base-url "\"}],"
+         "\"paths\":{"
+         "\"/rss.xml\":{\"get\":{\"summary\":\"RSS 订阅\"}},"
+         "\"/api/v1/latest.json\":{\"get\":{\"summary\":\"最新一期完整 JSON\"}},"
+         "\"/api/v1/digest/{date}.json\":{\"get\":{\"summary\":\"指定日期 JSON\"}},"
+         "\"/daily/{date}.md\":{\"get\":{\"summary\":\"Markdown 日报\"}},"
+         "\"/topics/\":{\"get\":{\"summary\":\"话题雷达索引\"}},"
+         "\"/topic/{slug}/\":{\"get\":{\"summary\":\"话题跨期追踪\"}},"
+         "\"/llms.txt\":{\"get\":{\"summary\":\"Agent 索引\"}},"
+         "\"/healthz\":{\"get\":{\"summary\":\"健康检查\"}}}}")))
   ;; static assets (flat at site root, matching serve-time URLs) + cname
   (for ([f (in-list (list "styles.css" "app.js" "favicon.svg"))])
     (define src (build-path assets-dir f))

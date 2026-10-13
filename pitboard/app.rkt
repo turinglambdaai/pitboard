@@ -17,6 +17,7 @@
          "store.rkt"
          "render.rkt"
          "sse.rkt"
+         (only-in "render.rkt" render-admin-page)
          "util.rkt")
 
 ;; (editions-of dir) → hash: date → 期数 (1-based, ascending by date)
@@ -125,9 +126,20 @@
      (list (header #"Cache-Control" #"no-cache")
            (header #"X-Accel-Buffering" #"no"))))
 
+  (define (admin-h req)
+    (define health (load-health data-dir))
+    (define dg (latest-digest data-dir))
+    (define admin? (equal? (getenv "PITBOARD_ADMIN") "1"))
+    (resp-html
+     (render-admin-page
+      ctx
+      (if dg (hash-ref dg 'sources '()) '())
+      health
+      admin?)))
   (define-values (dispatch url)
     (dispatch-rules
      [("") index-h]
+     [("admin") admin-h]
      [("d" (string-arg)) date-h]
      [("archive") archive-h]
      [("about") about-h]
@@ -148,7 +160,7 @@
                  #:listen-ip #f
                  #:servlet-path "/"
                  #:servlet-regexp
-                 #rx"^/($|d/.+|topics|topic/.+|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
+                 #rx"^/($|d/.+|topics|topic/.+|admin|archive|about|rss\\.xml|llms\\.txt|healthz|api/.+|daily/.+)"
                  #:extra-files-paths
                  (list (path->complete-path assets-dir))
                  #:banner? #f))
