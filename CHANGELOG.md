@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+- 反哺抽包：`pitboard/sse.rkt` 与 `pitboard/feed.rkt` 抽成独立包
+  [turinglambdaai/server-sent-events](https://github.com/turinglambdaai/server-sent-events) 与
+  [turinglambdaai/feed](https://github.com/turinglambdaai/feed)。
+  SSE hub 修复了每次通知客户端收到重复帧的问题（旧实现直写与信号量
+  唤醒双路径）；feed 解析器通用化（不再内置 item 组装/清洗策略），
+  URL 清洗、HTML 剥离与无链接条目过滤留在 `feed->items` 产品策略层。
+
 ## 0.1.0 — 2026-10-13
 
 M0 首发：

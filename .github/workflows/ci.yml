@@ -24,7 +24,7 @@ jobs:
           version: stable
           distribution: full
       - name: Install dependencies
-        run: raco pkg install --auto --no-docs http-easy
+        run: raco pkg install --auto --no-docs http-easy server-sent-events feed
       - name: Install package
         run: raco pkg install --auto --no-docs --link "$(pwd)"
       - name: Run tests

@@ -18,7 +18,7 @@
          "store.rkt"
          "item.rkt"
          "render.rkt"
-         "sse.rkt"
+         server-sent-events
          (only-in "render.rkt" render-admin-page)
          "util.rkt")
 
@@ -86,7 +86,37 @@
             (for/list ([t (in-list (cdr g))])
               (cons t (length (collect-topic-items data-dir t)))))))
   (define hub (make-hub))
-  (hub-watch! hub data-dir 5)
+
+  ;; Directory contents (names + per-file mtimes) as a change
+  ;; fingerprint; directory mtime alone proved unreliable on APFS.
+  (define (dir-fingerprint dir)
+    (with-handlers ([exn:fail? (λ (_) "")])
+      (string-append*
+       (for/list ([p (in-list (directory-list dir))])
+         (define mt
+           (with-handlers ([exn:fail? (λ (_) 0)])
+             (file-or-directory-modify-seconds (build-path dir p))))
+         (format "~a:~a;" (path->string p) mt)))))
+
+  (define (latest-date-in dir)
+    (with-handlers ([exn:fail? (λ (_) #f)])
+      (define ds
+        (for/list ([p (in-list (directory-list dir))]
+                   #:when (regexp-match? #px"\\.json$" (path->string p)))
+          (regexp-replace #px"\\.json$" (path->string p) "")))
+      (and (pair? ds) (car (sort ds string>?)))))
+
+  ;; Watch the data dir; a new edition date becomes an "edition" event.
+  (define fp-box (box (dir-fingerprint data-dir)))
+  (hub-watch! hub 5 "edition"
+              (λ ()
+                (define fp (dir-fingerprint data-dir))
+                (cond
+                  [(equal? fp (unbox fp-box)) #f]
+                  [else
+                   (set-box! fp-box fp)
+                   (define d (latest-date-in data-dir))
+                   (and d (jsexpr->string (hasheq 'date d)))])))
 
   (define (with-digest f)
     (define dg (latest-digest data-dir))

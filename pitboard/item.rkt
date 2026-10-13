@@ -3,13 +3,16 @@
 ;; The normalized atom every source produces: one story, one place, one time.
 
 (require racket/format
+         racket/list
          racket/string
+         feed
          "util.rkt")
 
 (provide (struct-out item)
          item->jsexpr
          jsexpr->item
-         make-item-id)
+         make-item-id
+         feed->items)
 
 ;; kind is 'github, 'news or 'paper.  published is UTC seconds or #f.
 ;; extra is a hasheq with symbol keys whose values are jsexpr-safe.
@@ -45,3 +48,26 @@
   (and (not (eq? v 'null))
        (string? v)
        (parse-date-any v)))
+
+;; Assembly policy for generic feed entries (was pitboard/feed.rkt's
+;; `make`): drop entries without a usable link or title, normalize the
+;; URL for dedup, stamp the domain, strip HTML from the summary.
+;; Parsing itself lives in the feed package.
+(define (feed->items fis #:source-name name #:kind [kind 'news] #:weight [w 1.0])
+  (filter-map
+   (λ (fi)
+     (define u (and (feed-item-link fi)
+                    (non-empty-string? (string-trim (feed-item-link fi)))
+                    (normalize-url (string-trim (feed-item-link fi)))))
+     (and u
+          (non-empty-string? (string-trim (feed-item-title fi)))
+          (item (make-item-id kind u)
+                kind
+                name
+                (slug-domain u)
+                (string-trim (feed-item-title fi))
+                u
+                (truncate-s (strip-html (feed-item-summary fi)) 500)
+                (feed-item-published fi)
+                (hasheq 'weight w))))
+   fis))

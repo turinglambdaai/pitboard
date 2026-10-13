@@ -17,7 +17,7 @@
          net/http-easy
          "util.rkt"
          "item.rkt"
-         "feed.rkt")
+         feed)
 
 (provide default-config
          load-config
@@ -238,7 +238,8 @@
   (define excepts (let ([v (hash-ref f 'except_keywords #f)])
                     (and (list? v) (pair? v) v)))
   (define b (http-get-bytes (hash-ref f 'url)))
-  (define raw (parse-feed b #:source-name name #:kind 'news #:weight weight))
+  (define raw (feed->items (parse-feed b #:max-entries 80)
+                           #:source-name name #:kind 'news #:weight weight))
   (define items
     (for/list ([it (in-list raw)]
                #:unless (and excepts
@@ -468,7 +469,8 @@
   (define-values (items err)
     (with-handlers ([exn:fail? (λ (e) (values '() (exn-message e)))])
       (define b (http-get-bytes url #:timeout-seconds 30))
-      (define parsed (parse-atom b #:source-name "arXiv" #:kind 'paper #:weight 1.0))
+      (define parsed (feed->items (parse-atom b #:max-entries 80)
+                                  #:source-name "arXiv" #:kind 'paper #:weight 1.0))
       (values parsed
               (and (null? parsed)
                    (format "parsed 0 of ~a bytes" (bytes-length b))))))
