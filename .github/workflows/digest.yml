@@ -25,6 +25,8 @@ jobs:
         with:
           version: stable
           distribution: full
+      - name: Install dependencies
+        run: raco pkg install --auto --no-docs http-easy
       - name: Install pitboard
         run: raco pkg install --auto --no-docs --link "$(pwd)"
       - name: Fetch and publish today's edition

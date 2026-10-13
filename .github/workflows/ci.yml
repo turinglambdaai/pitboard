@@ -23,6 +23,8 @@ jobs:
         with:
           version: stable
           distribution: full
+      - name: Install dependencies
+        run: raco pkg install --auto --no-docs http-easy
       - name: Install package
         run: raco pkg install --auto --no-docs --link "$(pwd)"
       - name: Run tests
