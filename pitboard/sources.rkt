@@ -353,10 +353,20 @@
                        ;; pregexp, not regexp: #rx treats \w/\d/{n} as
                        ;; literal chars, silently breaking config patterns.
                        (pregexp (hash-ref w 'link_regex ""))))
+  ;; web_list sources support the same keyword gates as RSS feeds
+  ;; (only_keywords/except_keywords on title+summary).
+  (define kws (let ([v (hash-ref w 'only_keywords #f)])
+                (and (list? v) (pair? v) v)))
+  (define excepts (let ([v (hash-ref w 'except_keywords #f)])
+                    (and (list? v) (pair? v) v)))
   (define maxn (hash-ref w 'max 10))
   (define now (current-seconds))
   (define items
-    (for/list ([row (in-list (take rows (min maxn (length rows))))])
+    (for/list ([row (in-list (take rows (min maxn (length rows))))]
+               #:when (let ([txt (string-append (strip-html (car row)) " "
+                                                (strip-html (cadr row)))])
+                        (and (not (and excepts (keyword-match? excepts txt)))
+                             (or (not kws) (keyword-match? kws txt)))))
       (item (make-item-id 'news (normalize-url (cadr row)))
             'news
             name
