@@ -118,6 +118,14 @@
     (for ([f (in-list (directory-list tpl-dir))])
       (copy-file (build-path tpl-dir f) (build-path out f) #t)
       (set! count (add1 count))))
+  ;; agent skill (SKILL.md), served for direct download by user agents
+  (define skill-dir "skill")
+  (when (directory-exists? skill-dir)
+    (for ([d (in-list (directory-list skill-dir))])
+      (define src (build-path skill-dir d))
+      (when (directory-exists? src)
+        (for ([f (in-list (directory-list src))])
+          (put (build-path "skill" d f) (file->bytes (build-path src f)))))))
   ;; og share cards
   (when latest
     (put (string-append "og/" (v (hash-ref latest 'date "")) ".svg")

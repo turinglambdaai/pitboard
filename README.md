@@ -107,6 +107,22 @@ site/                静态镜像（导出产物，Pages 部署源）
   LLM 预算熔断、精选评测脚本、运行告警、站内全文搜索。
 - **M3+ 扩张** — X/公众号源量产、主题页实体化、收藏稍后读、feed/sse 抽包
   上 catalog、移动端（等 rivet 移动宿主）。
+- **M4 Agent 分层** — 编辑侧 LLM 通道（免费模型 = 三个环境变量）、读者侧
+  BYOK（留决策）、消费侧 agent skill + MCP + llms.txt。
+
+## Agent 接入
+
+pitboard 对 agent 是一等公民：站点出刊即发布机器可读的全套数据，
+你的 agent 可以把它当汽车行业信息源直接用。
+
+- **装技能**：下载 [`skill/pitboard/SKILL.md`](skill/pitboard/SKILL.md)
+  放进 agent 技能目录，或直接把文件喂给任何支持 SKILL.md 的 agent。
+- **零安装用数据**：`/api/v1/latest.json`、`/api/v1/digest/<date>.json`、
+  `/openapi.json`、`/llms.txt`，全部只读免鉴权。
+- **自托管进阶**：`raco pitboard mcp` 提供 MCP 工具
+  （latest_digest / get_edition / get_topic）；
+  `PITBOARD_LLM_*` 环境变量接任何 OpenAI 兼容模型做出刊增强（可选，
+  失败自动降级纯算法模式）。
 
 ## License
 

@@ -77,6 +77,36 @@
    按库质量门禁独立发版上 catalog。
 5. **移动端**：iOS/iPadOS/watchOS/Android 客户端（等 rivet 移动宿主就绪）。
 
+## M4 — Agent 分层接入（设计预留）
+
+三层架构，编辑侧与消费侧已就位或低成本预留，读者侧留决策不实现：
+
+### L1 编辑侧 agent（站点自己的 AI 增强）— ✅ 通道已就位
+
+`llm.rkt` 已是 OpenAI 兼容单端点（`PITBOARD_LLM_API_KEY/BASE_URL/MODEL`
+三个 env），带预算熔断、失败降级 scored。**接入任何免费/便宜模型 =
+设三个环境变量，零代码**。管线契约固定为 `(entries → i ⇒ title/summary)`，
+未来从「单轮改写」升级为「多轮 agent（读原文、交叉验证、专题串联）」
+只换 llm.rkt 内部，管线与降级不变式不动。
+
+### L2 读者侧 BYOK（用户自带模型）— 📋 留决策不实现
+
+设计定调（做的时候照此执行）：静态站 + **纯客户端 BYOK**——设置面板把
+endpoint/key/model 存 localStorage，前端直接调 provider，服务器零接触，
+静态托管兼容。已知约束：多数 provider 不开浏览器 CORS，届时引导
+「支持 CORS 的 provider / 用户自建反代 / 自托管实例（服务端 LLM 管线
+现成）」三条路。前置条件：产品化阶段；现在不做 UI，只在此记录设计。
+
+### L3 消费侧（把 pitboard 变成用户 agent 的数据源）— ✅ 10-14 落地
+
+- ✅ **Agent Skill**：`skill/pitboard/SKILL.md`，站点直出
+  `/skill/pitboard/SKILL.md`，教 agent 用数据端点、JSON 结构、
+  简报/话题追踪/跨日对比配方与引用约定（回源 url）。
+- ✅ **llms.txt 完整化**：topics/openapi/search-index/skill/MCP 全收录。
+- ✅ 基础件（M2 已建）：MCP 三工具、OpenAPI、REST+SSE。
+- 📋 待做：skill 仓库化分发（单独 repo 或 skill marketplace）、
+  公众号源接入后给 agent 的中文全文摘要通道。
+
 ## 执行约定
 
 - 每个里程碑先落验收标准再动工；引擎行为变更必须带测试。

@@ -418,8 +418,11 @@
                   (ul
                    (li (code "/rss.xml") " — RSS 订阅")
                    (li (code "/api/v1/latest.json") " — 最新一期 JSON（" (code "/api/v1/digest/2026-10-13.json") " 按日期取）")
+                   (li (code "/openapi.json") " — 全部只读 API 规范")
                    (li (code "/daily/<date>.md") " — Markdown 日报")
                    (li (code "/llms.txt") " — 站点索引")
+                   (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能")
+                   (li (code "raco pitboard mcp") " — 自托管 MCP（latest_digest / get_edition / get_topic）")
                    (li (code "/api/events") " — SSE 出刊推送"))
                   (h2 "自托管")
                   (p "一个 Racket 进程，零外部依赖（无数据库）：" (br)
@@ -517,14 +520,22 @@
     "Racket 全栈、单进程自托管、MIT 开源。\n\n"
     "## Pages\n\n"
     "- [今日热点](" (site-ctx-base-url ctx) "/): 最新一期行业热点榜\n"
+    "- [话题雷达](" (site-ctx-base-url ctx) "/topics/): 24 个 E/E 话题的跨期追踪（AUTOSAR、UDS、智能驾驶、召回、政策等）\n"
     "- [归档](" (site-ctx-base-url ctx) "/archive): 往期所有刊物\n"
     "- [关于](" (site-ctx-base-url ctx) "/about): 产品说明与自托管指南\n\n"
     "## Machine-readable\n\n"
     "- " (site-ctx-base-url ctx) "/rss.xml — RSS 2.0 订阅\n"
     "- " (site-ctx-base-url ctx) "/api/v1/latest.json — 最新一期完整 JSON\n"
     "- " (site-ctx-base-url ctx) "/api/v1/digest/<date>.json — 指定日期 JSON\n"
+    "- " (site-ctx-base-url ctx) "/openapi.json — 全部只读 API 的 OpenAPI 规范\n"
     "- " (site-ctx-base-url ctx) "/daily/<date>.md — Markdown 日报\n"
-    "- " (site-ctx-base-url ctx) "/api/events — SSE 出刊推送\n")))
+    "- " (site-ctx-base-url ctx) "/search-index.json — 全站标题检索索引\n"
+    "- " (site-ctx-base-url ctx) "/api/events — SSE 出刊推送（自托管 serve 模式）\n"
+    "- 自托管 MCP：`raco pitboard mcp`（stdio，工具 latest_digest/get_edition/get_topic）\n\n"
+    "## Agent Skill\n\n"
+    "- " (site-ctx-base-url ctx) "/skill/pitboard/SKILL.md — 可安装的 agent 技能："
+    "数据端点、JSON 结构、简报/话题追踪/跨日对比的任务配方与引用约定"
+    "（引用必须回源 url 字段）。安装：拷进你的 agent 技能目录。\n")))
 
 
 ;; ---- topic radar (cross-edition keyword tracking) ---------------------------
