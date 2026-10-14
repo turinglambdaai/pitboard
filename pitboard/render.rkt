@@ -114,26 +114,31 @@
                    ,brand-mark
                    (span ((class "brand-name")) "pitboard"))
                 (div ((class "nav-links"))
-                     ,@(for/list ([p (in-list '(("index" "/" "今日")
-                                                ("topics" "/topics/" "话题")
-                                                ("bookmarks" "/bookmarks.html" "书签")
-                                                ("archive" "/archive" "归档")
-                                                ("about" "/about" "关于")
-                                                ("rss" "/rss.xml" "RSS")))])
+                     ,@(for/list ([p (in-list '(("index" "/" "今日" "nav.today")
+                                                ("topics" "/topics/" "话题" "nav.topics")
+                                                ("bookmarks" "/bookmarks.html" "书签" "nav.bookmarks")
+                                                ("archive" "/archive" "归档" "nav.archive")
+                                                ("about" "/about" "关于" "nav.about")
+                                                ("rss" "/rss.xml" "RSS" #f)))])
                          `(a ((href ,(cadr p))
-                              ,@(if (equal? (car p) active) '((class "active")) '()))
+                              ,@(if (equal? (car p) active) '((class "active")) '())
+                              ,@(if (fourth p) `((data-i18n ,(fourth p))) '()))
                             ,(caddr p)))
+                     (button ((class "lang-btn") (id "lang-btn")
+                              (type "button") (aria-label "Switch language")) "EN")
                      (button ((class "theme-btn") (id "theme-btn")
                               (type "button") (aria-label "切换主题")) "◐"))))
       (main ,@body)
       (footer ((class "footer"))
               (div ((class "footer-brand")) "pitboard")
-              (div "汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊")
+              (div ((data-i18n "footer.tagline"))
+                   "汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊")
               (div ((class "muted"))
-                   "MIT 开源 · "
+                   (span ((data-i18n "footer.license")) "MIT 开源")
+                   " · "
                    (a ((href "/llms.txt")) "llms.txt")
                    " · "
-                   (a ((href "/rss.xml")) "RSS 订阅"))))))
+                   (a ((href "/rss.xml") (data-i18n "footer.rss")) "RSS 订阅"))))))
 
 ;; ---- cluster card -----------------------------------------------------------
 
@@ -165,19 +170,23 @@
              (data-text ,card-text))
      (div ((class "card-top"))
           (span ((class "rank")) ,(format "~a" (~r (add1 idx) #:min-width 2 #:pad-string "0")))
-          (span ((class ,(string-append "card-kind kind-" card-kind)))
+          (span ((class ,(string-append "card-kind kind-" card-kind))
+                (data-i18n ,(string-append "kind." card-kind)))
                 ,(kind-label card-kind))
           (div ((class "labels"))
                (span ((class "heat")) "🔥 " ,heat-str)
                ,@(map label-chip* (map ~a (hash-ref h 'labels '())))
                ,@(if (> domains 1)
                      (list (list 'span '((class "chip"))
-                                 (format "~a 个独立来源" domains)))
+                                 (format "~a" domains)
+                                 (list 'span '((data-i18n "card.sources"))
+                                       " 个独立来源")))
                      '())
                ,@(let ([fs (hash-ref h 'first_seen 'null)])
                    (if (string? fs)
                        (list (list 'span '((class "chip chip-seen"))
-                                   (format "首见 ~a" fs)))
+                                   (list 'span '((data-i18n "card.seen")) "首见 ")
+                                   fs))
                        '()))
                (span ((class "card-time")) ,(newest-time h))))
      (div ((class "heatbar"))
@@ -192,7 +201,9 @@
      ,@(if (> (length its) 2)
            (list
             `(details ((class "more-src"))
-                      (summary ,(format "展开全部 ~a 条来源" (length its)))
+                      (summary (span ((data-i18n "card.more1")) "展开全部 ")
+                               ,(format "~a" (length its))
+                               (span ((data-i18n "card.more2")) " 条来源"))
                       (ul ((class "src-list"))
                           ,@(for/list ([it (in-list its)])
                               `(li
@@ -265,7 +276,7 @@
   `(section ((class "quick"))
      (div ((class "quick-head"))
           (span ((class "kicker")) "CURRENT HOT")
-          (span ((class "quick-label")) "当前热点")
+          (span ((class "quick-label") (data-i18n "quick.label")) "当前热点")
           (span ((class "quick-count")) ,(format "TOP ~a" (length top))))
      (ol ((class "quick-list"))
          ,@(for/list ([c (in-list top)] [i (in-naturals)])
@@ -291,17 +302,20 @@
   `(div ((class "toolbar"))
      (div ((class "tabs") (role "tablist") (aria-label "按类型筛选"))
           (button ((class "tab active") (type "button") (data-filter "all"))
-                  "全部"
+                  (span ((data-i18n "tab.all")) "全部")
                   (span ((class "tab-n") (data-count "all"))
                         ,(number->string (length clusters))))
-          ,@(for/list ([k (in-list '(("github" "开源") ("news" "资讯") ("paper" "论文")))])
+          ,@(for/list ([k (in-list '(("github" "开源" "tab.github")
+                                     ("news" "资讯" "tab.news")
+                                     ("paper" "论文" "tab.papers")))])
               `(button ((class "tab") (type "button") (data-filter ,(car k)))
-                       ,(cadr k)
+                       (span ((data-i18n ,(caddr k))) ,(cadr k))
                        (span ((class "tab-n") (data-count ,(car k)))
                              ,(number->string (hash-ref n (car k) 0)))))
-          (span ((class "toolbar-hint")) "按独立来源数排序"))
+          (span ((class "toolbar-hint") (data-i18n "toolbar.hint")) "按独立来源数排序"))
      (input ((class "search") (id "search") (type "search")
              (placeholder "搜索标题 / 摘要…（按 / 聚焦）")
+             (data-i18n-placeholder "search.placeholder")
              (autocomplete "off") (aria-label "搜索热点")))))
 
 ;; ---- pages -------------------------------------------------------------------
@@ -322,18 +336,21 @@
                    ,(date-cn date)
                    (span ((class "hero-wd")) ,(format " 星期~a" (weekday-cn date))))
                (p ((class "hero-meta"))
-                  (span ,(format "~a 个热点" (length clusters)))
+                  (span ,(format "~a" (length clusters))
+                        (span ((data-i18n "meta.hot")) " 个热点"))
                   (span ((class "dot")) "·")
-                  (span ,(format "~a 条原始条目" items))
+                  (span ,(format "~a" items)
+                        (span ((data-i18n "meta.items")) " 条原始条目"))
                   (span ((class "dot")) "·")
-                  (span ,(format "~a 个信源" (length (hash-ref digest 'sources '()))))
+                  (span ,(format "~a" (length (hash-ref digest 'sources '())))
+                        (span ((data-i18n "meta.sources")) " 个信源"))
                   ,@(if (equal? mode "llm")
                         (list '(span ((class "chip chip-llm")) "LLM 增强"))
                         '())))
           (div ((class "board") (aria-hidden "true"))
                (div ((class "board-label")) "EDITION")
                (div ((class "board-num")) ,(if ed (~r ed) "—"))
-               (div ((class "board-sub")) "PITBOARD · 每日出刊")))))
+               (div ((class "board-sub") (data-i18n "board.sub")) "PITBOARD · 每日出刊")))))
 
 (define (render-index-page ctx digest)
   (define clusters (hash-ref digest 'clusters '()))
@@ -342,7 +359,7 @@
       (max m (or (string->number (v (hash-ref c 'heat "0"))) 0.0))))
   (define content
     (if (null? clusters)
-        (list '(p ((class "empty")) "今天还没有足够的热点。"))
+        (list '(p ((class "empty") (data-i18n "index.empty")) "今天还没有足够的热点。"))
         (let* ([face-kind (λ (c) (hash-ref (car (hash-ref c 'items '())) 'kind "news"))]
                [news-lane
                 (front-page-quota
@@ -371,7 +388,7 @@
                '()
                (list `(section ((class "lane-head"))
                          (span ((class "kicker")) "OPEN SOURCE RADAR")
-                         (h2 ((class "lane-title")) "开源雷达"))
+                         (h2 ((class "lane-title") (data-i18n "lane.opensource")) "开源雷达"))
                       repo-cards))))))
   (xexpr->html-bytes
    (page-shell ctx "pitboard — 汽车行业每日热点" "index"
@@ -385,7 +402,7 @@
                (list
                 '(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "ARCHIVE")
-                   (h1 ((class "hero-date hero-date-s")) "往期归档"))
+                   (h1 ((class "hero-date hero-date-s") (data-i18n "archive.title")) "往期归档"))
                 `(ul ((class "archive-list"))
                      ,@(for/list ([d (in-list digests)])
                          `(li
@@ -396,7 +413,8 @@
                               (span ((class "arch-date")) ,(date-cn (car d)))
                               (span ((class "arch-title")) ,(caddr d))
                               (span ((class "arch-count"))
-                                    ,(format "~a 个热点" (cadr d)))))))))))
+                                    ,(format "~a" (cadr d))
+                                    (span ((data-i18n "archive.hot")) " 个热点"))))))))))
 
 (define (render-about-page ctx)
   (xexpr->html-bytes
@@ -679,7 +697,9 @@
                (list
                 `(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "COMPILATION")
-                   (h1 ((class "hero-date hero-date-s")) ,kind-label "归档"))
+                   (h1 ((class "hero-date hero-date-s"))
+                       ,kind-label
+                       (span ((data-i18n "period.archive")) "归档")))
                 `(ul ((class "archive-list"))
                      ,@(for/list ([e (in-list entries)])
                          `(li
@@ -687,7 +707,8 @@
                                (href ,(format "~a/~a/" base (car e))))
                               (span ((class "arch-date")) ,(car e))
                               (span ((class "arch-title"))
-                                    ,(format "~a 条要闻" (cadr e)))))))))))
+                                    ,(format "~a" (cadr e))
+                                    (span ((data-i18n "period.stories")) " 条要闻"))))))))))
 
 
 ;; ---- og share card (SVG; a static per-edition asset) ------------------------

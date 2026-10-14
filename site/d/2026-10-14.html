@@ -33,24 +33,27 @@
           </span>
         </a>
         <div class="nav-links">
-          <a href="/" class="active">
+          <a href="/" class="active" data-i18n="nav.today">
             今日
           </a>
-          <a href="/topics/">
+          <a href="/topics/" data-i18n="nav.topics">
             话题
           </a>
-          <a href="/bookmarks.html">
+          <a href="/bookmarks.html" data-i18n="nav.bookmarks">
             书签
           </a>
-          <a href="/archive">
+          <a href="/archive" data-i18n="nav.archive">
             归档
           </a>
-          <a href="/about">
+          <a href="/about" data-i18n="nav.about">
             关于
           </a>
           <a href="/rss.xml">
             RSS
           </a>
+          <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+            EN
+          </button>
           <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
             ◐
           </button>
@@ -72,19 +75,28 @@
             </h1>
             <p class="hero-meta">
               <span>
-                364 个热点
+                364
+                <span data-i18n="meta.hot">
+                   个热点
+                </span>
               </span>
               <span class="dot">
                 ·
               </span>
               <span>
-                371 条原始条目
+                371
+                <span data-i18n="meta.items">
+                   条原始条目
+                </span>
               </span>
               <span class="dot">
                 ·
               </span>
               <span>
-                23 个信源
+                23
+                <span data-i18n="meta.sources">
+                   个信源
+                </span>
               </span>
             </p>
           </div>
@@ -95,7 +107,7 @@
             <div class="board-num">
               2
             </div>
-            <div class="board-sub">
+            <div class="board-sub" data-i18n="board.sub">
               PITBOARD · 每日出刊
             </div>
           </div>
@@ -106,7 +118,7 @@
           <span class="kicker">
             CURRENT HOT
           </span>
-          <span class="quick-label">
+          <span class="quick-label" data-i18n="quick.label">
             当前热点
           </span>
           <span class="quick-count">
@@ -184,34 +196,42 @@
       <div class="toolbar">
         <div class="tabs" role="tablist" aria-label="按类型筛选">
           <button class="tab active" type="button" data-filter="all">
-            全部
+            <span data-i18n="tab.all">
+              全部
+            </span>
             <span class="tab-n" data-count="all">
               364
             </span>
           </button>
           <button class="tab" type="button" data-filter="github">
-            开源
+            <span data-i18n="tab.github">
+              开源
+            </span>
             <span class="tab-n" data-count="github">
               15
             </span>
           </button>
           <button class="tab" type="button" data-filter="news">
-            资讯
+            <span data-i18n="tab.news">
+              资讯
+            </span>
             <span class="tab-n" data-count="news">
               318
             </span>
           </button>
           <button class="tab" type="button" data-filter="paper">
-            论文
+            <span data-i18n="tab.papers">
+              论文
+            </span>
             <span class="tab-n" data-count="paper">
               38
             </span>
           </button>
-          <span class="toolbar-hint">
+          <span class="toolbar-hint" data-i18n="toolbar.hint">
             按独立来源数排序
           </span>
         </div>
-        <input class="search" id="search" type="search" placeholder="搜索标题 / 摘要…（按 / 聚焦）" autocomplete="off" aria-label="搜索热点" />
+        <input class="search" id="search" type="search" placeholder="搜索标题 / 摘要…（按 / 聚焦）" data-i18n-placeholder="search.placeholder" autocomplete="off" aria-label="搜索热点" />
       </div>
       <div class="cards">
         <article class="card" data-kind="news" data-text="上海出台汽车消费新政，鼓励存量燃油车置换新能源 ">
@@ -219,7 +239,7 @@
             <span class="rank">
               01
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -258,7 +278,7 @@
             <span class="rank">
               02
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -297,7 +317,7 @@
             <span class="rank">
               03
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -336,7 +356,7 @@
             <span class="rank">
               04
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -375,7 +395,7 @@
             <span class="rank">
               05
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -414,7 +434,7 @@
             <span class="rank">
               06
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -453,7 +473,7 @@
             <span class="rank">
               07
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -495,7 +515,7 @@
             <span class="rank">
               08
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -537,7 +557,7 @@
             <span class="rank">
               09
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -579,7 +599,7 @@
             <span class="rank">
               10
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -621,7 +641,7 @@
             <span class="rank">
               11
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -663,7 +683,7 @@
             <span class="rank">
               12
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -705,7 +725,7 @@
             <span class="rank">
               13
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -747,7 +767,7 @@
             <span class="rank">
               14
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -789,7 +809,7 @@
             <span class="rank">
               15
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -831,7 +851,7 @@
             <span class="rank">
               16
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -873,7 +893,7 @@
             <span class="rank">
               17
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -915,7 +935,7 @@
             <span class="rank">
               18
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -957,7 +977,7 @@
             <span class="rank">
               19
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -969,7 +989,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 16:21
@@ -1004,7 +1027,7 @@
             <span class="rank">
               20
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1046,7 +1069,7 @@
             <span class="rank">
               21
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1088,7 +1111,7 @@
             <span class="rank">
               22
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1130,7 +1153,7 @@
             <span class="rank">
               23
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1142,7 +1165,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 03:15
@@ -1172,7 +1198,7 @@
             <span class="rank">
               24
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1187,7 +1213,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 06:28
@@ -1220,7 +1249,7 @@
             <span class="rank">
               25
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1232,7 +1261,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 13:00
@@ -1265,7 +1297,7 @@
             <span class="rank">
               26
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1277,7 +1309,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 14:43
@@ -1310,7 +1345,7 @@
             <span class="rank">
               27
             </span>
-            <span class="card-kind kind-paper">
+            <span class="card-kind kind-paper" data-i18n="kind.paper">
               论文
             </span>
             <div class="labels">
@@ -1349,7 +1384,7 @@
             <span class="rank">
               28
             </span>
-            <span class="card-kind kind-paper">
+            <span class="card-kind kind-paper" data-i18n="kind.paper">
               论文
             </span>
             <div class="labels">
@@ -1388,7 +1423,7 @@
             <span class="rank">
               29
             </span>
-            <span class="card-kind kind-news">
+            <span class="card-kind kind-news" data-i18n="kind.news">
               资讯
             </span>
             <div class="labels">
@@ -1400,7 +1435,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 07:00
@@ -1433,7 +1471,7 @@
             <span class="rank">
               30
             </span>
-            <span class="card-kind kind-paper">
+            <span class="card-kind kind-paper" data-i18n="kind.paper">
               论文
             </span>
             <div class="labels">
@@ -1472,7 +1510,7 @@
         <span class="kicker">
           OPEN SOURCE RADAR
         </span>
-        <h2 class="lane-title">
+        <h2 class="lane-title" data-i18n="lane.opensource">
           开源雷达
         </h2>
       </section>
@@ -1482,7 +1520,7 @@
             <span class="rank">
               01
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1497,7 +1535,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 02:50
@@ -1533,7 +1574,7 @@
             <span class="rank">
               02
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1548,7 +1589,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 11:09
@@ -1584,7 +1628,7 @@
             <span class="rank">
               03
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1599,7 +1643,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 00:39
@@ -1635,7 +1682,7 @@
             <span class="rank">
               04
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1680,7 +1727,7 @@
             <span class="rank">
               05
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1695,7 +1742,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 21:55
@@ -1731,7 +1781,7 @@
             <span class="rank">
               06
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1746,7 +1796,10 @@
                 新
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 17:50
@@ -1782,7 +1835,7 @@
             <span class="rank">
               07
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1827,7 +1880,7 @@
             <span class="rank">
               08
             </span>
-            <span class="card-kind kind-github">
+            <span class="card-kind kind-github" data-i18n="kind.github">
               开源
             </span>
             <div class="labels">
@@ -1839,7 +1892,10 @@
                 进展
               </span>
               <span class="chip chip-seen">
-                首见 2026-10-13
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-13
               </span>
               <span class="card-time">
                 14:06
@@ -1876,16 +1932,19 @@
       <div class="footer-brand">
         pitboard
       </div>
-      <div>
+      <div data-i18n="footer.tagline">
         汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
       </div>
       <div class="muted">
-        MIT 开源 · 
+        <span data-i18n="footer.license">
+          MIT 开源
+        </span>
+         · 
         <a href="/llms.txt">
           llms.txt
         </a>
          · 
-        <a href="/rss.xml">
+        <a href="/rss.xml" data-i18n="footer.rss">
           RSS 订阅
         </a>
       </div>

@@ -33,24 +33,27 @@
           </span>
         </a>
         <div class="nav-links">
-          <a href="/">
+          <a href="/" data-i18n="nav.today">
             今日
           </a>
-          <a href="/topics/" class="active">
+          <a href="/topics/" class="active" data-i18n="nav.topics">
             话题
           </a>
-          <a href="/bookmarks.html">
+          <a href="/bookmarks.html" data-i18n="nav.bookmarks">
             书签
           </a>
-          <a href="/archive">
+          <a href="/archive" data-i18n="nav.archive">
             归档
           </a>
-          <a href="/about">
+          <a href="/about" data-i18n="nav.about">
             关于
           </a>
           <a href="/rss.xml">
             RSS
           </a>
+          <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+            EN
+          </button>
           <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
             ◐
           </button>
@@ -64,7 +67,9 @@
         </p>
         <h1 class="hero-date hero-date-s">
           月报
-          归档
+          <span data-i18n="period.archive">
+            归档
+          </span>
         </h1>
       </section>
       <ul class="archive-list">
@@ -74,7 +79,10 @@
               2026-10
             </span>
             <span class="arch-title">
-              0 条要闻
+              0
+              <span data-i18n="period.stories">
+                 条要闻
+              </span>
             </span>
           </a>
         </li>
@@ -84,16 +92,19 @@
       <div class="footer-brand">
         pitboard
       </div>
-      <div>
+      <div data-i18n="footer.tagline">
         汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
       </div>
       <div class="muted">
-        MIT 开源 · 
+        <span data-i18n="footer.license">
+          MIT 开源
+        </span>
+         · 
         <a href="/llms.txt">
           llms.txt
         </a>
          · 
-        <a href="/rss.xml">
+        <a href="/rss.xml" data-i18n="footer.rss">
           RSS 订阅
         </a>
       </div>
