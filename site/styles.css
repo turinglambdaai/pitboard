@@ -53,7 +53,10 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 16px/1.7 ui-sans-serif, -apple-system, "PingFang SC", "Segoe UI", "Microsoft YaHei", sans-serif;
+  font: 16px/1.7 ui-sans-serif, -apple-system, "PingFang SC", "Segoe UI", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  /* 中西混排字形高对齐：CJK 字面天然比拉丁高约 20%，把 cap 高统一到 0.7em。
+     不支持的浏览器忽略此行，维持系统默认渲染。 */
+  font-size-adjust: cap-height 0.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
