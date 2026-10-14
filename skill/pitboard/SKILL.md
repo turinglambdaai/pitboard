@@ -68,14 +68,22 @@ agent 配置示例（claude）：
     "args": ["pitboard", "mcp"], "cwd": "<pitboard 仓库>" } } }
 ```
 
-## Agent Skill 安装
+## 安装
 
-git clone 即装（Claude Code 示例；ZCode 把目标换成 `~/.zcode/skills/pitboard`）：
+**推荐：把链接发给你的 agent**，剩下的它自己搞定——复制这句话给任何支持技能的 agent：
+
+> 请安装 pitboard 技能：<https://pitboard.jrtx.site/skill/pitboard/SKILL.md>
+
+**如果你就是那个 agent**：获取上面的 SKILL.md，原样保存到你的技能目录
+`pitboard/SKILL.md` —— Claude Code 是 `~/.claude/skills/pitboard/SKILL.md`，
+ZCode 是 `~/.zcode/skills/pitboard/SKILL.md`，其他 agent 按各自的技能目录约定
+放置，然后按你的机制重新加载技能。技能零依赖，只读公开 JSON API。
+
+**手动安装**（不用 agent 时）：
 
     git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard
 
-或把本文件放进任何支持 SKILL.md 的 agent 的技能目录。本技能的权威仓库是
-[turinglambdaai/pitboard-skill](https://github.com/turinglambdaai/pitboard-skill)，
+本技能的权威仓库是 [turinglambdaai/pitboard-skill](https://github.com/turinglambdaai/pitboard-skill)，
 pitboard 主仓库的 `skill/pitboard/SKILL.md` 与站点
 `/skill/pitboard/SKILL.md` 均为同步镜像（CI 有漂移守卫）。
 

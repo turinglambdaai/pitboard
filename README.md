@@ -116,14 +116,12 @@ site/                静态镜像（导出产物，Pages 部署源）
 pitboard 对 agent 是一等公民：站点出刊即发布机器可读的全套数据，
 你的 agent 可以把它当汽车行业信息源直接用。
 
-- **装技能**：一条命令装进 agent 技能目录（Claude Code 示例）：
+- **装技能**：把下面这句话发给你的 agent，剩下的它自己装：
 
-  ```sh
-  git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard
-  ```
+  > 请安装 pitboard 技能：<https://pitboard.jrtx.site/skill/pitboard/SKILL.md>
 
-  或从站点直接下载 [`skill/pitboard/SKILL.md`](skill/pitboard/SKILL.md)
-  喂给任何支持 SKILL.md 的 agent。
+  SKILL.md 自带 agent 自装指引；也可以手动
+  `git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard`。
 - **零安装用数据**：`/api/v1/latest.json`、`/api/v1/digest/<date>.json`、
   `/openapi.json`、`/llms.txt`，全部只读免鉴权。
 - **自托管进阶**：`raco pitboard mcp` 提供 MCP 工具
