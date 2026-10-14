@@ -9,7 +9,7 @@
   <text x="80" y="330" font-family="PingFang SC, sans-serif"
      font-size="88" font-weight="800" fill="#f5efe2">2026-10-14</text>
   <text x="80" y="430" font-family="PingFang SC, sans-serif"
-     font-size="34" fill="#a49d92">CAPI Release Event 1.0</text>
+     font-size="34" fill="#a49d92">carla-simulator/carla</text>
   <rect x="80" y="500" width="1040" height="1" fill="#3a332a"/>
   <text x="80" y="560" font-family="Menlo, monospace" font-size="24"
      fill="#a49d92">pitboard.jrtx.site</text>
