@@ -91,3 +91,66 @@
               'items (list (mk i)))))
   (define kept (front-page-quota clusters 30 2 6))
   (check-equal? (length kept) 2))
+
+;; ---- template leakage sweep -------------------------------------------------
+;; Regression guard for the "plain quote around a template" family:
+;; ',x inside '(...) never evaluates, and the serializer emits
+;; <unquote>&x;</unquote> — seen live as &term; / &rows; / ~a on topic
+;; pages and <unquote><format> on weekly pages. Every render entry
+;; point must be free of unresolved template artifacts.
+
+(define known-entities '("&amp;" "&lt;" "&gt;" "&quot;" "&apos;"))
+(define leak-px #px"<unquote|~[asv]|&[a-zA-Z][a-zA-Z0-9]+;")
+
+(define (check-no-leaks label b)
+  (define out (bytes->string/utf-8 b))
+  (define leaks
+    (for/list ([m (in-list (regexp-match* leak-px out))]
+               #:unless (member m known-entities))
+      m))
+  (check-equal? leaks '() (format "~a leaked template artifacts" label)))
+
+(define topic-item
+  (hasheq 'id "n:9" 'kind "news" 'source "盖世汽车" 'source_url "auto.gasgoo.com"
+          'title "上海出台汽车消费新政"
+          'url "https://auto.gasgoo.com/news/202610/14X.shtml"
+          'summary "新政鼓励置换" 'published_at "2026-10-14T02:00:00Z"
+          'extra (hasheq 'weight 0.95)))
+
+(test-case "template leakage sweep — every page type"
+  (define rows (list (cons "2026-10-13" topic-item)
+                     (cons "2026-10-14" topic-item)))
+  (check-no-leaks "index" (render-index-page ctx digest))
+  (check-no-leaks "archive" (render-archive-page ctx '(("2026-10-13" 2 "Top story"))))
+  (check-no-leaks "about" (render-about-page ctx))
+  (check-no-leaks "404" (render-not-found ctx))
+  (check-no-leaks "empty" (render-empty-page ctx))
+  (check-no-leaks "rss" (render-rss-xml ctx digest))
+  (check-no-leaks "daily-md" (render-daily-md ctx digest))
+  (check-no-leaks "llms.txt" (render-llms-txt ctx))
+  (for ([term (list "UDS" "SOME/IP" "信息安全")])
+    (check-no-leaks (format "topic ~a" term) (render-topic-page ctx term rows)))
+  (check-no-leaks "topics-index"
+                  (render-topics-index ctx
+                    (list (cons "方向" (list (cons "AUTOSAR" 10) (cons "SOME/IP" 3)))
+                          (cons "形态" (list (cons "芯片" 0))))))
+  (check-no-leaks "period-page"
+                  (render-period-page ctx "周报"
+                    (list (list "2026-10-13" "标题标题标题" "https://example.com/a" "12.0"))))
+  (check-no-leaks "periods-index"
+                  (render-periods-index ctx "周报" "/weekly" (list (list "2026-W42" 5))))
+  (check-no-leaks "og-svg" (render-og-svg digest))
+  (for ([admin (list #t #f)])
+    (check-no-leaks (format "admin(~a)" admin)
+                    (render-admin-page ctx
+                      (list (hasheq 'ok #t 'name "盖世汽车" 'count 12)
+                            (hasheq 'ok #f 'name "arXiv" 'count 0 'message "HTTP 429"))
+                      (hasheq) admin))))
+
+(test-case "topic page hero renders real values"
+  (define txt (bytes->string/utf-8
+               (render-topic-page ctx "UDS" (list (cons "2026-10-13" topic-item)))))
+  (check-true (string-contains? txt "1 条相关内容 · 跨期归档追踪"))
+  (check-true (string-contains? txt "上海出台汽车消费新政"))
+  (check-false (string-contains? txt "&term;"))
+  (check-false (string-contains? txt "&rows;")))

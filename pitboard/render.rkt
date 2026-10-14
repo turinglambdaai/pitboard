@@ -564,7 +564,7 @@
   (xexpr->html-bytes
    (page-shell ctx (string-append term " — 话题雷达") "topics"
                (list
-                '(section ((class "hero hero-slim"))
+                `(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "TOPIC RADAR")
                    (h1 ((class "hero-date hero-date-s")) ,term)
                    (p ((class "hero-meta"))
@@ -694,7 +694,7 @@
   (xexpr->html-bytes
    (page-shell ctx "运行状态 — pitboard" ""
                (list
-                '(section ((class "hero hero-slim"))
+                `(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "ADMIN")
                    (h1 ((class "hero-date hero-date-s")) "运行状态")
                    ,@(if admin-enabled?
