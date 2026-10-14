@@ -104,8 +104,10 @@ endpoint/key/model 存 localStorage，前端直接调 provider，服务器零接
   简报/话题追踪/跨日对比配方与引用约定（回源 url）。
 - ✅ **llms.txt 完整化**：topics/openapi/search-index/skill/MCP 全收录。
 - ✅ 基础件（M2 已建）：MCP 三工具、OpenAPI、REST+SSE。
-- 📋 待做：skill 仓库化分发（单独 repo 或 skill marketplace）、
-  公众号源接入后给 agent 的中文全文摘要通道。
+- ✅ **Skill 仓库化分发**：turinglambdaai/pitboard-skill（通用 SKILL.md，
+  把链接发给 agent 即装；不做 ZCode 插件市场等宿主特化改造——用户定调，
+  通用 skill 是唯一形态）。
+- 📋 待做：公众号源接入后给 agent 的中文全文摘要通道。
 
 ## 执行约定
 
