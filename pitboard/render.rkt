@@ -115,7 +115,6 @@
                 (div ((class "nav-links"))
                      ,@(for/list ([p (in-list '(("index" "/" "今日")
                                                 ("topics" "/topics/" "话题")
-                                                ("topics" "/topics/" "话题")
                                                 ("bookmarks" "/bookmarks.html" "书签")
                                                 ("archive" "/archive" "归档")
                                                 ("about" "/about" "关于")
@@ -575,7 +574,7 @@
         (list (list 'class "quick-item"))
         (list 'a
               (list (list 'class "quick-link")
-                    (list 'href (format "/topic/~a/" (car t))))
+                    (list 'href (format "/topic/~a/" (topic-slug (car t)))))
               (list 'span
                     (list (list 'class "quick-rank"))
                     (format "~a" (cdr t)))
@@ -593,7 +592,7 @@
             (list (list 'class "quick-item"))
             (list 'a
                   (list (list 'class "quick-link")
-                        (list 'href (format "/topic/~a/" (car t)))))
+                        (list 'href (format "/topic/~a/" (topic-slug (car t))))))
                   (list 'span
                         (list (list 'class "quick-rank"))
                         (format "~a" (cdr t)))
