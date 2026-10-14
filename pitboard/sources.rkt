@@ -55,27 +55,68 @@
 (define default-orgs
   (list "AUTOSAR" "COVESA"))
 
-;; Topics tracked on the topic radar pages.  Accepts either a flat list
-;; (single group) or a hash of group-name -> terms (实体化: 方向/公司/形态).
+;; Topics tracked on the topic radar pages.  Internal shape:
+;;   (list (cons group (list (cons term (listof alias))) …))
+;; Aliases let a CJK-named topic also match its English press vocabulary
+;; (线控底盘 ↔ by-wire).  Config entries: "词" or {"term":…, "aka":[…]}.
+;; 词表判据与维护规则见 docs/VOCABULARY.md。
 (define default-watch-topics
-  (hasheq "方向"
-          (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全" "功能安全"
-                "安全刷写" "UDS" "车载以太网" "域控" "智能驾驶" "Robotaxi")
-          "公司"
-          (list "比亚迪" "华为车" "蔚来" "小鹏" "理想" "特斯拉" "地平线")
-          "形态"
-          (list "芯片" "开源" "论文" "召回" "政策")))
+  (list
+   (cons "方向"
+         (list (cons "AUTOSAR" '())
+               (cons "DDS" '())
+               (cons "SOME/IP" '())
+               (cons "SOA" '())
+               (cons "信息安全" '())
+               (cons "功能安全" '())
+               (cons "安全刷写" '())
+               (cons "UDS" '())
+               (cons "车载以太网" '())
+               (cons "域控" (list "中央计算" "区域架构" "zonal" "central compute"))
+               (cons "线控底盘" (list "线控制动" "线控转向" "by-wire" "x-by-wire"
+                                     "brake-by-wire" "steer-by-wire"))
+               (cons "智能座舱" (list "座舱" "cockpit"))
+               (cons "智能驾驶" (list "智驾" "NOA" "城市NOA"))
+               (cons "端到端" (list "end-to-end" "vla" "vlm"))
+               (cons "Robotaxi" '())
+               (cons "固态电池" (list "solid-state battery" "全固态"))
+               (cons "OTA" '())
+               (cons "数据闭环" (list "数据引擎" "data engine" "影子模式"))))
+   (cons "公司"
+         (list (cons "比亚迪" '())
+               (cons "华为车" '())
+               (cons "蔚来" '())
+               (cons "小鹏" '())
+               (cons "理想" '())
+               (cons "特斯拉" '())
+               (cons "地平线" '())
+               (cons "博世" (list "bosch"))))
+   (cons "形态"
+         (list (cons "芯片" '())
+               (cons "开源" '())
+               (cons "论文" '())
+               (cons "召回" '())
+               (cons "政策" '())))))
 
-;; normalize: hash/list -> (list (cons group-name (listof term)))
+;; one watch entry (string | {term,aka} dict | pre-shaped pair) → (cons term akas)
+(define (normalize-topic-entry e)
+  (cond [(string? e) (cons e '())]
+        [(and (pair? e) (list? (cdr e))) e]
+        [(hash? e)
+         (cons (~a (hash-ref e 'term ""))
+               (let ([aka (hash-ref e 'aka '())])
+                 (if (list? aka) (map ~a aka) '())))]
+        [else (cons (~a e) '())]))
+
+;; normalize: hash/list → (list (cons group-name (list (cons term akas) …)))
 (define (normalize-watch-topics v)
   (cond [(hash? v)
          (for/list ([(g terms) (in-hash v)]
                     #:when (list? terms))
-           (cons (~a g) (map ~a terms)))]
+           (cons (~a g) (map normalize-topic-entry terms)))]
         [(and (list? v) (pair? v))
-         (list (cons "全部" (map ~a v)))]
-        [else (list (cons "全部"
-                          (map ~a (hash-ref default-watch-topics "方向" (list)))))]))
+         (list (cons "全部" (map normalize-topic-entry v)))]
+        [else default-watch-topics]))
 
 ;; title keywords an HN story must match to count as automotive
 (define hn-default-keywords
@@ -387,7 +428,7 @@
 ;; "automotive" once already).  pregexp: the \b word boundaries are dead
 ;; under #rx (undefined escapes become literal chars there).
 (define gh-relevance-regex
-  (pregexp "(?i:autosar|iso.?26262|iso.?21434|aspice|can.?fd|can.?bus|\\buds\\b|\\bobd\\b|\\badas\\b|autonomous|self-driving|driv(ing|er)|vehicle|automotive|robotaxi|\\bcars?\\b|truck|\\becu\\b|\\bmcu\\b|carla|lidar|\\bradar\\b|zephyr|\\bsdv\\b|\\bagl\\b|chassis|车|驾驶|汽车|智驾|芯片|整车)"))
+  (pregexp "(?i:autosar|iso.?26262|iso.?21434|aspice|can.?fd|can.?bus|\\buds\\b|\\bobd\\b|\\badas\\b|autonomous|self-driving|driv(ing|er)|vehicle|automotive|robotaxi|\\bcars?\\b|truck|\\becu\\b|\\bmcu\\b|carla|lidar|\\bradar\\b|zephyr|\\bsdv\\b|\\bagl\\b|chassis|线控|by.wire|座舱|cockpit|固态电池|solid.state|数据闭环|车路云|v2x|sotif|车|驾驶|汽车|智驾|芯片|整车)"))
 
 (define gh-blocklist-regex
   (pregexp "^home-assistant/|^openhab/|^homebridge/|^domoticz/"))

@@ -4,7 +4,8 @@
          racket/string
          racket/file
          json
-         "../render.rkt")
+         "../render.rkt"
+         (only-in "../sources.rkt" normalize-watch-topics))
 
 (define ctx (site-ctx "pitboard.jrtx.site" "https://pitboard.jrtx.site" 0
                       (λ () (hasheq "2026-10-13" 1))))
@@ -206,3 +207,44 @@
   (define hits (collect-topic-items dir "DDS"))
   (check-equal? (length hits) 1)
   (check-equal? (v (hash-ref (cdr (car hits)) 'title "")) "DDS gateway standard ratified"))
+
+;; ---- topic aliases: CJK topics must catch English press vocabulary ----------
+
+(test-case "collect-topic-items matches through aliases"
+  (define dir (build-path (find-system-path 'temp-dir)
+                          (format "pb-alias-~a" (current-inexact-milliseconds))))
+  (make-directory* dir)
+  (define item
+    (hasheq 'id "n:20" 'kind "news" 'source "Electrek" 'source_url "electrek.co"
+            'title "BMW shows brake-by-wire future"
+            'url "https://electrek.co/2" 'summary "x-by-wire chassis"
+            'published_at "2026-10-14T00:00:00Z" 'extra (hasheq)))
+  (define dg
+    (hasheq 'date "2026-10-14" 'mode "scored" 'generated_at "t"
+            'clusters
+            (list (hasheq 'id "hot:11" 'heat "3" 'labels '() 'domains 1
+                          'title "BMW brake-by-wire" 'summary ""
+                          'items (list item)))
+            'sources '()))
+  (with-output-to-file (build-path dir "2026-10-14.json")
+    (λ () (write-json dg)))
+  (define hits (collect-topic-items dir "线控底盘"
+                                    (list "线控制动" "by-wire" "x-by-wire")))
+  (check-equal? (length hits) 1)
+  ;; 主词不带别名时抓不到英文——这正是别名机制存在的理由
+  (check-equal? (length (collect-topic-items dir "线控底盘")) 0))
+
+(test-case "normalize-watch-topics accepts dict entries"
+  (define groups
+    (normalize-watch-topics
+     (hasheq "方向"
+             (list "AUTOSAR"
+                   (hasheq 'term "线控底盘"
+                           'aka (list "by-wire" "线控制动"))))))
+  (check-equal? (length groups) 1)
+  (check-equal? (car (car groups)) "方向")
+  (define entries (cdr (car groups)))
+  (check-equal? (car (car entries)) "AUTOSAR")
+  (check-equal? (cdr (car entries)) '())
+  (check-equal? (car (cadr entries)) "线控底盘")
+  (check-equal? (cdr (cadr entries)) (list "by-wire" "线控制动")))

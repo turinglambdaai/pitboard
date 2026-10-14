@@ -16,6 +16,7 @@
          jaccard
          cluster-items
          rank-clusters
+         term-score
          hot->jsexpr
          event-fingerprint
          annotate-progress!
@@ -101,7 +102,7 @@
    ;; driving intelligence
    (cons "智驾" 1.0) (cons "智能驾驶" 1.0) (cons "autonomous driving" 0.9)
    (cons "self-driving" 0.8) (cons "adas" 0.9) (cons "robotaxi" 0.9)
-   (cons "fsd" 0.6) (cons "noa" 0.6) (cons "行泊一体" 0.9) (cons "端到端" 0.5)
+   (cons "fsd" 0.6) (cons "noa" 0.6) (cons "行泊一体" 0.9) (cons "端到端" 0.9) (cons "城市noa" 0.7)
    (cons "lidar" 0.5) (cons "激光雷达" 0.6)
    ;; architecture / middleware / security engineering
    (cons "dds" 0.8) (cons "some/ip" 1.2) (cons "someip" 1.2) (cons "soa" 0.6)
@@ -114,17 +115,43 @@
    (cons "中央计算" 0.9) (cons "central compute" 0.8) (cons "zonal" 0.8)
    (cons "区域架构" 0.9) (cons "e/e架构" 0.9) (cons "e/e 架构" 0.9)
    (cons "hpc" 0.4) (cons "iceoryx" 0.8) (cons "kuksa" 0.8) (cons "vsomeip" 1.0)
-   (cons "covesa" 0.9) (cons "misra" 0.8) (cons "ota" 0.5)
+   (cons "covesa" 0.9) (cons "misra" 0.8) (cons "ota" 0.6)
    (cons "整车" 0.5) (cons "主机厂" 0.6) (cons "oem" 0.4) (cons "tier 1" 0.4)
+   ;; chassis by-wire / cockpit / e-energy / ai-and-data trends
+   (cons "线控底盘" 1.0) (cons "by-wire" 0.9) (cons "线控制动" 0.9)
+   (cons "线控转向" 0.9) (cons "brake-by-wire" 0.8) (cons "steer-by-wire" 0.8)
+   (cons "智能座舱" 1.0) (cons "座舱" 0.8) (cons "cockpit" 0.3)
+   (cons "ai座舱" 0.6) (cons "大模型上车" 0.7) (cons "世界模型" 0.6)
+   (cons "end-to-end" 0.6) (cons "vla" 0.4) (cons "vlm" 0.3)
+   (cons "固态电池" 1.1) (cons "solid-state" 0.8) (cons "全固态" 1.0)
+   (cons "800v" 0.5) (cons "超充" 0.3) (cons "换电" 0.4)
+   (cons "数据闭环" 0.8) (cons "data engine" 0.7) (cons "影子模式" 0.6)
+   (cons "车路云" 0.6) (cons "v2x" 0.5) (cons "车路协同" 0.6)
+   (cons "sotif" 0.7) (cons "iso 21448" 0.7)
+   (cons "博世" 0.4) (cons "bosch" 0.2)
    ;; general
    (cons "vehicle" 0.3) (cons "汽车" 0.3)
    (cons "battery" 0.2) (cons "电池" 0.3) (cons "charging" 0.2) (cons "充电" 0.2)
    (cons "召回" 0.4) (cons "recall" 0.3) (cons "收购" 0.3) (cons "merger" 0.2)))
 
+;; ASCII terms match on word adjacency — same rule as topic matching;
+;; naive substring scored "rotary" as OTA. CJK keeps substring.
+(define (hot-matcher w)
+  (if (regexp-match? #px"^[a-z0-9][a-z0-9/+.\\-]*$" w)
+      (pregexp (string-append "(?<![a-z0-9])" (regexp-quote w)
+                              "(?:s|es)?(?![a-z0-9])"))
+      w))
+
+(define hot-terms-compiled
+  (for/list ([tw (in-list hot-terms)])
+    (cons (hot-matcher (car tw)) (cdr tw))))
+
 (define (term-score s)
   (define lowered (string-downcase s))
-  (for/sum ([tw (in-list hot-terms)]
-            #:when (string-contains? lowered (car tw)))
+  (for/sum ([tw (in-list hot-terms-compiled)]
+            #:when (if (regexp? (car tw))
+                       (regexp-match? (car tw) lowered)
+                       (string-contains? lowered (car tw))))
     (cdr tw)))
 
 (define (age-hours secs now)

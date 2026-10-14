@@ -76,3 +76,17 @@
          'news "https://n.com/1" (- now2 (* 60 3600)) (hasheq 'weight 0.5))))
   (define hots (rank-clusters (cluster-items items) #:now now2))
   (check-equal? (item-kind (car (hot-items (first hots)))) 'github))
+
+;; ---- hot-term scoring: adjacency for ascii, trend words ----------------------
+
+(define base (term-score ""))
+
+(test-case "term-score ascii adjacency"
+  ;; regression family: naive substring scored "rotary" as OTA
+  (check-equal? (term-score "rotary engine showcase") base)
+  (check-false (= (term-score "线控底盘 brake-by-wire launch") base))
+  (check-false (= (term-score "end-to-end large model rollout") base))
+  (check-false (= (term-score "robotaxis enter service") base)))
+
+(test-case "term-score cjk substring preserved"
+  (check-false (= (term-score "线控底盘方案发布") base)))

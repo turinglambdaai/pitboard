@@ -10,6 +10,7 @@
          json
          "util.rkt"
          (only-in "store.rkt" list-dates load-digest period-rows monday-key month-key)
+         (only-in "sources.rkt" default-watch-topics)
          "render.rkt")
 
 (provide export-site)
@@ -35,19 +36,14 @@
                      #:assets-dir [assets-dir "assets"]
                      #:topics [topics #f])
   (define dates (list-dates data-dir))
-  (define topic-groups
-    (or topics
-        (list (cons "方向" (list "AUTOSAR" "DDS" "SOME/IP" "SOA" "信息安全"
-                                 "功能安全" "安全刷写" "UDS" "车载以太网"
-                                 "域控" "智能驾驶" "Robotaxi"))
-              (cons "公司" (list "比亚迪" "华为车" "蔚来" "小鹏" "理想"
-                                 "特斯拉" "地平线"))
-              (cons "形态" (list "芯片" "开源" "论文" "召回" "政策")))))
+  ;; topics: (list (cons group (list (cons term akas) …))) — see sources.rkt
+  (define topic-groups (or topics default-watch-topics))
   (define topic-pages
     (append*
      (for/list ([g (in-list topic-groups)])
        (for/list ([t (in-list (cdr g))])
-         (list (topic-slug t) t (collect-topic-items data-dir t))))))
+         (list (topic-slug (car t)) (car t)
+               (collect-topic-items data-dir (car t) (cdr t)))))))
   (define editions
     (for/hash ([d (in-list (reverse dates))]
                [i (in-naturals 1)])
@@ -89,7 +85,8 @@
         (for/list ([g (in-list topic-groups)])
           (cons (car g)
                 (for/list ([t (in-list (cdr g))])
-                  (cons t (length (collect-topic-items data-dir t))))))))
+                  (cons (car t)
+                        (length (collect-topic-items data-dir (car t) (cdr t)))))))))
   (for ([tp (in-list topic-pages)])
     (put (string-append "topic/" (car tp) "/index.html")
          (render-topic-page ctx (cadr tp) (caddr tp))))

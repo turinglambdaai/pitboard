@@ -114,15 +114,17 @@
   (define port-p (make-parameter 8090))
   (define dir (make-parameter "data"))
   (define assets-p (make-parameter "assets"))
+  (define cfg (make-parameter "config/sources.json"))
   (command-line
    #:program "raco pitboard serve"
    #:once-each
    [("--port") n "监听端口（默认 8090）" (port-p (string->number n))]
    [("--data") p "数据目录（默认 data/）" (dir p)]
    [("--assets") p "静态资源目录（默认 assets/）" (assets-p p)]
+   [("--config") p "话题词配置（默认 config/sources.json）" (cfg p)]
    #:args _ (void))
   (start-server #:port (port-p) #:data-dir (dir) #:assets-dir (assets-p)
-                #:topics (watch-topics #f)))
+                #:topics (watch-topics (cfg))))
 
 (define (export-cmd)
   (define out-p (make-parameter "site"))
@@ -130,6 +132,7 @@
   (define assets-p (make-parameter "assets"))
   (define domain-p (make-parameter "pitboard.jrtx.site"))
   (define base-p (make-parameter "https://pitboard.jrtx.site"))
+  (define cfg (make-parameter "config/sources.json"))
   (command-line
    #:program "raco pitboard export"
    #:once-each
@@ -138,11 +141,12 @@
    [("--assets") p "静态资源目录（默认 assets/）" (assets-p p)]
    [("--domain") d "CNAME 域名" (domain-p d)]
    [("--base-url") u "绝对地址前缀" (base-p u)]
+   [("--config") p "话题词配置（默认 config/sources.json）" (cfg p)]
    #:args _ (void))
   (define n
     (export-site #:data-dir (dir) #:out (out-p) #:assets-dir (assets-p)
                  #:domain (domain-p) #:base-url (base-p)
-                 #:topics (watch-topics #f)))
+                 #:topics (watch-topics (cfg))))
   (printf "export: ~a 个文件 → ~a\n" n (out-p)))
 
 ;; ---- dispatch ---------------------------------------------------------------

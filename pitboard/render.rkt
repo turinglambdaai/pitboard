@@ -575,16 +575,17 @@
        lowered)
       (string-contains? lowered t)))
 
-;; Newest-first list of (cons date item) matching term across the archive.
-(define (collect-topic-items data-dir term)
+;; Newest-first list of (cons date item) matching term-or-any-alias
+;; across the archive.
+(define (collect-topic-items data-dir term [akas '()])
   (for*/list ([d (in-list (list-dates data-dir))]
               [dg (in-value (load-digest data-dir d))]
               #:when dg
               [c (in-list (hash-ref dg 'clusters '()))]
               [it (in-list (hash-ref c 'items '()))]
-              #:when (topic-match? term
-                                  (string-append (v (hash-ref it 'title "")) " "
-                                                 (v (hash-ref it 'summary "")))))
+              #:do [(define txt (string-append (v (hash-ref it 'title "")) " "
+                                               (v (hash-ref it 'summary ""))))]
+              #:when (ormap (λ (w) (topic-match? w txt)) (cons term akas)))
     (cons d it)))
 
 (define (render-topic-page ctx term rows)

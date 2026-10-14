@@ -277,14 +277,77 @@
       "DDS",
       "SOME/IP",
       "SOA",
-      "信息安全",
+      {
+        "term": "信息安全",
+        "aka": [
+          "网络安全",
+          "cybersecurity"
+        ]
+      },
       "功能安全",
       "安全刷写",
       "UDS",
       "车载以太网",
-      "域控",
-      "智能驾驶",
-      "Robotaxi"
+      {
+        "term": "域控",
+        "aka": [
+          "中央计算",
+          "区域架构",
+          "zonal",
+          "central compute"
+        ]
+      },
+      {
+        "term": "线控底盘",
+        "aka": [
+          "线控制动",
+          "线控转向",
+          "by-wire",
+          "x-by-wire",
+          "brake-by-wire",
+          "steer-by-wire"
+        ]
+      },
+      {
+        "term": "智能座舱",
+        "aka": [
+          "座舱",
+          "cockpit"
+        ]
+      },
+      {
+        "term": "智能驾驶",
+        "aka": [
+          "智驾",
+          "NOA",
+          "城市NOA"
+        ]
+      },
+      {
+        "term": "端到端",
+        "aka": [
+          "end-to-end",
+          "vla",
+          "vlm"
+        ]
+      },
+      "Robotaxi",
+      {
+        "term": "固态电池",
+        "aka": [
+          "solid-state battery",
+          "全固态"
+        ]
+      },
+      "OTA",
+      {
+        "term": "数据闭环",
+        "aka": [
+          "数据引擎",
+          "data engine",
+          "影子模式"
+        ]
+      }
     ],
     "公司": [
       "比亚迪",
@@ -293,7 +356,13 @@
       "小鹏",
       "理想",
       "特斯拉",
-      "地平线"
+      "地平线",
+      {
+        "term": "博世",
+        "aka": [
+          "bosch"
+        ]
+      }
     ],
     "形态": [
       "芯片",
