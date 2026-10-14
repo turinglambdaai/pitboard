@@ -93,7 +93,7 @@ pitboard/            Racket 包主体（collection "pitboard"）
   export.rkt         GitHub Pages 静态导出
 assets/              站点静态资源（零依赖 CSS/JS）
 config/              信源配置
-skill/pitboard/      agent 技能镜像（权威仓库 turinglambdaai/pitboard-skill，CI 防漂移）
+skill/pitboard/      agent 技能（权威源，站点 /skill/ 直出）
 data/                每日刊物质档（Actions 每日提交）
 site/                静态镜像（导出产物，Pages 部署源）
 ```
@@ -120,8 +120,7 @@ pitboard 对 agent 是一等公民：站点出刊即发布机器可读的全套�
 
   > 请安装 pitboard 技能：<https://pitboard.jrtx.site/skill/pitboard/SKILL.md>
 
-  SKILL.md 自带 agent 自装指引；也可以手动
-  `git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard`。
+  SKILL.md 自带 agent 自装指引；手动安装就是一条 curl（见该文件内的安装节）。
 - **零安装用数据**：`/api/v1/latest.json`、`/api/v1/digest/<date>.json`、
   `/openapi.json`、`/llms.txt`，全部只读免鉴权。
 - **自托管进阶**：`raco pitboard mcp` 提供 MCP 工具

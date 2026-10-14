@@ -81,11 +81,12 @@ ZCode 是 `~/.zcode/skills/pitboard/SKILL.md`，其他 agent 按各自的技能�
 
 **手动安装**（不用 agent 时）：
 
-    git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard
+    mkdir -p ~/.claude/skills/pitboard
+    curl -fsSL https://pitboard.jrtx.site/skill/pitboard/SKILL.md \
+      -o ~/.claude/skills/pitboard/SKILL.md
 
-本技能的权威仓库是 [turinglambdaai/pitboard-skill](https://github.com/turinglambdaai/pitboard-skill)，
-pitboard 主仓库的 `skill/pitboard/SKILL.md` 与站点
-`/skill/pitboard/SKILL.md` 均为同步镜像（CI 有漂移守卫）。
+本技能的权威来源是 pitboard 主仓库 `skill/pitboard/SKILL.md`，站点
+`/skill/pitboard/SKILL.md` 为其每日同步的直出副本。
 
 ## 约定
 

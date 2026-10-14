@@ -430,8 +430,7 @@
                    (li (code "/openapi.json") " — 全部只读 API 规范")
                    (li (code "/daily/<date>.md") " — Markdown 日报")
                    (li (code "/llms.txt") " — 站点索引")
-                   (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能：把链接发给 agent 即可安装"
-                       "（权威仓库 " (a ((href "https://github.com/turinglambdaai/pitboard-skill")) "pitboard-skill") "）")
+                   (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能：把链接发给 agent 即可安装")
                    (li (code "raco pitboard mcp") " — 自托管 MCP（latest_digest / get_edition / get_topic）")
                    (li (code "/api/events") " — SSE 出刊推送"))
                   (h2 "自托管")
@@ -546,7 +545,9 @@
     "- " (site-ctx-base-url ctx) "/skill/pitboard/SKILL.md — 可安装的 agent 技能："
     "数据端点、JSON 结构、简报/话题追踪/跨日对比的任务配方与引用约定"
     "（引用必须回源 url 字段）。把此链接发给 agent 即可安装，文件内含自装指引。\n"
-    "- 手动安装：git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard"
+    "- 手动安装：mkdir -p ~/.claude/skills/pitboard && curl -fsSL "
+    (site-ctx-base-url ctx)
+    "/skill/pitboard/SKILL.md -o ~/.claude/skills/pitboard/SKILL.md"
     "（ZCode 换 ~/.zcode/skills/pitboard）。\n")))
 
 

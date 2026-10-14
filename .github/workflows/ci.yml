@@ -31,11 +31,3 @@ jobs:
         run: raco test -p pitboard
       - name: Compile the web app
         run: raco make pitboard/app.rkt
-      - name: Skill mirror drift guard
-        if: runner.os == 'Linux'
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/turinglambdaai/pitboard-skill/main/SKILL.md -o /tmp/canonical.md
-          diff -u /tmp/canonical.md skill/pitboard/SKILL.md || {
-            echo "::error::skill/pitboard/SKILL.md drifted from the canonical turinglambdaai/pitboard-skill repo; sync one into the other."
-            exit 1
-          }
