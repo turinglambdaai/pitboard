@@ -261,6 +261,32 @@
       "tier": 3,
       "weight": 0.7,
       "max": 12
+    },
+    {
+      "name": "电动邦",
+      "url": "https://www.diandongbang.com/",
+      "type": "web_list",
+      "link_regex": "/news/[0-9]+\\.html",
+      "base_url": "https://www.diandongbang.com",
+      "tier": 2,
+      "weight": 0.7,
+      "max": 10
+    },
+    {
+      "name": "汽车之家",
+      "url": "https://www.autohome.com.cn/news/",
+      "type": "web_list",
+      "link_regex": "/news/[0-9]{6}/[0-9]+\\.html",
+      "base_url": "https://www.autohome.com.cn",
+      "tier": 2,
+      "weight": 0.85,
+      "max": 12
+    },
+    {
+      "name": "The Autopian",
+      "url": "https://www.theautopian.com/feed/",
+      "tier": 3,
+      "weight": 0.5
     }
   ],
   "github": {

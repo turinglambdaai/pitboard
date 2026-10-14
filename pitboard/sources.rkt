@@ -20,6 +20,7 @@
          feed)
 
 (provide default-config
+         decode-html-bytes
          load-config
          default-watch-topics
          normalize-watch-topics
@@ -336,9 +337,34 @@
              #:unless (or (set-member? seen href) (< (string-length t) 8))
              #:do [(set-add! seen href)])
     (list t
-          (if (or (str-starts? href "http://") (str-starts? href "https://"))
-              href
-              (string-append base-url href)))))
+          (cond [(or (str-starts? href "http://") (str-starts? href "https://"))
+                 href]
+                ;; 协议相对链接(//host/path)——继承页面协议
+                [(str-starts? href "//")
+                 (string-append "https:" href)]
+                [else
+                 (string-append base-url href)]))))
+
+;; 老牌门户(汽车之家等)仍是 GB2312/GBK 编码;按页面声明转码,
+;; 其余按 UTF-8(坏字节替换)。
+(define (decode-html-bytes b)
+  (define head (subbytes b 0 (min 4096 (bytes-length b))))
+  (if (regexp-match? #rx"(?i:charset=[\"']?(gb2312|gbk))"
+                     (bytes->string/latin-1 head))
+      (let ([cvt (bytes-open-converter "GBK" "UTF-8")])
+        (if (not cvt)
+            (bytes->string/utf-8 b #\?)
+            (let-values ([(out cleanup)
+                          (values
+                           (make-bytes (* 3 (bytes-length b)))
+                           (λ () (bytes-close-converter cvt)))])
+              (define-values (used got status)
+                (bytes-convert cvt b 0 (bytes-length b) out))
+              (cleanup)
+              (bytes->string/utf-8
+               (if (eq? status 'complete) (subbytes out 0 got) b)
+               #\?))))
+      (bytes->string/utf-8 b #\?)))
 
 (define (fetch-web-list w)
   (define name (hash-ref w 'name "page"))
@@ -348,7 +374,7 @@
        (match tier [1 1.35] [3 0.85] [_ 1.0])))
   (define b (fetch-bytes (hash-ref w 'url)))
   (define rows
-    (extract-web-items (bytes->string/utf-8 b #\?)
+    (extract-web-items (decode-html-bytes b)
                        (hash-ref w 'base_url (hash-ref w 'url))
                        ;; pregexp, not regexp: #rx treats \w/\d/{n} as
                        ;; literal chars, silently breaking config patterns.
