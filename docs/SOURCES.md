@@ -38,6 +38,7 @@ pitboard 的信源资产。按「读者画像 → 信息产地 → 获取通道�
 | 盖世汽车 | CN | 行业综合旗舰，web_list（列表页 /news/YYYYMM/ 锚带 title）；2026-10-14 接入 |
 | 新出行 | CN | EV/智驾社区，web_list（首页 /article/N 锚文本）；2026-10-14 接入 |
 | 第一电动 | CN | EV 行业，web_list（首页 /carnews/ 锚文本）；2026-10-14 接入 |
+| 量子位 | CN | AI 垂类同源替代（官网即公众号镜像），web_list + 汽车关键词门控（12 抓→2 净）；2026-10-14 接入 |
 | NVIDIA/GitHub 之外的开发者内容 | — | arXiv（论文，cat:cs.RO/eess.SY/cs.AR + 汽车关键词）|
 
 ## 三、综合媒体（tier 3，已接入）
@@ -56,7 +57,7 @@ Hacker News（Algolia 拉近 7 天全量 + 本地标题关键词过滤，词表�
 | 虎嗅 / pingwest / 品玩 | 无 RSS 或超时 |
 | 盖世汽车 / 第一电动 | 无 RSS，但列表页静态可抓 → 已改走 web_list 接入（见二） |
 | 42how | 文章列表 JS 渲染（静态 HTML 只有导航链接），web_list 不可用 |
-| 车东西 / 晚点Auto | JS 渲染，静态无文章链接；候选 json_api 通道待摸 |
+| 车东西 / 晚点Auto / 机器之心 | JS 渲染，静态无文章链接（/feed 也是 SPA 壳）；候选 json_api 通道待摸 |
 | 中汽协 caam.org.cn | 栏目页全是会员单位侧栏，新闻列表不可直达 |
 | 工信部 miit.gov.cn | JS 壳页（5KB 无文章链接） |
 | NHTSA API | 可用但美召回，中文读者价值低，暂缓 |
