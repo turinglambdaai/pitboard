@@ -93,6 +93,7 @@ pitboard/            Racket 包主体（collection "pitboard"）
   export.rkt         GitHub Pages 静态导出
 assets/              站点静态资源（零依赖 CSS/JS）
 config/              信源配置
+skill/pitboard/      agent 技能镜像（权威仓库 turinglambdaai/pitboard-skill，CI 防漂移）
 data/                每日刊物质档（Actions 每日提交）
 site/                静态镜像（导出产物，Pages 部署源）
 ```
@@ -115,8 +116,14 @@ site/                静态镜像（导出产物，Pages 部署源）
 pitboard 对 agent 是一等公民：站点出刊即发布机器可读的全套数据，
 你的 agent 可以把它当汽车行业信息源直接用。
 
-- **装技能**：下载 [`skill/pitboard/SKILL.md`](skill/pitboard/SKILL.md)
-  放进 agent 技能目录，或直接把文件喂给任何支持 SKILL.md 的 agent。
+- **装技能**：一条命令装进 agent 技能目录（Claude Code 示例）：
+
+  ```sh
+  git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard
+  ```
+
+  或从站点直接下载 [`skill/pitboard/SKILL.md`](skill/pitboard/SKILL.md)
+  喂给任何支持 SKILL.md 的 agent。
 - **零安装用数据**：`/api/v1/latest.json`、`/api/v1/digest/<date>.json`、
   `/openapi.json`、`/llms.txt`，全部只读免鉴权。
 - **自托管进阶**：`raco pitboard mcp` 提供 MCP 工具

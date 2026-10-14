@@ -70,8 +70,14 @@ agent 配置示例（claude）：
 
 ## Agent Skill 安装
 
-把 `skill/pitboard/` 整个目录拷进你的 agent 技能目录（如
-`~/.claude/skills/`），或直接把本文件喂给任何支持 SKILL.md 的 agent。
+git clone 即装（Claude Code 示例；ZCode 把目标换成 `~/.zcode/skills/pitboard`）：
+
+    git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard
+
+或把本文件放进任何支持 SKILL.md 的 agent 的技能目录。本技能的权威仓库是
+[turinglambdaai/pitboard-skill](https://github.com/turinglambdaai/pitboard-skill)，
+pitboard 主仓库的 `skill/pitboard/SKILL.md` 与站点
+`/skill/pitboard/SKILL.md` 均为同步镜像（CI 有漂移守卫）。
 
 ## 约定
 

@@ -421,7 +421,8 @@
                    (li (code "/openapi.json") " — 全部只读 API 规范")
                    (li (code "/daily/<date>.md") " — Markdown 日报")
                    (li (code "/llms.txt") " — 站点索引")
-                   (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能")
+                   (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能"
+                       "（" (a ((href "https://github.com/turinglambdaai/pitboard-skill")) "pitboard-skill 仓库") " clone 即装）")
                    (li (code "raco pitboard mcp") " — 自托管 MCP（latest_digest / get_edition / get_topic）")
                    (li (code "/api/events") " — SSE 出刊推送"))
                   (h2 "自托管")
@@ -535,7 +536,9 @@
     "## Agent Skill\n\n"
     "- " (site-ctx-base-url ctx) "/skill/pitboard/SKILL.md — 可安装的 agent 技能："
     "数据端点、JSON 结构、简报/话题追踪/跨日对比的任务配方与引用约定"
-    "（引用必须回源 url 字段）。安装：拷进你的 agent 技能目录。\n")))
+    "（引用必须回源 url 字段）。\n"
+    "- 安装：git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard"
+    "（ZCode 换 ~/.zcode/skills/pitboard）。\n")))
 
 
 ;; ---- topic radar (cross-edition keyword tracking) ---------------------------

@@ -22,4 +22,5 @@
 
 ## Agent Skill
 
-- https://pitboard.jrtx.site/skill/pitboard/SKILL.md — 可安装的 agent 技能：数据端点、JSON 结构、简报/话题追踪/跨日对比的任务配方与引用约定（引用必须回源 url 字段）。安装：拷进你的 agent 技能目录。
+- https://pitboard.jrtx.site/skill/pitboard/SKILL.md — 可安装的 agent 技能：数据端点、JSON 结构、简报/话题追踪/跨日对比的任务配方与引用约定（引用必须回源 url 字段）。
+- 安装：git clone https://github.com/turinglambdaai/pitboard-skill.git ~/.claude/skills/pitboard（ZCode 换 ~/.zcode/skills/pitboard）。
