@@ -27,6 +27,7 @@
          render-daily-md
          render-llms-txt
          topic-slug
+         topic-match?
          collect-topic-items
          render-topic-page
          render-topics-index
@@ -556,8 +557,22 @@
    (for/list ([ch (in-string (string-downcase term))])
      (if (or (char-alphabetic? ch) (char-numeric? ch)) ch #\-))))
 
+;; Latin/acronym terms match on word boundaries: naive substring made
+;; "adds"/"odds"/"RDDs" hit topic DDS. CJK terms have no word boundaries
+;; and stay substring-based.
+(define ascii-term-px #px"^[a-z0-9][a-z0-9/+.\\-]*$")
+
 (define (topic-match? term text)
-  (string-contains? (string-downcase text) (string-downcase term)))
+  (define lowered (string-downcase text))
+  (define t (string-downcase term))
+  (if (regexp-match? ascii-term-px t)
+      ;; 左侧不得紧贴 ASCII 字母数字（拦 adds/RDDs/OpenDDS）；右侧同，
+      ;; 但允许英文复数（robotaxis），且汉字不算边界字符（保住「UDS诊断」）。
+      (regexp-match?
+       (pregexp (string-append "(?<![a-z0-9])" (regexp-quote t)
+                               "(?:s|es)?(?![a-z0-9])"))
+       lowered)
+      (string-contains? lowered t)))
 
 ;; Newest-first list of (cons date item) matching term across the archive.
 (define (collect-topic-items data-dir term)

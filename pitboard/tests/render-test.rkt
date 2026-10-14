@@ -2,6 +2,7 @@
 
 (require rackunit
          racket/string
+         racket/file
          json
          "../render.rkt")
 
@@ -154,3 +155,54 @@
   (check-true (string-contains? txt "上海出台汽车消费新政"))
   (check-false (string-contains? txt "&term;"))
   (check-false (string-contains? txt "&rows;")))
+
+;; ---- topic matching: word boundaries ----------------------------------------
+;; Regression: naive substring matching made English "adds"/"odds"/"RDDs"
+;; hit topic DDS — a BMW "adds new iX3" headline landed on the DDS page.
+
+(test-case "topic-match? uses word boundaries for ascii terms"
+  (check-false (topic-match? "DDS" "BMW adds new iX3 M60 xDrive with 603 hp"))
+  (check-false (topic-match? "DDS" "Spark RDDs explained"))
+  (check-false (topic-match? "SOA" "soaring battery prices"))
+  (check-true (topic-match? "DDS" "DDS middleware standard update"))
+  (check-true (topic-match? "DDS" "DDS-based communication"))
+  (check-true (topic-match? "SOME/IP" "SOME/IP service discovery"))
+  (check-true (topic-match? "UDS" "UDS diagnostic services"))
+  (check-true (topic-match? "AUTOSAR" "AUTOSAR CAPI release"))
+  (check-true (topic-match? "Robotaxi" "Tesla robotaxis speed in school zones"))
+  (check-true (topic-match? "UDS" "UDS诊断服务升级"))
+  (check-true (topic-match? "DDS" "DDS中间件标准发布"))
+  (check-false (topic-match? "DDS" "OpenDDS 1.4 released")))
+
+(test-case "topic-match? keeps substring for cjk terms"
+  (check-true (topic-match? "智能驾驶" "小鹏城市智能驾驶开城"))
+  (check-true (topic-match? "比亚迪" "比亚迪月度出口创新高"))
+  (check-false (topic-match? "比亚迪" "丰田超越大众")))
+
+(test-case "collect-topic-items filters through boundary matching"
+  (define dir (build-path (find-system-path 'temp-dir)
+                          (format "pb-topics-~a" (current-inexact-milliseconds))))
+  (make-directory* dir)
+  (define bmw (hasheq 'id "n:10" 'kind "news" 'source "Electrek" 'source_url "electrek.co"
+                      'title "BMW adds new iX3 M60 xDrive"
+                      'url "https://electrek.co/1" 'summary "603 hp"
+                      'published_at "2026-10-14T00:00:00Z" 'extra (hasheq)))
+  (define dds (hasheq 'id "n:11" 'kind "news" 'source "SDV" 'source_url "sdv.example"
+                      'title "DDS gateway standard ratified"
+                      'url "https://example.org/dds" 'summary "middleware"
+                      'published_at "2026-10-14T00:00:00Z" 'extra (hasheq)))
+  (define dg
+    (hasheq 'date "2026-10-14" 'mode "scored" 'generated_at "2026-10-14T07:30:00Z"
+            'clusters
+            (list (hasheq 'id "hot:9" 'heat "3" 'labels '() 'domains 1
+                          'title "BMW adds new iX3 M60 xDrive" 'summary ""
+                          'items (list bmw))
+                  (hasheq 'id "hot:10" 'heat "3" 'labels '() 'domains 1
+                          'title "DDS gateway standard ratified" 'summary ""
+                          'items (list dds)))
+            'sources '()))
+  (with-output-to-file (build-path dir "2026-10-14.json")
+    (λ () (write-json dg)))
+  (define hits (collect-topic-items dir "DDS"))
+  (check-equal? (length hits) 1)
+  (check-equal? (v (hash-ref (cdr (car hits)) 'title "")) "DDS gateway standard ratified"))
