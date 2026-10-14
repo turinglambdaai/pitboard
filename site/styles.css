@@ -106,6 +106,14 @@ main { max-width: 840px; margin: 0 auto; padding: 0 22px 72px; }
 }
 .nav-links a:hover { color: var(--ink); background: var(--chip-bg); text-decoration: none; }
 .nav-links a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.lang-btn {
+  margin-left: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  border-radius: 999px; width: 34px; height: 30px; cursor: pointer;
+  font: 600 11px/1 var(--mono); letter-spacing: 0.02em;
+  transition: color .15s, border-color .15s;
+}
+.lang-btn:hover { color: var(--accent); border-color: var(--accent); }
 .theme-btn {
   margin-left: 6px;
   border: 1px solid var(--line); background: var(--surface); color: var(--muted);

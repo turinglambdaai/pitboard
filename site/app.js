@@ -157,3 +157,67 @@
     });
   }
 })();
+
+/* ---- i18n: zh default, EN via nav button -------------------------------- */
+(function () {
+  var I18N = {
+    en: {
+      "nav.today": "Today", "nav.topics": "Topics", "nav.bookmarks": "Saved",
+      "nav.archive": "Archive", "nav.about": "About",
+      "footer.tagline": "Automotive industry daily digest · Racket full-stack, self-hosted · auto-published daily",
+      "footer.license": "MIT licensed", "footer.rss": "RSS feed",
+      "meta.hot": " hot topics", "meta.items": " source items", "meta.sources": " sources",
+      "board.sub": "PITBOARD · DAILY",
+      "quick.label": "CURRENT HOT",
+      "index.empty": "Not enough hot topics today.",
+      "lane.opensource": "Open Source Radar",
+      "tab.all": "All", "tab.github": "Repos", "tab.news": "News", "tab.papers": "Papers",
+      "toolbar.hint": "Ranked by independent sources",
+      "search.placeholder": "Search titles / summaries… (press /)",
+      "kind.news": "News", "kind.github": "Repo", "kind.paper": "Paper",
+      "chip.new": "New", "chip.rising": "↑ Rising", "chip.progress": "Update",
+      "card.sources": " independent sources", "card.seen": "First seen ",
+      "card.more1": "Show all ", "card.more2": " sources", "card.track": "Track →",
+      "topics.title": "Topic Radar", "topics.meta": "Cross-edition tracking of every story that matters.",
+      "topic.meta": " related items · cross-edition tracking",
+      "period.meta1": "Compiled from the daily digest · ",
+      "period.meta2": " top stories · deduped by heat",
+      "period.archive": " Archive", "period.stories": " stories",
+      "archive.title": "Archive", "archive.hot": " hot topics",
+      "empty.title": "No edition yet", "empty.hint": "Run the first fetch:",
+      "notfound.title": "Nothing on this board",
+      "notfound.back": "← Back to today",
+      "about.how": "How it works", "about.agents": "Agent endpoints",
+      "about.selfhost": "Self-hosting", "about.license": "License",
+      "about.selfhost.body": "One Racket process, zero external dependencies (no database):",
+      "install.kicker": "One-sentence install",
+      "install.hint": "Send that line to your agent (Claude Code, ZCode, …) — it installs itself."
+    }
+  };
+  function setLang(lang) {
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    var dict = I18N[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      if (dict[k]) el.textContent = dict[k];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n-placeholder");
+      if (dict[k]) el.setAttribute("placeholder", dict[k]);
+    });
+    var btn = document.getElementById("lang-btn");
+    if (btn) btn.textContent = lang === "en" ? "中" : "EN";
+    try { localStorage.setItem("pitboard-lang", lang); } catch (e) {}
+  }
+  var langBtn = document.getElementById("lang-btn");
+  if (langBtn) {
+    langBtn.addEventListener("click", function () {
+      var cur;
+      try { cur = localStorage.getItem("pitboard-lang"); } catch (e) {}
+      setLang(cur === "en" ? "zh" : "en");
+    });
+    var saved = null;
+    try { saved = localStorage.getItem("pitboard-lang"); } catch (e) {}
+    if (saved === "en") setLang("en");
+  }
+})();

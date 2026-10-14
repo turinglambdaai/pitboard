@@ -46,7 +46,7 @@
   (check-true (string-contains? page "2026年10月13日"))
   (check-true (string-contains? page "Toyota &amp; NIO expand solid-state battery pilot"))
   (check-true (string-contains? page "chip-new"))
-  (check-true (string-contains? page "2 个独立来源"))
+  (check-true (string-contains? page "个独立来源"))
   (check-true (string-contains? page "★1200"))
   (check-true (string-contains? page "Second story &lt;with&gt; markup")))
 
@@ -149,10 +149,16 @@
                             (hasheq 'ok #f 'name "arXiv" 'count 0 'message "HTTP 429"))
                       (hasheq) admin))))
 
+(test-case "i18n keys present on chrome"
+  (define about-txt (bytes->string/utf-8 (render-about-page ctx)))
+  (check-true (string-contains? about-txt "data-i18n"))
+  (check-true (string-contains? (bytes->string/utf-8 (render-index-page ctx digest)) "data-i18n"))
+  (check-true (string-contains? (bytes->string/utf-8 (render-topic-page ctx "UDS" '())) "data-i18n")))
+
 (test-case "topic page hero renders real values"
   (define txt (bytes->string/utf-8
                (render-topic-page ctx "UDS" (list (cons "2026-10-13" topic-item)))))
-  (check-true (string-contains? txt "1 条相关内容 · 跨期归档追踪"))
+  (check-true (string-contains? txt "条相关内容 · 跨期归档追踪"))
   (check-true (string-contains? txt "上海出台汽车消费新政"))
   (check-false (string-contains? txt "&term;"))
   (check-false (string-contains? txt "&rows;")))

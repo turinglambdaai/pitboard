@@ -75,9 +75,9 @@
     [_ "资讯"]))
 
 (define (label-chip* l)
-  (cond [(equal? l "new") '(span ((class "chip chip-new")) "新")]
-        [(equal? l "rising") '(span ((class "chip chip-rising")) "↑ 上升")]
-        [(equal? l "progress") '(span ((class "chip chip-progress")) "进展")]
+  (cond [(equal? l "new") '(span ((class "chip chip-new") (data-i18n "chip.new")) "新")]
+        [(equal? l "rising") '(span ((class "chip chip-rising") (data-i18n "chip.rising")) "↑ 上升")]
+        [(equal? l "progress") '(span ((class "chip chip-progress") (data-i18n "chip.progress")) "进展")]
         [else (list 'span '((class "chip")) l)]))
 
 ;; ---- shell ------------------------------------------------------------------
@@ -409,20 +409,20 @@
                   (p "pitboard 是一张举给汽车行业从业者的「pit 板」：每天把开源项目、"
                      "行业资讯、前沿论文抓到一起，聚簇去重，按独立来源数与时间衰减算出热度，"
                      "把真正在发生的事顶到最上面。")
-                  (h2 "它怎么工作")
+                  (h2 (data-i18n "about.how") "它怎么工作")
                   (ul
                    (li (b "抓取") " — RSS 媒体源、GitHub 汽车话题仓库、arXiv 论文检索，全部免 key。")
                    (li (b "聚簇") " — 中英分词（CJK 二元语法）+ Jaccard 相似度，同一事件的多方报道并成一条。")
                    (li (b "热度") " — 独立来源越多越靠前，48 小时窗口内按新旧衰减；可选用 OpenAI 兼容 LLM 把头条翻译成中文摘要。")
                    (li (b "出刊") " — 每日定时生成一期刊物，写进 data/ 归档，站点与 API 同步刷新。"))
-                  (h2 "给 Agent 的出口")
+                  (h2 (data-i18n "about.agents") "给 Agent 的出口")
                   (section ((class "install-box"))
-                     (p ((class "kicker")) "一句话安装")
+                     (p ((class "kicker") (data-i18n "install.kicker")) "一句话安装")
                      (p ((class "install-line"))
                         "请安装 pitboard 技能：https://pitboard.jrtx.site/skill/pitboard/SKILL.md")
                      (button ((class "btn-install") (id "copy-install") (type "button"))
                              "复制安装语")
-                     (p ((class "muted"))
+                     (p ((class "muted") (data-i18n "install.hint"))
                         "把这句话发给你的 agent（Claude Code、ZCode……），它会自己装好。"))
                   (ul
                    (li (code "/rss.xml") " — RSS 订阅")
@@ -433,11 +433,11 @@
                    (li (code "/skill/pitboard/SKILL.md") " — 可安装的 agent 技能：把链接发给 agent 即可安装")
                    (li (code "raco pitboard mcp") " — 自托管 MCP（latest_digest / get_edition / get_topic）")
                    (li (code "/api/events") " — SSE 出刊推送"))
-                  (h2 "自托管")
+                  (h2 (data-i18n "about.selfhost") "自托管")
                   (p "一个 Racket 进程，零外部依赖（无数据库）：" (br)
                      (code "raco pkg install --auto https://github.com/turinglambdaai/pitboard.git") (br)
                      (code "raco pitboard fetch && raco pitboard serve --port 8090"))
-                  (h2 "许可")
+                  (h2 (data-i18n "about.license") "许可")
                   (p "MIT 许可，源码开源于 "
                      (a ((href "https://github.com/turinglambdaai/pitboard")) "GitHub") "。"))))))
 
@@ -447,8 +447,8 @@
                (list
                 '(section ((class "hero"))
                    (p ((class "kicker")) "AUTOMOTIVE DAILY")
-                   (h1 ((class "hero-date")) "还没有出刊")
-                   (p ((class "hero-meta")) "先跑一次抓取：")
+                   (h1 ((class "hero-date") (data-i18n "empty.title")) "还没有出刊")
+                   (p ((class "hero-meta") (data-i18n "empty.hint")) "先跑一次抓取：")
                    (p (code "raco pitboard fetch")))))))
 
 (define (render-not-found ctx)
@@ -456,8 +456,8 @@
    (page-shell ctx "404 — pitboard" ""
                (list '(section ((class "hero"))
                               (p ((class "kicker")) "404")
-                              (h1 ((class "hero-date")) "这块板上没写东西")
-                              (p ((class "hero-meta")) (a ((href "/")) "← 回今日热点")))))))
+                              (h1 ((class "hero-date") (data-i18n "notfound.title")) "这块板上没写东西")
+                              (p ((class "hero-meta")) (a ((href "/") (data-i18n "notfound.back")) "← 回今日热点")))))))
 
 ;; ---- rss / md / llms ----------------------------------------------------------
 
@@ -596,7 +596,8 @@
                    (p ((class "kicker")) "TOPIC RADAR")
                    (h1 ((class "hero-date hero-date-s")) ,term)
                    (p ((class "hero-meta"))
-                      ,(format "~a 条相关内容 · 跨期归档追踪" (length rows))))
+                      ,(format "~a" (length rows))
+                      (span ((data-i18n "topic.meta")) " 条相关内容 · 跨期归档追踪")))
                 `(ul ((class "topic-list"))
                      ,@(for/list ([row (in-list rows)])
                          `(li ((class "topic-row"))
@@ -621,7 +622,8 @@
                     (list (list 'class "quick-name"))
                     (format "~a" (car t)))
               (list 'span
-                    (list (list 'class "quick-heat"))
+                    (list (list 'class "quick-heat")
+                          (list 'data-i18n "card.track"))
                     "追踪 →"))))
 
 (define (group-section g)
@@ -641,8 +643,11 @@
     (list 'section
           (list (list 'class "hero hero-slim"))
           (list 'p (list (list 'class "kicker")) "TOPIC RADAR")
-          (list 'h1 (list (list 'class "hero-date hero-date-s")) "话题雷达")
-          (list 'p (list (list 'class "hero-meta")) "每个热点话题的跨期追踪，天天见底。")))
+          (list 'h1 (list (list 'class "hero-date hero-date-s")
+                          (list 'data-i18n "topics.title")) "话题雷达")
+          (list 'p (list (list 'class "hero-meta")
+                         (list 'data-i18n "topics.meta"))
+                "每个热点话题的跨期追踪，天天见底。")))
   (xexpr->html-bytes
    (page-shell ctx "话题雷达 — pitboard" "topics"
                (cons hero (for/list ([g (in-list groups)])
@@ -656,7 +661,9 @@
                    (p ((class "kicker")) "COMPILATION")
                    (h1 ((class "hero-date hero-date-s")) ,kind-label)
                    (p ((class "hero-meta"))
-                      ,(format "从当期日报汇编 · ~a 条要闻 · 按热度去重" (length rows))))
+                      (span ((data-i18n "period.meta1")) "从当期日报汇编 · ")
+                      ,(format "~a" (length rows))
+                      (span ((data-i18n "period.meta2")) " 条要闻 · 按热度去重")))
                 `(ol ((class "topic-list"))
                      ,@(for/list ([r (in-list rows)])
                          `(li ((class "topic-row"))
