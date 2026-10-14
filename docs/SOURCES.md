@@ -34,7 +34,10 @@ pitboard 的信源资产。按「读者画像 → 信息产地 → 获取通道�
 | Just Auto | EN | OEM/供应链动态 |
 | dev.to · Automotive | EN | 工程师文章 |
 | Medium · AUTOSAR / Automotive Software / Automotive Cybersecurity | EN | 标签即门控；信息安全专题源 |
-| 雷峰网 | CN | 唯一稳定的中文源，进排噪双向关键词门控 |
+| 雷峰网 | CN | 进排噪双向关键词门控 |
+| 盖世汽车 | CN | 行业综合旗舰，web_list（列表页 /news/YYYYMM/ 锚带 title）；2026-10-14 接入 |
+| 新出行 | CN | EV/智驾社区，web_list（首页 /article/N 锚文本）；2026-10-14 接入 |
+| 第一电动 | CN | EV 行业，web_list（首页 /carnews/ 锚文本）；2026-10-14 接入 |
 | NVIDIA/GitHub 之外的开发者内容 | — | arXiv（论文，cat:cs.RO/eess.SY/cs.AR + 汽车关键词）|
 
 ## 三、综合媒体（tier 3，已接入）
@@ -51,20 +54,25 @@ Hacker News（Algolia 拉近 7 天全量 + 本地标题关键词过滤，词表�
 | Vector / SOAFEE / SAE | 406/403 |
 | 36kr feed | 返回 JS 壳网页（非 XML） |
 | 虎嗅 / pingwest / 品玩 | 无 RSS 或超时 |
-| 盖世汽车 / 第一电动 / 42how | 无 RSS（官网反爬或 404） |
+| 盖世汽车 / 第一电动 | 无 RSS，但列表页静态可抓 → 已改走 web_list 接入（见二） |
+| 42how | 文章列表 JS 渲染（静态 HTML 只有导航链接），web_list 不可用 |
+| 车东西 / 晚点Auto | JS 渲染，静态无文章链接；候选 json_api 通道待摸 |
+| 中汽协 caam.org.cn | 栏目页全是会员单位侧栏，新闻列表不可直达 |
+| 工信部 miit.gov.cn | JS 壳页（5KB 无文章链接） |
 | NHTSA API | 可用但美召回，中文读者价值低，暂缓 |
 | Reddit RSS / rsshub.app 公网实例 | 超时（rsshub 需自托管，见下） |
 | Hacker News Algolia query 通道 | ⚠️ 不可用于精确监控：typo 容忍 + 无 OR；只允许全量拉取后本地过滤 |
 
-## 五、中文层策略（当前最大缺口）
+## 五、中文层策略
 
-中文汽车科技媒体（盖世、车东西/智东西、42号车库、建约车评、电动星球、
+中文汽车科技媒体（车东西/智东西、42号车库、建约车评、电动星球、
 汽车之心）几乎全部栖息在微信公众号，无 RSS。三条路：
 
 1. **自托管 RSSHub**（M2，fnOS NAS Docker）——36kr 快讯、盖世、部分公众号
    的路由现成，公网实例不可用但自托管稳定；
-2. **网页列表源扩展**（M1）——把 web_list 类型升级为支持页面内标题+日期
-   结构规则，逐站适配盖世/42how/中汽研/工信部政策页；
+2. **网页列表源扩展**（M1）——✅ 2026-10-14 首波落地：盖世/新出行/第一电动
+   经 web_list 接入（修复 extract-web-items 两处回归后才可用）；
+   待适配：中汽研、工信部政策页（JS 壳需换通道）；
 3. **公众号专项**（M1+）——微信文章抓取通道（wechat2rss 类自建桥），
    这是中文层真正的主战场。
 

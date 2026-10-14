@@ -22,9 +22,14 @@
 
 ;; ---- config ---------------------------------------------------------------
 
-(define (llm-key) (getenv "PITBOARD_LLM_API_KEY"))
-(define (llm-base) (or (getenv "PITBOARD_LLM_BASE_URL") "https://api.deepseek.com"))
-(define (llm-model) (or (getenv "PITBOARD_LLM_MODEL") "deepseek-chat"))
+;; GitHub Actions sets env vars for missing secrets to "" — treat as unset.
+(define (env* name)
+  (define v (getenv name))
+  (and v (non-empty-string? v) v))
+
+(define (llm-key) (env* "PITBOARD_LLM_API_KEY"))
+(define (llm-base) (or (env* "PITBOARD_LLM_BASE_URL") "https://api.deepseek.com"))
+(define (llm-model) (or (env* "PITBOARD_LLM_MODEL") "deepseek-chat"))
 
 (define (llm-available?) (and (llm-key) #t))
 

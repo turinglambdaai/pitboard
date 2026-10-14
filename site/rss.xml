@@ -22,13 +22,13 @@
         https://www.autosar.org/news-events/detail/capi-release-event-10
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:452230298020822328
+        pitboard:2026-10-14:hot:452230298020822328
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -39,13 +39,13 @@
         https://www.autosar.org/news-events/detail/autosar-jaspar-japan-day-2026
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:338103721121799486
+        pitboard:2026-10-14:hot:338103721121799486
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -56,13 +56,13 @@
         https://www.autosar.org/news-events/detail/capi-release-10-is-here
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:350823962048444647
+        pitboard:2026-10-14:hot:350823962048444647
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -73,13 +73,13 @@
         https://www.autosar.org/news-events/detail/curriculum-in-future-of-education-and-training-in-autosar
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:249400283566394064
+        pitboard:2026-10-14:hot:249400283566394064
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -90,30 +90,13 @@
         https://www.autosar.org/news-events/detail/autosar-engages-industry-at-automotive-world-autumn-2026
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:857039607367647829
+        pitboard:2026-10-14:hot:857039607367647829
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        jherrodthomas/automotive-skills-suite
-      </title>
-      <link>
-        https://github.com/jherrodthomas/automotive-skills-suite
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:1101267235883137453
-      </guid>
-      <description>
-        100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
-      </description>
-      <pubDate>
-        Tuesday, October 13th, 2026 11:09:23am
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -124,13 +107,13 @@
         https://www.autosar.org/news-events/detail/18th-aoc-call-for-papers-is-now-open
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:589093559816198046
+        pitboard:2026-10-14:hot:589093559816198046
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -141,13 +124,13 @@
         https://www.autosar.org/news-events/detail/english-q3-newsletter-2026
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:276833536875461247
+        pitboard:2026-10-14:hot:276833536875461247
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:15:04pm
+        Wednesday, October 14th, 2026 11:12:33am
       </pubDate>
     </item>
     <item>
@@ -158,47 +141,30 @@
         https://github.com/carla-simulator/carla
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:371904745613176677
+        pitboard:2026-10-14:hot:371904745613176677
       </guid>
       <description>
         Open-source simulator for autonomous driving research.
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 10:34:22am
+        Wednesday, October 14th, 2026 2:50:22am
       </pubDate>
     </item>
     <item>
       <title>
-        ecubus/EcuBus-Pro
+        jherrodthomas/automotive-skills-suite
       </title>
       <link>
-        https://github.com/ecubus/EcuBus-Pro
+        https://github.com/jherrodthomas/automotive-skills-suite
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:487205003557968962
+        pitboard:2026-10-14:hot:1101267235883137453
       </guid>
       <description>
-        A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
+        100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
       </description>
       <pubDate>
-        Monday, October 12th, 2026 2:06:50pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        gotonote/Autopilot-Notes
-      </title>
-      <link>
-        https://github.com/gotonote/Autopilot-Notes
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:991420061623841730
-      </guid>
-      <description>
-        自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
-      </description>
-      <pubDate>
-        Monday, October 12th, 2026 8:01:32pm
+        Tuesday, October 13th, 2026 11:09:23am
       </pubDate>
     </item>
     <item>
@@ -209,149 +175,183 @@
         https://github.com/autowarefoundation/autoware
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:565200565018763934
+        pitboard:2026-10-14:hot:565200565018763934
       </guid>
       <description>
         Autoware - the world's leading open-source software project for autonomous driving
       </description>
       <pubDate>
-        Monday, October 12th, 2026 4:48:16am
+        Wednesday, October 14th, 2026 12:39:57am
       </pubDate>
     </item>
     <item>
       <title>
-        Volkswagen Group deliveries fall 14.3% as China slumps
+        commaai/opendbc
       </title>
       <link>
-        https://www.just-auto.com/news/volkswagen-group-deliveries-fall-14-3-q3
+        https://github.com/commaai/opendbc
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:794860544830252445
+        pitboard:2026-10-14:hot:737223512686484068
       </guid>
       <description>
-        Total worldwide volumes decreased to 1,885,300 units, led by a 38.5% slide in China to 405,800 units.
+        a Python API for your car
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 10:14:32am
+        Wednesday, October 14th, 2026 3:04:28am
       </pubDate>
     </item>
     <item>
       <title>
-        China's carmakers export more as EU caps hybrid vehicle imports at 350k a year
+        cantools/cantools
       </title>
       <link>
-        https://www.theguardian.com/environment/2026/oct/12/eu-deal-china-limit-imports-hybrid-electric-vehicles
+        https://github.com/cantools/cantools
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:952882808243030131
+        pitboard:2026-10-14:hot:192973104646746202
       </guid>
       <description>
-        
+        CAN bus tools.
       </description>
       <pubDate>
-        Monday, October 12th, 2026 12:38:38pm
+        Tuesday, October 13th, 2026 9:55:29pm
       </pubDate>
     </item>
     <item>
       <title>
-        China’s PV retail sales plunge 28% in September
+        上海出台汽车消费新政，鼓励存量燃油车置换新能源
       </title>
       <link>
-        https://www.just-auto.com/news/chinas-pv-retail-sales-plunge-28-in-september
+        https://auto.gasgoo.com/news/202610/14I70474743C501.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:125323114731754363
-      </guid>
-      <description>
-        Market decline reflects weaker NEV and ICE vehicle sales.
-      </description>
-      <pubDate>
-        Tuesday, October 13th, 2026 10:08:00am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        A.I. Music Fraudster Who Drew Millions in Royalties Is Sentenced to 18 Months
-      </title>
-      <link>
-        https://www.nytimes.com/2026/10/07/arts/music/ai-music-fraud-royalties-sentence.html
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:938697671286605755
+        pitboard:2026-10-14:hot:648861997023700258
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 3:15:15am
+        Wednesday, October 14th, 2026 11:12:34am
       </pubDate>
     </item>
     <item>
       <title>
-        CATL, Seres strengthen their long-term battery partnership
+        gotonote/Autopilot-Notes
       </title>
       <link>
-        https://www.just-auto.com/news/catl-seres-strengthen-their-long-term-battery-partnership
+        https://github.com/gotonote/Autopilot-Notes
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:285121826234989851
+        pitboard:2026-10-14:hot:991420061623841730
       </guid>
       <description>
-        The plan is to accelerate battery production expansion, increase focus on services and overseas markets.
+        自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:56:17am
+        Tuesday, October 13th, 2026 5:50:18pm
       </pubDate>
     </item>
     <item>
       <title>
-        South Korean import sales rise 6% in September
+        何小鹏：Mona L05是一台有“少年感”的大五座SUV
       </title>
       <link>
-        https://www.just-auto.com/news/south-korean-import-sales-rise-6-in-september
+        https://auto.gasgoo.com/news/202610/14I70474741C107.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:64559030651294691
+        pitboard:2026-10-14:hot:726573419243426458
       </guid>
       <description>
-        Strong demand for BEVs continues to lift import demand.
+        
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 7:59:07am
+        Wednesday, October 14th, 2026 11:12:34am
       </pubDate>
     </item>
     <item>
       <title>
-        How to Write VDP Descriptions That Actually Sell Cars (2026 Guide)
+        新型人工智能框架助力机器更精细地理解三维空间
       </title>
       <link>
-        https://dev.to/sellermind/how-to-write-vdp-descriptions-that-actually-sell-cars-2026-guide-2m92
+        https://auto.gasgoo.com/news/202610/14I70474750C409.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:697669831444162420
+        pitboard:2026-10-14:hot:574754497971572935
       </guid>
       <description>
-        How to Write VDP Descriptions That Actually Sell Cars (2026 Guide) Your Vehicle Description Page (VDP) is where shoppers decide. They've compared prices. They've checked photos. Now they're reading your words — and those words either convince them to call or send them to the next listing. Most dealer VDP copy reads like a spec sheet dumped into a text box. That's a missed opportunity. In this guide, I'll show you how to write VDP descriptions that turn browsers into buyers, using proven copywrit…
+        
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 6:28:38am
+        Wednesday, October 14th, 2026 11:12:34am
       </pubDate>
     </item>
     <item>
       <title>
-        How to Write Product Pages and Case Studies That Sell Automotive SaaS
+        司南智驾通关巴音布鲁克 红旗天工07上市16.79万起！
       </title>
       <link>
-        https://dev.to/sellermind/how-to-write-product-pages-and-case-studies-that-sell-automotive-saas-4pao
+        https://www.d1ev.com/carnews/xinche/313493
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-13:hot:667334306560451910
+        pitboard:2026-10-14:hot:666933420632677984
       </guid>
       <description>
-        How to Write Product Pages and Case Studies That Sell Automotive SaaS If you're marketing an automotive SaaS product, your two most important content assets are your product pages and your case studies. These are the pages that close deals. Yet most auto SaaS companies get them wrong. Product pages read like feature catalogs. Case studies read like press releases. In this guide, I'll show you how to write both in a way that speaks directly to dealer decision-makers and drives measurable pipeline…
+        
       </description>
       <pubDate>
-        Tuesday, October 13th, 2026 6:29:50am
+        Wednesday, October 14th, 2026 11:12:36am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        autowarefoundation/vision_pilot
+      </title>
+      <link>
+        https://github.com/autowarefoundation/vision_pilot
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-14:hot:744292055535854117
+      </guid>
+      <description>
+        Free and fully open-source L2 ADAS stack powered by End-to-End AI technology
+      </description>
+      <pubDate>
+        Tuesday, October 13th, 2026 1:00:29pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        文章 新出行原创 奥迪 E7X 迎来首次OTA 全场景体验焕新升级 2026年10月10日，上海 – 奥迪 E7X 迎来首次OTA升级，AUDI OS 2.1.4 系统正式上线。本次升级覆盖寻车、车手互联、语音、驾控及舒适全场景 品牌 点赞 102 评论 1
+      </title>
+      <link>
+        https://www.xchuxing.com/article/178260
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-14:hot:209554806140809112
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Wednesday, October 14th, 2026 11:12:34am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        i6 率先在荷兰及挪威上市 理想汽车将于 2027 年第一季度正式登录欧洲市场
+      </title>
+      <link>
+        https://www.xchuxing.com/article/178363
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-14:hot:201408557964076352
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Wednesday, October 14th, 2026 11:12:34am
       </pubDate>
     </item>
   </channel>

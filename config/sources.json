@@ -11,6 +11,36 @@
       "max": 8
     },
     {
+      "name": "盖世汽车",
+      "type": "web_list",
+      "url": "https://auto.gasgoo.com/auto-news/C-103-106-107-108-109-110-303-409-501-601",
+      "base_url": "https://auto.gasgoo.com",
+      "link_regex": "/news/[0-9]{6}/\\w+\\.shtml",
+      "tier": 2,
+      "weight": 0.95,
+      "max": 12
+    },
+    {
+      "name": "新出行",
+      "type": "web_list",
+      "url": "https://www.xchuxing.com/",
+      "base_url": "https://www.xchuxing.com",
+      "link_regex": "^/article/[0-9]+$",
+      "tier": 2,
+      "weight": 0.8,
+      "max": 8
+    },
+    {
+      "name": "第一电动",
+      "type": "web_list",
+      "url": "https://www.d1ev.com/",
+      "base_url": "https://www.d1ev.com",
+      "link_regex": "^/carnews/\\w+/[0-9]+",
+      "tier": 2,
+      "weight": 0.8,
+      "max": 8
+    },
+    {
       "url": "https://www.theverge.com/rss/transportation/index.xml",
       "tier": 2,
       "weight": 1.0,

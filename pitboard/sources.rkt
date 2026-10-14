@@ -37,7 +37,8 @@
           'count (source-status-count s)
           'message (jx (source-status-message s))))
 
-(define UA "pitboard/0.1 (+https://pitboard.jrtx.site)")
+(define UA
+  "Mozilla/5.0 (compatible; pitboard/0.1; +https://pitboard.jrtx.site)")
 
 ;; ---- config ---------------------------------------------------------------
 
@@ -200,7 +201,8 @@
 
 ;; Fallback HTTP via system curl: some servers (autosar.org) ship TLS
 ;; chains that Racket's strict verification rejects while the system CA
-;; store accepts them.
+;; store accepts them.  Also used for WAF-blocked hosts: gasgoo.com
+;; fingerprints the TLS handshake, so no User-Agent fixes an HTTP 400.
 (define (curl-get-bytes url-str #:timeout-seconds [secs 25])
   (define curl
     (or (find-executable-path "curl")
@@ -217,6 +219,19 @@
       (unless (zero? code) (error 'curl-get "exit ~a" code))
       (file->bytes tmp))
     (λ () (with-handlers ([exn:fail? void]) (delete-file tmp)))))
+
+;; http-get-bytes with a curl fallback for TLS-rejected and WAF-blocked
+;; fetches (cert verify failed / 400 / 403 / 406).
+(define (fetch-bytes url-str)
+  (with-handlers
+      ([exn:fail?
+        (lambda (e)
+          (define msg (exn-message e))
+          (if (or (regexp-match? #rx"certificate verify failed" msg)
+                  (regexp-match? #rx"HTTP (400|403|406)" msg))
+              (curl-get-bytes url-str #:timeout-seconds 25)
+              (raise e)))])
+    (http-get-bytes url-str)))
 
 ;; ---- RSS feeds -------------------------------------------------------------
 
@@ -237,7 +252,7 @@
                 (and (list? v) (pair? v) v)))
   (define excepts (let ([v (hash-ref f 'except_keywords #f)])
                     (and (list? v) (pair? v) v)))
-  (define b (http-get-bytes (hash-ref f 'url)))
+  (define b (fetch-bytes (hash-ref f 'url)))
   (define raw (feed->items (parse-feed b #:max-entries 80)
                            #:source-name name #:kind 'news #:weight weight))
   (define items
@@ -265,6 +280,7 @@
   (define seen (mutable-set))
   (for/list ([m (in-list
                  (regexp-match*
+                  #:match-select values
                   #px"(?i:<a\\b[^>]*href=\"([^\"]+)\"[^>]*>)([\\s\\S]*?)</a>"
                   html))]
              #:do [(define href (cadr m))
@@ -272,9 +288,10 @@
              #:when (and (non-empty-string? href)
                          (regexp-match? link-regex href)
                          (not (str-starts? href "javascript")))
-             #:do [(define t (string-trim (or (attr-of-tag (car m) "title") "")))]
-             #:when (non-empty-string? t)
-             #:do [(set! t (if (>= (string-length t) 8) t inner))]
+             #:do [(define title-attr
+                     (string-trim (or (attr-of-tag (car m) "title") "")))
+                   (define t
+                     (if (>= (string-length title-attr) 8) title-attr inner))]
              #:unless (or (set-member? seen href) (< (string-length t) 8))
              #:do [(set-add! seen href)])
     (list t
@@ -288,18 +305,13 @@
   (define weight
     (* (hash-ref w 'weight 1.0)
        (match tier [1 1.35] [3 0.85] [_ 1.0])))
-  (define b
-    (with-handlers
-        ([exn:fail?
-          (lambda (e)
-            (if (regexp-match? #rx"certificate verify failed" (exn-message e))
-                (curl-get-bytes (hash-ref w 'url) #:timeout-seconds 25)
-                (raise e)))])
-      (http-get-bytes (hash-ref w 'url))))
+  (define b (fetch-bytes (hash-ref w 'url)))
   (define rows
     (extract-web-items (bytes->string/utf-8 b #\?)
                        (hash-ref w 'base_url (hash-ref w 'url))
-                       (regexp (hash-ref w 'link_regex ""))))
+                       ;; pregexp, not regexp: #rx treats \w/\d/{n} as
+                       ;; literal chars, silently breaking config patterns.
+                       (pregexp (hash-ref w 'link_regex ""))))
   (define maxn (hash-ref w 'max 10))
   (define now (current-seconds))
   (define items
@@ -329,7 +341,7 @@
   (define weight
     (* (hash-ref w 'weight 1.0)
        (match tier [1 1.35] [3 0.85] [_ 1.0])))
-  (define b (http-get-bytes (hash-ref w 'url)))
+  (define b (fetch-bytes (hash-ref w 'url)))
   (define root (with-input-from-bytes b read-json))
   (define path
     (for/list ([seg (in-list (string-split (hash-ref w 'path "" ".")))]
@@ -372,12 +384,13 @@
 
 ;; GitHub repos must clear an automotive-engineering relevance bar, or
 ;; broad topics pull in smart-home noise (home-assistant matched topic
-;; "automotive" once already).
+;; "automotive" once already).  pregexp: the \b word boundaries are dead
+;; under #rx (undefined escapes become literal chars there).
 (define gh-relevance-regex
-  (regexp "(?i:autosar|iso.?26262|iso.?21434|aspice|can.?fd|can.?bus|\\buds\\b|\\bobd\\b|\\badas\\b|autonomous|self-driving|driv(ing|er)|vehicle|automotive|robotaxi|\\bcars?\\b|truck|\\becu\\b|\\bmcu\\b|carla|lidar|\\bradar\\b|zephyr|\\bsdv\\b|\\bagl\\b|chassis|车|驾驶|汽车|智驾|芯片|整车)"))
+  (pregexp "(?i:autosar|iso.?26262|iso.?21434|aspice|can.?fd|can.?bus|\\buds\\b|\\bobd\\b|\\badas\\b|autonomous|self-driving|driv(ing|er)|vehicle|automotive|robotaxi|\\bcars?\\b|truck|\\becu\\b|\\bmcu\\b|carla|lidar|\\bradar\\b|zephyr|\\bsdv\\b|\\bagl\\b|chassis|车|驾驶|汽车|智驾|芯片|整车)"))
 
 (define gh-blocklist-regex
-  (regexp "^home-assistant/|^openhab/|^homebridge/|^domoticz/"))
+  (pregexp "^home-assistant/|^openhab/|^homebridge/|^domoticz/"))
 
 (define (gh-relevant? h)
   (define full (hash-ref h 'full_name ""))

@@ -42,7 +42,8 @@
   (if (directory-exists? dir)
       (sort
        (for/list ([p (in-list (directory-list dir))]
-                  #:when (str-ends? (path->string p) ".json"))
+                  #:when (regexp-match? #px"^\\d{4}-\\d{2}-\\d{2}\\.json$"
+                                        (path->string p)))
          (substring (path->string p) 0 (- (string-length (path->string p)) 5)))
        string>?)
       '()))
@@ -142,14 +143,17 @@
 (define (health-file dir) (build-path dir "health.json"))
 
 ;; statuses: list of source-status. Streak++ on failure, reset on ok.
+;; Keys are symbols (write-json rejects string keys; read-json yields symbols).
 (define (update-health! dir statuses now)
   (define prev
     (with-handlers ([exn:fail? (λ (_) (hasheq))])
       (with-input-from-file (health-file dir) read-json)))
   (define next
     (for/hash ([st (in-list statuses)])
-      (values (source-status-name st)
-              (let* ([old (hash-ref prev (source-status-name st) (hasheq))]
+      (values (string->symbol (source-status-name st))
+              (let* ([old (hash-ref prev
+                                    (string->symbol (source-status-name st))
+                                    (hasheq))]
                      [streak (if (source-status-ok st)
                                  0
                                  (add1 (let ([v (hash-ref old 'fail_streak 0)])
