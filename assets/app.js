@@ -130,3 +130,30 @@
     card.querySelector(".card-top").appendChild(btn);
   });
 })();
+
+/* ---- install sentence copy (about page) ---- */
+(function () {
+  var copyBtn = document.getElementById("copy-install");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      var sentence = "请安装 pitboard 技能：https://pitboard.jrtx.site/skill/pitboard/SKILL.md";
+      function done() {
+        copyBtn.textContent = "已复制 ✓ 发给你的 agent";
+        setTimeout(function () { copyBtn.textContent = "复制安装语"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(sentence).then(done, function () { fallback(); });
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = sentence;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  }
+})();
