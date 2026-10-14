@@ -588,20 +588,7 @@
 (define (group-section g)
   (define cards
     (for/list ([t (in-list (cdr g))])
-      (list 'li
-            (list (list 'class "quick-item"))
-            (list 'a
-                  (list (list 'class "quick-link")
-                        (list 'href (format "/topic/~a/" (topic-slug (car t))))))
-                  (list 'span
-                        (list (list 'class "quick-rank"))
-                        (format "~a" (cdr t)))
-                  (list 'span
-                        (list (list 'class "quick-name"))
-                        (format "~a" (car t)))
-                  (list 'span
-                        (list (list 'class "quick-heat"))
-                        "\u8ffd\u8e2a \u2192"))))
+      (topic-card t)))
   (list 'section
         (list (list 'class "lane-head"))
         (list 'span (list (list 'class "kicker")) (car g))
@@ -626,7 +613,7 @@
   (xexpr->html-bytes
    (page-shell ctx (string-append kind-label " — pitboard") "topics"
                (list
-                '(section ((class "hero hero-slim"))
+                `(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "COMPILATION")
                    (h1 ((class "hero-date hero-date-s")) ,kind-label)
                    (p ((class "hero-meta"))
@@ -644,7 +631,7 @@
   (xexpr->html-bytes
    (page-shell ctx (string-append kind-label "归档 — pitboard") "topics"
                (list
-                '(section ((class "hero hero-slim"))
+                `(section ((class "hero hero-slim"))
                    (p ((class "kicker")) "COMPILATION")
                    (h1 ((class "hero-date hero-date-s")) ,kind-label "归档"))
                 `(ul ((class "archive-list"))
