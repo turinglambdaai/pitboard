@@ -16,121 +16,53 @@
     </language>
     <item>
       <title>
-        CAPI Release Event 1.0
+        carla-simulator/carla
       </title>
       <link>
-        https://www.autosar.org/news-events/detail/capi-release-event-10
+        https://github.com/carla-simulator/carla
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:452230298020822328
+        pitboard:2026-10-15:hot:371904745613176677
       </guid>
       <description>
-        
+        Open-source simulator for autonomous driving research.
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Wednesday, October 14th, 2026 8:04:39pm
       </pubDate>
     </item>
     <item>
       <title>
-        AUTOSAR &amp; JASPAR Japan Day 2026
+        commaai/opendbc
       </title>
       <link>
-        https://www.autosar.org/news-events/detail/autosar-jaspar-japan-day-2026
+        https://github.com/commaai/opendbc
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:338103721121799486
+        pitboard:2026-10-15:hot:737223512686484068
       </guid>
       <description>
-        
+        a Python API for your car
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 12:06:19am
       </pubDate>
     </item>
     <item>
       <title>
-        AUTOSAR Releases CAPI 1.0
+        cantools/cantools
       </title>
       <link>
-        https://www.autosar.org/news-events/detail/capi-release-10-is-here
+        https://github.com/cantools/cantools
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:350823962048444647
+        pitboard:2026-10-15:hot:192973104646746202
       </guid>
       <description>
-        
+        CAN bus tools.
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        Curriculum in Future of Education and Training in AUTOSAR
-      </title>
-      <link>
-        https://www.autosar.org/news-events/detail/curriculum-in-future-of-education-and-training-in-autosar
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:249400283566394064
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        AUTOSAR Engages Industry at Automotive World Autumn 2026
-      </title>
-      <link>
-        https://www.autosar.org/news-events/detail/autosar-engages-industry-at-automotive-world-autumn-2026
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:857039607367647829
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        18th AOC: Call for Papers is Now Open!
-      </title>
-      <link>
-        https://www.autosar.org/news-events/detail/18th-aoc-call-for-papers-is-now-open
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:589093559816198046
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        English Q3 Newsletter 2026
-      </title>
-      <link>
-        https://www.autosar.org/news-events/detail/english-q3-newsletter-2026
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:276833536875461247
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Wednesday, October 14th, 2026 6:25:47pm
       </pubDate>
     </item>
     <item>
@@ -141,7 +73,7 @@
         https://github.com/ecubus/EcuBus-Pro
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:487205003557968962
+        pitboard:2026-10-15:hot:487205003557968962
       </guid>
       <description>
         A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
@@ -152,19 +84,19 @@
     </item>
     <item>
       <title>
-        carla-simulator/carla
+        autowarefoundation/autoware
       </title>
       <link>
-        https://github.com/carla-simulator/carla
+        https://github.com/autowarefoundation/autoware
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:371904745613176677
+        pitboard:2026-10-15:hot:565200565018763934
       </guid>
       <description>
-        Open-source simulator for autonomous driving research.
+        Autoware - the world's leading open-source software project for autonomous driving
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 2:13:50pm
+        Wednesday, October 14th, 2026 4:07:59pm
       </pubDate>
     </item>
     <item>
@@ -175,7 +107,7 @@
         https://github.com/autowarefoundation/vision_pilot
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:744292055535854117
+        pitboard:2026-10-15:hot:744292055535854117
       </guid>
       <description>
         Free and fully open-source L2 ADAS stack powered by End-to-End AI technology
@@ -186,13 +118,64 @@
     </item>
     <item>
       <title>
+        C Talk | Elektrobit倪耀程：Right-sized SDV，让每一笔软件投入恰到好处
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/15I70474655C1207.shtml#nav
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:302114050605960426
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Thursday, October 15th, 2026 1:37:02am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        中欧汽车贸易磋商达成共识，长安、零跑、东风、广汽接连回应
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/14I70474816C109.shtml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:134904793054154409
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Thursday, October 15th, 2026 1:37:02am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        航宇智造北京新基地开工，拟投资10亿元布局新能源汽车与空天制造
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/15I70474819C108.shtml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:98361226781186209
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Thursday, October 15th, 2026 1:37:02am
+      </pubDate>
+    </item>
+    <item>
+      <title>
         jherrodthomas/automotive-skills-suite
       </title>
       <link>
         https://github.com/jherrodthomas/automotive-skills-suite
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:1101267235883137453
+        pitboard:2026-10-15:hot:1101267235883137453
       </guid>
       <description>
         100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
@@ -209,7 +192,7 @@
         https://github.com/worldbench/awesome-vla-for-ad
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:1048664683373377968
+        pitboard:2026-10-15:hot:1048664683373377968
       </guid>
       <description>
         🌐 Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
@@ -220,138 +203,155 @@
     </item>
     <item>
       <title>
-        9月汽车经销商库存系数达1.68，环比同比双双走高
+        12.59万起的捷途旅行者7，让硬派越野价格战越发“水深火热”了
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/14I70474797C108.shtml
+        https://auto.gasgoo.com/news/202610/14I70474815C107.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:499244529258121819
+        pitboard:2026-10-15:hot:713299995800426444
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:02am
       </pubDate>
     </item>
     <item>
       <title>
-        何小鹏在巴黎汽车峰会分享XPENG AI ENGINEERING，小鹏开放智能汽车与物理AI合作
+        伊士曼携逾85年PVB中间膜创新成果亮相2026年glasstec
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/14I70474798C109.shtml
+        https://auto.gasgoo.com/news/202610/15I70474782C103.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:876166354375781195
+        pitboard:2026-10-15:hot:88314252040637718
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:02am
       </pubDate>
     </item>
     <item>
       <title>
-        小米汽车启动“北方八省冬季服务关怀”专项行动
+        因时机器人推出RH37D1系列三指灵巧手
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/14I70474809C501.shtml
+        https://auto.gasgoo.com/news/202610/15I70474838C601.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:964634588551266391
+        pitboard:2026-10-15:hot:562080018389544632
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:02am
       </pubDate>
     </item>
     <item>
       <title>
-        autowarefoundation/autoware
+        欧摩威获奇瑞ACU定点，“欧洲生产、就近交付”
       </title>
       <link>
-        https://github.com/autowarefoundation/autoware
+        https://auto.gasgoo.com/news/202610/15I70474858C103.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:565200565018763934
-      </guid>
-      <description>
-        Autoware - the world's leading open-source software project for autonomous driving
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 12:39:57am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        commaai/opendbc
-      </title>
-      <link>
-        https://github.com/commaai/opendbc
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:737223512686484068
-      </guid>
-      <description>
-        a Python API for your car
-      </description>
-      <pubDate>
-        Wednesday, October 14th, 2026 4:47:21am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        走进上汽乘用车&amp;智己｜聚焦智能底盘前沿技术，共筑产业合作新生态
-      </title>
-      <link>
-        https://auto.gasgoo.com/news/202610/14I70474786C106.shtml
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:800839913267007005
+        pitboard:2026-10-15:hot:213946315426117939
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:02am
       </pubDate>
     </item>
     <item>
       <title>
-        乘联分会：10月前11天乘用车零售45.9万辆，同比下降24%
+        限时12.59万起 捷途旅行者7上市 燃油/插混双动力的方盒子SUV 13小时前 6621 0 [汽车之家 新车上市] 10月14日，捷途旅行者7正式迎来上市，其中燃油版共推出5款车型，售价区间为13.99-17.99万元，超级焕新价12.59...
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/14I70474796C110.shtml
+        https://www.autohome.com.cn/news/202610/1317774.html#pvareaid=102624
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:669237772850816474
+        pitboard:2026-10-15:hot:971154585092526469
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:22am
       </pubDate>
     </item>
     <item>
       <title>
-        官宣落地曼彻斯特，小马智行欧洲扩张进入新节奏
+        配备激光雷达 大众与众 06/与众 07 新车型将于 10 月 17 日上市
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/14I70474799C601.shtml
+        https://www.xchuxing.com/article/178423
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-14:hot:898235286165827750
+        pitboard:2026-10-15:hot:809443485521439250
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Wednesday, October 14th, 2026 10:43:40pm
+        Thursday, October 15th, 2026 1:37:04am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        上半年热销轿车盘点：比亚迪无缘前十 燃油车依然是主力？
+      </title>
+      <link>
+        https://www.autohome.com.cn/news/202607/1315940.html#pvareaid=102623
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:1049025938651351299
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Thursday, October 15th, 2026 1:37:22am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Russia hits American businesses with 'drones and missiles' in Ukraine
+      </title>
+      <link>
+        https://www.cnn.com/2026/10/14/politics/american-businesses-targeted-russia-ukraine-coca-cola-mcdonalds
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:858876361496602624
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Wednesday, October 14th, 2026 9:41:45pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        马自达路测自研电动汽车架构SUV测试车 30分钟前
+      </title>
+      <link>
+        https://www.d1ev.com/carnews/xinche/313634
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-15:hot:91479351088080309
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Thursday, October 15th, 2026 1:37:07am
       </pubDate>
     </item>
   </channel>
