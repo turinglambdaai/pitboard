@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+- 修复书签页/搜索页导航脱节：两页从手写 `site-tpl/` 静态拷贝收敛为
+  走 `page-shell` 的常规渲染函数（缺书签入口/语言切换/主题按钮/app.js
+  的漂移 bug），页面 JS 迁为 `assets/app.js` 的特性 IIFE，
+  `site-tpl/` 目录删除；render-test 加防漂移断言 + 泄漏扫描覆盖。
+  搜索框顺带接入既有 `search.placeholder` 的英文切换。
 - 新信源「发现报告」（fxbaogao.com）券商研报：`json_api` 通道接入
   匿名 SEO 端点（申万交运设备 + 电动化门控的电气设备），tier 2；
   通道本身补齐与 rss/web_list 的能力对齐——`url_template`（无 url
