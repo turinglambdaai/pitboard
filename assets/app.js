@@ -221,3 +221,99 @@
     if (saved === "en") setLang("en");
   }
 })();
+
+/* ---- bookmarks page (exported bookmark manager) ---- */
+(function () {
+  "use strict";
+  var imp = document.getElementById("imp");
+  if (!imp) return;
+  var list = document.getElementById("list");
+  var KEY = "pitboard-bookmarks";
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
+  }
+  function save(l) {
+    try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (e) {}
+  }
+  function render() {
+    var l = load();
+    list.innerHTML = "";
+    if (!l.length) {
+      list.innerHTML = '<li class="topic-row"><span class="src-dom">还没有书签——在今日榜卡片上点 ☆ 收藏</span></li>';
+      return;
+    }
+    l.forEach(function (m) {
+      var li = document.createElement("li");
+      li.className = "topic-row";
+      li.innerHTML = '<span class="topic-date">' + (m.d || "") + '</span><a href="' + m.u + '" target="_blank" rel="noopener">' + m.t + '</a><span class="src-dom">移除</span>';
+      var rm = li.querySelector(".src-dom");
+      rm.style.cursor = "pointer";
+      rm.addEventListener("click", function () {
+        save(load().filter(function (x) { return x.u !== m.u; }));
+        render();
+      });
+      list.appendChild(li);
+    });
+  }
+  document.getElementById("clr").addEventListener("click", function () { save([]); render(); });
+  document.getElementById("exp").addEventListener("click", function () {
+    var blob = new Blob([JSON.stringify(load(), null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "pitboard-bookmarks.json";
+    a.click();
+  });
+  imp.addEventListener("change", function (ev) {
+    var f = ev.target.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var inc = JSON.parse(r.result);
+        var l = load();
+        inc.forEach(function (m) {
+          if (m && m.u && !l.some(function (x) { return x.u === m.u; })) l.push(m);
+        });
+        save(l);
+        render();
+      } catch (e) { alert("导入失败：不是有效的书签 JSON"); }
+    };
+    r.readAsText(f);
+  });
+  render();
+})();
+
+/* ---- search page ---- */
+(function () {
+  "use strict";
+  var q = document.getElementById("q");
+  var results = document.getElementById("results");
+  if (!q || !results) return;
+  var IDX = null;
+  function run() {
+    var query = q.value.trim().toLowerCase();
+    if (!IDX) return;
+    results.innerHTML = "";
+    if (!query) return;
+    var n = 0;
+    IDX.forEach(function (it) {
+      if (n >= 30) return;
+      if (it.t.toLowerCase().indexOf(query) !== -1) {
+        n++;
+        var li = document.createElement("li");
+        li.className = "topic-row";
+        li.innerHTML = '<span class="topic-date">' + it.d + '</span><a href="' + it.u + '" target="_blank" rel="noopener">' + it.t + '</a><span class="src-dom">' + it.k + ' · 🔥' + it.h + '</span>';
+        results.appendChild(li);
+      }
+    });
+    if (!n) results.innerHTML = '<li class="topic-row"><span class="src-dom">没有匹配内容</span></li>';
+  }
+  fetch("/search-index.json").then(function (r) { return r.json(); }).then(function (j) {
+    IDX = [];
+    j.forEach(function (day) {
+      day.forEach(function (c) { IDX.push({ d: c.d, t: c.t, u: c.u, k: c.k, h: c.h }); });
+    });
+    run();
+  });
+  q.addEventListener("input", run);
+})();

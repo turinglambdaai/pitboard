@@ -109,12 +109,11 @@
             (period-rows data-dir (reverse (hash-ref groups k)))))))
   (period-pages monday-key "周报" "weekly")
   (period-pages month-key "月报" "monthly")
-  ;; static templates (search page etc.)
-  (define tpl-dir "site-tpl")
-  (when (directory-exists? tpl-dir)
-    (for ([f (in-list (directory-list tpl-dir))])
-      (copy-file (build-path tpl-dir f) (build-path out f) #t)
-      (set! count (add1 count))))
+  ;; bookmarks/search rendered through the shared page shell — the old
+  ;; hand-written site-tpl copies drifted out of sync with every nav
+  ;; change (missing 书签/lang-btn/theme-btn/app.js for months).
+  (put "bookmarks.html" (render-bookmarks-page ctx))
+  (put "search.html" (render-search-page ctx))
   ;; agent skill (SKILL.md), served for direct download by user agents
   (define skill-dir "skill")
   (when (directory-exists? skill-dir)

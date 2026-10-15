@@ -23,6 +23,8 @@
          render-about-page
          render-empty-page
          render-not-found
+         render-bookmarks-page
+         render-search-page
          render-rss-xml
          render-daily-md
          render-llms-txt
@@ -480,6 +482,39 @@
                               (p ((class "kicker")) "404")
                               (h1 ((class "hero-date") (data-i18n "notfound.title")) "这块板上没写东西")
                               (p ((class "hero-meta")) (a ((href "/") (data-i18n "notfound.back")) "← 回今日热点")))))))
+
+;; Bookmarks/search live here — not in hand-written site-tpl copies — so
+;; nav/head changes (and the analytics snippet) reach every page. Their
+;; page logic is feature-gated IIFEs in assets/app.js.
+(define (render-bookmarks-page ctx)
+  (xexpr->html-bytes
+   (page-shell ctx "书签 — pitboard" "bookmarks"
+               (list '(section ((class "hero hero-slim"))
+                              (p ((class "kicker")) "BOOKMARKS")
+                              (h1 ((class "hero-date hero-date-s")) "我的书签")
+                              (p ((class "hero-meta"))
+                                 "保存在本机浏览器 · "
+                                 (button ((class "tab") (id "exp")) "导出 JSON")
+                                 (label ((class "tab") (style "cursor:pointer"))
+                                        "导入 JSON"
+                                        (input ((id "imp") (type "file")
+                                                (accept ".json")
+                                                (style "display:none"))))
+                                 (button ((class "tab") (id "clr")) "清空")))
+                     '(ul ((class "archive-list") (id "list")))))))
+
+(define (render-search-page ctx)
+  (xexpr->html-bytes
+   (page-shell ctx "搜索 — pitboard" ""
+               (list '(section ((class "hero hero-slim"))
+                              (p ((class "kicker")) "SEARCH")
+                              (h1 ((class "hero-date hero-date-s")) "站内搜索")
+                              (input ((class "search") (id "q") (type "search")
+                                      (data-i18n-placeholder "search.placeholder")
+                                      (placeholder "搜索标题关键词…")
+                                      (autocomplete "off")
+                                      (style "margin-top:14px"))))
+                     '(ul ((class "archive-list") (id "results")))))))
 
 ;; ---- rss / md / llms ----------------------------------------------------------
 

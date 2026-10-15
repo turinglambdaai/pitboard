@@ -142,6 +142,8 @@
   (check-no-leaks "periods-index"
                   (render-periods-index ctx "周报" "/weekly" (list (list "2026-W42" 5))))
   (check-no-leaks "og-svg" (render-og-svg digest))
+  (check-no-leaks "bookmarks" (render-bookmarks-page ctx))
+  (check-no-leaks "search" (render-search-page ctx))
   (for ([admin (list #t #f)])
     (check-no-leaks (format "admin(~a)" admin)
                     (render-admin-page ctx
@@ -254,3 +256,17 @@
   (check-equal? (cdr (car entries)) '())
   (check-equal? (car (cadr entries)) "线控底盘")
   (check-equal? (cdr (cadr entries)) (list "by-wire" "线控制动")))
+
+(test-case "bookmarks/search share the main nav shell"
+  ;; regression guard for the hand-written site-tpl era: those static
+  ;; copies missed every nav/head change (书签 entry, lang-btn,
+  ;; theme-btn, app.js, analytics). Both pages must carry all of it.
+  (define (has? b needle) (string-contains? (bytes->string/utf-8 b) needle))
+  (for ([p (list (render-bookmarks-page ctx) (render-search-page ctx))])
+    (check-true (has? p "lang-btn") "missing EN switch button")
+    (check-true (has? p "theme-btn") "missing theme button")
+    (check-true (has? p "nav.bookmarks") "missing 书签 nav entry")
+    (check-true (has? p "/app.js") "missing app.js")
+    (check-true (has? p "hm.baidu.com/hm.js") "missing analytics snippet"))
+  (check-true (has? (render-bookmarks-page ctx) "导出 JSON"))
+  (check-true (has? (render-search-page ctx) "搜索标题关键词")))
