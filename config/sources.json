@@ -41,6 +41,34 @@
       "max": 8
     },
     {
+      "name": "发现报告 · 交运设备",
+      "type": "json_api",
+      "url": "https://api.fxbaogao.com/mofoun/seo/seoApiV3/listHomeIndustryReports?industry=%E4%BA%A4%E8%BF%90%E8%AE%BE%E5%A4%87",
+      "path": "data",
+      "title_field": "title",
+      "date_field": "pubTimeStr",
+      "url_template": "https://www.fxbaogao.com/detail/{docId}",
+      "tier": 2,
+      "weight": 0.95,
+      "max": 6,
+      "only_keywords": ["车", "电动", "智驾", "智能驾驶", "自动驾驶", "座舱", "底盘", "robotaxi", "vehicle", "零部件", "芯片"],
+      "except_keywords": ["晨会", "盘前", "复盘", "晨报", "日评"]
+    },
+    {
+      "name": "发现报告 · 电气设备",
+      "type": "json_api",
+      "url": "https://api.fxbaogao.com/mofoun/seo/seoApiV3/listHomeIndustryReports?industry=%E7%94%B5%E6%B0%94%E8%AE%BE%E5%A4%87",
+      "path": "data",
+      "title_field": "title",
+      "date_field": "pubTimeStr",
+      "url_template": "https://www.fxbaogao.com/detail/{docId}",
+      "tier": 2,
+      "weight": 0.8,
+      "max": 6,
+      "only_keywords": ["电池", "固态", "锂电", "新能源", "充电", "电动", "整车", "汽车", "车规", "智驾", "智能驾驶", "自动驾驶", "robotaxi", "battery", "solid-state"],
+      "except_keywords": ["晨会", "盘前", "复盘", "晨报", "日评"]
+    },
+    {
       "url": "https://www.theverge.com/rss/transportation/index.xml",
       "tier": 2,
       "weight": 1.0,

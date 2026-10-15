@@ -12,6 +12,7 @@
          racket/system
          racket/set
          racket/port
+         racket/date
          json
          net/uri-codec
          net/http-easy
@@ -26,6 +27,9 @@
          normalize-watch-topics
          fetch-all
          extract-web-items
+         json-path
+         json-api-items
+         parse-date-slash
          (struct-out source-status)
          source-status->jsexpr)
 
@@ -197,7 +201,29 @@
                         'tier 2 'weight 0.7)
                 (hasheq 'name "CleanTechnica"
                         'url "https://cleantechnica.com/feed/"
-                        'tier 3 'weight 0.5))
+                        'tier 3 'weight 0.5)
+                (hasheq 'name "发现报告 · 交运设备"
+                        'type "json_api"
+                        'url "https://api.fxbaogao.com/mofoun/seo/seoApiV3/listHomeIndustryReports?industry=%E4%BA%A4%E8%BF%90%E8%AE%BE%E5%A4%87"
+                        'path "data"
+                        'title_field "title"
+                        'date_field "pubTimeStr"
+                        'url_template "https://www.fxbaogao.com/detail/{docId}"
+                        'tier 2 'weight 0.95 'max 6
+                        'except_keywords (list "晨会" "盘前" "复盘" "晨报" "日评"))
+                (hasheq 'name "发现报告 · 电气设备"
+                        'type "json_api"
+                        'url "https://api.fxbaogao.com/mofoun/seo/seoApiV3/listHomeIndustryReports?industry=%E7%94%B5%E6%B0%94%E8%AE%BE%E5%A4%87"
+                        'path "data"
+                        'title_field "title"
+                        'date_field "pubTimeStr"
+                        'url_template "https://www.fxbaogao.com/detail/{docId}"
+                        'tier 2 'weight 0.8 'max 6
+                        'only_keywords (list "电池" "固态" "锂电" "新能源" "充电"
+                                             "电动" "整车" "汽车" "车规" "智驾"
+                                             "智能驾驶" "自动驾驶" "robotaxi"
+                                             "battery" "solid-state")
+                        'except_keywords (list "晨会" "盘前" "复盘" "晨报" "日评")))
           'hn
           (hasheq 'keywords hn-default-keywords 'days 7 'per_page 1000 'min_points 2)
           'github
@@ -412,43 +438,93 @@
           [(and (list? v) (number? k) (< k (length v))) (list-ref v k)]
           [else 'null])))
 
-(define (fetch-json-api w #:now [now (current-seconds)])
+;; Chinese sites often publish "2026/10/13" (occasionally with a trailing
+;; slash) — a format neither ISO 8601 nor RFC 822 covers.  Noon UTC keeps
+;; same-day items in one date bucket regardless of timezone.
+(define (parse-date-slash s)
+  (define m (and (string? s)
+                 (regexp-match #px"^(\\d{4})[/\\.](\\d{1,2})[/\\.](\\d{1,2})"
+                               (string-trim s))))
+  (and m
+       (let ([y (string->number (list-ref m 1))]
+             [mo (string->number (list-ref m 2))]
+             [d (string->number (list-ref m 3))])
+         (and y mo d (<= 1 mo 12) (<= 1 d 31)
+              (find-seconds 0 0 12 d mo y #t)))))
+
+(define (parse-date-loose v)
+  (and (string? v) (or (parse-date-any v) (parse-date-slash v))))
+
+;; Resolve a "https://host/detail/{docId}" template against a JSON entry.
+;; #f when a referenced field is missing or not a scalar, so the entry is
+;; dropped rather than emitted with a half-built URL.
+(define (fill-url-template tmpl e)
+  (let loop ([ks (regexp-match* #px"\\{([a-zA-Z0-9_]+)\\}" tmpl
+                                #:match-select cadr)]
+             [s tmpl])
+    (cond [(null? ks) s]
+          [else
+           (define v (hash-ref e (string->symbol (car ks)) 'null))
+           (if (or (string? v) (real? v))
+               (loop (cdr ks)
+                     (string-replace s (string-append "{" (car ks) "}")
+                                     (format "~a" v)))
+               #f)])))
+
+;; Pure item-building half of the json_api channel: parsed JSON root in,
+;; items out.  Split from fetch-json-api so tests run without network.
+(define (json-api-items root w)
   (define name (hash-ref w 'name "api"))
-  (define tier (hash-ref w 'tier 2))
   (define weight
     (* (hash-ref w 'weight 1.0)
-       (match tier [1 1.35] [3 0.85] [_ 1.0])))
-  (define b (fetch-bytes (hash-ref w 'url)))
-  (define root (with-input-from-bytes b read-json))
+       (match (hash-ref w 'tier 2) [1 1.35] [3 0.85] [_ 1.0])))
   (define path
-    (for/list ([seg (in-list (string-split (hash-ref w 'path "" ".")))]
+    (for/list ([seg (in-list (string-split (hash-ref w 'path "") "."))]
                #:when (non-empty-string? seg))
       (define n (string->number seg))
       (or n (string->symbol seg))))
   (define entries (json-path root path))
   (define title-f (string->symbol (hash-ref w 'title_field "title")))
   (define url-f (string->symbol (hash-ref w 'url_field "url")))
-  (define date-f (hash-ref w 'date_field "published_at"))
+  ;; read-json hashes carry symbol keys; config fields arrive as strings
+  (define date-f (string->symbol (hash-ref w 'date_field "published_at")))
+  (define url-tmpl (hash-ref w 'url_template #f))
+  ;; json_api sources support the same keyword gates as RSS/web_list
+  ;; (only_keywords/except_keywords, matched on the title).
+  (define kws (let ([v (hash-ref w 'only_keywords #f)])
+                (and (list? v) (pair? v) v)))
+  (define excepts (let ([v (hash-ref w 'except_keywords #f)])
+                    (and (list? v) (pair? v) v)))
   (define maxn (hash-ref w 'max 10))
-  (define items
-    (for/list ([e (in-list (if (list? entries)
-                               (take entries (min maxn (length entries)))
-                               '()))]
-               #:when (hash? e))
-      (define url (let ([u (hash-ref e url-f 'null)])
-                    (if (eq? u 'null) "" u)))
-      (define title (let ([t (hash-ref e title-f 'null)])
-                      (if (eq? t 'null) "" (strip-html t))))
-      (and (non-empty-string? title)
-           (non-empty-string? url)
-           (item (make-item-id 'news (normalize-url url))
-                 'news name (slug-domain url)
-                 (truncate-s title 200) url ""
-                 (parse-date-any (let ([d (hash-ref e date-f 'null)])
-                                   (if (eq? d 'null) #f d)))
-                 (hasheq 'weight weight)))))
-  (values (filter values items)
-          (source-status name "json" #t (length (filter values items)) #f)))
+  ;; Entries with a broken/missing URL (e.g. url_template referencing a
+  ;; field the entry lacks) are dropped here, keeping the builder pure.
+  (filter values
+          (for/list ([e (in-list (if (list? entries)
+                                     (take entries (min maxn (length entries)))
+                                     '()))]
+                     #:when (hash? e)
+                     #:when (let ([title (strip-html (~a (hash-ref e title-f 'null)))])
+                              (and (non-empty-string? title)
+                                   (not (and excepts (keyword-match? excepts title)))
+                                   (or (not kws) (keyword-match? kws title)))))
+            (define title (strip-html (~a (hash-ref e title-f 'null))))
+            (define url (if url-tmpl
+                            (fill-url-template url-tmpl e)
+                            (let ([u (hash-ref e url-f 'null)])
+                              (if (eq? u 'null) "" u))))
+            (and (non-empty-string? url)
+                 (item (make-item-id 'news (normalize-url url))
+                       'news name (slug-domain url)
+                       (truncate-s title 200) url ""
+                       (parse-date-loose (hash-ref e date-f 'null))
+                       (hasheq 'weight weight))))))
+
+(define (fetch-json-api w)
+  (define b (fetch-bytes (hash-ref w 'url)))
+  (define root (with-input-from-bytes b read-json))
+  (define items (json-api-items root w))
+  (values items
+          (source-status (hash-ref w 'name "api") "json" #t (length items) #f)))
 
 ;; ---- GitHub topic search ---------------------------------------------------
 
