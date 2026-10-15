@@ -106,7 +106,11 @@
       (link ((rel "alternate") (type "application/rss+xml")
              (title "pitboard RSS") (href "/rss.xml")))
       (link ((rel "icon") (href "/favicon.svg") (type "image/svg+xml")))
-      (script ((defer "defer") (src "/app.js"))))
+      (script ((defer "defer") (src "/app.js")))
+      ;; Analytics must live in this shell (and in site-tpl/*.html), never
+      ;; in generated site/ pages — every export regenerates those.
+      (script
+       "var _hmt = _hmt || [];\n(function() {\n  var hm = document.createElement(\"script\");\n  hm.src = \"https://hm.baidu.com/hm.js?8e2445912635226bcba0c400bfb6079d\";\n  var s = document.getElementsByTagName(\"script\")[0];\n  s.parentNode.insertBefore(hm, s);\n})();"))
      (body
       (nav ((class "nav"))
            (div ((class "nav-inner"))
