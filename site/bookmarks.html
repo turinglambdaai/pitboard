@@ -1,42 +1,119 @@
 <!DOCTYPE html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>书签 — pitboard</title><link rel="stylesheet" href="/styles.css"><script>
-var _hmt = _hmt || [];
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      书签 — pitboard
+    </title>
+    <meta name="description" content="pitboard — 汽车行业每日热点：开源项目、行业资讯、前沿论文，一天一块板。" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="application/rss+xml" title="pitboard RSS" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script defer="defer" src="/app.js">
+    </script>
+    <script>
+      var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?8e2445912635226bcba0c400bfb6079d";
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
-</script>
-</head>
-<body><nav class="nav"><div class="nav-inner"><a class="brand" href="/">⏱ pitboard</a>
-<div class="nav-links"><a href="/">今日</a><a href="/topics/">话题</a><a href="/archive.html">归档</a><a href="/about.html">关于</a><a href="/rss.xml">RSS</a></div></div></nav>
-<main><section class="hero hero-slim"><p class="kicker">BOOKMARKS</p><h1 class="hero-date hero-date-s">我的书签</h1>
-<p class="hero-meta">保存在本机浏览器 · <button class="tab" id="exp">导出 JSON</button>
-<label class="tab" style="cursor:pointer">导入 JSON<input id="imp" type="file" accept=".json" style="display:none"></label>
-<button class="tab" id="clr">清空</button></p>
-</section><ul class="archive-list" id="list"></ul>
-<script>
-var KEY="pitboard-bookmarks";
-function load(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
-function save(l){try{localStorage.setItem(KEY,JSON.stringify(l))}catch(e){}}
-function render(){var l=load(),R=document.getElementById("list");R.innerHTML="";
-if(!l.length){R.innerHTML='<li class="topic-row"><span class="src-dom">还没有书签——在今日榜卡片上点 ☆ 收藏</span></li>';return}
-l.forEach(function(m){var li=document.createElement("li");li.className="topic-row";
-li.innerHTML='<span class="topic-date">'+(m.d||"")+'</span><a href="'+m.u+'" target="_blank" rel="noopener">'+m.t+'</a><span class="src-dom">移除</span>';
-li.querySelector(".src-dom").style.cursor="pointer";
-li.querySelector(".src-dom").addEventListener("click",function(){save(load().filter(function(x){return x.u!==m.u}));render()});
-R.appendChild(li)})}
-document.getElementById("clr").addEventListener("click",function(){save([]);render()});
-document.getElementById("exp").addEventListener("click",function(){
-var blob=new Blob([JSON.stringify(load(),null,2)],{type:"application/json"});
-var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pitboard-bookmarks.json";a.click()});
-document.getElementById("imp").addEventListener("change",function(ev){
-var f=ev.target.files[0];if(!f)return;var r=new FileReader();
-r.onload=function(){try{var inc=JSON.parse(r.result);var l=load();
-inc.forEach(function(m){if(m&&m.u&&!l.some(function(x){return x.u===m.u}))l.push(m)});
-save(l);render()}catch(e){alert("导入失败：不是有效的书签 JSON")}};
-r.readAsText(f)});
-render();
-</script></main></body></html>
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="1.25" y="6" width="21.5" height="12" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7">
+            </rect>
+            <rect x="4.4" y="9.2" width="2.7" height="5.6" rx="0.6" fill="var(--accent)">
+            </rect>
+            <rect x="9.2" y="9.4" width="7" height="1.9" rx="0.9" fill="currentColor" opacity="0.5">
+            </rect>
+            <rect x="9.2" y="13" width="10.4" height="1.9" rx="0.9" fill="currentColor" opacity="0.28">
+            </rect>
+          </svg>
+          <span class="brand-name">
+            pitboard
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="/" data-i18n="nav.today">
+            今日
+          </a>
+          <a href="/topics/" data-i18n="nav.topics">
+            话题
+          </a>
+          <a href="/bookmarks.html" class="active" data-i18n="nav.bookmarks">
+            书签
+          </a>
+          <a href="/archive" data-i18n="nav.archive">
+            归档
+          </a>
+          <a href="/about" data-i18n="nav.about">
+            关于
+          </a>
+          <a href="/rss.xml">
+            RSS
+          </a>
+          <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+            EN
+          </button>
+          <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
+            ◐
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="hero hero-slim">
+        <p class="kicker">
+          BOOKMARKS
+        </p>
+        <h1 class="hero-date hero-date-s">
+          我的书签
+        </h1>
+        <p class="hero-meta">
+          保存在本机浏览器 · 
+          <button class="tab" id="exp">
+            导出 JSON
+          </button>
+          <label class="tab" style="cursor:pointer">
+            导入 JSON
+            <input id="imp" type="file" accept=".json" style="display:none" />
+          </label>
+          <button class="tab" id="clr">
+            清空
+          </button>
+        </p>
+      </section>
+      <ul class="archive-list" id="list">
+      </ul>
+    </main>
+    <footer class="footer">
+      <div class="footer-brand">
+        pitboard
+      </div>
+      <div data-i18n="footer.tagline">
+        汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
+      </div>
+      <div class="muted">
+        <span data-i18n="footer.license">
+          MIT 开源
+        </span>
+         · 
+        <a href="/llms.txt">
+          llms.txt
+        </a>
+         · 
+        <a href="/rss.xml" data-i18n="footer.rss">
+          RSS 订阅
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
