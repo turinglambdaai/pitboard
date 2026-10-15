@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+- 新信源「发现报告」（fxbaogao.com）券商研报：`json_api` 通道接入
+  匿名 SEO 端点（申万交运设备 + 电动化门控的电气设备），tier 2；
+  通道本身补齐与 rss/web_list 的能力对齐——`url_template`（无 url
+  字段条目的详情链接拼装）、`only/except_keywords` 门控、中文斜杠
+  日期解析（`2026/10/13`）。首次被真实配置触发暴露并修复三个 M1
+  潜伏 bug（path 解析 hash-ref 多参、date_field 键未符号化、#f 条目
+  泄漏）；新增 sources-test（7 例，纯函数无网络）。
 - 反哺抽包：`pitboard/sse.rkt` 与 `pitboard/feed.rkt` 抽成独立包
   [turinglambdaai/server-sent-events](https://github.com/turinglambdaai/server-sent-events) 与
   [turinglambdaai/feed](https://github.com/turinglambdaai/feed)。
