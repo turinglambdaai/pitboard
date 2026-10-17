@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      pitboard — 汽车行业每日热点
+    </title>
+    <meta name="description" content="pitboard — 汽车行业每日热点：开源项目、行业资讯、前沿论文，一天一块板。" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="application/rss+xml" title="pitboard RSS" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script defer="defer" src="/app.js">
+    </script>
+    <script>
+      var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8e2445912635226bcba0c400bfb6079d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="1.25" y="6" width="21.5" height="12" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7">
+            </rect>
+            <rect x="4.4" y="9.2" width="2.7" height="5.6" rx="0.6" fill="var(--accent)">
+            </rect>
+            <rect x="9.2" y="9.4" width="7" height="1.9" rx="0.9" fill="currentColor" opacity="0.5">
+            </rect>
+            <rect x="9.2" y="13" width="10.4" height="1.9" rx="0.9" fill="currentColor" opacity="0.28">
+            </rect>
+          </svg>
+          <span class="brand-name">
+            pitboard
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="/" class="active" data-i18n="nav.today">
+            今日
+          </a>
+          <a href="/topics/" data-i18n="nav.topics">
+            话题
+          </a>
+          <a href="/bookmarks.html" data-i18n="nav.bookmarks">
+            书签
+          </a>
+          <a href="/archive" data-i18n="nav.archive">
+            归档
+          </a>
+          <a href="/about" data-i18n="nav.about">
+            关于
+          </a>
+          <a href="/rss.xml">
+            RSS
+          </a>
+          <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+            EN
+          </button>
+          <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
+            ◐
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="kicker">
+              AUTOMOTIVE DAILY · 第 5 期
+            </p>
+            <h1 class="hero-date">
+              2026年10月17日
+              <span class="hero-wd">
+                 星期六
+              </span>
+            </h1>
+            <p class="hero-meta">
+              <span>
+                406
+                <span data-i18n="meta.hot">
+                   个热点
+                </span>
+              </span>
+              <span class="dot">
+                ·
+              </span>
+              <span>
+                420
+                <span data-i18n="meta.items">
+                   条原始条目
+                </span>
+              </span>
+              <span class="dot">
+                ·
+              </span>
+              <span>
+                29
+                <span data-i18n="meta.sources">
+                   个信源
+                </span>
+              </span>
+            </p>
+          </div>
+          <div class="board" aria-hidden="true">
+            <div class="board-label">
+              EDITION
+            </div>
+            <div class="board-num">
+              5
+            </div>
+            <div class="board-sub" data-i18n="board.sub">
+              PITBOARD · 每日出刊
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="quick">
+        <div class="quick-head">
+          <span class="kicker">
+            CURRENT HOT
+          </span>
+          <span class="quick-label" data-i18n="quick.label">
+            当前热点
+          </span>
+          <span class="quick-count">
+            TOP 5
+          </span>
+        </div>
+        <ol class="quick-list">
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.xchuxing.com/article/178579" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                01
+              </span>
+              <span class="quick-name">
+                智勇双全 方见真章限时惊喜价23.99万起 全新XT5 PHEV智混四驱Air版上市
+              </span>
+              <span class="quick-heat">
+                🔥5.9
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/jherrodthomas/automotive-skills-suite" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                02
+              </span>
+              <span class="quick-name">
+                jherrodthomas/automotive-skills-suite
+              </span>
+              <span class="quick-heat">
+                🔥5.7
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.youtube.com/watch?v=TWHXrLzUKJc" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                03
+              </span>
+              <span class="quick-name">
+                Tesla unveils 'flying' Roadster with SpaceX thruster…
+              </span>
+              <span class="quick-heat">
+                🔥5.3
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://arstechnica.com/cars/2026/10/tesla-turns-to-50-year-old-stunt-technology-as-it-tries-to-roadster-again" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                04
+              </span>
+              <span class="quick-name">
+                Tesla turns to 50-year-old stunt technology as it tr…
+              </span>
+              <span class="quick-heat">
+                🔥4.4
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.theverge.com/transportation/1013280/tesla-chp-fsd-crash" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                05
+              </span>
+              <span class="quick-name">
+                Tesla driver says he was asleep and using FSD when h…
+              </span>
+              <span class="quick-heat">
+                🔥3.6
+              </span>
+            </a>
+          </li>
+        </ol>
+      </section>
+      <div class="toolbar">
+        <div class="tabs" role="tablist" aria-label="按类型筛选">
+          <button class="tab active" type="button" data-filter="all">
+            <span data-i18n="tab.all">
+              全部
+            </span>
+            <span class="tab-n" data-count="all">
+              406
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="github">
+            <span data-i18n="tab.github">
+              开源
+            </span>
+            <span class="tab-n" data-count="github">
+              18
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="news">
+            <span data-i18n="tab.news">
+              资讯
+            </span>
+            <span class="tab-n" data-count="news">
+              362
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="paper">
+            <span data-i18n="tab.papers">
+              论文
+            </span>
+            <span class="tab-n" data-count="paper">
+              40
+            </span>
+          </button>
+          <span class="toolbar-hint" data-i18n="toolbar.hint">
+            按独立来源数排序
+          </span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="搜索标题 / 摘要…（按 / 聚焦）" data-i18n-placeholder="search.placeholder" autocomplete="off" aria-label="搜索热点" />
+      </div>
+      <div class="cards">
+        <article class="card" data-kind="news" data-text="智勇双全 方见真章限时惊喜价23.99万起 全新xt5 phev智混四驱air版上市 ">
+          <div class="card-top">
+            <span class="rank">
+              01
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.9
+              </span>
+              <span class="chip chip-rising" data-i18n="chip.rising">
+                ↑ 上升
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip">
+                2
+                <span data-i18n="card.sources">
+                   个独立来源
+                </span>
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:100%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.xchuxing.com/article/178579" target="_blank" rel="noopener">
+              智勇双全 方见真章限时惊喜价23.99万起 全新XT5 PHEV智混四驱Air版上市
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.xchuxing.com/article/178579" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.xchuxing.com
+            </a>
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/313694" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla unveils 'flying' roadster with spacex thrusters [video] ">
+          <div class="card-top">
+            <span class="rank">
+              02
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.3
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:12
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:89%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.youtube.com/watch?v=TWHXrLzUKJc" target="_blank" rel="noopener">
+              Tesla unveils 'flying' Roadster with SpaceX thrusters [video]
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.youtube.com/watch?v=TWHXrLzUKJc" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+            <a class="chip chip-src" href="https://www.cnn.com/2026/10/15/business/tesla-unveils-what-it-says-is-a-flying-car" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+            <a class="chip chip-src" href="https://www.youtube.com/watch?v=eqOfmtTJD1A" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+          </div>
+          <details class="more-src">
+            <summary>
+              <span data-i18n="card.more1">
+                展开全部 
+              </span>
+              3
+              <span data-i18n="card.more2">
+                 条来源
+              </span>
+            </summary>
+            <ul class="src-list">
+              <li>
+                <a href="https://www.youtube.com/watch?v=TWHXrLzUKJc" target="_blank" rel="noopener">
+                  Tesla's Flying Roadster Revealed [video]
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.cnn.com/2026/10/15/business/tesla-unveils-what-it-says-is-a-flying-car" target="_blank" rel="noopener">
+                  Tesla Unveils What It Says Is a Flying Car
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=eqOfmtTJD1A" target="_blank" rel="noopener">
+                  Tesla unveils 'flying' Roadster with SpaceX thrusters [video]
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </details>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla's new roadster takes flight ">
+          <div class="card-top">
+            <span class="rank">
+              03
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.5
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                08:18
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:76%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://x.com/i/broadcasts/1yKAPwNggRaxb" target="_blank" rel="noopener">
+              Tesla's New Roadster Takes Flight
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://x.com/i/broadcasts/1yKAPwNggRaxb" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+            <a class="chip chip-src" href="https://flyortesla.com/flying-tesla" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+            <a class="chip chip-src" href="https://www.wsj.com/business/autos/tesla-roadster-elon-musk-530c8e78" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+          </div>
+          <details class="more-src">
+            <summary>
+              <span data-i18n="card.more1">
+                展开全部 
+              </span>
+              3
+              <span data-i18n="card.more2">
+                 条来源
+              </span>
+            </summary>
+            <ul class="src-list">
+              <li>
+                <a href="https://x.com/i/broadcasts/1yKAPwNggRaxb" target="_blank" rel="noopener">
+                  Tesla Roadster
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://flyortesla.com/flying-tesla" target="_blank" rel="noopener">
+                  Tesla roadster vs. a plane LA to SF
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.wsj.com/business/autos/tesla-roadster-elon-musk-530c8e78" target="_blank" rel="noopener">
+                  Tesla's New Roadster Takes Flight
+                  <span class="src-dom">
+                    news.ycombinator.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </details>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla turns to 50-year-old stunt technology as it tries to roadster again ">
+          <div class="card-top">
+            <span class="rank">
+              04
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.4
+              </span>
+              <span class="chip chip-rising" data-i18n="chip.rising">
+                ↑ 上升
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip">
+                2
+                <span data-i18n="card.sources">
+                   个独立来源
+                </span>
+              </span>
+              <span class="card-time">
+                16:19
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:74%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://arstechnica.com/cars/2026/10/tesla-turns-to-50-year-old-stunt-technology-as-it-tries-to-roadster-again" target="_blank" rel="noopener">
+              Tesla turns to 50-year-old stunt technology as it tries to Roadster again
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://arstechnica.com/cars/2026/10/tesla-turns-to-50-year-old-stunt-technology-as-it-tries-to-roadster-again" target="_blank" rel="noopener">
+              资讯
+               · 
+              arstechnica.com
+            </a>
+            <a class="chip chip-src" href="https://arstechnica.com/cars/2026/10/tesla-turns-to-50-year-old-stunt-technology-as-it-tries-to-roadster-again/" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla driver says he was asleep and using fsd when he crashed into highway patrol cars after this horrific crash involving a tesla driver who said he was asleep and using the driver assist mode, the california highway patrol warns that &quot;despite its name, full self-driving is not fully autonomous. technology does not relieve drivers of their responsibility to safely operate their vehicles.&quot; video released by chp shows the tesla speeding […]">
+          <div class="card-top">
+            <span class="rank">
+              05
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.6
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                20:49
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:61%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.theverge.com/transportation/1013280/tesla-chp-fsd-crash" target="_blank" rel="noopener">
+              Tesla driver says he was asleep and using FSD when he crashed into highway patrol cars
+            </a>
+          </h2>
+          <p class="card-summary">
+            After this horrific crash involving a Tesla driver who said he was asleep and using the driver assist mode, the California Highway Patrol warns that "Despite its name, full self-driving is not fully autonomous. Technology does not relieve drivers of their responsibility to safely operate their vehicles." Video released by CHP shows the Tesla speeding […]
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.theverge.com/transportation/1013280/tesla-chp-fsd-crash" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.theverge.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="大众汽车全球首发id. tiguan 计划2027年初上市 ">
+          <div class="card-top">
+            <span class="rank">
+              06
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.5
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:59%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://auto.gasgoo.com/news/202610/16I70475016C109.shtml" target="_blank" rel="noopener">
+              大众汽车全球首发ID. Tiguan 计划2027年初上市
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://auto.gasgoo.com/news/202610/16I70475016C109.shtml" target="_blank" rel="noopener">
+              资讯
+               · 
+              auto.gasgoo.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="长安汽车管理层重大调整：朱华荣请辞董事长职务，赵非接棒，叶沛任总裁 ">
+          <div class="card-top">
+            <span class="rank">
+              07
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.5
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:59%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://auto.gasgoo.com/news/202610/16I70475133C109.shtml" target="_blank" rel="noopener">
+              长安汽车管理层重大调整：朱华荣请辞董事长职务，赵非接棒，叶沛任总裁
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://auto.gasgoo.com/news/202610/16I70475133C109.shtml" target="_blank" rel="noopener">
+              资讯
+               · 
+              auto.gasgoo.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="申报目录 | 有望 10 月下旬上市 比亚迪第三代秦 plus ev 登录申报目录 ">
+          <div class="card-top">
+            <span class="rank">
+              08
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:49%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.xchuxing.com/article/178540" target="_blank" rel="noopener">
+              申报目录 | 有望 10 月下旬上市 比亚迪第三代秦 PLUS EV 登录申报目录
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.xchuxing.com/article/178540" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.xchuxing.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="15万级纯电运动轿车新王来了！吉利银河tt正式上市 ">
+          <div class="card-top">
+            <span class="rank">
+              09
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:49%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.d1ev.com/carnews/xinche/312528" target="_blank" rel="noopener">
+              15万级纯电运动轿车新王来了！吉利银河TT正式上市
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/312528" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="猛士x700内饰曝光：7.5m远距xhud+后视镜慢行灯，30万级ar导航安全双升级 ">
+          <div class="card-top">
+            <span class="rank">
+              10
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:49%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.d1ev.com/carnews/xinche/312898" target="_blank" rel="noopener">
+              猛士X700内饰曝光：7.5m远距XHUD+后视镜慢行灯，30万级AR导航安全双升级
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/312898" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="simulation app speeds up electric truck battery design this article is brought to you by comsol . these days, no one blinks an eye at two-day, one-day, and even same-day package deliveries. despite the plethora of localized fulfillment and distributi on centers that have cropped up to meet the demand, delivery trucks still need to make considerably long drives, often over highways. to reduce fuel and maintenance costs as well as carbon emissions, companies are investing in electric trucks for their delivery fleets. while turning to electric trucks i…">
+          <div class="card-top">
+            <span class="rank">
+              11
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                16:49
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:49%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://spectrum.ieee.org/electric-truck-battery-design-simulation" target="_blank" rel="noopener">
+              Simulation App Speeds Up Electric Truck Battery Design
+            </a>
+          </h2>
+          <p class="card-summary">
+            This article is brought to you by COMSOL . These days, no one blinks an eye at two-day, one-day, and even same-day package deliveries. Despite the plethora of localized fulfillment and distributi on centers that have cropped up to meet the demand, delivery trucks still need to make considerably long drives, often over highways. To reduce fuel and maintenance costs as well as carbon emissions, companies are investing in electric trucks for their delivery fleets. While turning to electric trucks i…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://spectrum.ieee.org/electric-truck-battery-design-simulation" target="_blank" rel="noopener">
+              资讯
+               · 
+              spectrum.ieee.org
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="东风商用车发布全新绿智平台，覆盖五大能源路线并获8700台意向订单 ">
+          <div class="card-top">
+            <span class="rank">
+              12
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:45%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.diandongbang.com/news/167888.html" target="_blank" rel="noopener">
+              东风商用车发布全新绿智平台，覆盖五大能源路线并获8700台意向订单
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.diandongbang.com/news/167888.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.diandongbang.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="巴音布鲁克70公里山路大考，天工07起售价16.79万元 ">
+          <div class="card-top">
+            <span class="rank">
+              13
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:45%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.diandongbang.com/news/167889.html" target="_blank" rel="noopener">
+              巴音布鲁克70公里山路大考，天工07起售价16.79万元
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.diandongbang.com/news/167889.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.diandongbang.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="semicon west 2026 displays ai-era chipmaking, workforce development the trillion-dollar semiconductor industry is ready to adapt and expand its fab infrastructure for the ai wave. the post semicon west 2026 displays ai-era chipmaking, workforce development appeared first on ee times .">
+          <div class="card-top">
+            <span class="rank">
+              14
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.4
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                20:59
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:40%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.eetimes.com/semicon-west-2026-displays-ai-era-chipmaking-workforce-development" target="_blank" rel="noopener">
+              SEMICON West 2026 Displays AI-Era Chipmaking, Workforce Development
+            </a>
+          </h2>
+          <p class="card-summary">
+            The trillion-dollar semiconductor industry is ready to adapt and expand its fab infrastructure for the AI wave. The post SEMICON West 2026 Displays AI-Era Chipmaking, Workforce Development appeared first on EE Times .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.eetimes.com/semicon-west-2026-displays-ai-era-chipmaking-workforce-development" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.eetimes.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="the incredible flying tesla roadster is just for show last night, elon musk gave the people what they want: a car driving vertically up a multistory ramp, launching off the edge, executing a midair &quot;kickflip&quot; over a lineup of teslas, and landing via cold-gas thrusters. that's what the people want, right? &quot;we were promised flying cars,&quot; sure, but isn't the operative word in that […]">
+          <div class="card-top">
+            <span class="rank">
+              15
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.4
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:15
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:40%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.theverge.com/transportation/1012783/tesla-roadster-flying-stunt-production-reality-musk" target="_blank" rel="noopener">
+              The incredible flying Tesla Roadster is just for show
+            </a>
+          </h2>
+          <p class="card-summary">
+            Last night, Elon Musk gave the people what they want: a car driving vertically up a multistory ramp, launching off the edge, executing a midair "kickflip" over a lineup of Teslas, and landing via cold-gas thrusters. That's what the people want, right? "We were promised flying cars," sure, but isn't the operative word in that […]
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.theverge.com/transportation/1012783/tesla-roadster-flying-stunt-production-reality-musk" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.theverge.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="前华为小艺大模型负责人创业，押注“主动式物理ai” ">
+          <div class="card-top">
+            <span class="rank">
+              16
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.4
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:40%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.qbitai.com/2026/10/503446.html" target="_blank" rel="noopener">
+              前华为小艺大模型负责人创业，押注“主动式物理AI”
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.qbitai.com/2026/10/503446.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.qbitai.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="the 2026 trailseeker is subaru’s ‘quickest vehicle yet’ electrification adds a powerful new personality to subaru's suv, with 375 hp, solid range and awd that's worthy of a wards 10 best award.">
+          <div class="card-top">
+            <span class="rank">
+              17
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.2
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                15:58
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:37%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.wardsauto.com/news/the-2026-trailseeker-is-subarus-quickest-vehicle-yet/833185" target="_blank" rel="noopener">
+              The 2026 Trailseeker is Subaru’s ‘quickest vehicle yet’
+            </a>
+          </h2>
+          <p class="card-summary">
+            Electrification adds a powerful new personality to Subaru's SUV, with 375 hp, solid range and AWD that's worthy of a Wards 10 Best Award.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.wardsauto.com/news/the-2026-trailseeker-is-subarus-quickest-vehicle-yet/833185" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.wardsauto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="jaecoo × momenta完成首个无接管凯旋门智驾挑战，联合征服巴黎“最难魔鬼环岛” 当地时间10月12日，巴黎车展期间，jaecoo与momenta共同完成首个无接管的凯旋门智驾挑战。奇瑞欧洲（德国）研发中心总经理侯小红、奇瑞欧洲（德国）研发中心cto peter matkin与momenta全球解决方案首席架构师饶庆，乘坐搭载momenta r7世界模型的jaecoo 7测试车，挑战凯旋门“全球最魔鬼环岛”，展示双方共同打造的欧洲智驾体验。 挑战“全球最魔鬼环岛”，迎战智驾“最难考题” 智驾 路线 从拉德芳斯出发，跨越塞纳河，途经塞纳河畔讷伊，进入凯旋门环岛及周边街区，全程约11.38公里。沿途覆盖 无标线道路、12个环岛出口、反常规的“右方优先”、多方向车流汇入、施工绕行，以及行人、骑行者交互 等复杂场景。 其中，凯旋门环岛汇集12条大道，路面没有清晰的车道标线。与常见环岛不同，环岛内车辆还须让行右侧驶入的车辆。周围车流交错，通行空间不断变化，车辆需要准确判断让行与通行时机，并选择通往目标出口的路径。 面对这一挑战 ， jaecoo 7 与momenta 从容让行、灵活择路，从汇入到驶出，整段通行丝滑流畅，展现出媲美欧洲老司机的驾驶表现 。 进入周边街区后，车辆在…">
+          <div class="card-top">
+            <span class="rank">
+              18
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.2
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                12:17
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:37%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.leiphone.com/category/industrynews/LDt2TEiUf3wgi2Os.html" target="_blank" rel="noopener">
+              JAECOO × Momenta完成首个无接管凯旋门智驾挑战，联合征服巴黎“最难魔鬼环岛”
+            </a>
+          </h2>
+          <p class="card-summary">
+            当地时间10月12日，巴黎车展期间，JAECOO与Momenta共同完成首个无接管的凯旋门智驾挑战。奇瑞欧洲（德国）研发中心总经理侯小红、奇瑞欧洲（德国）研发中心CTO Peter Matkin与Momenta全球解决方案首席架构师饶庆，乘坐搭载Momenta R7世界模型的JAECOO 7测试车，挑战凯旋门“全球最魔鬼环岛”，展示双方共同打造的欧洲智驾体验。 挑战“全球最魔鬼环岛”，迎战智驾“最难考题” 智驾 路线 从拉德芳斯出发，跨越塞纳河，途经塞纳河畔讷伊，进入凯旋门环岛及周边街区，全程约11.38公里。沿途覆盖 无标线道路、12个环岛出口、反常规的“右方优先”、多方向车流汇入、施工绕行，以及行人、骑行者交互 等复杂场景。 其中，凯旋门环岛汇集12条大道，路面没有清晰的车道标线。与常见环岛不同，环岛内车辆还须让行右侧驶入的车辆。周围车流交错，通行空间不断变化，车辆需要准确判断让行与通行时机，并选择通往目标出口的路径。 面对这一挑战 ， JAECOO 7 与Momenta 从容让行、灵活择路，从汇入到驶出，整段通行丝滑流畅，展现出媲美欧洲老司机的驾驶表现 。 进入周边街区后，车辆在…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.leiphone.com/category/industrynews/LDt2TEiUf3wgi2Os.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.leiphone.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="rivian’s robotics partner taps former ford, tesla exec as its president doug field will work closely with rivian ceo and mind robotics founder rj scaringe to develop technology to revolutionize industrial work.">
+          <div class="card-top">
+            <span class="rank">
+              19
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.2
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                16:10
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:37%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.wardsauto.com/news/rivians-robotics-partner-taps-former-ford-tesla-exec-as-its-president/833060" target="_blank" rel="noopener">
+              Rivian’s robotics partner taps former Ford, Tesla exec as its president
+            </a>
+          </h2>
+          <p class="card-summary">
+            Doug Field will work closely with Rivian CEO and Mind Robotics founder RJ Scaringe to develop technology to revolutionize industrial work.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.wardsauto.com/news/rivians-robotics-partner-taps-former-ford-tesla-exec-as-its-president/833060" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.wardsauto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="lepas to reveal first concept car and showcase technology for next gen models technology showcase will preview innovations for future models, including the l6 and l4, due in the uk in coming months.">
+          <div class="card-top">
+            <span class="rank">
+              20
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.1
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:38
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:35%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.just-auto.com/news/lepas-to-reveal-first-concept-car-and-showcase-technology-for-next-gen-models" target="_blank" rel="noopener">
+              Lepas to reveal first concept car and showcase technology for next gen models
+            </a>
+          </h2>
+          <p class="card-summary">
+            Technology showcase will preview innovations for future models, including the L6 and L4, due in the UK in coming months.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.just-auto.com/news/lepas-to-reveal-first-concept-car-and-showcase-technology-for-next-gen-models" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.just-auto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="software gains cut volvo cars infotainment dev feature costs by 40% accenture and google cloud say they have transformed software development with volvo cars.">
+          <div class="card-top">
+            <span class="rank">
+              21
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.0
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:25
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:33%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.just-auto.com/news/software-gains-cut-volvo-cars-infotainment-dev-feature-costs-by-40" target="_blank" rel="noopener">
+              Software gains cut Volvo Cars infotainment dev feature costs by 40%
+            </a>
+          </h2>
+          <p class="card-summary">
+            Accenture and Google Cloud say they have transformed software development with Volvo Cars.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.just-auto.com/news/software-gains-cut-volvo-cars-infotainment-dev-feature-costs-by-40" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.just-auto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="waymos robotaxis are headed to canada the company will start off by testing its self-driving vehicles on toronto's streets.">
+          <div class="card-top">
+            <span class="rank">
+              22
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.0
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                16:06
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:33%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://techcrunch.com/2026/10/16/waymos-robotaxis-are-headed-to-canada" target="_blank" rel="noopener">
+              Waymos robotaxis are headed to Canada
+            </a>
+          </h2>
+          <p class="card-summary">
+            The company will start off by testing its self-driving vehicles on Toronto's streets.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://techcrunch.com/2026/10/16/waymos-robotaxis-are-headed-to-canada" target="_blank" rel="noopener">
+              资讯
+               · 
+              techcrunch.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="data center power a prominent highlight of ocp 2026 the ocp summit showcased power delivery boards, psu designs, hot-swap controllers, and event-based telemetry. the post data center power a prominent highlight of ocp 2026 appeared first on ee times .">
+          <div class="card-top">
+            <span class="rank">
+              23
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                15:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:32%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.eetimes.com/data-center-power-a-prominent-highlight-of-ocp-2026" target="_blank" rel="noopener">
+              Data Center Power a Prominent Highlight of OCP 2026
+            </a>
+          </h2>
+          <p class="card-summary">
+            The OCP Summit showcased power delivery boards, PSU designs, hot-swap controllers, and event-based telemetry. The post Data Center Power a Prominent Highlight of OCP 2026 appeared first on EE Times .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.eetimes.com/data-center-power-a-prominent-highlight-of-ocp-2026" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.eetimes.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="推翻一切！nick cammarata 万字长文宣告，ai 不是黑箱，99% 神经元清晰可见 亲手推翻自己十年前的结论，可解释性大佬 nick cammarata 这次读懂 ai 脑回路。 作者丨高允毅 编辑丨岑 峰 “大模型把猫和汽车分为一类，不是弱智。” 在 ai 可解释性领域，有一个十年的经典案例，是 inceptionv1 模型里编号 4e:55 的神经元 。这个神经元在看到“猫脸”和“汽车车头”时，都会被强烈激活。这意味着， 整个神经网络的底层逻辑是不可解释的 。 于是整整十年，整个领域都沿着 “拆” 的思路往前走：既然网络是一团乱麻的黑盒，那就发明工具把它拆开。稀疏自编码器（sae）分解、特征字典、特征解缠…… 都是先把纠缠的特征拆成一个个独立的、人类能懂的单元，再去理解。 就在昨天， openai早期机制可解释性研究的科学家，也是当年将该案例推向经典的《zoom in》的共同作者，nick cammarata ，亲自推翻了自己当年所下的结论。 “这个神经元根本不认识猫，也不认识车。它检测的是v 字几何形状，不管是狐狸的尖脸、喷射的火焰，都会激活它的正极；而它的负极，是圆形的东西。” 他直言，这个误判的根源，或许是当年的观测工具太低级。 2023 年他在 opena…">
+          <div class="card-top">
+            <span class="rank">
+              24
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                11:33
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:32%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.leiphone.com/category/yanxishe/Vr0JmbkUeZV5D9Qz.html" target="_blank" rel="noopener">
+              推翻一切！Nick Cammarata 万字长文宣告，AI 不是黑箱，99% 神经元清晰可见
+            </a>
+          </h2>
+          <p class="card-summary">
+            亲手推翻自己十年前的结论，可解释性大佬 Nick Cammarata 这次读懂 AI 脑回路。 作者丨高允毅 编辑丨岑 峰 “大模型把猫和汽车分为一类，不是弱智。” 在 AI 可解释性领域，有一个十年的经典案例，是 InceptionV1 模型里编号 4e:55 的神经元 。这个神经元在看到“猫脸”和“汽车车头”时，都会被强烈激活。这意味着， 整个神经网络的底层逻辑是不可解释的 。 于是整整十年，整个领域都沿着 “拆” 的思路往前走：既然网络是一团乱麻的黑盒，那就发明工具把它拆开。稀疏自编码器（SAE）分解、特征字典、特征解缠…… 都是先把纠缠的特征拆成一个个独立的、人类能懂的单元，再去理解。 就在昨天， OpenAI早期机制可解释性研究的科学家，也是当年将该案例推向经典的《Zoom In》的共同作者，Nick Cammarata ，亲自推翻了自己当年所下的结论。 “这个神经元根本不认识猫，也不认识车。它检测的是V 字几何形状，不管是狐狸的尖脸、喷射的火焰，都会激活它的正极；而它的负极，是圆形的东西。” 他直言，这个误判的根源，或许是当年的观测工具太低级。 2023 年他在 OpenA…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.leiphone.com/category/yanxishe/Vr0JmbkUeZV5D9Qz.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.leiphone.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="franco-german car deal a ‘historic mistake’ that weakens climate ambition and europe’s car industry deal to loosen the eu’s car co₂ standards and iaa requirements a ‘historic mistake’ that puts europe’s position in the global ev and battery race in jeopardy. t&amp;e has labelled the french and german government’s agreement to weaken the eu’s car co₂ standards and iaa requirements as a ‘historic mistake’. ... [continued] the post franco-german car deal a ‘historic mistake’ that weakens climate ambition and europe’s car industry appeared first on cleantechnica .">
+          <div class="card-top">
+            <span class="rank">
+              25
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                00:06
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:32%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://cleantechnica.com/2026/10/16/franco-german-car-deal-a-historic-mistake-that-weakens-climate-ambition-and-europes-car-industry" target="_blank" rel="noopener">
+              Franco-German Car Deal A ‘Historic Mistake’ That Weakens Climate Ambition And Europe’s Car Industry
+            </a>
+          </h2>
+          <p class="card-summary">
+            Deal to loosen the EU’s car CO₂ standards and IAA requirements a ‘historic mistake’ that puts Europe’s position in the global EV and battery race in jeopardy. T&amp;E has labelled the French and German government’s agreement to weaken the EU’s car CO₂ standards and IAA requirements as a ‘historic mistake’. ... [continued] The post Franco-German Car Deal A ‘Historic Mistake’ That Weakens Climate Ambition And Europe’s Car Industry appeared first on CleanTechnica .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://cleantechnica.com/2026/10/16/franco-german-car-deal-a-historic-mistake-that-weakens-climate-ambition-and-europes-car-industry" target="_blank" rel="noopener">
+              资讯
+               · 
+              cleantechnica.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="porsche’s electric macan turbo is an automotive existential crisis the 2026 porsche macan turbo ev is a two-row crossover with 630 horsepower and a 100-kilowatt-hour battery.">
+          <div class="card-top">
+            <span class="rank">
+              26
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                19:40
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:30%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://techcrunch.com/2026/10/16/porsches-electric-macan-turbo-is-an-automotive-existential-crisis" target="_blank" rel="noopener">
+              Porsche’s electric Macan Turbo is an automotive existential crisis
+            </a>
+          </h2>
+          <p class="card-summary">
+            The 2026 Porsche Macan Turbo EV is a two-row crossover with 630 horsepower and a 100-kilowatt-hour battery.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://techcrunch.com/2026/10/16/porsches-electric-macan-turbo-is-an-automotive-existential-crisis" target="_blank" rel="noopener">
+              资讯
+               · 
+              techcrunch.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="delaying ets2 will not protect households from the next energy crisis t&amp;e’s kädi ristkok explains why postponing the ets2 is a bad idea as eu leaders meet to discuss competitiveness and soaring energy bills, italy, poland and czechia are pushing to postpone europe’s new carbon market for road transport and heating fuels (ets2). their concern about rising costs is legitimate. but ... [continued] the post delaying ets2 will not protect households from the next energy crisis appeared first on cleantechnica .">
+          <div class="card-top">
+            <span class="rank">
+              27
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                23:48
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:30%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://cleantechnica.com/2026/10/16/delaying-ets2-will-not-protect-households-from-the-next-energy-crisis" target="_blank" rel="noopener">
+              Delaying ETS2 Will Not Protect Households from the Next Energy Crisis
+            </a>
+          </h2>
+          <p class="card-summary">
+            T&amp;E’s Kädi Ristkok explains why postponing the ETS2 is a bad idea As EU leaders meet to discuss competitiveness and soaring energy bills, Italy, Poland and Czechia are pushing to postpone Europe’s new carbon market for road transport and heating fuels (ETS2). Their concern about rising costs is legitimate. But ... [continued] The post Delaying ETS2 Will Not Protect Households from the Next Energy Crisis appeared first on CleanTechnica .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://cleantechnica.com/2026/10/16/delaying-ets2-will-not-protect-households-from-the-next-energy-crisis" target="_blank" rel="noopener">
+              资讯
+               · 
+              cleantechnica.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="nobody punches puppies on our watch oh, snap! you gotta be a member to enjoy this sweet, sweet content. why not join today? click here, or on the graphic!   the post nobody punches puppies on our watch appeared first on the autopian .">
+          <div class="card-top">
+            <span class="rank">
+              28
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.7
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                22:49
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:28%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.theautopian.com/nobody-punches-puppies-on-our-watch" target="_blank" rel="noopener">
+              Nobody Punches Puppies On Our Watch
+            </a>
+          </h2>
+          <p class="card-summary">
+            Oh, snap! You gotta be a Member to enjoy this sweet, sweet content. Why not join today? Click here, or on the graphic!   The post Nobody Punches Puppies On Our Watch appeared first on The Autopian .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.theautopian.com/nobody-punches-puppies-on-our-watch" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.theautopian.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla driver says he was asleep on fsd when he hit chp car, 2 officers hurt two california highway patrol officers are recovering from serious injuries after a tesla drove into their patrol car at a crash scene on interstate 80 in fairfield. the 22-year-old driver told investigators he was asleep with tesla’s “full self-driving” engaged. chp released dashcam video of the impact on thursday. it’s the latest tesla to plow into an emergency scene, a failure federal regulators started investigating five years ago. more…">
+          <div class="card-top">
+            <span class="rank">
+              29
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.7
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                17:14
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:28%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://electrek.co/2026/10/16/tesla-fsd-crash-chp-patrol-car-driver-asleep-fairfield" target="_blank" rel="noopener">
+              Tesla driver says he was asleep on FSD when he hit CHP car, 2 officers hurt
+            </a>
+          </h2>
+          <p class="card-summary">
+            Two California Highway Patrol officers are recovering from serious injuries after a Tesla drove into their patrol car at a crash scene on Interstate 80 in Fairfield. The 22-year-old driver told investigators he was asleep with Tesla’s “Full Self-Driving” engaged. CHP released dashcam video of the impact on Thursday. It’s the latest Tesla to plow into an emergency scene, a failure federal regulators started investigating five years ago. more…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://electrek.co/2026/10/16/tesla-fsd-crash-chp-patrol-car-driver-asleep-fairfield" target="_blank" rel="noopener">
+              资讯
+               · 
+              electrek.co
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla unveils new roadster that moves upside down and lifts into the air tesla has demonstrated the second-generation roadster, showcasing advanced vehicle engineering including ground-sealing fan systems for downforce and cold-gas thrusters for aerial maneuvers. the showcase highlighted a 0-60 mph time of one second and unconventional driving modes like inverted traversal. production is slated for 2028, with technical details emerging on the propulsion and control systems used for these maneuvers. what did the presentation show? tesla ceo elon musk, chief design off…">
+          <div class="card-top">
+            <span class="rank">
+              30
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.7
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                10:28
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:28%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://dev.to/hacksgr/tesla-unveils-new-roadster-that-moves-upside-down-and-lifts-into-the-air-2490" target="_blank" rel="noopener">
+              Tesla unveils new Roadster that moves upside down and lifts into the air
+            </a>
+          </h2>
+          <p class="card-summary">
+            Tesla has demonstrated the second-generation Roadster, showcasing advanced vehicle engineering including ground-sealing fan systems for downforce and cold-gas thrusters for aerial maneuvers. The showcase highlighted a 0-60 mph time of one second and unconventional driving modes like inverted traversal. Production is slated for 2028, with technical details emerging on the propulsion and control systems used for these maneuvers. What did the presentation show? Tesla CEO Elon Musk, chief design off…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://dev.to/hacksgr/tesla-unveils-new-roadster-that-moves-upside-down-and-lifts-into-the-air-2490" target="_blank" rel="noopener">
+              资讯
+               · 
+              dev.to
+            </a>
+          </div>
+        </article>
+      </div>
+      <section class="lane-head">
+        <span class="kicker">
+          OPEN SOURCE RADAR
+        </span>
+        <h2 class="lane-title" data-i18n="lane.opensource">
+          开源雷达
+        </h2>
+      </section>
+      <div class="cards">
+        <article class="card" data-kind="github" data-text="jherrodthomas/automotive-skills-suite 100+ installable claude skills covering engineering areas such as, iso 26262 functional safety, iso/sae 21434 cybersecurity, iso 21448 sotif, aiag-vda quality (apqp/ppap/fmea), automotive spice, and continuous improvement tools — every builder paired with a confirmation reviewer.">
+          <div class="card-top">
+            <span class="rank">
+              01
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                11:10
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:96%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/jherrodthomas/automotive-skills-suite" target="_blank" rel="noopener">
+              jherrodthomas/automotive-skills-suite
+            </a>
+          </h2>
+          <p class="card-summary">
+            100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/jherrodthomas/automotive-skills-suite" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★3227
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="autoas/as simple autosar basic software">
+          <div class="card-top">
+            <span class="rank">
+              02
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.1
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                00:23
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:86%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/autoas/as" target="_blank" rel="noopener">
+              autoas/as
+            </a>
+          </h2>
+          <p class="card-summary">
+            Simple AUTOSAR Basic Software
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/autoas/as" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★946
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="worldbench/awesome-vla-for-ad 🌐 vision-language-action models for autonomous driving: past, present, and future">
+          <div class="card-top">
+            <span class="rank">
+              03
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.9
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                01:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:83%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" rel="noopener">
+              worldbench/awesome-vla-for-ad
+            </a>
+          </h2>
+          <p class="card-summary">
+            🌐 Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★502
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="commaai/opendbc a python api for your car">
+          <div class="card-top">
+            <span class="rank">
+              04
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                23:46
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:79%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/commaai/opendbc" target="_blank" rel="noopener">
+              commaai/opendbc
+            </a>
+          </h2>
+          <p class="card-summary">
+            a Python API for your car
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/commaai/opendbc" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★3497
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="autowarefoundation/vision_pilot free and fully open-source l2 adas stack powered by end-to-end ai technology">
+          <div class="card-top">
+            <span class="rank">
+              05
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.4
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                16:33
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:74%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/autowarefoundation/vision_pilot" target="_blank" rel="noopener">
+              autowarefoundation/vision_pilot
+            </a>
+          </h2>
+          <p class="card-summary">
+            Free and fully open-source L2 ADAS stack powered by End-to-End AI technology
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/autowarefoundation/vision_pilot" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★913
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="autowarefoundation/autoware autoware - the world's leading open-source software project for autonomous driving">
+          <div class="card-top">
+            <span class="rank">
+              06
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.4
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                15:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:74%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/autowarefoundation/autoware" target="_blank" rel="noopener">
+              autowarefoundation/autoware
+            </a>
+          </h2>
+          <p class="card-summary">
+            Autoware - the world's leading open-source software project for autonomous driving
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/autowarefoundation/autoware" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★12162
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="carla-simulator/carla open-source simulator for autonomous driving research.">
+          <div class="card-top">
+            <span class="rank">
+              07
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.3
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                14:17
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:72%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              carla-simulator/carla
+            </a>
+          </h2>
+          <p class="card-summary">
+            Open-source simulator for autonomous driving research.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★14500
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="gotonote/autopilot-notes 自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、bev、transformer、adas、cvpr、特斯拉ai day、大模型、chatgpt等内容.">
+          <div class="card-top">
+            <span class="rank">
+              08
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.0
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-16
+              </span>
+              <span class="card-time">
+                15:02
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:67%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/gotonote/Autopilot-Notes" target="_blank" rel="noopener">
+              gotonote/Autopilot-Notes
+            </a>
+          </h2>
+          <p class="card-summary">
+            自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/gotonote/Autopilot-Notes" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★840
+              </span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-brand">
+        pitboard
+      </div>
+      <div data-i18n="footer.tagline">
+        汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
+      </div>
+      <div class="muted">
+        <span data-i18n="footer.license">
+          MIT 开源
+        </span>
+         · 
+        <a href="/llms.txt">
+          llms.txt
+        </a>
+         · 
+        <a href="/rss.xml" data-i18n="footer.rss">
+          RSS 订阅
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

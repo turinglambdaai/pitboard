@@ -16,19 +16,70 @@
     </language>
     <item>
       <title>
-        权益价 20.59-21.59 万元 新款阿维塔 06 上市
+        智勇双全 方见真章限时惊喜价23.99万起 全新XT5 PHEV智混四驱Air版上市
       </title>
       <link>
-        https://www.xchuxing.com/article/178496
+        https://www.xchuxing.com/article/178579
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:408975468871798223
+        pitboard:2026-10-17:hot:595921071919269787
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:28am
+        Saturday, October 17th, 2026 1:23:27am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        jherrodthomas/automotive-skills-suite
+      </title>
+      <link>
+        https://github.com/jherrodthomas/automotive-skills-suite
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:1101267235883137453
+      </guid>
+      <description>
+        100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 11:10:47am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Tesla unveils 'flying' Roadster with SpaceX thrusters [video]
+      </title>
+      <link>
+        https://www.youtube.com/watch?v=TWHXrLzUKJc
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:708006987922892163
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 6:20:36am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        autoas/as
+      </title>
+      <link>
+        https://github.com/autoas/as
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:448351953270255928
+      </guid>
+      <description>
+        Simple AUTOSAR Basic Software
+      </description>
+      <pubDate>
+        Saturday, October 17th, 2026 12:23:50am
       </pubDate>
     </item>
     <item>
@@ -39,13 +90,13 @@
         https://github.com/worldbench/awesome-vla-for-ad
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:1048664683373377968
+        pitboard:2026-10-17:hot:1048664683373377968
       </guid>
       <description>
         🌐 Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
       </description>
       <pubDate>
-        Friday, October 16th, 2026 12:39:21am
+        Saturday, October 17th, 2026 1:00:37am
       </pubDate>
     </item>
     <item>
@@ -56,30 +107,30 @@
         https://github.com/commaai/opendbc
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:737223512686484068
+        pitboard:2026-10-17:hot:737223512686484068
       </guid>
       <description>
         a Python API for your car
       </description>
       <pubDate>
-        Thursday, October 15th, 2026 11:31:02pm
+        Friday, October 16th, 2026 11:46:50pm
       </pubDate>
     </item>
     <item>
       <title>
-        carla-simulator/carla
+        Tesla's New Roadster Takes Flight
       </title>
       <link>
-        https://github.com/carla-simulator/carla
+        https://x.com/i/broadcasts/1yKAPwNggRaxb
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:371904745613176677
+        pitboard:2026-10-17:hot:698334351807051726
       </guid>
       <description>
-        Open-source simulator for autonomous driving research.
+        
       </description>
       <pubDate>
-        Thursday, October 15th, 2026 5:13:16pm
+        Friday, October 16th, 2026 7:24:49am
       </pubDate>
     </item>
     <item>
@@ -90,13 +141,64 @@
         https://github.com/autowarefoundation/vision_pilot
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:744292055535854117
+        pitboard:2026-10-17:hot:744292055535854117
       </guid>
       <description>
         Free and fully open-source L2 ADAS stack powered by End-to-End AI technology
       </description>
       <pubDate>
-        Thursday, October 15th, 2026 4:19:44pm
+        Friday, October 16th, 2026 4:33:42pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        autowarefoundation/autoware
+      </title>
+      <link>
+        https://github.com/autowarefoundation/autoware
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:565200565018763934
+      </guid>
+      <description>
+        Autoware - the world's leading open-source software project for autonomous driving
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 3:13:43pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Tesla turns to 50-year-old stunt technology as it tries to Roadster again
+      </title>
+      <link>
+        https://arstechnica.com/cars/2026/10/tesla-turns-to-50-year-old-stunt-technology-as-it-tries-to-roadster-again
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:421246484111891566
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 2:03:25pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        carla-simulator/carla
+      </title>
+      <link>
+        https://github.com/carla-simulator/carla
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:371904745613176677
+      </guid>
+      <description>
+        Open-source simulator for autonomous driving research.
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 2:17:42pm
       </pubDate>
     </item>
     <item>
@@ -107,251 +209,149 @@
         https://github.com/gotonote/Autopilot-Notes
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:991420061623841730
+        pitboard:2026-10-17:hot:991420061623841730
       </guid>
       <description>
         自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
       </description>
       <pubDate>
-        Thursday, October 15th, 2026 3:22:30pm
+        Friday, October 16th, 2026 3:02:48pm
       </pubDate>
     </item>
     <item>
       <title>
-        长飞先进技术发布会召开 瞄准车规主驱及AI数据中心
+        ecubus/EcuBus-Pro
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/16I70474975C103.shtml
+        https://github.com/ecubus/EcuBus-Pro
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:815149289335934394
+        pitboard:2026-10-17:hot:487205003557968962
+      </guid>
+      <description>
+        A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 5:55:13am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Tesla driver says he was asleep and using FSD when he crashed into highway patrol cars
+      </title>
+      <link>
+        https://www.theverge.com/transportation/1013280/tesla-chp-fsd-crash
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:912474212231623474
+      </guid>
+      <description>
+        After this horrific crash involving a Tesla driver who said he was asleep and using the driver assist mode, the California Highway Patrol warns that "Despite its name, full self-driving is not fully autonomous. Technology does not relieve drivers of their responsibility to safely operate their vehicles." Video released by CHP shows the Tesla speeding […]
+      </description>
+      <pubDate>
+        Friday, October 16th, 2026 8:49:04pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Tesla Roadster: It Flies, Flips, and Hits 0-60 in 0.81s
+      </title>
+      <link>
+        https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-17:hot:371297866744076828
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
+        Friday, October 16th, 2026 2:46:01am
       </pubDate>
     </item>
     <item>
       <title>
-        热点对话：全域AI——汽车正在迈向统一智能体吗？
+        大众汽车全球首发ID. Tiguan 计划2027年初上市
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/16I70474974C106.shtml
+        https://auto.gasgoo.com/news/202610/16I70475016C109.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:224992286036514114
+        pitboard:2026-10-17:hot:674292586728911026
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
+        Saturday, October 17th, 2026 1:23:26am
       </pubDate>
     </item>
     <item>
       <title>
-        工信部发布人工智能 "产业导航图"，汽车列重点赋能领域
+        长安汽车管理层重大调整：朱华荣请辞董事长职务，赵非接棒，叶沛任总裁
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/16I70475012C108.shtml
+        https://auto.gasgoo.com/news/202610/16I70475133C109.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:466706310204974569
+        pitboard:2026-10-17:hot:241767231903994871
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
+        Saturday, October 17th, 2026 1:23:26am
       </pubDate>
     </item>
     <item>
       <title>
-        因湃电池第30万套电池正式下线，为广汽自研
+        欣旺达王明旺：三大趋势为先进电池产业打开发展空间
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/16I70475013C501.shtml
+        https://auto.gasgoo.com/news/202610/16I70475140C501.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:651526478227454084
+        pitboard:2026-10-17:hot:976365026061100235
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
+        Saturday, October 17th, 2026 1:23:26am
       </pubDate>
     </item>
     <item>
       <title>
-        森萨塔科技推出OmniNode™，面向商用车辆的即用型高压配电解决方案
+        Elon Musk reveals ' first flying car' at Tesla event – Tesla
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/15I70474943C501.shtml
+        https://www.youtube.com/watch?v=j8lbY_D7xcY
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:51677117660253909
+        pitboard:2026-10-17:hot:1122927527577331227
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
+        Friday, October 16th, 2026 5:24:10am
       </pubDate>
     </item>
     <item>
       <title>
-        工信部等三部门联合调查尊界V800刹车踏板支架断裂问题
+        中国碳化硅，造得出来之后
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/15I70474972C109.shtml
+        https://auto.gasgoo.com/news/202610/17I70475116C103.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:525897406949592246
+        pitboard:2026-10-17:hot:515704206683493995
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 1:32:27am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        奕境X9交付新进展：选装车型开启生产
-      </title>
-      <link>
-        https://auto.gasgoo.com/news/202610/16I70475018C107.shtml
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:275951123647970046
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 1:32:27am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        Volvo will use Nvidia’s tech for hands-free, point-to-point driving
-      </title>
-      <link>
-        https://www.theverge.com/transportation/1011653/volvo-nvidia-autonomous-driving-level-2-hands-free-urban
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:838722734992414404
-      </guid>
-      <description>
-        Volvo plans to launch hands-free, point-to-point driving by 2030, powered by Nvidia's latest AI technology. The Chinese-owned, Swedish-designed automaker said Thursday it would use Nvidia's autonomous driving stack to power a new partially automated driving system similar to Tesla's Full Self-Driving (Supervised). Volvo says the new point-to-point system will be Level 2++, meaning it can […]
-      </description>
-      <pubDate>
-        Thursday, October 15th, 2026 5:30:00pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        像可回收火箭一样移动？特斯拉全新Roadster II发布 再次刷新认知 9分钟前 100 0 [汽车之家 新车首发] 北京时间10月16日，特斯拉全新Roadster II正式发布，这是继2017年特斯拉全新Roadster首发之后（未最终交...
-      </title>
-      <link>
-        https://www.autohome.com.cn/news/202610/1317798.html#pvareaid=102624
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:518997118675596427
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 1:33:01am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        Tesla Debuts 2026 Roadster
-      </title>
-      <link>
-        https://www.nytimes.com/2026/10/15/business/tesla-roadster-2026-ev-sports-car.html
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:674407991962557454
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 12:57:58am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        上半年热销轿车盘点：比亚迪无缘前十 燃油车依然是主力？
-      </title>
-      <link>
-        https://www.autohome.com.cn/news/202607/1315940.html#pvareaid=102623
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:1049025938651351299
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 1:33:01am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        Company that put gas engines in Teslas goes bankrupt owing $37M
-      </title>
-      <link>
-        https://electrek.co/2026/10/15/obrist-hyperhybrid-gas-engine-tesla-bankruptcy/
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:555300814665958339
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Thursday, October 15th, 2026 11:15:39pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        文章 ET5T 3.0版本（最美纯电旅行车）即将到来  Hello 呀 各位新老朋友们最近看大家关于ET5T 3.0产品讨论的热火朝天我简单描述一下目前已知的信息和我对于这款产品的理解目前车身的长度我大概率认为会在 MarkWu 点赞 18 评论 51
-      </title>
-      <link>
-        https://www.xchuxing.com/article/178413
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:352589991513179209
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 1:32:28am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        文章 新出行原创 探店 142期：售价保持不变？ 探店 2026 款理想 i6 原计划于 9 月底开启预定的 2026 款理想 i6，在充分收集市场与用户反馈后，将正式上市时间调整至 10 月 28 日。伴随着国内上市节点的敲定，2026 阿迪同学 点赞 12 评论 3
-      </title>
-      <link>
-        https://www.xchuxing.com/article/178410
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-16:hot:813766816160931386
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Friday, October 16th, 2026 1:32:28am
+        Saturday, October 17th, 2026 1:23:26am
       </pubDate>
     </item>
   </channel>

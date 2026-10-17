@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <rect width="1200" height="630" fill="#17140f"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#c15f3c"/>
+  <rect x="0" y="6" width="14" height="6" fill="#faf7f2"/>
+  <rect x="28" y="6" width="14" height="6" fill="#faf7f2"/>
+  <rect x="56" y="6" width="14" height="6" fill="#faf7f2"/>
+  <text x="80" y="210" font-family="Menlo, monospace" font-size="30"
+     fill="#c15f3c" letter-spacing="8">PITBOARD · AUTOMOTIVE DAILY</text>
+  <text x="80" y="330" font-family="PingFang SC, sans-serif"
+     font-size="88" font-weight="800" fill="#f5efe2">2026-10-17</text>
+  <text x="80" y="430" font-family="PingFang SC, sans-serif"
+     font-size="34" fill="#a49d92">智勇双全 方见真章限时惊喜价23.99万起 全新XT5 PHEV智混四驱Air版…</text>
+  <rect x="80" y="500" width="1040" height="1" fill="#3a332a"/>
+  <text x="80" y="560" font-family="Menlo, monospace" font-size="24"
+     fill="#a49d92">pitboard.jrtx.site</text>
+</svg>
