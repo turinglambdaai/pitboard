@@ -16,342 +16,342 @@
     </language>
     <item>
       <title>
+        commaai/opendbc
+      </title>
+      <link>
+        https://github.com/commaai/opendbc
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-20:hot:737223512686484068
+      </guid>
+      <description>
+        a Python API for your car
+      </description>
+      <pubDate>
+        Tuesday, October 20th, 2026 1:23:02am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        carla-simulator/carla
+      </title>
+      <link>
+        https://github.com/carla-simulator/carla
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-20:hot:371904745613176677
+      </guid>
+      <description>
+        Open-source simulator for autonomous driving research.
+      </description>
+      <pubDate>
+        Monday, October 19th, 2026 7:48:36pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        cantools/cantools
+      </title>
+      <link>
+        https://github.com/cantools/cantools
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-20:hot:192973104646746202
+      </guid>
+      <description>
+        CAN bus tools.
+      </description>
+      <pubDate>
+        Monday, October 19th, 2026 6:38:29pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        gotonote/Autopilot-Notes
+      </title>
+      <link>
+        https://github.com/gotonote/Autopilot-Notes
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-20:hot:991420061623841730
+      </guid>
+      <description>
+        自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
+      </description>
+      <pubDate>
+        Monday, October 19th, 2026 5:13:41pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
         autowarefoundation/autoware
       </title>
       <link>
         https://github.com/autowarefoundation/autoware
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:565200565018763934
+        pitboard:2026-10-20:hot:565200565018763934
       </guid>
       <description>
         Autoware - the world's leading open-source software project for autonomous driving
       </description>
       <pubDate>
-        Sunday, October 18th, 2026 7:17:52pm
+        Monday, October 19th, 2026 11:46:56am
       </pubDate>
     </item>
     <item>
       <title>
-        欧洲街头的中国智驾，离全球供应链还有多远
+        autowarefoundation/vision_pilot
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/19I70475117C601.shtml
+        https://github.com/autowarefoundation/vision_pilot
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:49094621266175757
+        pitboard:2026-10-20:hot:744292055535854117
+      </guid>
+      <description>
+        Free and fully open-source L2 ADAS stack powered by End-to-End AI technology
+      </description>
+      <pubDate>
+        Monday, October 19th, 2026 7:21:02am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        燃油车占比跌破三分之一：一个时代的加速退场
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/19I70475287C108.shtml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-20:hot:253442547007354224
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Tuesday, October 20th, 2026 1:57:35am
       </pubDate>
     </item>
     <item>
       <title>
-        jherrodthomas/integrated-automotive-standards-handbook
+        宇树科技单日大涨16%，市值重回2000亿元
       </title>
       <link>
-        https://github.com/jherrodthomas/integrated-automotive-standards-handbook
+        https://auto.gasgoo.com/news/202610/19I70475298C601.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:728616659451273360
-      </guid>
-      <description>
-        Single-source automotive standards handbook cross-mapping ISO 26262, ISO/SAE 21434, ISO 21448, ISO/PAS 8800, ISO 9001 / IATF 16949, &amp; ASPICE v4.0 by clause &amp; lifecycle phase for practicing engineers.
-      </description>
-      <pubDate>
-        Sunday, October 18th, 2026 9:03:50pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        1600辆红旗整车出口伊拉克 中国一汽加速海外布局与技术转型
-      </title>
-      <link>
-        https://auto.gasgoo.com/news/202610/19I70475252C109.shtml
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:275482744628750686
+        pitboard:2026-10-20:hot:876521889827019991
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Tuesday, October 20th, 2026 1:57:35am
       </pubDate>
     </item>
     <item>
       <title>
-        HERE：面向全球的汽车AI，由此启航
+        岚图梦想家9右舵版将登陆香港
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/17I70475141C106.shtml
+        https://auto.gasgoo.com/news/202610/19I70475304C109.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:47970769573565059
+        pitboard:2026-10-20:hot:1059503292730852780
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Tuesday, October 20th, 2026 1:57:35am
       </pubDate>
     </item>
     <item>
       <title>
-        盖世周报 | 中欧汽车贸易磋商达成共识；三部门联合调查尊界V800刹车问题
+        原生硬派越野架构量产落地，吉利银河战舰700核心零部件配套供应商一览
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/18I70475134C109.shtml
+        https://auto.gasgoo.com/news/202610/20I70475295C107.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:610251860349558679
+        pitboard:2026-10-20:hot:768559657668757076
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Tuesday, October 20th, 2026 1:57:35am
       </pubDate>
     </item>
     <item>
       <title>
-        Can the Tesla Roadster Fly?
+        首批人形机器人国家标准来了：2027年4月实施
       </title>
       <link>
-        https://roadster.pavlin.dev
+        https://auto.gasgoo.com/news/202610/20I70475357C601.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:161987310049749190
+        pitboard:2026-10-20:hot:420709736883451897
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Friday, October 16th, 2026 10:40:23pm
+        Tuesday, October 20th, 2026 1:57:35am
       </pubDate>
     </item>
     <item>
       <title>
-        小智一周要闻 | 江特电机增资维他动力；优必选与建发股份成立合资公司
+        I tried a $99 plug that promises to track your car and send help when needed — without selling your data
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/18I70475088C601.shtml
+        https://www.theverge.com/tech/1013918/miles-plug-vehicle-tracking-data-privacy-specs-price-launch-date
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:295198073554308748
+        pitboard:2026-10-20:hot:393114453138322766
       </guid>
       <description>
-        
+        My 15-year-old daughter just got her learner's permit, so when I was pitched a new gadget tailored to teen drivers, I was intrigued. The Miles Plug is a small device that plugs into your car's OBD-II port and monitors location, driving habits, and vehicle health, along with emergency accident response and roadside assistance. The idea […]
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Monday, October 19th, 2026 9:00:17pm
       </pubDate>
     </item>
     <item>
       <title>
-        比亚迪Racco在斯里兰卡上市 售价约为日本市场近三倍
+        The Software-Defined Vehicle Is a Plumbing Problem. This Week It Got Cheaper.
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/19I70475249C107.shtml
+        https://medium.com/@hemanthchakravarthy/the-software-defined-vehicle-is-a-plumbing-problem-this-week-it-got-cheaper-4a5d7f6749a0?source=rss------automotive_software-5
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:170529483431030418
+        pitboard:2026-10-20:hot:315098214113112963
       </guid>
       <description>
-        
+        On October 15, two companies most car buyers have never heard of — Elektrobit and Microchip — announced a collaboration to pre-integrate… Continue reading on Medium »
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:34am
+        Tuesday, October 20th, 2026 1:14:26am
       </pubDate>
     </item>
     <item>
       <title>
-        Seeds | 要给机器人造一套“触觉大脑”，又一家“蔚来系”创企拿到新融资
-      </title>
-      <link>
-        https://auto.gasgoo.com/news/202610/19I70475262C601.shtml
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:916157477840746091
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Monday, October 19th, 2026 1:26:34am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        zoompilot/jetlink
-      </title>
-      <link>
-        https://github.com/zoompilot/jetlink
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:25245317998238715
-      </guid>
-      <description>
-        Runs openpilot's large driving model on Jetson Orin Nano, macOS, iOS, Android, CUDA laptops with only your Comma, and a USB3 cable
-      </description>
-      <pubDate>
-        Sunday, October 18th, 2026 8:44:47pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        新闻 预售价 16.98 万元起 小鹏 MONA L05 将于 10 月 29 日上市 近日，我们从官方渠道获悉，小鹏 MONA L05 将于 10 月 29 日正式上市。新车此前已开启预售，纯电版共推出 3 款配置，预售价 16.98-19.18 阿迪同学 点赞 12 评论 4
-      </title>
-      <link>
-        https://www.xchuxing.com/article/178629
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:637670884703386935
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Monday, October 19th, 2026 1:26:36am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        限时优惠价 27.98 万元起 奕境 X9 开启全国集中交付
-      </title>
-      <link>
-        https://www.xchuxing.com/article/178646
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:526606697634114317
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Monday, October 19th, 2026 1:26:36am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        探店 144期：本周将陆续开放试驾 探店小鹏 MONA L05
+        文章 新出行原创 探店 144期：本周将陆续开放试驾 探店小鹏 MONA L05 10 月 15 日，定位大五座 SUV 的小鹏 MONA L05 在预售发布会上正式亮相并开启预售，预售价区间为 16.98 万–19.18 万元，新车将于 1 李十一 点赞 7 评论 4
       </title>
       <link>
         https://www.xchuxing.com/article/178527
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:51415115307440233
+        pitboard:2026-10-20:hot:1132835787979493276
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:36am
+        Tuesday, October 20th, 2026 1:57:36am
       </pubDate>
     </item>
     <item>
       <title>
-        新出行图文详解 252期：静态体验比亚迪第三代唐
+        精品文章 新出行原创 新出行图文详解 252期：静态体验比亚迪第三代唐 从 15 年的第一代唐，到 26 年的第三代唐，比亚迪唐系列已经发展了十一年。这十一年中，销量暴增主要来自于唐 DM-i 的版本，毕竟是真省油。而这一次第三代唐 陈大个同学 点赞 14 评论 15
       </title>
       <link>
         https://www.xchuxing.com/article/178418
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:807638211801444027
+        pitboard:2026-10-20:hot:499984259929690497
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:36am
+        Tuesday, October 20th, 2026 1:57:36am
       </pubDate>
     </item>
     <item>
       <title>
-        奕境X9纯电版工信部公示：预计11月亮相 34分钟前
+        预订价 27.58 万起 魏牌高山 8 HEV 开启预订
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/313787
+        https://www.xchuxing.com/article/178711
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:43993382996075533
+        pitboard:2026-10-20:hot:923651468992922519
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:40am
+        Tuesday, October 20th, 2026 1:57:36am
       </pubDate>
     </item>
     <item>
       <title>
-        宝马iX5 60 xDrive EPA预估上调至450英里 15分钟前
+        预售价 13.98-17.58 万 iCAR V25 开启预售
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/313790
+        https://www.xchuxing.com/article/178755
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:578405161550173122
+        pitboard:2026-10-20:hot:954804644336940002
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:40am
+        Tuesday, October 20th, 2026 1:57:36am
       </pubDate>
     </item>
     <item>
       <title>
-        27款坦克500开启预订 三种动力形式同步可选 16分钟前
+        新出行帮你选 30期：20-30 万纯电旅行及猎装车怎么选？
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/313791
+        https://www.xchuxing.com/article/178263
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:384376629119191096
+        pitboard:2026-10-20:hot:316139075885845024
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:40am
+        Tuesday, October 20th, 2026 1:57:36am
       </pubDate>
     </item>
     <item>
       <title>
-        限时惊喜价23.99万起 全新XT5 PHEV智混四驱Air版上市
+        梅赛德斯-奔驰高管谈G级规划 推更小尺寸 34分钟前
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/313694
+        https://www.d1ev.com/carnews/xinche/313901
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:467010519673767385
+        pitboard:2026-10-20:hot:954378140461924696
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:40am
+        Tuesday, October 20th, 2026 1:57:39am
       </pubDate>
     </item>
     <item>
       <title>
-        15万级纯电运动轿车新王来了！吉利银河TT正式上市
+        小鹏MONA L05官宣搭载17项主动安全功能 42分钟前
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/312528
+        https://www.d1ev.com/carnews/xinche/313902
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-19:hot:51674962671344249
+        pitboard:2026-10-20:hot:612829979200373200
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Monday, October 19th, 2026 1:26:40am
+        Tuesday, October 20th, 2026 1:57:39am
       </pubDate>
     </item>
   </channel>
