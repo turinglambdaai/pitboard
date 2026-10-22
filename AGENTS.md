@@ -35,3 +35,9 @@ raco pitboard export --data data --out site --domain pitboard.jrtx.site
 - 配置正则一律 `pregexp`（Racket 9.3 `#rx` 方言无 `\w`/`{n}`，踩过雷）。
 - `skill/pitboard/` 是镜像勿直改，权威在 turinglambdaai/pitboard-skill，CI 守卫一致性。
 - jsexpr 不收 symbol、`xexpr` 数字 0 非法等 Racket 序列化坑已踩过一轮，改 render/export 前先看 tests。
+
+## 组合定位（Portfolio placement）
+
+- 轨道与授权：轨道 4 社区引流；授权形态：MIT；商业归属：永久免费（汽车内容资产）。
+- 组合归属唯一权威：[PORTFOLIO.md](https://github.com/turinglambdaai/turinglambdaai.github.io/blob/master/PORTFOLIO.md)（turinglambdaai.github.io 仓库）。改归属/授权先改权威档，再同步本节。
+- 纪律：价格只进本仓 `PRICING.md`，且收费开始时才发布；README 与产品站不做价格预告。
