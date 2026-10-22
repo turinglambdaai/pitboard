@@ -1,131 +1,154 @@
 # pitboard
 
+**English** · [中文](README.zh-CN.md)
+
 ![platform](https://img.shields.io/badge/platform-Web%20%7C%20Docker%20%7C%20Self--hosted-lightgrey) ![built with](https://img.shields.io/badge/built%20with-Racket-9f1d20) [![CI](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml/badge.svg)](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-汽车行业的每日热点日报站：把开源项目、行业资讯、前沿论文抓到一起，聚簇去重，
-按独立来源数与时间衰减算出热度，每天出刊一张「pit 板」。Racket 全栈
-（web-server），单进程自托管，零外部依赖（无数据库）。
+The daily hot-topics digest for the automotive industry: it pulls open-source
+projects, industry news and cutting-edge papers together, clusters and
+deduplicates them, scores hotness by independent source count with time decay,
+and publishes one "pit board" every day. Full-stack Racket (web-server),
+single-process self-hosting, zero external dependencies (no database).
 
-语言：Racket
+Language: Racket
 
-## 它怎么工作
+## How it works
 
 ```
-RSS 媒体源 ─┐
-GitHub 话题 ─┼→ 抓取 → 归一化 → 聚簇(Jaccard/中英分词) → 热度(独立来源数×时间衰减) → 出刊
-arXiv 论文 ─┘                                                        ↓
-                                              站点 / RSS / JSON API / 日报.md / llms.txt / SSE
+RSS feeds    ─┐
+GitHub topics ┼→ fetch → normalize → cluster (Jaccard / CJK+EN tokenization) → hotness (independent sources × time decay) → publish
+arXiv papers ─┘                                                              ↓
+                                            site / RSS / JSON API / daily digest .md / llms.txt / SSE
 ```
 
-- **无 LLM 也可运行**：热度引擎是纯规则（聚簇 + 打分），所有信源免 key。
-- **可选 LLM 增强**：配置任何 OpenAI 兼容接口后，头条热点自动改写为中文标题与摘要；
-  失败或未配置时自动退回纯排序模式，站点功能不受影响。
-- **Agent 友好**：`/rss.xml`、`/api/v1/latest.json`、`/daily/<date>.md`、
-  `/llms.txt`、`/api/events`（SSE 出刊推送）全部开箱即用。
+- **Runs without an LLM**: the hotness engine is pure rules (clustering +
+  scoring), and every source is key-free.
+- **Optional LLM enhancement**: point it at any OpenAI-compatible endpoint and
+  top stories are automatically rewritten into Chinese headlines and summaries;
+  on failure or without configuration it falls back to pure ranking and the
+  site is unaffected.
+- **Agent-friendly**: `/rss.xml`, `/api/v1/latest.json`, `/daily/<date>.md`,
+  `/llms.txt`, `/api/events` (SSE push on publish) all work out of the box.
 
-## 快速开始
+## Quick start
 
-需要 Racket 8.14+（含 minimal-racket；本机开发用的是 9.3）。
+Requires Racket 8.14+ (minimal-racket counts; local development uses 9.3).
 
 ```sh
-# 安装为 Racket 包（自动带上 web-server 与 http-easy 依赖）
+# Install as a Racket package (pulls in web-server and http-easy automatically)
 raco pkg install --auto https://github.com/turinglambdaai/pitboard.git
 
-# 出刊（抓取 + 聚簇 + 落盘 data/YYYY-MM-DD.json）
+# Publish an edition (fetch + cluster + write data/YYYY-MM-DD.json)
 raco pitboard fetch --config config/sources.json
 
-# 起站点（默认 8090 端口）
+# Serve the site (default port 8090)
 raco pitboard serve --port 8090
 
-# 生成 GitHub Pages 静态镜像到 site/
+# Export a GitHub Pages static mirror into site/
 raco pitboard export --out site
 ```
 
-克隆开发用 `raco pkg install --auto --link .` 本地链接即可，测试跑 `raco test -p pitboard`。
+For development, clone and link locally with `raco pkg install --auto --link .`,
+then run the tests with `raco test -p pitboard`.
 
-## 配置
+## Configuration
 
-### 信源（`config/sources.json`）
+### Sources (`config/sources.json`)
 
-| 字段 | 说明 |
+| Field | Meaning |
 | --- | --- |
-| `feeds` | RSS 源列表，`name` / `url` / `weight`（权重参与热度） |
-| `github.topics` | GitHub 话题搜索词（近 30 天有推送的仓库按 star 排序 + 近 90 天新星仓库） |
-| `arxiv` | arXiv API 查询串与条数上限 |
+| `feeds` | RSS feed list — `name` / `url` / `weight` (the weight feeds into hotness) |
+| `github.topics` | GitHub topic search terms (repos pushed in the last 30 days ranked by stars + fast-rising repos of the last 90 days) |
+| `arxiv` | arXiv API query strings and per-query caps |
 
-默认配置即仓库内 `config/sources.json`：Ars Technica Cars、TechCrunch
-Transportation、IEEE Spectrum Transportation、Electrek 四个媒体源 +
-8 个汽车话题 + arXiv 机器人/系统工程论文。换成你自己的信源就是你的行业站。
+The default configuration is the repo's own `config/sources.json`: four media
+feeds (Ars Technica Cars, TechCrunch Transportation, IEEE Spectrum
+Transportation, Electrek) + 8 automotive topics + arXiv robotics /
+systems-engineering papers. Swap in your own sources and it becomes your
+industry's digest.
 
-### LLM（可选，环境变量）
+### LLM (optional, environment variables)
 
-| 变量 | 说明 |
+| Variable | Meaning |
 | --- | --- |
-| `PITBOARD_LLM_API_KEY` | OpenAI 兼容接口的 key（不设即纯排序模式） |
-| `PITBOARD_LLM_BASE_URL` | 默认 `https://api.deepseek.com` |
-| `PITBOARD_LLM_MODEL` | 默认 `deepseek-chat` |
+| `PITBOARD_LLM_API_KEY` | key for an OpenAI-compatible endpoint (unset = pure ranking mode) |
+| `PITBOARD_LLM_BASE_URL` | defaults to `https://api.deepseek.com` |
+| `PITBOARD_LLM_MODEL` | defaults to `deepseek-chat` |
 
-`GITHUB_TOKEN` 存在时 GitHub 搜索走认证配额（Actions 中自动注入）。
+When `GITHUB_TOKEN` is present, GitHub search uses authenticated quota
+(injected automatically in Actions).
 
-## 自托管与部署
+## Self-hosting and deployment
 
-- **进程**：`raco pitboard serve` 一个进程全包（页面 + API + 静态资源 + SSE），
-  数据就是 `data/*.json` 文件，备份即拷贝。
-- **静态镜像**：仓库自带三个 GitHub Actions —— `ci.yml`（三平台测试）、
-  `digest.yml`（每日 07:30 北京时间出刊并提交归档）、`pages.yml`（部署 site/ 到
-  GitHub Pages）。Fork 后开启 Pages（构建方式选 "GitHub Actions"）即可得到
-  同款日更站点。
+- **Process**: a single `raco pitboard serve` process does everything (pages +
+  API + static assets + SSE); the data is just `data/*.json` files, so backup
+  is a copy.
+- **Static mirror**: the repo ships three GitHub Actions — `ci.yml`
+  (three-platform tests), `digest.yml` (daily publish at 07:30 Beijing time
+  with archive commits) and `pages.yml` (deploys `site/` to GitHub Pages).
+  Fork it, enable Pages (build source: "GitHub Actions"), and you get the same
+  daily-updating site.
 
-## 目录结构
+## Layout
 
 ```
-pitboard/            Racket 包主体（collection "pitboard"）
-  cli.rkt            raco pitboard 入口（fetch / serve / export）
-  sources.rkt        信源适配器（RSS / GitHub / arXiv）+ 硬超时
-  feed.rkt           RSS 2.0 + Atom 解析（纯函数）
-  score.rkt          分词、聚簇、热度、标签（新/上升）
-  llm.rkt            OpenAI 兼容 LLM 增强（可选）
-  store.rkt          data/YYYY-MM-DD.json 存储
-  render.rkt         页面 / RSS / Markdown / llms.txt 渲染
-  sse.rkt            SSE hub（出刊推送 + 心跳）
-  app.rkt            web-server 应用
-  export.rkt         GitHub Pages 静态导出
-assets/              站点静态资源（零依赖 CSS/JS）
-config/              信源配置
-skill/pitboard/      agent 技能（权威源，站点 /skill/ 直出）
-data/                每日刊物质档（Actions 每日提交）
-site/                静态镜像（导出产物，Pages 部署源）
+pitboard/            Racket package body (collection "pitboard")
+  cli.rkt            raco pitboard entry point (fetch / serve / export)
+  sources.rkt        source adapters (RSS / GitHub / arXiv) + hard timeouts
+  feed.rkt           RSS 2.0 + Atom parsing (pure functions)
+  score.rkt          tokenization, clustering, hotness, tags (new / rising)
+  llm.rkt            OpenAI-compatible LLM enhancement (optional)
+  store.rkt          data/YYYY-MM-DD.json storage
+  render.rkt         page / RSS / Markdown / llms.txt rendering
+  sse.rkt            SSE hub (publish push + heartbeat)
+  app.rkt            web-server application
+  export.rkt         GitHub Pages static export
+assets/              site static assets (zero-dependency CSS/JS)
+config/              source configuration
+skill/pitboard/      agent skill (authoritative source, served at /skill/)
+data/                daily edition archive (committed daily by Actions)
+site/                static mirror (export artifact, Pages deploy source)
 ```
 
-## 路线图
+## Roadmap
 
-完整差距分析与里程碑见 [docs/ROADMAP.md](docs/ROADMAP.md)，要点：
+See [docs/ROADMAP.md](docs/ROADMAP.md) for the full gap analysis and
+milestones. Highlights:
 
-- **M1 内容与追踪** — 跨日事件跟踪（进展标记）、周报/月报、网页列表源升级、
-  中文通道建设（RSSHub 自托管 + 公众号桥）、JSON 接口源、OG 分享图。
-- **M2 运营与工程** — /admin 信源后台、MCP 出口、OpenAPI、Docker（fnOS NAS）、
-  LLM 预算熔断、精选评测脚本、运行告警、站内全文搜索。
-- **M3+ 扩张** — X/公众号源量产、主题页实体化、收藏稍后读、feed/sse 抽包
-  上 catalog、移动端（等 rivet 移动宿主）。
-- **M4 Agent 分层** — 编辑侧 LLM 通道（免费模型 = 三个环境变量）、读者侧
-  BYOK（留决策）、消费侧 agent skill + MCP + llms.txt。
+- **M1 Content & tracking** — cross-day event tracking (progress markers),
+  weekly/monthly reports, web-page list source upgrade, Chinese-language
+  channel buildout (self-hosted RSSHub + WeChat Official Account bridge),
+  JSON feed sources, OG share images.
+- **M2 Operations & engineering** — /admin source console, MCP export,
+  OpenAPI, Docker (fnOS NAS), LLM budget circuit breaker, curation review
+  scripts, uptime alerts, on-site full-text search.
+- **M3+ Expansion** — X / Official Account source production, entity topic
+  pages, read-later favorites, feed/sse extracted into catalog packages,
+  mobile (waiting on the rivet mobile host).
+- **M4 Agent layering** — editor-side LLM channel (free models = three
+  environment variables), reader-side BYOK (decision pending), consumer-side
+  agent skill + MCP + llms.txt.
 
-## Agent 接入
+## Agent integration
 
-pitboard 对 agent 是一等公民：站点出刊即发布机器可读的全套数据，
-你的 agent 可以把它当汽车行业信息源直接用。
+pitboard treats agents as first-class citizens: every publish ships a complete
+machine-readable dataset, and your agent can use it directly as an
+automotive-industry information source.
 
-- **装技能**：把下面这句话发给你的 agent，剩下的它自己装：
+- **Install the skill**: send the line below to your agent and it will take
+  care of the rest:
 
-  > 请安装 pitboard 技能：<https://pitboard.jrtx.site/skill/pitboard/SKILL.md>
+  > Please install the pitboard skill: <https://pitboard.jrtx.site/skill/pitboard/SKILL.md>
 
-  SKILL.md 自带 agent 自装指引；手动安装就是一条 curl（见该文件内的安装节）。
-- **零安装用数据**：`/api/v1/latest.json`、`/api/v1/digest/<date>.json`、
-  `/openapi.json`、`/llms.txt`，全部只读免鉴权。
-- **自托管进阶**：`raco pitboard mcp` 提供 MCP 工具
-  （latest_digest / get_edition / get_topic）；
-  `PITBOARD_LLM_*` 环境变量接任何 OpenAI 兼容模型做出刊增强（可选，
-  失败自动降级纯算法模式）。
+  The SKILL.md carries its own self-install guidance; manual installation is a
+  single curl (see the install section in that file).
+- **Use the data with zero install**: `/api/v1/latest.json`,
+  `/api/v1/digest/<date>.json`, `/openapi.json`, `/llms.txt` — all read-only,
+  no auth.
+- **Self-hosted, further**: `raco pitboard mcp` serves MCP tools
+  (latest_digest / get_edition / get_topic); the `PITBOARD_LLM_*` environment
+  variables hook up any OpenAI-compatible model for publish enhancement
+  (optional, auto-degrades to the pure algorithmic mode on failure).
 
 ## License
 
