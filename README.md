@@ -91,7 +91,7 @@ When `GITHUB_TOKEN` is present, GitHub search uses authenticated quota
   is a copy.
 - **Static mirror**: the repo ships three GitHub Actions — `ci.yml`
   (three-platform tests), `digest.yml` (daily publish at 07:30 Beijing time
-  with archive commits) and `pages.yml` (deploys `site/` to GitHub Pages).
+  with archive commits) and `pages.yml` (rebuilds the mirror from committed editions/current templates and deploys it to GitHub Pages, without fetching new sources).
   Fork it, enable Pages (build source: "GitHub Actions"), and you get the same
   daily-updating site.
 

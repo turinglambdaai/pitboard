@@ -50,7 +50,7 @@ raco pitboard export --data data --out site --domain pitboard.jrtx.site
 
 - CI（`ci.yml`）：装依赖 + `raco test -p pitboard` + `raco make`。
 - `digest.yml`（定时）：fetch → export → 部署，线上 pitboard.jrtx.site。
-- `pages.yml`：站点部署。workflow 模式下 CNAME 必须显式 PUT，部署失败先查这条。
+- `pages.yml`：模板、assets、data 或生成站点变化时，从已提交刊物重建后部署；不重新抓取、不改动刊物。workflow 模式下 CNAME 必须显式 PUT，部署失败先查这条。
 - 发版 = GitHub tag（MIT，0.1.0 已发）；站点数据问题以 `data/` 与 workflow 日志为准。
 
 ## 仓库特定规矩

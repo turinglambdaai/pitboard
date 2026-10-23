@@ -1,12 +1,18 @@
 name: Pages
 
-# Deploys pitboard.jrtx.site from site/ (the generated static mirror).
+# Rebuilds the static mirror from committed editions and current templates.
+# This workflow never fetches new sources or changes an edition.
 # Pages must be enabled with the "GitHub Actions" build type.
 
 on:
   push:
     branches: [main]
-    paths: ["site/**"]
+    paths:
+      - "site/**"
+      - "pitboard/**"
+      - "assets/**"
+      - "data/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -26,6 +32,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: Bogdanp/setup-racket@v1.15
+        with:
+          version: '9.3'
+          distribution: full
+      - name: Install rendering dependencies
+        run: raco pkg install --auto --no-docs http-easy server-sent-events feed
+      - name: Install pitboard
+        run: raco pkg install --auto --no-docs --link "$PWD"
+      - name: Rebuild from committed editions
+        run: raco pitboard export --data data --out site --domain pitboard.jrtx.site
+      - name: Check exported text for template leaks
+        run: |
+          python3 - <<'PY'
+          import pathlib, re
+          allowed = {"amp", "lt", "gt", "quot", "apos"}
+          pattern = re.compile(r"<unquote|~[asv]|&([a-zA-Z][a-zA-Z0-9]+);")
+          failures = []
+          for path in pathlib.Path("site").rglob("*"):
+              if path.suffix not in {".html", ".xml", ".md", ".txt", ".svg"}:
+                  continue
+              for match in pattern.finditer(path.read_text(encoding="utf-8")):
+                  if match.group(1) and match.group(1) in allowed:
+                      continue
+                  failures.append(f"{path}: {match.group(0)!r}")
+          if failures:
+              raise SystemExit("\n".join(failures))
+          print("Exported template scan passed")
+          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

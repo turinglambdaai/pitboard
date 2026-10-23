@@ -80,7 +80,7 @@ Transportation、IEEE Spectrum Transportation、Electrek 四个媒体源 +
 - **进程**：`raco pitboard serve` 一个进程全包（页面 + API + 静态资源 + SSE），
   数据就是 `data/*.json` 文件，备份即拷贝。
 - **静态镜像**：仓库自带三个 GitHub Actions —— `ci.yml`（三平台测试）、
-  `digest.yml`（每日 07:30 北京时间出刊并提交归档）、`pages.yml`（部署 site/ 到
+  `digest.yml`（每日 07:30 北京时间出刊并提交归档）、`pages.yml`（从已提交刊物和当前模板重建后部署，不重新抓取）（部署 site/ 到
   GitHub Pages）。Fork 后开启 Pages（构建方式选 "GitHub Actions"）即可得到
   同款日更站点。
 
