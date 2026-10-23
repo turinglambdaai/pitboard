@@ -1,5 +1,25 @@
 # AGENTS.md
 
+## Required policy discovery at each slice
+
+Before starting the next bounded slice, refresh remote state safely and re-read
+this root AGENTS file, the repository's canonical implementation handoff, and
+the current [family delivery standard](https://github.com/turinglambdaai/turinglambdaai.github.io/blob/master/docs/PRODUCT-STANDARD.md),
+[documentation language policy](https://github.com/turinglambdaai/turinglambdaai.github.io/blob/master/docs/DOCUMENTATION-LANGUAGES.md)
+and [portfolio decisions](https://github.com/turinglambdaai/turinglambdaai.github.io/blob/master/PORTFOLIO.md).
+Follow the corresponding Chinese links when preferred; both public user paths
+must express the same promises. Product-specific plans and technical protocol
+owners remain in their owning repositories.
+
+Record the repository starting SHA and the central-policy commit/revision
+actually read in the PR or handoff. A link's presence is not an acknowledgement
+that an agent has read it. Existing conversations and stale checkouts do not
+receive policy updates automatically: refresh these inputs at slice boundaries.
+Preserve other agents' dirty worktrees; use an isolated checkout when needed,
+without stashing, resetting or overwriting their work. Missing/offline policy
+inputs must be reported as unverified, not silently claimed current.
+
+
 pitboard——汽车行业每日热点日报站（Racket 全栈 web-server，单进程自托管、零数据库），热度引擎 = CJK 二元语法 + Jaccard 聚簇 + 独立来源数×时间衰减。
 
 ## 结构
@@ -36,11 +56,9 @@ raco pitboard export --data data --out site --domain pitboard.jrtx.site
 - `skill/pitboard/` 是镜像勿直改，权威在 turinglambdaai/pitboard-skill，CI 守卫一致性。
 - jsexpr 不收 symbol、`xexpr` 数字 0 非法等 Racket 序列化坑已踩过一轮，改 render/export 前先看 tests。
 
-## 组合定位（Portfolio placement）
+## Portfolio placement
 
-- 轨道与授权：维护模式（免费保活，不再新增投入）；授权形态：MIT；商业归属：永久免费——内容站；若内容获客价值不成立可归档。
-- 组合归属唯一权威：[PORTFOLIO.md](https://github.com/turinglambdaai/turinglambdaai.github.io/blob/master/PORTFOLIO.md)（turinglambdaai.github.io 仓库）。改归属/授权先改权威档，再同步本节。
-- 纪律：价格只进本仓 `PRICING.md`，且收费开始时才发布；README 与产品站不做价格预告。
+This is a free content/community project. Prioritize source attribution, reproducible publishing, corrections and recovery. Do not inherit desktop installer, mobile-host or commercial-entitlement queues. Current family policy owns investment classification.
 
 ## 产品交付与下一步（2026-10-23）
 
