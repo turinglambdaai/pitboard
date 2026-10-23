@@ -8,7 +8,7 @@ The daily hot-topics digest for the automotive industry: it pulls open-source
 projects, industry news and cutting-edge papers together, clusters and
 deduplicates them, scores hotness by independent source count with time decay,
 and publishes one "pit board" every day. Full-stack Racket (web-server),
-single-process self-hosting, zero external dependencies (no database).
+single-process self-hosting, no external database service.
 
 Language: Racket
 

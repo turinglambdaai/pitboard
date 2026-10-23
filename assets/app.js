@@ -189,7 +189,7 @@
       "notfound.back": "← Back to today",
       "about.how": "How it works", "about.agents": "Agent endpoints",
       "about.selfhost": "Self-hosting", "about.license": "License",
-      "about.selfhost.body": "One Racket process, zero external dependencies (no database):",
+      "about.selfhost.body": "One Racket process, no external database service:",
       "install.kicker": "One-sentence install",
       "install.hint": "Send that line to your agent (Claude Code, ZCode, …) — it installs itself."
     }

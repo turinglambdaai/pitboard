@@ -460,7 +460,7 @@
                    (li (code "raco pitboard mcp") " — 自托管 MCP（latest_digest / get_edition / get_topic）")
                    (li (code "/api/events") " — SSE 出刊推送"))
                   (h2 (data-i18n "about.selfhost") "自托管")
-                  (p "一个 Racket 进程，零外部依赖（无数据库）：" (br)
+                  (p "一个 Racket 进程，不需要外部数据库服务：" (br)
                      (code "raco pkg install --auto https://github.com/turinglambdaai/pitboard.git") (br)
                      (code "raco pitboard fetch && raco pitboard serve --port 8090"))
                   (h2 (data-i18n "about.license") "许可")
