@@ -16,104 +16,36 @@
     </language>
     <item>
       <title>
-        SpaceX and Tesla Explore Merger
-      </title>
-      <link>
-        https://www.businessinsider.com/tesla-spacex-merger-exploratory-commitees-2026-10
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:399544227132646707
-      </guid>
-      <description>
-        
-      </description>
-      <pubDate>
-        Tuesday, October 20th, 2026 10:26:28pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
         carla-simulator/carla
       </title>
       <link>
         https://github.com/carla-simulator/carla
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:371904745613176677
+        pitboard:2026-10-23:hot:371904745613176677
       </guid>
       <description>
         Open-source simulator for autonomous driving research.
       </description>
       <pubDate>
-        Wednesday, October 21st, 2026 11:31:21pm
+        Thursday, October 22nd, 2026 9:14:07pm
       </pubDate>
     </item>
     <item>
       <title>
-        新出行图文详解 253期：静态体验 smart #2
+        commaai/opendbc
       </title>
       <link>
-        https://www.xchuxing.com/article/178812
+        https://github.com/commaai/opendbc
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:276214110152147055
+        pitboard:2026-10-23:hot:737223512686484068
       </guid>
       <description>
-        
+        a Python API for your car
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:50am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        ecubus/EcuBus-Pro
-      </title>
-      <link>
-        https://github.com/ecubus/EcuBus-Pro
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:487205003557968962
-      </guid>
-      <description>
-        A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
-      </description>
-      <pubDate>
-        Wednesday, October 21st, 2026 8:55:52am
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        autowarefoundation/autoware
-      </title>
-      <link>
-        https://github.com/autowarefoundation/autoware
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:565200565018763934
-      </guid>
-      <description>
-        Autoware - the world's leading open-source software project for autonomous driving
-      </description>
-      <pubDate>
-        Wednesday, October 21st, 2026 12:11:17pm
-      </pubDate>
-    </item>
-    <item>
-      <title>
-        Tesla says customers can add their own vehicles to the robotaxi fleet next year — will it happen?
-      </title>
-      <link>
-        https://www.theverge.com/transportation/1016118/tesla-robotaxi-customer-owned-vehicle-fleet-network-q3-2026-earnings
-      </link>
-      <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:658364729619957844
-      </guid>
-      <description>
-        For years, Elon Musk has been making big promises to Tesla owners about unsupervised autonomous driving and the ability to add their own vehicles to the company's robotaxi fleet. During today's third-quarter earnings call, the company finally gave itself a deadline. According to Tesla VP for Autonomous Driving Ashok Elluswamy, Tesla owners will be able […]
-      </description>
-      <pubDate>
-        Wednesday, October 21st, 2026 11:36:31pm
+        Friday, October 23rd, 2026 1:37:15am
       </pubDate>
     </item>
     <item>
@@ -124,13 +56,30 @@
         https://github.com/gotonote/Autopilot-Notes
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:991420061623841730
+        pitboard:2026-10-23:hot:991420061623841730
       </guid>
       <description>
         自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
       </description>
       <pubDate>
-        Wednesday, October 21st, 2026 3:41:17pm
+        Thursday, October 22nd, 2026 3:42:56pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        赋能感知进化，麦格纳助力智能驾驶看得更准、更远、更安全
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/22I70475638C103.shtml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-23:hot:611033674069672989
+      </guid>
+      <description>
+        
+      </description>
+      <pubDate>
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
@@ -141,166 +90,200 @@
         https://github.com/cantools/cantools
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:192973104646746202
+        pitboard:2026-10-23:hot:192973104646746202
       </guid>
       <description>
         CAN bus tools.
       </description>
       <pubDate>
-        Wednesday, October 21st, 2026 9:20:28am
+        Thursday, October 22nd, 2026 8:44:04am
       </pubDate>
     </item>
     <item>
       <title>
-        刘亦功：打造聚合智能新范式，搭建跨载体统一AI基座
+        特斯拉Robotaxi，2027年的盈利账怎么算？
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/21I70475493C601.shtml
+        https://auto.gasgoo.com/news/202610/23I70475619C601.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:1067237696774095114
+        pitboard:2026-10-23:hot:919668509791490564
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:48am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        奔驰CEO：产业保护需平衡成本，欧盟应坚持开放合作
+        ecubus/EcuBus-Pro
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/21I70475497C109.shtml
+        https://github.com/ecubus/EcuBus-Pro
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:1006963282757656212
+        pitboard:2026-10-23:hot:487205003557968962
+      </guid>
+      <description>
+        A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
+      </description>
+      <pubDate>
+        Thursday, October 22nd, 2026 3:31:30am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        日产欧洲技术中心采用Sonatus Fastlane™平台，加速整车测试与验证
+      </title>
+      <link>
+        https://auto.gasgoo.com/news/202610/23I70475650C109.shtml
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-23:hot:446826070954380830
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:48am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        尹同跃：拒绝价格战，中国车企出海切忌“出海变填海”
+        都快2027了，自研电池还值得争论？
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/21I70475509C109.shtml
+        https://auto.gasgoo.com/news/202610/23I70475482C501.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:357661832606337275
+        pitboard:2026-10-23:hot:798287171367374967
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:48am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        自动驾驶下半场，六位大佬在吵什么？
+        造车的尽头是造芯？蔚小理掀起一场几十亿豪赌 2小时前 366 0 [汽车之家 行业] 中汽协副秘书长陈士华此前在一场行业论坛中披露，2026年1-5月中国整车制造环节平均利润率仅1.5%。按单车均价20万元算，卖一...
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/22I70475560C601.shtml
+        https://www.autohome.com.cn/news/202610/1317924.html#pvareaid=102624
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:308582421212108097
+        pitboard:2026-10-23:hot:853362598813424894
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:48am
+        Friday, October 23rd, 2026 1:47:38am
       </pubDate>
     </item>
     <item>
       <title>
-        付炳锋：“十五五”以“保量提质”为主旋律，聚力强链补链
+        特斯拉的一万台人形机器人，卡在哪？
       </title>
       <link>
-        https://auto.gasgoo.com/news/202610/22I70475570C108.shtml
+        https://auto.gasgoo.com/news/202610/22I70475596C601.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:155972448371171240
+        pitboard:2026-10-23:hot:252062620974827654
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:48am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        BYD launches new Seagull EV with 5-minute Flash Charging, starting under $10k
+        走进上汽｜智能底盘创新技术展圆满落幕
       </title>
       <link>
-        https://electrek.co/2026/10/20/byd-launches-new-seagull-ev-with-5-min-charging-under-10k
+        https://auto.gasgoo.com/news/202610/22I70475408C106.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:431471597208968087
+        pitboard:2026-10-23:hot:1092705902616077058
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Tuesday, October 20th, 2026 2:31:05pm
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        猎鹰智驾加持 捷途山海L7 PLUS将推新版本 45分钟前
+        ​短期热度，定不了长期残值
       </title>
       <link>
-        https://www.d1ev.com/carnews/xinche/314197
+        https://auto.gasgoo.com/news/202610/22I70475653C108.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:312680018333833711
+        pitboard:2026-10-23:hot:1000114785809251454
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:39:54am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        9月油车销量暴跌44%，车卖不动居然还越卖越贵？ 2小时前 1159 0 [汽车之家 行业] 车圈诡异的一幕发生了：一边是车越来越难卖，而一边是价格越卖越高，你敢信？9月，乘用车的大盘跌了28%，创下今年以来最高跌幅。说好...
+        捷达M6上市，35年“国民神车”的新能源转身
       </title>
       <link>
-        https://www.autohome.com.cn/news/202610/1317900.html#pvareaid=102624
+        https://auto.gasgoo.com/news/202610/22I70475652C107.shtml
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:540660791825145400
+        pitboard:2026-10-23:hot:725961839508765119
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:40:13am
+        Friday, October 23rd, 2026 1:47:14am
       </pubDate>
     </item>
     <item>
       <title>
-        Tesla profits drop 43% in Q3
+        SpaceX and Tesla Explore Merger
       </title>
       <link>
-        https://arstechnica.com/cars/2026/10/tesla-profits-drop-43-in-q3/
+        https://www.businessinsider.com/tesla-spacex-merger-exploratory-commitees-2026-10
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:238032153187647991
+        pitboard:2026-10-23:hot:399544227132646707
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:02:23am
+        Tuesday, October 20th, 2026 10:26:28pm
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Tesla driver using Full Self-Driving struck and killed a man crossing I-80
+      </title>
+      <link>
+        https://www.theverge.com/transportation/1016928/tesla-fsd-pedestrian-fatal-accident-california
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-23:hot:1071439322900353342
+      </guid>
+      <description>
+        A 71-year-old man was fatally hit by a Tesla operating in Full Self-Driving (FSD) mode while crossing I-80 in Vallejo, CA around 2:30 AM on Thursday, reports the San Francisco Chronicle. The California Highway Patrol's statement to media outlets says it reviewed video of the accident from the Tesla's dashcam, which "showed the Tesla's brakes […]
+      </description>
+      <pubDate>
+        Thursday, October 22nd, 2026 6:07:02pm
       </pubDate>
     </item>
     <item>
@@ -311,13 +294,13 @@
         https://www.autohome.com.cn/news/202607/1315940.html#pvareaid=102623
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:1049025938651351299
+        pitboard:2026-10-23:hot:1049025938651351299
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:40:13am
+        Friday, October 23rd, 2026 1:47:38am
       </pubDate>
     </item>
     <item>
@@ -328,30 +311,47 @@
         https://www.diandongbang.com/news/167909.html
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:1044313894408193331
+        pitboard:2026-10-23:hot:1044313894408193331
       </guid>
       <description>
         
       </description>
       <pubDate>
-        Thursday, October 22nd, 2026 1:40:10am
+        Friday, October 23rd, 2026 1:47:35am
       </pubDate>
     </item>
     <item>
       <title>
-        worldbench/awesome-vla-for-ad
+        文章 新出行原创 新出行图文详解 254期：动态试驾小鹏 MONA L05 现在的汽车市场，被冠以“年轻人第一台”的产品不少，但真真懂得年轻人想要什么的却是不多。大家究竟是想要运动的外观、良好的驾控还是顶尖的智能化水平，都是比较难拿捏的 维圈圈 点赞 10 评论 4
       </title>
       <link>
-        https://github.com/worldbench/awesome-vla-for-ad
+        https://www.xchuxing.com/article/178774
       </link>
       <guid isPermaLink="false">
-        pitboard:2026-10-22:hot:1048664683373377968
+        pitboard:2026-10-23:hot:1024125674894435303
       </guid>
       <description>
-        🌐 Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
+        
       </description>
       <pubDate>
-        Wednesday, October 21st, 2026 1:54:16am
+        Friday, October 23rd, 2026 1:47:16am
+      </pubDate>
+    </item>
+    <item>
+      <title>
+        Sure, let’s smoosh SpaceX and Tesla together, who cares
+      </title>
+      <link>
+        https://www.theverge.com/ai-artificial-intelligence/1016879/spacex-tesla-cursed-katamari
+      </link>
+      <guid isPermaLink="false">
+        pitboard:2026-10-23:hot:637577304219451255
+      </guid>
+      <description>
+        Oh sure, SpaceX's credit risk is pretty high because it's about to borrow another $40 billion to spend on Nvidia chips, but who cares about that? SpaceX and Tesla have formed special committees to discuss a merger! The degree to which you find this merger compelling likely has to do with the degree to which […]
+      </description>
+      <pubDate>
+        Thursday, October 22nd, 2026 7:45:00pm
       </pubDate>
     </item>
   </channel>
