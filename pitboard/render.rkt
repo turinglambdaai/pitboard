@@ -144,7 +144,9 @@
                    " · "
                    (a ((href "/llms.txt")) "llms.txt")
                    " · "
-                   (a ((href "/rss.xml") (data-i18n "footer.rss")) "RSS 订阅"))))))
+                   (a ((href "/rss.xml") (data-i18n "footer.rss")) "RSS 订阅")
+                   " · "
+                   (a ((href "https://github.com/turinglambdaai/pitboard/blob/main/docs/READING.md") (data-i18n "footer.help")) "阅读与更正"))))))
 
 ;; ---- cluster card -----------------------------------------------------------
 

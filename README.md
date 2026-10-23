@@ -12,6 +12,12 @@ single-process self-hosting, zero external dependencies (no database).
 
 Language: Racket
 
+## Read first
+
+[Read the automotive daily board](https://pitboard.jrtx.site/) · [Reading, privacy and corrections](docs/READING.md)
+
+Reading is free and needs no account. Ranking/deduplication can merge unrelated stories or miss developments. Optional AI-generated headlines/summaries may be wrong; independent sources, not a score, establish a claim. Scheduled publication can fail; an old edition is not today’s news.
+
 ## How it works
 
 ```
@@ -153,7 +159,3 @@ automotive-industry information source.
 ## License
 
 MIT
-
-## Feedback and diagnostics
-
-Report reproducible bugs and feature requests through [GitHub Issues](https://github.com/turinglambdaai/pitboard/issues). Include the release, OS/architecture and steps; inspect and redact diagnostics before sharing. Do not post API keys, license files, vault contents or private documents. For sensitive security reports, follow SECURITY.md when present; otherwise request a private contact route without disclosing sensitive details. Nothing is uploaded automatically.
