@@ -165,7 +165,7 @@
       "nav.today": "Today", "nav.topics": "Topics", "nav.bookmarks": "Saved",
       "nav.archive": "Archive", "nav.about": "About",
       "footer.tagline": "Automotive industry daily digest · Racket full-stack, self-hosted · auto-published daily",
-      "footer.license": "MIT licensed", "footer.rss": "RSS feed",
+      "footer.help": "Reading & corrections", "footer.license": "MIT code; sources retain rights", "footer.rss": "RSS feed",
       "meta.hot": " hot topics", "meta.items": " source items", "meta.sources": " sources",
       "board.sub": "PITBOARD · DAILY",
       "quick.label": "CURRENT HOT",
@@ -189,14 +189,16 @@
       "notfound.back": "← Back to today",
       "about.how": "How it works", "about.agents": "Agent endpoints",
       "about.selfhost": "Self-hosting", "about.license": "License",
-      "about.selfhost.body": "One Racket process, zero external dependencies (no database):",
+      "about.selfhost.body": "One Racket process, no external database service:",
       "install.kicker": "One-sentence install",
       "install.hint": "Send that line to your agent (Claude Code, ZCode, …) — it installs itself."
     }
   };
+  var chineseText = {};
+  document.querySelectorAll("[data-i18n]").forEach(function(el) { chineseText[el.getAttribute("data-i18n")] = el.textContent; });
   function setLang(lang) {
     document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
-    var dict = I18N[lang] || {};
+    var dict = lang === "zh" ? chineseText : (I18N[lang] || {});
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var k = el.getAttribute("data-i18n");
       if (dict[k]) el.textContent = dict[k];
