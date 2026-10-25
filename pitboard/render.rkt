@@ -505,6 +505,10 @@
                                  (button ((class "tab") (id "clr")) "清空")))
                      '(ul ((class "archive-list") (id "list")))))))
 
+;; Search lifecycle states (loading / error+retry / no-match) ship as static
+;; data-i18n elements toggled by the app.js IIFE — never as JS-built strings,
+;; so the language switch reaches every state. Failure copy is distinct from
+;; no-match copy in both languages (issue #1 acceptance).
 (define (render-search-page ctx)
   (xexpr->html-bytes
    (page-shell ctx "搜索 — pitboard" ""
@@ -515,7 +519,21 @@
                                       (data-i18n-placeholder "search.placeholder")
                                       (placeholder "搜索标题关键词…")
                                       (autocomplete "off")
-                                      (style "margin-top:14px"))))
+                                      (style "margin-top:14px")))
+                              '(p ((class "search-note") (id "search-loading")
+                                   (hidden "hidden") (data-i18n "search.loading"))
+                                  "正在加载搜索索引…")
+                              '(p ((class "search-note") (id "search-error")
+                                   (hidden "hidden") (data-i18n "search.error"))
+                                  "搜索索引加载失败：可能是网络中断或站点部署不完整。")
+                              '(button ((class "tab") (id "search-retry") (type "button")
+                                        (hidden "hidden") (data-i18n "search.retry"))
+                                       "重试")
+                              '(p ((class "search-note") (id "search-empty")
+                                   (hidden "hidden") (data-i18n "search.empty"))
+                                  "没有匹配内容，换个关键词试试。"))
+                     '(noscript
+                       (p ((class "search-note")) "站内搜索需要启用 JavaScript。"))
                      '(ul ((class "archive-list") (id "results")))))))
 
 ;; ---- rss / md / llms ----------------------------------------------------------

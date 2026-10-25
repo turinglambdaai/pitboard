@@ -3,9 +3,12 @@
 (require rackunit
          racket/string
          racket/file
+         racket/runtime-path
          json
          "../render.rkt"
          (only-in "../sources.rkt" normalize-watch-topics))
+
+(define-runtime-path search-app-js "../../assets/app.js")
 
 (define ctx (site-ctx "pitboard.jrtx.site" "https://pitboard.jrtx.site" 0
                       (λ () (hasheq "2026-10-13" 1))))
@@ -270,3 +273,46 @@
     (check-true (has? p "hm.baidu.com/hm.js") "missing analytics snippet"))
   (check-true (has? (render-bookmarks-page ctx) "导出 JSON"))
   (check-true (has? (render-search-page ctx) "搜索标题关键词")))
+
+(test-case "search page ships loading/error/retry/no-match states"
+  ;; issue #1: an unloaded, HTTP-failing or invalid search index must be
+  ;; visible and recoverable — never a silent noop. States are static
+  ;; data-i18n elements so the language switch reaches all of them.
+  (define page (render-search-page ctx))
+  (define has? (λ (b needle) (string-contains? (bytes->string/utf-8 b) needle)))
+  (for ([id (list "search-loading" "search-error" "search-retry" "search-empty")])
+    (check-true (has? page id) (format "missing state element ~a" id)))
+  (for ([k (list "search.loading" "search.error" "search.retry" "search.empty")])
+    (check-true (has? page (format "data-i18n=\"~a\"" k))
+                (format "missing i18n key ~a" k)))
+  (check-true (has? page "正在加载搜索索引"))
+  (check-true (has? page "搜索索引加载失败"))
+  (check-true (has? page "没有匹配内容"))
+  (check-true (has? page "站内搜索需要启用 JavaScript"))
+  ;; failure copy must be distinct from no-match copy — extracted from the
+  ;; rendered page, not from these literals
+  (define (para-copy b id)
+    (cadr (regexp-match (format "id=\"~a\"[^>]*>([^<]+)</p>" id)
+                        (bytes->string/utf-8 b))))
+  (check-false (equal? (para-copy page "search-error")
+                       (para-copy page "search-empty"))
+               "zh failure and no-match copy must differ"))
+
+(test-case "search asset guards against failing/invalid index"
+  ;; static drift guard on assets/app.js: status check, catch branch,
+  ;; retry wiring and the EN state vocabulary must all stay present.
+  (define js (file->string search-app-js))
+  (define (has? needle) (string-contains? js needle))
+  (check-true (has? "search-index.json"))
+  (check-true (has? "r.ok") "missing HTTP status check")
+  (check-true (has? ".catch(") "missing fetch error branch")
+  (check-true (has? "search-retry"))
+  (check-true (has? "\"search.loading\""))
+  (check-true (has? "\"search.error\""))
+  (check-true (has? "\"search.retry\""))
+  (check-true (has? "\"search.empty\""))
+  (check-true (has? "Array.isArray(j)") "missing index shape validation")
+  (define (dict-value key)
+    (cadr (regexp-match (format "\"~a\": \"([^\"]+)\"" key) js)))
+  (check-false (equal? (dict-value "search.error") (dict-value "search.empty"))
+               "en failure and no-match copy must differ"))

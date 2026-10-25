@@ -422,6 +422,12 @@ a.chip:hover { text-decoration: none; border-color: var(--accent); color: var(--
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
+/* search lifecycle notes (loading / error / no-match) — copy lives in the
+   page markup behind data-i18n, app.js only toggles visibility */
+.search-note { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+#search-retry[hidden] { display: none; }
+/* class display rules would otherwise beat the UA [hidden] rule */
+[hidden] { display: none; }
 
 /* ---- card extras ---- */
 .card-kind {

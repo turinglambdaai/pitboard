@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+- 搜索页索引加载失败不再静默（issue #1 交互审查验收项）：`/search-index.json`
+  加载中、失败（HTTP 非 2xx 或非法 JSON）、无匹配三态各有可见文案，失败附显式
+  「重试」按钮可恢复。状态文案是页面里的静态 `data-i18n` 元素，中英切换覆盖
+  全部状态；结果行改用 DOM API 构建——外部信源标题不再经过 `innerHTML`。
+  render-test 增加页面模板与 app.js 资产的双守卫断言（HTTP 检查、catch 分支、
+  重试接线、中英失败/无匹配文案必须不同）。
 - 修复书签页/搜索页导航脱节：两页从手写 `site-tpl/` 静态拷贝收敛为
   走 `page-shell` 的常规渲染函数（缺书签入口/语言切换/主题按钮/app.js
   的漂移 bug），页面 JS 迁为 `assets/app.js` 的特性 IIFE，
