@@ -78,7 +78,32 @@
           站内搜索
         </h1>
         <input class="search" id="q" type="search" data-i18n-placeholder="search.placeholder" placeholder="搜索标题关键词…" autocomplete="off" style="margin-top:14px" />
+        <quote>
+          <p class="search-note" id="search-loading" hidden="hidden" data-i18n="search.loading">
+            正在加载搜索索引…
+          </p>
+        </quote>
+        <quote>
+          <p class="search-note" id="search-error" hidden="hidden" data-i18n="search.error">
+            搜索索引加载失败：可能是网络中断或站点部署不完整。
+          </p>
+        </quote>
+        <quote>
+          <button class="tab" id="search-retry" type="button" hidden="hidden" data-i18n="search.retry">
+            重试
+          </button>
+        </quote>
+        <quote>
+          <p class="search-note" id="search-empty" hidden="hidden" data-i18n="search.empty">
+            没有匹配内容，换个关键词试试。
+          </p>
+        </quote>
       </section>
+      <noscript>
+        <p class="search-note">
+          站内搜索需要启用 JavaScript。
+        </p>
+      </noscript>
       <ul class="archive-list" id="results">
       </ul>
     </main>

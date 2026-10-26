@@ -174,6 +174,10 @@
       "tab.all": "All", "tab.github": "Repos", "tab.news": "News", "tab.papers": "Papers",
       "toolbar.hint": "Ranked by independent sources",
       "search.placeholder": "Search titles / summaries… (press /)",
+      "search.loading": "Loading search index…",
+      "search.error": "Search index failed to load — check your connection and try again.",
+      "search.retry": "Retry",
+      "search.empty": "No matches. Try different keywords.",
       "kind.news": "News", "kind.github": "Repo", "kind.paper": "Paper",
       "chip.new": "New", "chip.rising": "↑ Rising", "chip.progress": "Update",
       "card.sources": " independent sources", "card.seen": "First seen ",
@@ -285,37 +289,98 @@
   render();
 })();
 
-/* ---- search page ---- */
+/* ---- search page ----
+   Lifecycle states (loading / error + retry / no-match) are static
+   data-i18n elements in the page markup, toggled here — a failed or
+   invalid index must be visible and recoverable, never a silent noop
+   (issue #1). Rows are built with DOM APIs because titles/URLs come
+   from third-party feeds and must never hit innerHTML. */
 (function () {
   "use strict";
   var q = document.getElementById("q");
   var results = document.getElementById("results");
+  var loading = document.getElementById("search-loading");
+  var errorNote = document.getElementById("search-error");
+  var retryBtn = document.getElementById("search-retry");
+  var emptyNote = document.getElementById("search-empty");
   if (!q || !results) return;
   var IDX = null;
-  function run() {
-    var query = q.value.trim().toLowerCase();
-    if (!IDX) return;
-    results.innerHTML = "";
-    if (!query) return;
-    var n = 0;
-    IDX.forEach(function (it) {
-      if (n >= 30) return;
-      if (it.t.toLowerCase().indexOf(query) !== -1) {
-        n++;
-        var li = document.createElement("li");
-        li.className = "topic-row";
-        li.innerHTML = '<span class="topic-date">' + it.d + '</span><a href="' + it.u + '" target="_blank" rel="noopener">' + it.t + '</a><span class="src-dom">' + it.k + ' · 🔥' + it.h + '</span>';
-        results.appendChild(li);
-      }
-    });
-    if (!n) results.innerHTML = '<li class="topic-row"><span class="src-dom">没有匹配内容</span></li>';
+  var attempt = 0;
+
+  function state(which) {
+    if (loading) loading.hidden = which !== "loading";
+    if (errorNote) errorNote.hidden = which !== "error";
+    if (retryBtn) retryBtn.hidden = which !== "error";
+    if (emptyNote) emptyNote.hidden = which !== "empty";
   }
-  fetch("/search-index.json").then(function (r) { return r.json(); }).then(function (j) {
-    IDX = [];
-    j.forEach(function (day) {
-      day.forEach(function (c) { IDX.push({ d: c.d, t: c.t, u: c.u, k: c.k, h: c.h }); });
-    });
-    run();
-  });
+
+  function row(it) {
+    var li = document.createElement("li");
+    li.className = "topic-row";
+    var date = document.createElement("span");
+    date.className = "topic-date";
+    date.textContent = it.d;
+    var link = document.createElement("a");
+    link.href = it.u;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = it.t;
+    var kind = document.createElement("span");
+    kind.className = "src-dom";
+    kind.textContent = it.k + " · 🔥" + it.h;
+    li.appendChild(date);
+    li.appendChild(link);
+    li.appendChild(kind);
+    return li;
+  }
+
+  function run() {
+    if (!IDX) return; // loading or failed: the active state note stays visible
+    results.innerHTML = "";
+    var query = q.value.trim().toLowerCase();
+    if (!query) { state("idle"); return; }
+    var n = 0;
+    for (var i = 0; i < IDX.length && n < 30; i++) {
+      if (IDX[i].t.toLowerCase().indexOf(query) !== -1) {
+        n++;
+        results.appendChild(row(IDX[i]));
+      }
+    }
+    state(n ? "idle" : "empty");
+  }
+
+  function load() {
+    IDX = null;
+    var n = ++attempt; // a stale late response must not revive a dead attempt
+    state("loading");
+    fetch("/search-index.json")
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (j) {
+        if (n !== attempt) return;
+        if (!Array.isArray(j)) throw new Error("bad index shape");
+        IDX = [];
+        j.forEach(function (day) {
+          if (!Array.isArray(day)) return;
+          day.forEach(function (c) {
+            if (c && typeof c.t === "string" && typeof c.u === "string") {
+              IDX.push({ d: String(c.d || ""), t: c.t, u: c.u,
+                         k: String(c.k || ""), h: String(c.h || "") });
+            }
+          });
+        });
+        state("idle");
+        run();
+      })
+      .catch(function () {
+        if (n !== attempt) return;
+        IDX = null;
+        state("error");
+      });
+  }
+  if (retryBtn) retryBtn.addEventListener("click", load);
   q.addEventListener("input", run);
+  load();
 })();
