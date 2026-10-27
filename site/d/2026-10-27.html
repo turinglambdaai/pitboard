@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      pitboard — 汽车行业每日热点
+    </title>
+    <meta name="description" content="pitboard — 汽车行业每日热点：开源项目、行业资讯、前沿论文，一天一块板。" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="application/rss+xml" title="pitboard RSS" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script defer="defer" src="/app.js">
+    </script>
+    <script>
+      var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8e2445912635226bcba0c400bfb6079d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="1.25" y="6" width="21.5" height="12" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7">
+            </rect>
+            <rect x="4.4" y="9.2" width="2.7" height="5.6" rx="0.6" fill="var(--accent)">
+            </rect>
+            <rect x="9.2" y="9.4" width="7" height="1.9" rx="0.9" fill="currentColor" opacity="0.5">
+            </rect>
+            <rect x="9.2" y="13" width="10.4" height="1.9" rx="0.9" fill="currentColor" opacity="0.28">
+            </rect>
+          </svg>
+          <span class="brand-name">
+            pitboard
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="/" class="active" data-i18n="nav.today">
+            今日
+          </a>
+          <a href="/topics/" data-i18n="nav.topics">
+            话题
+          </a>
+          <a href="/bookmarks.html" data-i18n="nav.bookmarks">
+            书签
+          </a>
+          <a href="/archive" data-i18n="nav.archive">
+            归档
+          </a>
+          <a href="/about" data-i18n="nav.about">
+            关于
+          </a>
+          <a href="/rss.xml">
+            RSS
+          </a>
+          <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+            EN
+          </button>
+          <button class="theme-btn" id="theme-btn" type="button" aria-label="切换主题">
+            ◐
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="kicker">
+              AUTOMOTIVE DAILY · 第 15 期
+            </p>
+            <h1 class="hero-date">
+              2026年10月27日
+              <span class="hero-wd">
+                 星期二
+              </span>
+            </h1>
+            <p class="hero-meta">
+              <span>
+                410
+                <span data-i18n="meta.hot">
+                   个热点
+                </span>
+              </span>
+              <span class="dot">
+                ·
+              </span>
+              <span>
+                419
+                <span data-i18n="meta.items">
+                   条原始条目
+                </span>
+              </span>
+              <span class="dot">
+                ·
+              </span>
+              <span>
+                29
+                <span data-i18n="meta.sources">
+                   个信源
+                </span>
+              </span>
+            </p>
+          </div>
+          <div class="board" aria-hidden="true">
+            <div class="board-label">
+              EDITION
+            </div>
+            <div class="board-num">
+              15
+            </div>
+            <div class="board-sub" data-i18n="board.sub">
+              PITBOARD · 每日出刊
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="quick">
+        <div class="quick-head">
+          <span class="kicker">
+            CURRENT HOT
+          </span>
+          <span class="quick-label" data-i18n="quick.label">
+            当前热点
+          </span>
+          <span class="quick-count">
+            TOP 5
+          </span>
+        </div>
+        <ol class="quick-list">
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.autosar.org/news-events/detail/capi-release-event-10" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                01
+              </span>
+              <span class="quick-name">
+                CAPI Release Event 1.0
+              </span>
+              <span class="quick-heat">
+                🔥12.0
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.xchuxing.com/article/179121" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                02
+              </span>
+              <span class="quick-name">
+                售价 26.58-28.58 万 魏牌高山 8 HEV 上市
+              </span>
+              <span class="quick-heat">
+                🔥5.9
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                03
+              </span>
+              <span class="quick-name">
+                carla-simulator/carla
+              </span>
+              <span class="quick-heat">
+                🔥5.4
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://www.just-auto.com/news/audi-plans-first-us-factory-georgia" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                04
+              </span>
+              <span class="quick-name">
+                Audi investing $4B to build its first US plant in Ge…
+              </span>
+              <span class="quick-heat">
+                🔥4.2
+              </span>
+            </a>
+          </li>
+          <li class="quick-item">
+            <a class="quick-link" href="https://auto.gasgoo.com/news/202610/27I70475880C103.shtml" target="_blank" rel="noopener">
+              <span class="quick-rank">
+                05
+              </span>
+              <span class="quick-name">
+                曼胡默尔荣膺2026盖世汽车金辑奖“最佳技术实践应用奖”，以创新解决方案定义中央气源新标准
+              </span>
+              <span class="quick-heat">
+                🔥3.5
+              </span>
+            </a>
+          </li>
+        </ol>
+      </section>
+      <div class="toolbar">
+        <div class="tabs" role="tablist" aria-label="按类型筛选">
+          <button class="tab active" type="button" data-filter="all">
+            <span data-i18n="tab.all">
+              全部
+            </span>
+            <span class="tab-n" data-count="all">
+              410
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="github">
+            <span data-i18n="tab.github">
+              开源
+            </span>
+            <span class="tab-n" data-count="github">
+              19
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="news">
+            <span data-i18n="tab.news">
+              资讯
+            </span>
+            <span class="tab-n" data-count="news">
+              360
+            </span>
+          </button>
+          <button class="tab" type="button" data-filter="paper">
+            <span data-i18n="tab.papers">
+              论文
+            </span>
+            <span class="tab-n" data-count="paper">
+              40
+            </span>
+          </button>
+          <span class="toolbar-hint" data-i18n="toolbar.hint">
+            按独立来源数排序
+          </span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="搜索标题 / 摘要…（按 / 聚焦）" data-i18n-placeholder="search.placeholder" autocomplete="off" aria-label="搜索热点" />
+      </div>
+      <div class="cards">
+        <article class="card" data-kind="news" data-text="capi release event 1.0 ">
+          <div class="card-top">
+            <span class="rank">
+              01
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                12.0
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:100%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.autosar.org/news-events/detail/capi-release-event-10" target="_blank" rel="noopener">
+              CAPI Release Event 1.0
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.autosar.org/news-events/detail/capi-release-event-10" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autosar.org
+            </a>
+            <a class="chip chip-src" href="https://www.autosar.org/news-events/detail/autosar-capi-10-release-event-join-us-live" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autosar.org
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="18th aoc: call for papers is now open! ">
+          <div class="card-top">
+            <span class="rank">
+              02
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                10.5
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:87%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.autosar.org/news-events/detail/18th-aoc-call-for-papers-is-now-open" target="_blank" rel="noopener">
+              18th AOC: Call for Papers is Now Open!
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.autosar.org/news-events/detail/18th-aoc-call-for-papers-is-now-open" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autosar.org
+            </a>
+            <a class="chip chip-src" href="https://www.autosar.org/news-events/detail/18th-aoc-call-for-sponsors" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autosar.org
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="售价 26.58-28.58 万 魏牌高山 8 hev 上市 ">
+          <div class="card-top">
+            <span class="rank">
+              03
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.9
+              </span>
+              <span class="chip chip-rising" data-i18n="chip.rising">
+                ↑ 上升
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip">
+                2
+                <span data-i18n="card.sources">
+                   个独立来源
+                </span>
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:49%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.xchuxing.com/article/179121" target="_blank" rel="noopener">
+              售价 26.58-28.58 万 魏牌高山 8 HEV 上市
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.xchuxing.com/article/179121" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.xchuxing.com
+            </a>
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/314711" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="audi investing $4b to build its first us plant in georgia the factory will have a production capacity of up to 200,000 vehicles a year, with construction slated to begin in 2027 and the first vehicles built in the early 2030s.">
+          <div class="card-top">
+            <span class="rank">
+              04
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.2
+              </span>
+              <span class="chip chip-rising" data-i18n="chip.rising">
+                ↑ 上升
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip">
+                2
+                <span data-i18n="card.sources">
+                   个独立来源
+                </span>
+              </span>
+              <span class="card-time">
+                16:25
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:35%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.just-auto.com/news/audi-plans-first-us-factory-georgia" target="_blank" rel="noopener">
+              Audi investing $4B to build its first US plant in Georgia
+            </a>
+          </h2>
+          <p class="card-summary">
+            The factory will have a production capacity of up to 200,000 vehicles a year, with construction slated to begin in 2027 and the first vehicles built in the early 2030s.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.just-auto.com/news/audi-plans-first-us-factory-georgia" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.just-auto.com
+            </a>
+            <a class="chip chip-src" href="https://www.wardsauto.com/news/audi-investing-4b-to-build-its-first-us-plant-in-georgia/833903" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.wardsauto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="曼胡默尔荣膺2026盖世汽车金辑奖“最佳技术实践应用奖”，以创新解决方案定义中央气源新标准 ">
+          <div class="card-top">
+            <span class="rank">
+              05
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.5
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:29%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://auto.gasgoo.com/news/202610/27I70475880C103.shtml" target="_blank" rel="noopener">
+              曼胡默尔荣膺2026盖世汽车金辑奖“最佳技术实践应用奖”，以创新解决方案定义中央气源新标准
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://auto.gasgoo.com/news/202610/27I70475880C103.shtml" target="_blank" rel="noopener">
+              资讯
+               · 
+              auto.gasgoo.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="付于武：夯实硬实力，更要提升汽车产业软实力 ">
+          <div class="card-top">
+            <span class="rank">
+              06
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.5
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:29%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://auto.gasgoo.com/news/202610/27I70475982C106.shtml" target="_blank" rel="noopener">
+              付于武：夯实硬实力，更要提升汽车产业软实力
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://auto.gasgoo.com/news/202610/27I70475982C106.shtml" target="_blank" rel="noopener">
+              资讯
+               · 
+              auto.gasgoo.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="采用全新设计语言/提供燃油和混动版本可选 新款丰田亚洲龙到店 48分钟前 1310 0 [汽车之家 新车首发] 10月27日，我们从国内经销商处拍摄到了一汽丰田旗下中型轿车——新款亚洲龙，该车已于此前完成工信部申报，其在外观设计上进行了... ">
+          <div class="card-top">
+            <span class="rank">
+              07
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.2
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:26%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.autohome.com.cn/news/202610/1317992.html#pvareaid=102624" target="_blank" rel="noopener">
+              采用全新设计语言/提供燃油和混动版本可选 新款丰田亚洲龙到店 48分钟前 1310 0 [汽车之家 新车首发] 10月27日，我们从国内经销商处拍摄到了一汽丰田旗下中型轿车——新款亚洲龙，该车已于此前完成工信部申报，其在外观设计上进行了...
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.autohome.com.cn/news/202610/1317992.html#pvareaid=102624" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autohome.com.cn
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="上半年热销轿车盘点：比亚迪无缘前十 燃油车依然是主力？ ">
+          <div class="card-top">
+            <span class="rank">
+              08
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.1
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:25%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.autohome.com.cn/news/202607/1315940.html#pvareaid=102623" target="_blank" rel="noopener">
+              上半年热销轿车盘点：比亚迪无缘前十 燃油车依然是主力？
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.autohome.com.cn/news/202607/1315940.html#pvareaid=102623" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.autohome.com.cn
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="精品文章 新出行原创 新出行图文详解 256期：静态体验 icar v25 之前我们都会把 v25 看作是 v23 的增程版。但在体验完实车后，能够看到 v25 并不只是尺寸拉长，增加增程器。而是把此前 v23 的一些痛点，都进行了升级 陈大个同学 点赞 8 评论 4 ">
+          <div class="card-top">
+            <span class="rank">
+              09
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:24%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.xchuxing.com/article/178753" target="_blank" rel="noopener">
+              精品文章 新出行原创 新出行图文详解 256期：静态体验 iCAR V25 之前我们都会把 V25 看作是 V23 的增程版。但在体验完实车后，能够看到 V25 并不只是尺寸拉长，增加增程器。而是把此前 V23 的一些痛点，都进行了升级 陈大个同学 点赞 8 评论 4
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.xchuxing.com/article/178753" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.xchuxing.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="吉利银河星耀6ef发布会定档：续航1880km 1小时前 ">
+          <div class="card-top">
+            <span class="rank">
+              10
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:24%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.d1ev.com/carnews/xinche/314707" target="_blank" rel="noopener">
+              吉利银河星耀6EF发布会定档：续航1880km 1小时前
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/314707" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="吉利为欧洲市场研发专属车型 2027年亮相 1小时前 ">
+          <div class="card-top">
+            <span class="rank">
+              11
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:24%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.d1ev.com/carnews/xinche/314709" target="_blank" rel="noopener">
+              吉利为欧洲市场研发专属车型 2027年亮相 1小时前
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.d1ev.com/carnews/xinche/314709" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.d1ev.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="700tops算力加持，东风风神l8+上市12.99万元起 ">
+          <div class="card-top">
+            <span class="rank">
+              12
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-25
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:22%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.diandongbang.com/news/167920.html" target="_blank" rel="noopener">
+              700TOPS算力加持，东风风神L8+上市12.99万元起
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.diandongbang.com/news/167920.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.diandongbang.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="家用suv迎来新选手，荣威家越07有何看点 ">
+          <div class="card-top">
+            <span class="rank">
+              13
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.7
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                02:13
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:22%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.diandongbang.com/news/167921.html" target="_blank" rel="noopener">
+              家用SUV迎来新选手，荣威家越07有何看点
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.diandongbang.com/news/167921.html" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.diandongbang.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="智能汽车主线周报：小马智行联合indrive在哈萨克斯坦试点robotaxi，看好智能化 ">
+          <div class="card-top">
+            <span class="rank">
+              14
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.4
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                12:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:20%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.fxbaogao.com/detail/5803949" target="_blank" rel="noopener">
+              智能汽车主线周报：小马智行联合inDrive在哈萨克斯坦试点Robotaxi，看好智能化
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.fxbaogao.com/detail/5803949" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.fxbaogao.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="using a single image to optimize urban solar-panel orientation getting the most power from an urban-sited panel requires deep understanding of its surroundings. the post using a single image to optimize urban solar-panel orientation appeared first on ee times .">
+          <div class="card-top">
+            <span class="rank">
+              15
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.3
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                22:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:19%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.eetimes.com/using-a-single-image-to-optimize-urban-solar-panel-orientation" target="_blank" rel="noopener">
+              Using a Single Image to Optimize Urban Solar-Panel Orientation
+            </a>
+          </h2>
+          <p class="card-summary">
+            Getting the most power from an urban-sited panel requires deep understanding of its surroundings. The post Using a Single Image to Optimize Urban Solar-Panel Orientation appeared first on EE Times .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.eetimes.com/using-a-single-image-to-optimize-urban-solar-panel-orientation" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.eetimes.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="24/7 mobile tyre replacement &amp; roadside assistance in dubai: 800 tyre hub experiencing a sudden flat tyre, a shredded tread, or a dead car battery on the bustling highways of dubai can instantly disrupt your day, turning a smooth commute into a stressful ordeal. whether you are navigating the high-speed lanes of sheikh zayed road, commuting through downtown dubai, or parked outside your residence in al warsan, vehicular emergencies demand an immediate, professional, and reliable solution. traditional garage visits require towing services, long waiting times, and signi…">
+          <div class="card-top">
+            <span class="rank">
+              16
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.3
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                21:05
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:19%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://dev.to/800tyrehub/247-mobile-tyre-replacement-roadside-assistance-in-dubai-800-tyre-hub-3ce" target="_blank" rel="noopener">
+              24/7 Mobile Tyre Replacement &amp; Roadside Assistance in Dubai: 800 Tyre Hub
+            </a>
+          </h2>
+          <p class="card-summary">
+            Experiencing a sudden flat tyre, a shredded tread, or a dead car battery on the bustling highways of Dubai can instantly disrupt your day, turning a smooth commute into a stressful ordeal. Whether you are navigating the high-speed lanes of Sheikh Zayed Road, commuting through Downtown Dubai, or parked outside your residence in Al Warsan, vehicular emergencies demand an immediate, professional, and reliable solution. Traditional garage visits require towing services, long waiting times, and signi…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://dev.to/800tyrehub/247-mobile-tyre-replacement-roadside-assistance-in-dubai-800-tyre-hub-3ce" target="_blank" rel="noopener">
+              资讯
+               · 
+              dev.to
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="how nvidia mission control 2.5 brings autonomous recovery to kubernetes training large-scale ai models on thousands of gpus is a high-stakes operation where monitoring and automation must be built-in to optimize cluster resiliency...">
+          <div class="card-top">
+            <span class="rank">
+              17
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.3
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                15:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:19%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://developer.nvidia.com/blog/how-nvidia-mission-control-2-5-brings-autonomous-recovery-to-kubernetes" target="_blank" rel="noopener">
+              How NVIDIA Mission Control 2.5 Brings Autonomous Recovery to Kubernetes
+            </a>
+          </h2>
+          <p class="card-summary">
+            Training large-scale AI models on thousands of GPUs is a high-stakes operation where monitoring and automation must be built-in to optimize cluster resiliency...
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://developer.nvidia.com/blog/how-nvidia-mission-control-2-5-brings-autonomous-recovery-to-kubernetes" target="_blank" rel="noopener">
+              资讯
+               · 
+              developer.nvidia.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="汽车行业周报：机器人量产预期升温，兑现仍待观察 ">
+          <div class="card-top">
+            <span class="rank">
+              18
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.2
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                12:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:18%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.fxbaogao.com/detail/5803994" target="_blank" rel="noopener">
+              汽车行业周报：机器人量产预期升温，兑现仍待观察
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.fxbaogao.com/detail/5803994" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.fxbaogao.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="2027 hyundai palisade’s advanced hybrid powertrain provides best of both worlds the hybrid beats v-6 versions in power and efficiency: 30 mpg combined versus 20 mpg.">
+          <div class="card-top">
+            <span class="rank">
+              19
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.1
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                16:37
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:17%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.wardsauto.com/news/2027-hyundai-palisades-advanced-hybrid-powertrain-provides-best-of-both-wo/833891" target="_blank" rel="noopener">
+              2027 Hyundai Palisade’s advanced hybrid powertrain provides best of both worlds
+            </a>
+          </h2>
+          <p class="card-summary">
+            The hybrid beats V-6 versions in power and efficiency: 30 mpg combined versus 20 mpg.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.wardsauto.com/news/2027-hyundai-palisades-advanced-hybrid-powertrain-provides-best-of-both-wo/833891" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.wardsauto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="lafontaine auto group goes all-in with high-tech inspection system uveye’s ceo envisions its vehicle scanning devices will someday be ubiquitous, including at places such as grocery store parking lots.">
+          <div class="card-top">
+            <span class="rank">
+              20
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.1
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                15:17
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:17%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.wardsauto.com/news/lafontaine-auto-group-goes-all-in-with-high-tech-inspection-system/833613" target="_blank" rel="noopener">
+              LaFontaine Auto Group goes all-in with high-tech inspection system
+            </a>
+          </h2>
+          <p class="card-summary">
+            UVeye’s CEO envisions its vehicle scanning devices will someday be ubiquitous, including at places such as grocery store parking lots.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.wardsauto.com/news/lafontaine-auto-group-goes-all-in-with-high-tech-inspection-system/833613" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.wardsauto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla-spacex merger explained in charts ">
+          <div class="card-top">
+            <span class="rank">
+              21
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.1
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                12:14
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:17%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.reuters.com/graphics/SPACEX-TESLA/FINANCES/bypradqllve/" target="_blank" rel="noopener">
+              Tesla-SpaceX merger explained in charts
+            </a>
+          </h2>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.reuters.com/graphics/SPACEX-TESLA/FINANCES/bypradqllve/" target="_blank" rel="noopener">
+              资讯
+               · 
+              news.ycombinator.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="horse powertrain opens casting facility in brazil the unit provides an annual manufacturing capacity of 210,000 aluminium cylinder heads.">
+          <div class="card-top">
+            <span class="rank">
+              22
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.0
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:44
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:16%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.just-auto.com/news/horse-powertrain-200m-reais-casting-facility-brazil" target="_blank" rel="noopener">
+              Horse Powertrain opens casting facility in Brazil
+            </a>
+          </h2>
+          <p class="card-summary">
+            The unit provides an annual manufacturing capacity of 210,000 aluminium cylinder heads.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.just-auto.com/news/horse-powertrain-200m-reais-casting-facility-brazil" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.just-auto.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="automakers reconsider in-cabin sensing for euro ncap ratings stricter european safety assessment criteria are prompting car companies to replace steering-wheel sensors with consolidated in-cabin systems. the post automakers reconsider in-cabin sensing for euro ncap ratings appeared first on ee times .">
+          <div class="card-top">
+            <span class="rank">
+              23
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                2.0
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                17:00
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:16%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.eetimes.com/automakers-reconsider-in-cabin-sensing-for-euro-ncap-ratings" target="_blank" rel="noopener">
+              Automakers Reconsider In-Cabin Sensing for Euro NCAP Ratings
+            </a>
+          </h2>
+          <p class="card-summary">
+            Stricter European safety assessment criteria are prompting car companies to replace steering-wheel sensors with consolidated in-cabin systems. The post Automakers Reconsider In-Cabin Sensing for Euro NCAP Ratings appeared first on EE Times .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.eetimes.com/automakers-reconsider-in-cabin-sensing-for-euro-ncap-ratings" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.eetimes.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="f1 in texas: the american race that fans love to attend ars spends the weekend with the audi revolut f1 team at the circuit of the americas.">
+          <div class="card-top">
+            <span class="rank">
+              24
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:48
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://arstechnica.com/cars/2026/10/f1-in-texas-one-more-race-and-well-have-a-new-champion" target="_blank" rel="noopener">
+              F1 in Texas: The American race that fans love to attend
+            </a>
+          </h2>
+          <p class="card-summary">
+            Ars spends the weekend with the Audi Revolut F1 team at the Circuit of the Americas.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://arstechnica.com/cars/2026/10/f1-in-texas-one-more-race-and-well-have-a-new-champion" target="_blank" rel="noopener">
+              资讯
+               · 
+              arstechnica.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="tesla gave up the ev crown. now it wants to win the autonomy race. tesla hopes autonomy subscriptions can deliver the margins car sales cannot.">
+          <div class="card-top">
+            <span class="rank">
+              25
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:30
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://arstechnica.com/cars/2026/10/tesla-wants-ai-and-software-to-be-its-next-profit-engine" target="_blank" rel="noopener">
+              Tesla gave up the EV crown. Now it wants to win the autonomy race.
+            </a>
+          </h2>
+          <p class="card-summary">
+            Tesla hopes autonomy subscriptions can deliver the margins car sales cannot.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://arstechnica.com/cars/2026/10/tesla-wants-ai-and-software-to-be-its-next-profit-engine" target="_blank" rel="noopener">
+              资讯
+               · 
+              arstechnica.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="the best vin check site? buying a used car? one of the most important steps before making a purchase is running a vin check. a vehicle identification number (vin) is a unique 17-character code assigned to a vehicle. using this number, you can access records that may reveal important details about its past. but what’s the best vin check site in 2026? what makes a good vin check site? the best vehicle history report services should provide access to: accident history: reported collisions and vehicle damage. title records:…">
+          <div class="card-top">
+            <span class="rank">
+              26
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.9
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                14:12
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://dev.to/jansendiegothebest/the-best-vin-check-site-cap" target="_blank" rel="noopener">
+              The best VIN Check site?
+            </a>
+          </h2>
+          <p class="card-summary">
+            Buying a used car? One of the most important steps before making a purchase is running a VIN check. A Vehicle Identification Number (VIN) is a unique 17-character code assigned to a vehicle. Using this number, you can access records that may reveal important details about its past. But what’s the best VIN check site in 2026? What Makes a Good VIN Check Site? The best vehicle history report services should provide access to: Accident history: Reported collisions and vehicle damage. Title records:…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://dev.to/jansendiegothebest/the-best-vin-check-site-cap" target="_blank" rel="noopener">
+              资讯
+               · 
+              dev.to
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="david tracy logic is the best logic: cotd something i love about working for the autopian is that all of my co-workers are absolute characters. thomas and matt know the most obscure pop culture references, jason is just unhinged, peter got me addicted to rc vehicles, adrian is devastatingly sassy, and the bishop has an incredible imagination. then there’s david, and his absolutely […] the post david tracy logic is the best logic: cotd appeared first on the autopian .">
+          <div class="card-top">
+            <span class="rank">
+              27
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                23:34
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://www.theautopian.com/david-tracy-logic-is-the-best-logic-cotd" target="_blank" rel="noopener">
+              David Tracy Logic Is The Best Logic: COTD
+            </a>
+          </h2>
+          <p class="card-summary">
+            Something I love about working for The Autopian is that all of my co-workers are absolute characters. Thomas and Matt know the most obscure pop culture references, Jason is just unhinged, Peter got me addicted to RC vehicles, Adrian is devastatingly sassy, and The Bishop has an incredible imagination. Then there’s David, and his absolutely […] The post David Tracy Logic Is The Best Logic: COTD appeared first on The Autopian .
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://www.theautopian.com/david-tracy-logic-is-the-best-logic-cotd" target="_blank" rel="noopener">
+              资讯
+               · 
+              www.theautopian.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="the 2027 kia ev6 is over $8,000 more than the new ev3 kia announced that 2027 ev6 prices start at about $38,000, or $8,000 more than the new ev3. more…">
+          <div class="card-top">
+            <span class="rank">
+              28
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                00:39
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://electrek.co/2026/10/26/2027-kia-ev6-over-8000-more-than-new-ev3" target="_blank" rel="noopener">
+              The 2027 Kia EV6 is over $8,000 more than the new EV3
+            </a>
+          </h2>
+          <p class="card-summary">
+            Kia announced that 2027 EV6 prices start at about $38,000, or $8,000 more than the new EV3. more…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://electrek.co/2026/10/26/2027-kia-ev6-over-8000-more-than-new-ev3" target="_blank" rel="noopener">
+              资讯
+               · 
+              electrek.co
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="this startups self-driving excavators help dig up $600m in new funding bedrock robotics, which is now valued at $4.1 billion, is particularly focused on autonomous excavators, in part because of a growing shortage of skilled operators.">
+          <div class="card-top">
+            <span class="rank">
+              29
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                17:45
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://techcrunch.com/2026/10/26/this-startups-self-driving-excavators-help-dig-up-600m-in-new-funding" target="_blank" rel="noopener">
+              This startups self-driving excavators help dig up $600M in new funding
+            </a>
+          </h2>
+          <p class="card-summary">
+            Bedrock Robotics, which is now valued at $4.1 billion, is particularly focused on autonomous excavators, in part because of a growing shortage of skilled operators.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://techcrunch.com/2026/10/26/this-startups-self-driving-excavators-help-dig-up-600m-in-new-funding" target="_blank" rel="noopener">
+              资讯
+               · 
+              techcrunch.com
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="news" data-text="byds ultra-luxury ev could debut next week with solid-state batteries and much more byd’s  upcoming flagship ev will be its largest and most luxurious electric sedan yet, potentially debuting two firsts for the company: rolls-royce-style coach doors and solid-state batteries. more…">
+          <div class="card-top">
+            <span class="rank">
+              30
+            </span>
+            <span class="card-kind kind-news" data-i18n="kind.news">
+              资讯
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                1.8
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="card-time">
+                21:22
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:15%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://electrek.co/2026/10/26/byds-ultra-luxury-ev-may-debut-next-week-with-solid-state-batteries" target="_blank" rel="noopener">
+              BYDs ultra-luxury EV could debut next week with solid-state batteries and much more
+            </a>
+          </h2>
+          <p class="card-summary">
+            BYD’s  upcoming flagship EV will be its largest and most luxurious electric sedan yet, potentially debuting two firsts for the company: Rolls-Royce-style coach doors and solid-state batteries. more…
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://electrek.co/2026/10/26/byds-ultra-luxury-ev-may-debut-next-week-with-solid-state-batteries" target="_blank" rel="noopener">
+              资讯
+               · 
+              electrek.co
+            </a>
+          </div>
+        </article>
+      </div>
+      <section class="lane-head">
+        <span class="kicker">
+          OPEN SOURCE RADAR
+        </span>
+        <h2 class="lane-title" data-i18n="lane.opensource">
+          开源雷达
+        </h2>
+      </section>
+      <div class="cards">
+        <article class="card" data-kind="github" data-text="carla-simulator/carla open-source simulator for autonomous driving research.">
+          <div class="card-top">
+            <span class="rank">
+              01
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                5.4
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                02:10
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:45%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              carla-simulator/carla
+            </a>
+          </h2>
+          <p class="card-summary">
+            Open-source simulator for autonomous driving research.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/carla-simulator/carla" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★14542
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="worldbench/awesome-vla-for-ad 🌐 vision-language-action models for autonomous driving: past, present, and future">
+          <div class="card-top">
+            <span class="rank">
+              02
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.9
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                01:53
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:40%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" rel="noopener">
+              worldbench/awesome-vla-for-ad
+            </a>
+          </h2>
+          <p class="card-summary">
+            🌐 Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★518
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="commaai/opendbc a python api for your car">
+          <div class="card-top">
+            <span class="rank">
+              03
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.8
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                01:12
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:40%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/commaai/opendbc" target="_blank" rel="noopener">
+              commaai/opendbc
+            </a>
+          </h2>
+          <p class="card-summary">
+            a Python API for your car
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/commaai/opendbc" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★3516
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="gotonote/autopilot-notes 自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、bev、transformer、adas、cvpr、特斯拉ai day、大模型、chatgpt等内容.">
+          <div class="card-top">
+            <span class="rank">
+              04
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                4.1
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                17:02
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:34%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/gotonote/Autopilot-Notes" target="_blank" rel="noopener">
+              gotonote/Autopilot-Notes
+            </a>
+          </h2>
+          <p class="card-summary">
+            自动驾驶笔记，以解析各模块知识点、整合行业优秀解决方案进行阐述，以帮助自己及有需要的读者；包含深度学习、deeplearning、无人驾驶、BEV、Transformer、ADAS、CVPR、特斯拉AI DAY、大模型、chatgpt等内容.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/gotonote/Autopilot-Notes" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★842
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="cantools/cantools can bus tools.">
+          <div class="card-top">
+            <span class="rank">
+              05
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.7
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                09:05
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:30%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/cantools/cantools" target="_blank" rel="noopener">
+              cantools/cantools
+            </a>
+          </h2>
+          <p class="card-summary">
+            CAN bus tools.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/cantools/cantools" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★2305
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="zoompilot/jetlink runs openpilot's large driving model on jetson orin nano, macos, ios, android, cuda laptops with only your comma, and a usb3 cable">
+          <div class="card-top">
+            <span class="rank">
+              06
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.3
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                00:32
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:27%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/zoompilot/jetlink" target="_blank" rel="noopener">
+              zoompilot/jetlink
+            </a>
+          </h2>
+          <p class="card-summary">
+            Runs openpilot's large driving model on Jetson Orin Nano, macOS, iOS, Android, CUDA laptops with only your Comma, and a USB3 cable
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/zoompilot/jetlink" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★42
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="pylessard/python-udsoncan python implementation of uds (iso-14229) standard.">
+          <div class="card-top">
+            <span class="rank">
+              07
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                3.1
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-new" data-i18n="chip.new">
+                新
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-20
+              </span>
+              <span class="card-time">
+                04:10
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:25%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/pylessard/python-udsoncan" target="_blank" rel="noopener">
+              pylessard/python-udsoncan
+            </a>
+          </h2>
+          <p class="card-summary">
+            Python implementation of UDS (ISO-14229) standard.
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/pylessard/python-udsoncan" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★734
+              </span>
+            </a>
+          </div>
+        </article>
+        <article class="card" data-kind="github" data-text="ecubus/ecubus-pro a powerful automotive ecu development tool. uds, can-tp, doip, lin , script(ts) like capl, hil test">
+          <div class="card-top">
+            <span class="rank">
+              08
+            </span>
+            <span class="card-kind kind-github" data-i18n="kind.github">
+              开源
+            </span>
+            <div class="labels">
+              <span class="heat">
+                🔥 
+                0.5
+              </span>
+              <span class="chip chip-progress" data-i18n="chip.progress">
+                进展
+              </span>
+              <span class="chip chip-seen">
+                <span data-i18n="card.seen">
+                  首见 
+                </span>
+                2026-10-26
+              </span>
+              <span class="card-time">
+                03:31
+              </span>
+            </div>
+          </div>
+          <div class="heatbar">
+            <span class="heatbar-fill" style="width:4%">
+              
+            </span>
+          </div>
+          <h2 class="card-title">
+            <a href="https://github.com/ecubus/EcuBus-Pro" target="_blank" rel="noopener">
+              ecubus/EcuBus-Pro
+            </a>
+          </h2>
+          <p class="card-summary">
+            A powerful automotive ECU development tool. UDS, CAN-TP, DOIP, LIN , Script(TS) like CAPL, HIL Test
+          </p>
+          <div class="chips">
+            <a class="chip chip-src" href="https://github.com/ecubus/EcuBus-Pro" target="_blank" rel="noopener">
+              开源
+               · 
+              github.com
+              <span class="stars">
+                 ★896
+              </span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-brand">
+        pitboard
+      </div>
+      <div data-i18n="footer.tagline">
+        汽车行业每日热点 · Racket 全栈自托管 · 每日自动出刊
+      </div>
+      <div class="muted">
+        <span data-i18n="footer.license">
+          MIT 开源
+        </span>
+         · 
+        <a href="/llms.txt">
+          llms.txt
+        </a>
+         · 
+        <a href="/rss.xml" data-i18n="footer.rss">
+          RSS 订阅
+        </a>
+         · 
+        <a href="https://github.com/turinglambdaai/pitboard/blob/main/docs/READING.md" data-i18n="footer.help">
+          阅读与更正
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
