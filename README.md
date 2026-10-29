@@ -2,7 +2,7 @@
 
 **English** · [中文](README.zh-CN.md)
 
-![platform](https://img.shields.io/badge/platform-Web%20%7C%20Docker%20%7C%20Self--hosted-lightgrey) ![built with](https://img.shields.io/badge/built%20with-Racket-9f1d20) [![CI](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml/badge.svg)](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![platform](https://img.shields.io/badge/platform-Web%20%7C%20Docker%20%7C%20Self--hosted-lightgrey) ![built with](https://img.shields.io/badge/built%20with-Racket-9f1d20) [![CI](https://github.com/turlamai/pitboard/actions/workflows/ci.yml/badge.svg)](https://github.com/turlamai/pitboard/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 The daily hot-topics digest for the automotive industry: it pulls open-source
 projects, industry news and cutting-edge papers together, clusters and
@@ -42,7 +42,7 @@ Requires Racket 8.14+ (minimal-racket counts; local development uses 9.3).
 
 ```sh
 # Install as a Racket package (pulls in web-server and http-easy automatically)
-raco pkg install --auto https://github.com/turinglambdaai/pitboard.git
+raco pkg install --auto https://github.com/turlamai/pitboard.git
 
 # Publish an edition (fetch + cluster + write data/YYYY-MM-DD.json)
 raco pitboard fetch --config config/sources.json

@@ -24,4 +24,4 @@ Report a wrong cluster, stale edition or broken source with the edition date, st
 
 Code is MIT; linked articles/papers keep their original rights. Machine-readable exports are not a licence to relicense source material.
 
-[Issues](https://github.com/turinglambdaai/pitboard/issues) · [README](../README.md)
+[Issues](https://github.com/turlamai/pitboard/issues) · [README](../README.md)

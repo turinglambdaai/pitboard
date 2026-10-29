@@ -24,4 +24,4 @@
 
 程序代码为 MIT；所链接文章和论文保留原始权利。机器可读导出不授予重新许可原始内容的权利。
 
-[Issues](https://github.com/turinglambdaai/pitboard/issues) · [README](../README.zh-CN.md)
+[Issues](https://github.com/turlamai/pitboard/issues) · [README](../README.zh-CN.md)
