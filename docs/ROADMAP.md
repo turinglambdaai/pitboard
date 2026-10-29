@@ -121,4 +121,4 @@ endpoint/key/model 存 localStorage，前端直接调 provider，服务器零接
 
 保活优先：先明确出刊时间/源失败/更正反馈和失败发布恢复。读者 BYOK、移动端和实体扩张暂不进入执行队列。
 
-执行场景与完成标准见[本仓审查 issue](https://github.com/turlamai/pitboard/issues/1)及家族[交付标准](https://github.com/turlamai/turinglambdaai.github.io/blob/master/docs/PRODUCT-STANDARD.md)。未完成的跨平台、硬件或真实支付验证仍是显式门禁；本节不表示这些验证已通过。后续一次认领一个切片，证据回填本文件与 issue。
+执行场景与完成标准见[本仓审查 issue](https://github.com/turlamai/pitboard/issues/1)及家族[交付标准](https://github.com/turlamai/turlamai.github.io/blob/master/docs/PRODUCT-STANDARD.md)。未完成的跨平台、硬件或真实支付验证仍是显式门禁；本节不表示这些验证已通过。后续一次认领一个切片，证据回填本文件与 issue。
