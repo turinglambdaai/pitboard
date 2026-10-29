@@ -2,7 +2,7 @@
 
 [English](README.md) · **中文**
 
-![platform](https://img.shields.io/badge/platform-Web%20%7C%20Docker%20%7C%20Self--hosted-lightgrey) ![built with](https://img.shields.io/badge/built%20with-Racket-9f1d20) [![CI](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml/badge.svg)](https://github.com/turinglambdaai/pitboard/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![platform](https://img.shields.io/badge/platform-Web%20%7C%20Docker%20%7C%20Self--hosted-lightgrey) ![built with](https://img.shields.io/badge/built%20with-Racket-9f1d20) [![CI](https://github.com/turlamai/pitboard/actions/workflows/ci.yml/badge.svg)](https://github.com/turlamai/pitboard/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 汽车行业的每日热点日报站：把开源项目、行业资讯、前沿论文抓到一起，聚簇去重，
 按独立来源数与时间衰减算出热度，每天出刊一张「pit 板」。Racket 全栈
@@ -37,7 +37,7 @@ arXiv 论文 ─┘                                                        ↓
 
 ```sh
 # 安装为 Racket 包（自动带上 web-server 与 http-easy 依赖）
-raco pkg install --auto https://github.com/turinglambdaai/pitboard.git
+raco pkg install --auto https://github.com/turlamai/pitboard.git
 
 # 出刊（抓取 + 聚簇 + 落盘 data/YYYY-MM-DD.json）
 raco pitboard fetch --config config/sources.json
